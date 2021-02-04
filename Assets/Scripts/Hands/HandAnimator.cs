@@ -10,10 +10,12 @@ namespace Hands
         #region Editor
 
         [SerializeField]
+        [Tooltip("Which devices input to query")]
         private XRNode node = XRNode.LeftHand;
 
         [Min(0f)]
         [SerializeField]
+        [Tooltip("Animation speed")]
         private float speed = 10f;
 
         #endregion
