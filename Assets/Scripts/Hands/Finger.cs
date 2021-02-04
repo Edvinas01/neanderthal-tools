@@ -5,8 +5,14 @@ namespace Hands
 {
     public abstract class Finger
     {
+        #region Fields
+
         private float targetValue;
         private float currentValue;
+
+        #endregion
+
+        #region Methods
 
         public void Animate(Animator animator, InputDevice device, float time)
         {
@@ -18,5 +24,7 @@ namespace Hands
         protected abstract float GetTargetValue(InputDevice device);
 
         protected abstract void SetAnimatorValue(Animator animator, float value);
+
+        #endregion
     }
 }
