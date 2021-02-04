@@ -6,10 +6,10 @@ using UnityEngine.XR;
 
 namespace Hands
 {
-    public class Hand : MonoBehaviour
+    public class HandAnimator : MonoBehaviour
     {
         [SerializeField]
-        private XRNode controller;
+        private XRNode node;
 
         private InputDevice device;
         private InputDevice Device
@@ -18,15 +18,12 @@ namespace Hands
             {
                 if (!device.isValid)
                 {
-                    device = InputDevices.GetDeviceAtXRNode(controller);
+                    device = InputDevices.GetDeviceAtXRNode(node);
                 }
 
                 return device;
             }
         }
-
-        [FormerlySerializedAs("m_animator")]
-        public Animator mAnimator = null;
 
         public const string AnimLayerNamePoint = "Point Layer";
         public const string AnimLayerNameThumb = "Thumb Layer";
@@ -39,15 +36,19 @@ namespace Hands
         private int mAnimParamIndexPose = -1;
         private Collider[] mColliders = null;
 
-        [FormerlySerializedAs("anim_frames")]
-        public float animFrames = 4f;
+        [SerializeField]
+        private float frames = 4f;
+
         private float gripState = 0f;
         private float triggerState = 0f;
         private float triggerCapState = 0f;
         private float thumbCapState;
 
+        private Animator animator;
+
         private void Awake()
         {
+            animator = GetComponentInChildren<Animator>();
             // animator =
             // controller.GetComponent<XRController>();
         }
@@ -64,8 +65,8 @@ namespace Hands
                 collider.enabled = true;
             }
 
-            mAnimLayerIndexPoint = mAnimator.GetLayerIndex(AnimLayerNamePoint);
-            mAnimLayerIndexThumb = mAnimator.GetLayerIndex(AnimLayerNameThumb);
+            mAnimLayerIndexPoint = animator.GetLayerIndex(AnimLayerNamePoint);
+            mAnimLayerIndexThumb = animator.GetLayerIndex(AnimLayerNameThumb);
             mAnimParamIndexFlex = Animator.StringToHash(AnimParamNameFlex);
             mAnimParamIndexPose = Animator.StringToHash(AnimParamNamePose);
 
@@ -89,18 +90,18 @@ namespace Hands
                 var gripStateDelta = gripTarget - gripState;
                 if (gripStateDelta > 0f)
                 {
-                    gripState = Mathf.Clamp(gripState + 1 / animFrames, 0f, gripTarget);
+                    gripState = Mathf.Clamp(gripState + 1 / frames, 0f, gripTarget);
                 }
                 else if (gripStateDelta < 0f)
                 {
-                    gripState = Mathf.Clamp(gripState - 1 / animFrames, gripTarget, 1f);
+                    gripState = Mathf.Clamp(gripState - 1 / frames, gripTarget, 1f);
                 }
                 else
                 {
                     gripState = gripTarget;
                 }
 
-                mAnimator.SetFloat(mAnimParamIndexFlex, gripState);
+                animator.SetFloat(mAnimParamIndexFlex, gripState);
             }
 
             if (Device.TryGetFeatureValue(CommonUsages.trigger, out float triggerTarget)
@@ -109,18 +110,18 @@ namespace Hands
                 var triggerStateDelta = triggerTarget - triggerState;
                 if (triggerStateDelta > 0f)
                 {
-                    triggerState = Mathf.Clamp(triggerState + 1 / animFrames, 0f, triggerTarget);
+                    triggerState = Mathf.Clamp(triggerState + 1 / frames, 0f, triggerTarget);
                 }
                 else if (triggerStateDelta < 0f)
                 {
-                    triggerState = Mathf.Clamp(triggerState - 1 / animFrames, triggerTarget, 1f);
+                    triggerState = Mathf.Clamp(triggerState - 1 / frames, triggerTarget, 1f);
                 }
                 else
                 {
                     triggerState = triggerTarget;
                 }
 
-                mAnimator.SetFloat("Pinch", triggerState);
+                animator.SetFloat("Pinch", triggerState);
             }
 
             if (Device.TryGetFeatureValue(OculusUsages.indexTouch,
@@ -131,19 +132,19 @@ namespace Hands
                 if (triggerCapStateDelta > 0f)
                 {
                     triggerCapState =
-                        Mathf.Clamp(triggerCapState + 1 / animFrames, 0f, triggerCapTarget);
+                        Mathf.Clamp(triggerCapState + 1 / frames, 0f, triggerCapTarget);
                 }
                 else if (triggerCapStateDelta < 0f)
                 {
                     triggerCapState =
-                        Mathf.Clamp(triggerCapState - 1 / animFrames, triggerCapTarget, 1f);
+                        Mathf.Clamp(triggerCapState - 1 / frames, triggerCapTarget, 1f);
                 }
                 else
                 {
                     triggerCapState = triggerCapTarget;
                 }
 
-                mAnimator.SetLayerWeight(mAnimLayerIndexPoint, 1f - triggerCapState);
+                animator.SetLayerWeight(mAnimLayerIndexPoint, 1f - triggerCapState);
             }
 
             if (Device.TryGetFeatureValue(OculusUsages.thumbTouch,
@@ -153,18 +154,18 @@ namespace Hands
                 var thumbCapStateDelta = thumbCapTarget - thumbCapState;
                 if (thumbCapStateDelta > 0f)
                 {
-                    thumbCapState = Mathf.Clamp(thumbCapState + 1 / animFrames, 0f, thumbCapTarget);
+                    thumbCapState = Mathf.Clamp(thumbCapState + 1 / frames, 0f, thumbCapTarget);
                 }
                 else if (thumbCapStateDelta < 0f)
                 {
-                    thumbCapState = Mathf.Clamp(thumbCapState - 1 / animFrames, thumbCapTarget, 1f);
+                    thumbCapState = Mathf.Clamp(thumbCapState - 1 / frames, thumbCapTarget, 1f);
                 }
                 else
                 {
                     thumbCapState = thumbCapTarget;
                 }
 
-                mAnimator.SetLayerWeight(mAnimLayerIndexThumb, 1f - thumbCapState);
+                animator.SetLayerWeight(mAnimLayerIndexThumb, 1f - thumbCapState);
             }
         }
     }
