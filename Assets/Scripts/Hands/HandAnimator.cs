@@ -3,7 +3,7 @@ using Unity.XR.Oculus;
 using UnityEngine;
 using UnityEngine.XR;
 
-namespace Hands
+namespace NeanderthalTools.Hands
 {
     public class HandAnimator : MonoBehaviour
     {

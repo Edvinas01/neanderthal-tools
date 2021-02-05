@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.XR;
 
-namespace Hands
+namespace NeanderthalTools.Hands
 {
     public abstract class Finger
     {
