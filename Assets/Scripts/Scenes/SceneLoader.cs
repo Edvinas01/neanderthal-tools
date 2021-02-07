@@ -72,7 +72,7 @@ namespace NeanderthalTools.Scenes
             }
             else
             {
-                Debug.LogError($"Scene with buildIndex: {nextIndex} is invalid");
+                Debug.LogError($"Scene with buildIndex: {nextIndex} is invalid", this);
             }
         }
 
