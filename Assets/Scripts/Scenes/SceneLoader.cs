@@ -79,7 +79,7 @@ namespace NeanderthalTools.Scenes
         {
             var activeScene = SceneManager.GetActiveScene();
             var nextIndex = activeScene.buildIndex + 1;
-            var nextScene = SceneManager.GetSceneByBuildIndex(nextIndex + 1);
+            var nextScene = SceneManager.GetSceneByBuildIndex(nextIndex);
 
             if (nextScene.IsValid())
             {

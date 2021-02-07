@@ -130,6 +130,7 @@ PlayerSettings:
   bundleVersion: 0.1
   preloadedAssets:
   - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 11400000, guid: 67608fb813d1ee54c9c2be2ae7098671, type: 2}
   - {fileID: 0}
   - {fileID: -2993180382490078199, guid: 0f82be187f1c3574785b2d366d09227d, type: 2}
@@ -589,7 +590,7 @@ PlayerSettings:
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
-    Standalone: 0
+    Standalone: 1
   il2cppCompilerConfiguration: {}
   managedStrippingLevel: {}
   incrementalIl2cppBuild: {}
