@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3ca9d72c0f5043e9b9ed7e25d63422f5, type: 3}
-  m_Name: LoadMainSceneEvent 1
+  m_Name: LoadNextSceneEvent
   m_EditorClassIdentifier: 
   description: Loads the next scene in the build order
   lockDescription: 1
