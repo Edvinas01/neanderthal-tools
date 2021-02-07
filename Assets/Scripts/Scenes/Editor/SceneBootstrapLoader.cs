@@ -36,7 +36,10 @@ namespace NeanderthalTools.Scenes.Editor
 
         private static void OnSceneOpened(Scene scene, OpenSceneMode mode)
         {
-            if (BuildPipeline.isBuildingPlayer || !scene.IsValid() || IsBootstrapScene(scene))
+            if (!EditorSceneSettings.BootstrapEditor
+                || BuildPipeline.isBuildingPlayer
+                || !scene.IsValid()
+                || IsBootstrapScene(scene))
             {
                 return;
             }
@@ -70,6 +73,11 @@ namespace NeanderthalTools.Scenes.Editor
 
         private static void OnPlaymodeStateChanged(PlayModeStateChange change)
         {
+            if (!EditorSceneSettings.BootstrapEditor)
+            {
+                return;
+            }
+
             // ReSharper disable once SwitchStatementMissingSomeEnumCasesNoDefault
             switch (change)
             {

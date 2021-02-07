@@ -9,8 +9,14 @@ namespace NeanderthalTools.Scenes.Editor
     public class EditorSceneSettings : ScriptableObject
     {
         [SerializeField]
+        [Tooltip("Enable bootstrap scene functionality while in editor")]
+        private bool bootstrapEditor = true;
+
+        [SerializeField]
         [NaughtyAttributes.ReadOnly]
         private SceneSetup[] setup = new SceneSetup[0];
+
+        public bool BootstrapEditor => bootstrapEditor;
 
         /// <summary>
         /// Scene setup before entering the play mode.

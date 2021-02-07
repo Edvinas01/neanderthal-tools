@@ -140,7 +140,7 @@ namespace NeanderthalTools.Scenes
             yield return fadeCanvas.FadeIn();
 
             var activeScene = SceneManager.GetActiveScene();
-            if (activeScene.buildIndex > 0)
+            if (activeScene.buildIndex != sceneSettings.BootstrapSceneIndex)
             {
                 yield return SceneManager.UnloadSceneAsync(activeScene);
             }
