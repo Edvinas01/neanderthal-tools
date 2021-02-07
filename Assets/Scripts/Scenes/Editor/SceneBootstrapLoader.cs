@@ -1,4 +1,5 @@
-﻿using NeanderthalTools.Extensions.Editor;
+﻿using System.Linq;
+using NeanderthalTools.Extensions.Editor;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine.SceneManagement;
@@ -84,23 +85,21 @@ namespace NeanderthalTools.Scenes.Editor
 
         private static void BootstrapSceneSettings()
         {
-            // Store scene setup.
             var setup = EditorSceneManager.GetSceneManagerSetup();
             EditorSceneSettings.Setup = setup;
+            AssetDatabase.SaveAssets();
 
-            // Activate only the bootstrap scene.
-            var bootstrappedScenePath = SceneSettings.GetBootstrapScenePath();
-            foreach (var sceneSetup in setup)
-            {
-                sceneSetup.isActive = sceneSetup.path == bootstrappedScenePath;
-            }
-
-            EditorSceneManager.RestoreSceneManagerSetup(setup);
+            SceneManager.SetActiveScene(SceneSettings.GetBootstrapScene());
         }
 
         private static void RestoreSceneSettings()
         {
-            EditorSceneManager.RestoreSceneManagerSetup(EditorSceneSettings.Setup);
+            var activeScene = EditorSceneSettings
+                .Setup
+                .FirstOrDefault(sceneSetup => sceneSetup.isActive)
+                .GetScene();
+
+            SceneManager.SetActiveScene(activeScene);
         }
 
         #endregion
