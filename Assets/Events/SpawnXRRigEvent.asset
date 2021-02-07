@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7d4060906d542e7a9dca07008bdc652, type: 3}
-  m_Name: SpawnPlayerEvent
+  m_Script: {fileID: 11500000, guid: e0f5042a755a4c48806f006c5a499534, type: 3}
+  m_Name: SpawnXRRigEvent
   m_EditorClassIdentifier: 
-  description: Spawn player at scenes spawn point
+  description: Spawn XR rigt at scenes spawn point
   lockDescription: 1
   suppressExceptions: 0
   trace: 0

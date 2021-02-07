@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8333362958865512143}
   - component: {fileID: 8333362958865512136}
   m_Layer: 0
-  m_Name: SceneSpawn
+  m_Name: SceneSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -84,9 +84,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8333362960627235875}
-  - component: {fileID: 8333362960627235874}
+  - component: {fileID: 4906882289836983614}
   m_Layer: 0
-  m_Name: SpawnPlayerListener
+  m_Name: SpawnXRRigListener
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -106,7 +106,7 @@ Transform:
   m_Father: {fileID: 8333362959490969398}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8333362960627235874
+--- !u!114 &4906882289836983614
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,16 +115,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 8333362960627235900}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad65403ebd3445baad61e78877ff6ed6, type: 3}
+  m_Script: {fileID: 11500000, guid: 3e30a4ea76a744d1b335bb3eae95fdbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scriptableEvent: {fileID: 11400000, guid: 6ad69eaf0f772d0478afefbe4f915027, type: 2}
+  scriptableEvent: {fileID: 11400000, guid: a4484d20c9ec69f468784a5ad165434a, type: 2}
   onRaised:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8333362958865512136}
         m_TargetAssemblyTypeName: NeanderthalTools.Scenes.SceneSpawnPoint, Assembly-CSharp
-        m_MethodName: Place
+        m_MethodName: Spawn
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

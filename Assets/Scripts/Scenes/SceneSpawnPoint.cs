@@ -16,11 +16,13 @@ namespace NeanderthalTools.Scenes
 
         #region Methods
 
-        public void Place(Transform target)
+        public void Spawn(GameObject target)
         {
+            var targetTransform = target.transform;
             var spawnTransform = transform;
-            target.position = spawnTransform.position;
-            target.rotation = spawnTransform.rotation;
+            
+            targetTransform.position = spawnTransform.position;
+            targetTransform.rotation = spawnTransform.rotation;
         }
 
         #endregion
