@@ -4,11 +4,6 @@ using UnityEditor.SceneManagement;
 using UnityEngine.SceneManagement;
 using static NeanderthalTools.Extensions.Editor.ScriptableObjectExtensions;
 
-// todo
-// 1. Active scene must be the Bootstrap scene
-// 2. Interractable doesn't work with trigger
-// 3. Menu doesn't fade over the screen
-
 namespace NeanderthalTools.Scenes.Editor
 {
     [InitializeOnLoad]
