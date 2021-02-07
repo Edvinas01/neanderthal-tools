@@ -36,7 +36,7 @@ namespace NeanderthalTools.Scenes.Editor
 
         private static void OnSceneOpened(Scene scene, OpenSceneMode mode)
         {
-            if (!scene.IsValid() || IsBootstrapScene(scene))
+            if (BuildPipeline.isBuildingPlayer || !scene.IsValid() || IsBootstrapScene(scene))
             {
                 return;
             }

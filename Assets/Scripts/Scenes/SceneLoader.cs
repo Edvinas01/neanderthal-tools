@@ -79,16 +79,8 @@ namespace NeanderthalTools.Scenes
         {
             var activeScene = SceneManager.GetActiveScene();
             var nextIndex = activeScene.buildIndex + 1;
-            var nextScene = SceneManager.GetSceneByBuildIndex(nextIndex);
 
-            if (nextScene.IsValid())
-            {
-                StartLoadScene(nextIndex);
-            }
-            else
-            {
-                Debug.LogError($"Scene with buildIndex: {nextIndex} is invalid", this);
-            }
+            StartLoadScene(nextIndex);
         }
 
         /// <summary>
