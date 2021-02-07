@@ -516,6 +516,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0422752032e4dfb44862eb86fb7bbe2b, type: 3}
+--- !u!4 &3196475256280005161 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3196475255756503398, guid: 0422752032e4dfb44862eb86fb7bbe2b,
+    type: 3}
+  m_PrefabInstance: {fileID: 3196475256280005160}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4558936613623469697
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -588,5 +594,46 @@ PrefabInstance:
       propertyPath: fadeCanvas
       value: 
       objectReference: {fileID: 1427377906}
+    - target: {fileID: 4558936613671106773, guid: 9f4fcbdf01ed93f4698f8fead777e9a4,
+        type: 3}
+      propertyPath: onSceneReady.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4558936613671106773, guid: 9f4fcbdf01ed93f4698f8fead777e9a4,
+        type: 3}
+      propertyPath: onSceneReady.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4558936613671106773, guid: 9f4fcbdf01ed93f4698f8fead777e9a4,
+        type: 3}
+      propertyPath: onSceneReady.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: 6ad69eaf0f772d0478afefbe4f915027,
+        type: 2}
+    - target: {fileID: 4558936613671106773, guid: 9f4fcbdf01ed93f4698f8fead777e9a4,
+        type: 3}
+      propertyPath: onSceneReady.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4558936613671106773, guid: 9f4fcbdf01ed93f4698f8fead777e9a4,
+        type: 3}
+      propertyPath: onSceneReady.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Raise
+      objectReference: {fileID: 0}
+    - target: {fileID: 4558936613671106773, guid: 9f4fcbdf01ed93f4698f8fead777e9a4,
+        type: 3}
+      propertyPath: onSceneReady.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ScriptableEvents.BaseScriptableEvent`1[[UnityEngine.Transform, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4558936613671106773, guid: 9f4fcbdf01ed93f4698f8fead777e9a4,
+        type: 3}
+      propertyPath: onSceneReady.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 3196475256280005161}
+    - target: {fileID: 4558936613671106773, guid: 9f4fcbdf01ed93f4698f8fead777e9a4,
+        type: 3}
+      propertyPath: onSceneReady.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Transform, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f4fcbdf01ed93f4698f8fead777e9a4, type: 3}

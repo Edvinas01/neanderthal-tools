@@ -2,6 +2,7 @@
 using NeanderthalTools.UI;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 namespace NeanderthalTools.Scenes
@@ -16,6 +17,9 @@ namespace NeanderthalTools.Scenes
         [SerializeField]
         private FadeCanvas fadeCanvas;
 
+        [SerializeField]
+        private UnityEvent onSceneReady;
+
         #endregion
 
         #region Fields
@@ -25,6 +29,17 @@ namespace NeanderthalTools.Scenes
         #endregion
 
         #region Unity Lifecycle
+
+        private void OnEnable()
+        {
+            SceneManager.activeSceneChanged += OnActiveSceneChanged;
+        }
+
+        private void OnDisable()
+        {
+            SceneManager.activeSceneChanged -= OnActiveSceneChanged;
+        }
+
 
 #if UNITY_EDITOR
         private IEnumerator Start()
@@ -108,6 +123,14 @@ namespace NeanderthalTools.Scenes
         #endregion
 
         #region Private Methods
+
+        private void OnActiveSceneChanged(Scene prev, Scene next)
+        {
+            if (next.buildIndex != sceneSettings.BootstrapSceneIndex)
+            {
+                onSceneReady.Invoke();
+            }
+        }
 
         private void StartLoadScene(int sceneIndex)
         {
