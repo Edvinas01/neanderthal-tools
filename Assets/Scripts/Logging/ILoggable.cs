@@ -4,8 +4,8 @@
     {
         int Order { get; }
 
-        void Accept(IDescribable describable);
+        void AcceptDescribable(IDescribable describable);
 
-        void Accept(ILogger logger);
+        void AcceptLogger(ILogger logger);
     }
 }

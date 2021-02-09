@@ -3,7 +3,9 @@ guid: 934e1bcc80114a9bb8096de188207f3e
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - loggables: {fileID: 11400000, guid: 5ad78ed3c4338f642825610283eed1ca, type: 2}
+  - settings: {fileID: 11400000, guid: 2ddc8dee064115845906554eb24e9749, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

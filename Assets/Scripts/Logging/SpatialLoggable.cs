@@ -44,7 +44,7 @@ namespace NeanderthalTools.Logging
 
         public int Order => order;
 
-        public void Accept(IDescribable describable)
+        public void AcceptDescribable(IDescribable describable)
         {
             describable.Describe(
                 $"{name}PositionX",
@@ -56,7 +56,7 @@ namespace NeanderthalTools.Logging
             );
         }
 
-        public void Accept(ILogger logger)
+        public void AcceptLogger(ILogger logger)
         {
             var position = loggableTransform.position;
             var rotation = loggableTransform.rotation.eulerAngles;

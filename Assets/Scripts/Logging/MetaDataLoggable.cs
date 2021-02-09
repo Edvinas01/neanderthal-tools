@@ -40,12 +40,12 @@ namespace NeanderthalTools.Logging
 
         public int Order => -1;
 
-        public void Accept(IDescribable describable)
+        public void AcceptDescribable(IDescribable describable)
         {
             describable.Describe("Time", "FPS");
         }
 
-        public void Accept(ILogger logger)
+        public void AcceptLogger(ILogger logger)
         {
             logger.Log(Time.time);
             logger.Log(fps);

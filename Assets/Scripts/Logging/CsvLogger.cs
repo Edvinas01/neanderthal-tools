@@ -1,7 +1,6 @@
-﻿using System;
-using System.IO;
+﻿using System.Globalization;
+using NeanderthalTools.Util;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace NeanderthalTools.Logging
 {
@@ -12,47 +11,52 @@ namespace NeanderthalTools.Logging
         [SerializeField]
         private LoggableCollection loggables;
 
-        [Min(0f)]
         [SerializeField]
-        private float logIntervalSeconds = 0.1f;
+        private LoggingSettings settings;
 
         #endregion
 
         #region Fields
 
-        private StreamWriter streamWriter;
-        private float nextLogSeconds;
+        private readonly AsyncFileWriter writer = new AsyncFileWriter();
+        private float nextSample;
 
         #endregion
 
         #region Unity Lifecycle
 
+        private void Awake()
+        {
+            gameObject.SetActive(settings.EnableLogging);
+            SetupFileWriter();
+        }
+
         private void OnEnable()
         {
-            SetupWriter();
+            writer.Start();
         }
 
         private void OnDisable()
         {
-            CleanupWriter();
+            writer.Stop();
         }
 
         private void Start()
         {
             SetupLoggables();
-            DescribeLoggables();
+            WriteDescriptions();
         }
 
         private void Update()
         {
-            if (Time.time < nextLogSeconds)
+            if (Time.time < nextSample)
             {
                 return;
             }
 
-            LogLoggables();
+            WriteLogs();
 
-            nextLogSeconds = Time.time + logIntervalSeconds;
+            nextSample = Time.time + settings.SampleIntervalSeconds;
         }
 
         #endregion
@@ -63,35 +67,27 @@ namespace NeanderthalTools.Logging
         {
             foreach (var value in values)
             {
-                streamWriter.Write(value);
-                streamWriter.Write(",");
+                writer.Write(value);
+                writer.Write(",");
             }
         }
 
         public void Log(float value)
         {
-            streamWriter.Write(value);
-            streamWriter.Write(",");
+            writer.Write(value.ToString(CultureInfo.InvariantCulture));
+            writer.Write(",");
         }
 
         #endregion
 
         #region Methods
 
-        private void SetupWriter()
+        private void SetupFileWriter()
         {
-            var date = DateTime.UtcNow;
-            var path = Application.persistentDataPath + $"/{date:yyyy-MM-dd hh-mm-ss}.log";
-
-            var directoryName = Path.GetDirectoryName(path);
-            Directory.CreateDirectory(directoryName ?? string.Empty);
-
-            streamWriter = new StreamWriter(path);
-        }
-
-        private void CleanupWriter()
-        {
-            streamWriter?.Close();
+            writer.WriteIntervalSeconds = settings.WriteIntervalSeconds;
+            writer.FileDirectory = settings.LogFileDirectory;
+            writer.FileSuffix = settings.LogFileSuffix;
+            writer.CompressFile = settings.CompressLogs;
         }
 
         private void SetupLoggables()
@@ -99,24 +95,24 @@ namespace NeanderthalTools.Logging
             loggables.Sort();
         }
 
-        private void DescribeLoggables()
+        private void WriteDescriptions()
         {
             foreach (var loggable in loggables)
             {
-                loggable.Accept((IDescribable) this);
+                loggable.AcceptDescribable(this);
             }
 
-            streamWriter.Write("\n");
+            writer.Write("\n");
         }
 
-        private void LogLoggables()
+        private void WriteLogs()
         {
             foreach (var loggable in loggables)
             {
-                loggable.Accept((ILogger) this);
+                loggable.AcceptLogger(this);
             }
 
-            streamWriter.Write("\n");
+            writer.Write("\n");
         }
 
         #endregion
