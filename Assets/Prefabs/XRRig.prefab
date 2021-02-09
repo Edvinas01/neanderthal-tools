@@ -805,6 +805,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loggables: {fileID: 11400000, guid: 5ad78ed3c4338f642825610283eed1ca, type: 2}
+  order: 0
 --- !u!1 &3196475255727433834
 GameObject:
   m_ObjectHideFlags: 0

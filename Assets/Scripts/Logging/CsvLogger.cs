@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System;
+using System.IO;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace NeanderthalTools.Logging
 {
-    public class CsvLogger : MonoBehaviour, ILogger
+    public class CsvLogger : MonoBehaviour, IDescribable, ILogger
     {
         #region Editor
 
@@ -13,18 +14,34 @@ namespace NeanderthalTools.Logging
 
         [Min(0f)]
         [SerializeField]
-        private float sampleRateSeconds = 1f;
+        private float logIntervalSeconds = 0.1f;
 
         #endregion
 
         #region Fields
 
-        private readonly List<object> snapshot = new List<object>();
+        private StreamWriter streamWriter;
         private float nextLogSeconds;
 
         #endregion
 
         #region Unity Lifecycle
+
+        private void OnEnable()
+        {
+            SetupWriter();
+        }
+
+        private void OnDisable()
+        {
+            CleanupWriter();
+        }
+
+        private void Start()
+        {
+            SetupLoggables();
+            DescribeLoggables();
+        }
 
         private void Update()
         {
@@ -33,28 +50,73 @@ namespace NeanderthalTools.Logging
                 return;
             }
 
-            snapshot.Clear();
-            foreach (var loggable in loggables)
-            {
-                loggable.Accept(this);
-            }
+            LogLoggables();
 
-            var str = snapshot
-                .Select(obj => obj.ToString())
-                .Aggregate((a, b) => a + " " + b);
-
-            Debug.Log(str);
-
-            nextLogSeconds = Time.time + sampleRateSeconds;
+            nextLogSeconds = Time.time + logIntervalSeconds;
         }
 
         #endregion
 
         #region Overrides
 
-        public void Log(object obj)
+        public void Describe(params string[] values)
         {
-            snapshot.Add(obj);
+            foreach (var value in values)
+            {
+                streamWriter.Write(value);
+                streamWriter.Write(",");
+            }
+        }
+
+        public void Log(float value)
+        {
+            streamWriter.Write(value);
+            streamWriter.Write(",");
+        }
+
+        #endregion
+
+        #region Methods
+
+        private void SetupWriter()
+        {
+            var date = DateTime.UtcNow;
+            var path = Application.persistentDataPath + $"/{date:yyyy-MM-dd hh-mm-ss}.log";
+
+            var directoryName = Path.GetDirectoryName(path);
+            Directory.CreateDirectory(directoryName ?? string.Empty);
+
+            streamWriter = new StreamWriter(path);
+        }
+
+        private void CleanupWriter()
+        {
+            streamWriter?.Close();
+        }
+
+        private void SetupLoggables()
+        {
+            loggables.Sort();
+        }
+
+        private void DescribeLoggables()
+        {
+            foreach (var loggable in loggables)
+            {
+                loggable.Accept((IDescribable) this);
+            }
+
+            streamWriter.Write("\n");
+        }
+
+        private void LogLoggables()
+        {
+            foreach (var loggable in loggables)
+            {
+                loggable.Accept((ILogger) this);
+            }
+
+            streamWriter.Write("\n");
         }
 
         #endregion

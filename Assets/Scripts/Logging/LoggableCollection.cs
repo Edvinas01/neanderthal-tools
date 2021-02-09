@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace NeanderthalTools.Logging
@@ -11,11 +12,18 @@ namespace NeanderthalTools.Logging
         #region Editor
 
         [NonSerialized]
-        private readonly List<ILoggable> loggables = new List<ILoggable>();
+        private List<ILoggable> loggables = new List<ILoggable>();
 
         #endregion
 
         #region Methods
+
+        public void Sort()
+        {
+            loggables = loggables
+                .OrderBy(loggable => loggable.Order)
+                .ToList();
+        }
 
         public void Add(ILoggable loggable)
         {
