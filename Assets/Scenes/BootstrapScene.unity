@@ -459,6 +459,11 @@ PrefabInstance:
       propertyPath: sampleRateSeconds
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2041480738725216728, guid: f3de4dedf63d2bd45bd5444dd60e7eaf,
+        type: 3}
+      propertyPath: logIntervalSeconds
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2041480738725216730, guid: f3de4dedf63d2bd45bd5444dd60e7eaf,
         type: 3}
       propertyPath: m_Name
