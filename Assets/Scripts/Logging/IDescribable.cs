@@ -2,6 +2,6 @@
 {
     public interface IDescribable
     {
-        void Describe(params string[] values);
+        void Describe(params string[] descriptions);
     }
 }

@@ -1,4 +1,4 @@
-﻿using System.Globalization;
+﻿using System.Collections.Generic;
 using NeanderthalTools.Util;
 using UnityEngine;
 
@@ -18,7 +18,12 @@ namespace NeanderthalTools.Logging
 
         #region Fields
 
-        private readonly AsyncFileWriter writer = new AsyncFileWriter();
+        private readonly AsyncTextFileWriter writer = new AsyncTextFileWriter();
+
+        // Current sample log names and the actual logs.
+        private readonly List<string> sampleDescriptions = new List<string>();
+        private readonly List<string> sampleLogs = new List<string>();
+
         private float nextSample;
 
         #endregion
@@ -45,6 +50,7 @@ namespace NeanderthalTools.Logging
         {
             SetupLoggables();
             WriteDescriptions();
+            Debug.Log($"Writing logs to: {writer.FilePath}");
         }
 
         private void Update()
@@ -63,19 +69,14 @@ namespace NeanderthalTools.Logging
 
         #region Overrides
 
-        public void Describe(params string[] values)
+        public void Describe(params string[] descriptions)
         {
-            foreach (var value in values)
-            {
-                writer.Write(value);
-                writer.Write(",");
-            }
+            sampleDescriptions.AddRange(descriptions);
         }
 
-        public void Log(float value)
+        public void Log(object value)
         {
-            writer.Write(value.ToString(CultureInfo.InvariantCulture));
-            writer.Write(",");
+            sampleLogs.Add(value.ToString());
         }
 
         #endregion
@@ -102,17 +103,34 @@ namespace NeanderthalTools.Logging
                 loggable.AcceptDescribable(this);
             }
 
-            writer.Write("\n");
+            WriteLine(sampleDescriptions);
         }
 
         private void WriteLogs()
         {
+            // New logs will be added the next sample.
+            sampleLogs.Clear();
+
             foreach (var loggable in loggables)
             {
                 loggable.AcceptLogger(this);
             }
 
-            writer.Write("\n");
+            WriteLine(sampleLogs);
+        }
+
+        private void WriteLine(IReadOnlyList<string> values)
+        {
+            for (var i = 0; i < values.Count; i++)
+            {
+                writer.EnqueueWrite(values[i]);
+                if (i + 1 < values.Count)
+                {
+                    writer.EnqueueWrite(",");
+                }
+            }
+
+            writer.EnqueueWrite("\n");
         }
 
         #endregion

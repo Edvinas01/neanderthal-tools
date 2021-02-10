@@ -1,36 +1,35 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.IO;
-using System.IO.Compression;
 using System.Threading.Tasks;
 using UnityEngine;
 
 namespace NeanderthalTools.Util
 {
-    public class AsyncFileWriter
+    public abstract class AsyncFileWriter<TValue>
     {
         #region Fields
 
-        private readonly ConcurrentQueue<string> queue = new ConcurrentQueue<string>();
+        private readonly ConcurrentQueue<TValue> queue = new ConcurrentQueue<TValue>();
 
         private bool runTask;
         private Task task;
-
-        private StreamWriter streamWriter;
 
         #endregion
 
         #region Properties
 
-        public float WriteIntervalSeconds { private get; set; }
+        public float WriteIntervalSeconds { protected get; set; }
 
-        public string FileDirectory { private get; set; }
+        public string FileDirectory { protected get; set; }
 
-        public string FileSuffix { private get; set; }
+        public string FileSuffix { protected get; set; }
 
-        public string ArchiveSuffix { private get; set; } = "gz";
+        public string FilePath => GetFilePath();
 
-        public bool CompressFile { private get; set; }
+        public string ArchiveSuffix { protected get; set; } = "gz";
+
+        public bool CompressFile { protected get; set; }
 
         #endregion
 
@@ -38,7 +37,7 @@ namespace NeanderthalTools.Util
 
         public void Start()
         {
-            streamWriter = CreateWriter();
+            StartWriter();
             runTask = true;
             task = Task.Factory.StartNew(Write);
         }
@@ -50,26 +49,19 @@ namespace NeanderthalTools.Util
             task?.Wait();
             task = null;
 
-            streamWriter?.Close();
-            streamWriter = null;
+            StopWriter();
         }
 
-        public void Write(string value)
+        public void EnqueueWrite(TValue value)
         {
             queue.Enqueue(value);
         }
 
-        private StreamWriter CreateWriter()
-        {
-            var path = GetFilePath();
-            var dir = Path.GetDirectoryName(path);
+        protected abstract Task WriteAsync(TValue value);
 
-            Directory.CreateDirectory(dir ?? string.Empty);
+        protected abstract void StartWriter();
 
-            return CompressFile
-                ? CreateCompressedWriter(path)
-                : CreateSimpleWriter(path);
-        }
+        protected abstract void StopWriter();
 
         private string GetFilePath()
         {
@@ -85,26 +77,13 @@ namespace NeanderthalTools.Util
             return CompressFile ? $"{FileSuffix}.{ArchiveSuffix}" : FileSuffix;
         }
 
-        private static StreamWriter CreateCompressedWriter(string path)
-        {
-            var fileStream = File.Create(path);
-            var gzipStream = new GZipStream(fileStream, CompressionMode.Compress);
-
-            return new StreamWriter(gzipStream);
-        }
-
-        private static StreamWriter CreateSimpleWriter(string path)
-        {
-            return new StreamWriter(path);
-        }
-
         private async void Write()
         {
             while (runTask)
             {
                 while (queue.TryDequeue(out var value))
                 {
-                    await streamWriter.WriteAsync(value);
+                    await WriteAsync(value);
                 }
 
                 await Task.Delay((int) (WriteIntervalSeconds * 1000));
