@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Concurrent;
+﻿using System.Collections.Concurrent;
 using System.IO;
 using System.IO.Compression;
 using System.Threading.Tasks;
@@ -7,11 +6,18 @@ using UnityEngine;
 
 namespace NeanderthalTools.Util
 {
-    public abstract class AsyncFileWriter<T>
+    public class AsyncFileWriter
     {
         #region Fields
 
-        private readonly ConcurrentQueue<T> queue = new ConcurrentQueue<T>();
+        private readonly ConcurrentQueue<byte[]> queue = new ConcurrentQueue<byte[]>();
+
+        private readonly string directoryName;
+        private readonly string fileName;
+        private readonly bool compress;
+        private readonly float writeIntervalSeconds;
+
+        private readonly string compressedSuffix;
         private readonly int bufferSize;
 
         private Stream stream;
@@ -22,77 +28,71 @@ namespace NeanderthalTools.Util
 
         #region Properties
 
-        public float WriteIntervalSeconds { protected get; set; }
-
-        public string FileDirectory { protected get; set; }
-
-        public string FileSuffix { protected get; set; }
-
-        public string FilePath => GetFilePath();
-
-        public string ArchiveSuffix { protected get; set; } = "gz";
-
-        public bool CompressFile { protected get; set; }
+        public string FilePath => CreateFilePath();
 
         #endregion
 
         #region Methods
 
-        protected AsyncFileWriter(int bufferSize = 4096)
+        public AsyncFileWriter(
+            string directoryName,
+            string fileName,
+            bool compress,
+            float writeIntervalSeconds,
+            string compressedSuffix = "gz",
+            int bufferSize = 4096
+        )
         {
+            this.directoryName = directoryName;
+            this.fileName = fileName;
+            this.compress = compress;
+            this.writeIntervalSeconds = writeIntervalSeconds;
+            this.compressedSuffix = compressedSuffix;
             this.bufferSize = bufferSize;
         }
 
         public void Start()
         {
             stream = CreateStream();
-
             runTask = true;
             task = Task.Factory.StartNew(Write);
         }
 
-        public void Stop()
+        public void Close()
         {
             runTask = false;
 
-            task?.Wait();
+            task.Wait();
             task = null;
 
-            stream?.Close();
+            stream.Close();
             stream = null;
         }
 
-        public void EnqueueWrite(T value)
+        public void Write(byte[] value)
         {
             queue.Enqueue(value);
         }
 
-        protected abstract byte[] GetBytes(T value);
-
-        private string GetFilePath()
-        {
-            return Path.Combine(
-                Application.persistentDataPath,
-                FileDirectory,
-                $"{DateTime.UtcNow:yyyy-MM-dd'_'hh-mm-ss}.{GetFileSuffix()}"
-            );
-        }
-
-        private string GetFileSuffix()
-        {
-            return CompressFile ? $"{FileSuffix}.{ArchiveSuffix}" : FileSuffix;
-        }
-
         private Stream CreateStream()
         {
-            var path = FilePath;
-            var dir = Path.GetDirectoryName(path);
+            var path = CreateFilePath();
+            CreateDirectory(path);
 
-            Directory.CreateDirectory(dir ?? string.Empty);
-
-            return CompressFile
-                ? CreateCompressedStream(path)
+            return compress
+                ? CreateCompressedStream($"{path}.{compressedSuffix}")
                 : CreateSimpleStream(path);
+        }
+
+        private string CreateFilePath()
+        {
+            return Path.Combine(Application.persistentDataPath, directoryName, fileName);
+        }
+
+        private static void CreateDirectory(string path)
+        {
+            var directoryName = Path.GetDirectoryName(path);
+            Directory.CreateDirectory(directoryName ?? string.Empty);
         }
 
         private Stream CreateCompressedStream(string path)
@@ -112,11 +112,10 @@ namespace NeanderthalTools.Util
             {
                 while (queue.TryDequeue(out var value))
                 {
-                    var bytes = GetBytes(value);
-                    await stream.WriteAsync(bytes, 0, bytes.Length);
+                    await stream.WriteAsync(value, 0, value.Length);
                 }
 
-                await Task.Delay((int) (WriteIntervalSeconds * 1000));
+                await Task.Delay((int) (writeIntervalSeconds * 1000));
             }
         }
 

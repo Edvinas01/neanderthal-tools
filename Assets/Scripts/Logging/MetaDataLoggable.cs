@@ -40,9 +40,10 @@ namespace NeanderthalTools.Logging
 
         public int Order => -1;
 
-        public void AcceptDescribable(IDescribable describable)
+        public void AcceptMetaLogger(IMetaLogger metaLogger)
         {
-            describable.Describe("Time", "FPS");
+            metaLogger.LogMeta("Time");
+            metaLogger.LogMeta("FPS");
         }
 
         public void AcceptLogger(ILogger logger)

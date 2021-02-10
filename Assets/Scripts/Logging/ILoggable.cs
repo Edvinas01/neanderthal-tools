@@ -4,7 +4,7 @@
     {
         int Order { get; }
 
-        void AcceptDescribable(IDescribable describable);
+        void AcceptMetaLogger(IMetaLogger metaLogger);
 
         void AcceptLogger(ILogger logger);
     }

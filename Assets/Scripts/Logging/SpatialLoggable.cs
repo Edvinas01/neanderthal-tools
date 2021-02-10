@@ -44,16 +44,14 @@ namespace NeanderthalTools.Logging
 
         public int Order => order;
 
-        public void AcceptDescribable(IDescribable describable)
+        public void AcceptMetaLogger(IMetaLogger metaLogger)
         {
-            describable.Describe(
-                $"{name}PositionX",
-                $"{name}PositionY",
-                $"{name}PositionZ",
-                $"{name}RotationX",
-                $"{name}RotationY",
-                $"{name}RotationZ"
-            );
+            metaLogger.LogMeta($"{name}PositionX");
+            metaLogger.LogMeta($"{name}PositionY");
+            metaLogger.LogMeta($"{name}PositionZ");
+            metaLogger.LogMeta($"{name}RotationX");
+            metaLogger.LogMeta($"{name}RotationY");
+            metaLogger.LogMeta($"{name}RotationZ");
         }
 
         public void AcceptLogger(ILogger logger)
