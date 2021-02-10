@@ -7,7 +7,7 @@ namespace NeanderthalTools.Logging
     {
         #region Overrides
 
-        protected override void Write(IReadOnlyList<object> values)
+        protected override void WriteLog(IReadOnlyList<object> values)
         {
             for (var i = 0; i < values.Count; i++)
             {

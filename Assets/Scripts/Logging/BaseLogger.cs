@@ -50,7 +50,7 @@ namespace NeanderthalTools.Logging
         {
             SetupLoggables();
             WriteMeta();
-            Debug.Log($"Writing logs to: {writer.FilePath}");
+            Debug.Log($"Writing logs to: {writer.FilePath}", this);
         }
 
         private void Update()
@@ -71,12 +71,12 @@ namespace NeanderthalTools.Logging
 
         public void LogMeta(object value)
         {
-            buffer.Add(value.ToString());
+            buffer.Add(value);
         }
 
         public void Log(object value)
         {
-            buffer.Add(value.ToString());
+            buffer.Add(value);
         }
 
         #endregion
@@ -84,9 +84,18 @@ namespace NeanderthalTools.Logging
         #region Methods
 
         /// <summary>
-        /// Write provided list of raw object values to file.
+        /// Write provided list of raw meta data object values.
         /// </summary>
-        protected abstract void Write(IReadOnlyList<object> values);
+        /// <param name="values"></param>
+        protected void WriteMeta(IReadOnlyList<object> values)
+        {
+            WriteLog(values);
+        }
+
+        /// <summary>
+        /// Write provided list of raw log object values to file.
+        /// </summary>
+        protected abstract void WriteLog(IReadOnlyList<object> values);
 
         /// <summary>
         /// Write provided byte value to file.
@@ -126,7 +135,7 @@ namespace NeanderthalTools.Logging
                 loggable.AcceptMetaLogger(this);
             }
 
-            Write(buffer);
+            WriteMeta(buffer);
             buffer.Clear();
         }
 
@@ -137,7 +146,7 @@ namespace NeanderthalTools.Logging
                 loggable.AcceptLogger(this);
             }
 
-            Write(buffer);
+            WriteLog(buffer);
             buffer.Clear();
         }
 
