@@ -86,13 +86,21 @@ namespace NeanderthalTools.Util
             CreateDirectory(path);
 
             return compress
-                ? CreateCompressedStream($"{path}.{compressedSuffix}")
+                ? CreateCompressedStream(path)
                 : CreateSimpleStream(path);
         }
 
         private string CreateFilePath()
         {
-            return Path.Combine(Application.persistentDataPath, directoryName, fileName);
+            var completeFileName = compress
+                ? $"{fileName}.{compressedSuffix}"
+                : fileName;
+
+            return Path.Combine(
+                Application.persistentDataPath,
+                directoryName,
+                completeFileName
+            );
         }
 
         private static void CreateDirectory(string path)

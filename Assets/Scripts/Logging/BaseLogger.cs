@@ -39,18 +39,14 @@ namespace NeanderthalTools.Logging
         private void OnEnable()
         {
             SetupWriter();
+            SetupLoggables();
+            WriteMeta();
+            Debug.Log($"Writing logs to: {writer.FilePath}", this);
         }
 
         private void OnDisable()
         {
             CloseWriter();
-        }
-
-        private void Start()
-        {
-            SetupLoggables();
-            WriteMeta();
-            Debug.Log($"Writing logs to: {writer.FilePath}", this);
         }
 
         private void Update()
@@ -86,7 +82,6 @@ namespace NeanderthalTools.Logging
         /// <summary>
         /// Write provided list of raw meta data object values.
         /// </summary>
-        /// <param name="values"></param>
         protected void WriteMeta(IReadOnlyList<object> values)
         {
             WriteLog(values);

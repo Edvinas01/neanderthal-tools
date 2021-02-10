@@ -12,14 +12,12 @@ namespace NeanderthalTools.Logging
         {
             foreach (var value in values)
             {
-                byte[] bytes = null;
-                if (value is float floatValue)
+                var bytes = value switch
                 {
-                    bytes = BitConverter.GetBytes(floatValue);
-                } else if (value is string stringValue)
-                {
-                    bytes = Encoding.UTF8.GetBytes(stringValue);
-                }
+                    float floatValue => BitConverter.GetBytes(floatValue),
+                    string stringValue => Encoding.UTF8.GetBytes(stringValue),
+                    _ => null
+                };
 
                 if (bytes != null)
                 {

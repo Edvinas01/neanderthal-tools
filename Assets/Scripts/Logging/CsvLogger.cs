@@ -11,17 +11,17 @@ namespace NeanderthalTools.Logging
         {
             for (var i = 0; i < values.Count; i++)
             {
-                WriteStr(values[i].ToString());
+                Write(values[i].ToString());
                 if (i + 1 < values.Count)
                 {
-                    WriteStr(",");
+                    Write(",");
                 }
             }
 
-            WriteStr("\n");
+            Write("\n");
         }
 
-        private void WriteStr(string str)
+        private void Write(string str)
         {
             Write(Encoding.UTF8.GetBytes(str));
         }
