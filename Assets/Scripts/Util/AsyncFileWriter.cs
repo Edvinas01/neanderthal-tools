@@ -51,6 +51,9 @@ namespace NeanderthalTools.Util
             this.bufferSize = bufferSize;
         }
 
+        /// <summary>
+        /// Start the async streaming task.
+        /// </summary>
         public void Start()
         {
             stream = CreateStream();
@@ -58,6 +61,9 @@ namespace NeanderthalTools.Util
             task = Task.Factory.StartNew(Write);
         }
 
+        /// <summary>
+        /// Close the async streaming task and cleanup.
+        /// </summary>
         public void Close()
         {
             runTask = false;

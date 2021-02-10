@@ -18,8 +18,13 @@ namespace NeanderthalTools.Logging
 
         #region Fields
 
+        // Keeps a list of values that have been written during this "sample".
         private readonly List<object> buffer = new List<object>();
+
+        // Async writing to disk.
         private AsyncFileWriter writer;
+
+        // When should the next "sample" buffer be taken.
         private float nextSample;
 
         #endregion
@@ -78,8 +83,14 @@ namespace NeanderthalTools.Logging
 
         #region Methods
 
+        /// <summary>
+        /// Write provided list of raw object values to file.
+        /// </summary>
         protected abstract void Write(IReadOnlyList<object> values);
 
+        /// <summary>
+        /// Write provided byte value to file.
+        /// </summary>
         protected void Write(byte[] value)
         {
             writer.Write(value);

@@ -18,6 +18,9 @@ namespace NeanderthalTools.Logging
 
         #region Methods
 
+        /// <summary>
+        /// Sort loggables by their order.
+        /// </summary>
         public void Sort()
         {
             loggables = loggables
