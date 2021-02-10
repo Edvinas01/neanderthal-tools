@@ -18,7 +18,7 @@ namespace NeanderthalTools.Logging
 
         #region Fields
 
-        private readonly AsyncTextFileWriter writer = new AsyncTextFileWriter();
+        private readonly AsyncFileWriter<string> writer = new AsyncTextFileWriter();
 
         // Current sample log names and the actual logs.
         private readonly List<string> sampleDescriptions = new List<string>();

@@ -1,17 +1,20 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.IO;
+using System.IO.Compression;
 using System.Threading.Tasks;
 using UnityEngine;
 
 namespace NeanderthalTools.Util
 {
-    public abstract class AsyncFileWriter<TValue>
+    public abstract class AsyncFileWriter<T>
     {
         #region Fields
 
-        private readonly ConcurrentQueue<TValue> queue = new ConcurrentQueue<TValue>();
+        private readonly ConcurrentQueue<T> queue = new ConcurrentQueue<T>();
+        private readonly int bufferSize;
 
+        private Stream stream;
         private bool runTask;
         private Task task;
 
@@ -35,9 +38,15 @@ namespace NeanderthalTools.Util
 
         #region Methods
 
+        protected AsyncFileWriter(int bufferSize = 4096)
+        {
+            this.bufferSize = bufferSize;
+        }
+
         public void Start()
         {
-            StartWriter();
+            stream = CreateStream();
+
             runTask = true;
             task = Task.Factory.StartNew(Write);
         }
@@ -49,19 +58,16 @@ namespace NeanderthalTools.Util
             task?.Wait();
             task = null;
 
-            StopWriter();
+            stream?.Close();
+            stream = null;
         }
 
-        public void EnqueueWrite(TValue value)
+        public void EnqueueWrite(T value)
         {
             queue.Enqueue(value);
         }
 
-        protected abstract Task WriteAsync(TValue value);
-
-        protected abstract void StartWriter();
-
-        protected abstract void StopWriter();
+        protected abstract byte[] GetBytes(T value);
 
         private string GetFilePath()
         {
@@ -77,13 +83,37 @@ namespace NeanderthalTools.Util
             return CompressFile ? $"{FileSuffix}.{ArchiveSuffix}" : FileSuffix;
         }
 
+        private Stream CreateStream()
+        {
+            var path = FilePath;
+            var dir = Path.GetDirectoryName(path);
+
+            Directory.CreateDirectory(dir ?? string.Empty);
+
+            return CompressFile
+                ? CreateCompressedStream(path)
+                : CreateSimpleStream(path);
+        }
+
+        private Stream CreateCompressedStream(string path)
+        {
+            var fileStream = CreateSimpleStream(path);
+            return new GZipStream(fileStream, CompressionMode.Compress);
+        }
+
+        private Stream CreateSimpleStream(string path)
+        {
+            return File.Create(path, bufferSize, FileOptions.Asynchronous);
+        }
+
         private async void Write()
         {
             while (runTask)
             {
                 while (queue.TryDequeue(out var value))
                 {
-                    await WriteAsync(value);
+                    var bytes = GetBytes(value);
+                    await stream.WriteAsync(bytes, 0, bytes.Length);
                 }
 
                 await Task.Delay((int) (WriteIntervalSeconds * 1000));
