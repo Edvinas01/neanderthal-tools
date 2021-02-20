@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: LoggingSettings
   m_EditorClassIdentifier: 
   logWriterType: 1
+  enableLogging: 1
   compressLogs: 1
   logFileDirectory: logs
   logFileSuffix: log
   writeIntervalSeconds: 0.1
+  loggingSceneIndexes: 01000000

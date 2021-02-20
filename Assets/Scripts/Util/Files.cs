@@ -7,7 +7,7 @@ namespace NeanderthalTools.Util
         /// <returns>
         /// File and folder friendly date-name.
         /// </returns>
-        public static string FileDateName()
+        public static string DateName()
         {
             return $"{DateTime.UtcNow:yyyy-MM-dd'_'hh-mm-ss}";
         }

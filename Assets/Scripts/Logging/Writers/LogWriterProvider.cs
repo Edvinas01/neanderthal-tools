@@ -46,10 +46,9 @@ namespace NeanderthalTools.Logging.Writers
 
         private string CreateLogFileName(string loggerName)
         {
-            var fileDateName = Files.FileDateName();
             var logFileName = string.IsNullOrWhiteSpace(loggerName) ? name : loggerName;
 
-            return $"{fileDateName}_{logFileName}.{loggingSettings.LogFileSuffix}";
+            return $"{logFileName}.{loggingSettings.LogFileSuffix}";
         }
 
         private AsyncFileWriter CreateFileWriter(string fileName)
