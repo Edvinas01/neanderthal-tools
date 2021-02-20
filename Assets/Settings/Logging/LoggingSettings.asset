@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2925093d40714d9089a685e728a4a332, type: 3}
+  m_Name: LoggingSettings
+  m_EditorClassIdentifier: 
+  enableLogging: 0
+  compressLogs: 1
+  uploadLogsToDropbox: 0
+  dropboxAuthorizationToken: sl.ArpR7EnLNRlyvy7XosH2uMuyfUDwRGYE0KJ4j14Tdkoa1B_csEHVMXxVSNivFaLgBEj44oHwQS8BnKSHsPj5OXIFEeMh8W5IdGGG_atqYPfiuKBLpPy3cBclBpJPvztTZNUohnI
+  logWriterType: 1
+  logFileDirectory: logs
+  logFileSuffix: log
+  writeIntervalSeconds: 0.1
+  loggingSceneIndexes: 01000000

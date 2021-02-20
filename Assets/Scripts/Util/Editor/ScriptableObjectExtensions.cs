@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-namespace NeanderthalTools.Extensions.Editor
+namespace NeanderthalTools.Util.Editor
 {
     public static class ScriptableObjectExtensions
     {

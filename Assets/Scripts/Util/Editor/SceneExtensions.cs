@@ -2,7 +2,7 @@
 using UnityEditor.SceneManagement;
 using UnityEngine.SceneManagement;
 
-namespace NeanderthalTools.Extensions.Editor
+namespace NeanderthalTools.Util.Editor
 {
     public static class SceneExtensions
     {
