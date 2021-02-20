@@ -9,11 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2925093d40714d9089a685e728a4a332, type: 3}
-  m_Name: LoggingSettings
+  m_Script: {fileID: 11500000, guid: 3ca9d72c0f5043e9b9ed7e25d63422f5, type: 3}
+  m_Name: StopLoggingEvent
   m_EditorClassIdentifier: 
-  logWriterType: 1
-  compressLogs: 1
-  logFileDirectory: logs
-  logFileSuffix: log
-  writeIntervalSeconds: 0.1
+  description: 'Stops all logging systems
+
+'
+  lockDescription: 1
+  suppressExceptions: 0
+  trace: 0

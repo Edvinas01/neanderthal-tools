@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &153642791321442901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8065254253920183618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164d04031d604a93913c64d8dd22b959, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  logWriterProvider: {fileID: 11400000, guid: 0c0a400a2ddb66f4e9c624e8cb4343cf, type: 2}
+--- !u!1001 &6914835800997859150
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2441270503712387417, guid: 43683708bd10fab4297a9a2d9134a3db,
+        type: 3}
+      propertyPath: m_Name
+      value: LoggableHolder
+      objectReference: {fileID: 0}
+    - target: {fileID: 2856962472499427678, guid: 43683708bd10fab4297a9a2d9134a3db,
+        type: 3}
+      propertyPath: m_Name
+      value: PoseLogger
+      objectReference: {fileID: 0}
+    - target: {fileID: 4616476735290367450, guid: 43683708bd10fab4297a9a2d9134a3db,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4616476735290367450, guid: 43683708bd10fab4297a9a2d9134a3db,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4616476735290367450, guid: 43683708bd10fab4297a9a2d9134a3db,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4616476735290367450, guid: 43683708bd10fab4297a9a2d9134a3db,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4616476735290367450, guid: 43683708bd10fab4297a9a2d9134a3db,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4616476735290367450, guid: 43683708bd10fab4297a9a2d9134a3db,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4616476735290367450, guid: 43683708bd10fab4297a9a2d9134a3db,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4616476735290367450, guid: 43683708bd10fab4297a9a2d9134a3db,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4616476735290367450, guid: 43683708bd10fab4297a9a2d9134a3db,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4616476735290367450, guid: 43683708bd10fab4297a9a2d9134a3db,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4616476735290367450, guid: 43683708bd10fab4297a9a2d9134a3db,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 43683708bd10fab4297a9a2d9134a3db, type: 3}
+--- !u!1 &8065254253920183618 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3466615599730223628, guid: 43683708bd10fab4297a9a2d9134a3db,
+    type: 3}
+  m_PrefabInstance: {fileID: 6914835800997859150}
+  m_PrefabAsset: {fileID: 0}
