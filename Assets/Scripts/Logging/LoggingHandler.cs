@@ -53,7 +53,7 @@ namespace NeanderthalTools.Logging
                 return;
             }
 
-            if (currentLoggingScene == oldScene)
+            if (currentLoggingScene.IsValid() && currentLoggingScene == oldScene)
             {
                 StopLogging();
             }
@@ -67,18 +67,31 @@ namespace NeanderthalTools.Logging
 
         private void StartLogging()
         {
-            loggingSettings.CurrentLoggingDirectory = Files.DateName();
+            loggingSettings.LogFileDirectory = $"{Files.DateName()}_{currentLoggingScene.name}";
             startLoggingEvent.Raise();
         }
 
         private void StopLogging()
         {
             stopLoggingEvent.Raise();
+            if (loggingSettings.UploadLogsToDropbox)
+            {
+                UploadLogs();
+            }
         }
 
         private bool IsLoggingScene(Scene scene)
         {
             return loggingSettings.LoggingSceneIndexes.Contains(scene.buildIndex);
+        }
+
+        private void UploadLogs()
+        {
+            this.UploadDirectory(
+                loggingSettings.LogFileDirectory,
+                $"{loggingSettings.LoggingId}/{loggingSettings.CurrentLogFileDirectory}",
+                loggingSettings.DropboxAuthorizationToken
+            );
         }
 
         #endregion

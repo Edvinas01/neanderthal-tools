@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using NaughtyAttributes;
 using NeanderthalTools.Logging.Writers;
+using UnityEditor;
 using UnityEngine;
 
 namespace NeanderthalTools.Logging
@@ -12,16 +14,25 @@ namespace NeanderthalTools.Logging
         #region Fields
 
         [SerializeField]
-        [Tooltip("Log file type for all log writers")]
-        private LogWriterType logWriterType = LogWriterType.None;
-
-        [SerializeField]
         [Tooltip("Should logging be enabled")]
         private bool enableLogging;
 
         [SerializeField]
         [Tooltip("Should each log file be compressed using gzip")]
         private bool compressLogs = true;
+
+        [SerializeField]
+        [Tooltip("Should logs be uploaded to dropbox")]
+        private bool uploadLogsToDropbox;
+
+        [SerializeField]
+        [ShowIf("uploadLogsToDropbox")]
+        [Tooltip("Authorization token used to upload log files via Dropbox API")]
+        private string dropboxAuthorizationToken;
+
+        [SerializeField]
+        [Tooltip("Log file type for all log writers")]
+        private LogWriterType logWriterType = LogWriterType.None;
 
         [SerializeField]
         [Tooltip("Directory where to store all logs")]
@@ -45,13 +56,24 @@ namespace NeanderthalTools.Logging
 
         #region Properties
 
-        public LogWriterType LogWriterType => logWriterType;
-
         public bool EnableLogging => enableLogging;
 
         public bool CompressLogs => compressLogs;
 
-        public string LogFileDirectory => Path.Combine(logFileDirectory, CurrentLoggingDirectory);
+        public bool UploadLogsToDropbox => uploadLogsToDropbox;
+
+        public string DropboxAuthorizationToken => dropboxAuthorizationToken;
+
+        public LogWriterType LogWriterType => logWriterType;
+
+        [field: NonSerialized]
+        public string CurrentLogFileDirectory { get; private set; }
+
+        public string LogFileDirectory
+        {
+            get => Path.Combine(logFileDirectory, CurrentLogFileDirectory);
+            set => CurrentLogFileDirectory = value;
+        }
 
         public string LogFileSuffix => logFileSuffix;
 
@@ -59,7 +81,20 @@ namespace NeanderthalTools.Logging
 
         public List<int> LoggingSceneIndexes => loggingSceneIndexes;
 
-        public string CurrentLoggingDirectory { private get; set; }
+        public string LoggingId
+        {
+            get
+            {
+                var loggingId = PlayerPrefs.GetString("LoggingId");
+                if (string.IsNullOrWhiteSpace(loggingId))
+                {
+                    loggingId = GUID.Generate().ToString();
+                    PlayerPrefs.SetString("LoggingId", loggingId);
+                }
+
+                return loggingId;
+            }
+        }
 
         #endregion
     }
