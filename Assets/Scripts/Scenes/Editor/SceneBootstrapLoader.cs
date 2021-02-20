@@ -1,9 +1,9 @@
 ﻿using System.Linq;
-using NeanderthalTools.Extensions.Editor;
+using NeanderthalTools.Util.Editor;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine.SceneManagement;
-using static NeanderthalTools.Extensions.Editor.ScriptableObjectExtensions;
+using static NeanderthalTools.Util.Editor.ScriptableObjectExtensions;
 
 namespace NeanderthalTools.Scenes.Editor
 {
