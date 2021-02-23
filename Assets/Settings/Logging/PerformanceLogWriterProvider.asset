@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: PerformanceLogWriterProvider
   m_EditorClassIdentifier: 
   loggingSettings: {fileID: 11400000, guid: 2ddc8dee064115845906554eb24e9749, type: 2}
-  sampleIntervalSeconds: 0.01
+  sampleIntervalSeconds: 0.01111111
