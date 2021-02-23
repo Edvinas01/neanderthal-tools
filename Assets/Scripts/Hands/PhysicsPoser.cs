@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -44,10 +46,20 @@ namespace NeanderthalTools.Hands
 
         #endregion
 
+        #region Properties
+
+        /// <summary>
+        /// List of colliders under this poser.
+        /// </summary>
+        public List<Collider> Colliders { get; private set; }
+
+        #endregion
+
         #region Unity Lifecycle
 
         private void Awake()
         {
+            Colliders = GetComponentsInChildren<Collider>().ToList();
             rigidbody = GetComponent<Rigidbody>();
         }
 

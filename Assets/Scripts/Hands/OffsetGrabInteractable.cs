@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
 // Based on: https://www.youtube.com/watch?v=-a36GpPkW-Q
@@ -9,19 +8,12 @@ namespace NeanderthalTools.Hands
     {
         #region Fields
 
-        private int originalLayer;
         private Vector3 interactorPosition = Vector3.zero;
         private Quaternion interactorRotation = Quaternion.identity;
 
         #endregion
 
         #region Overrides
-
-        protected override void Awake()
-        {
-            base.Awake();
-            originalLayer = gameObject.layer;
-        }
 
         protected override void OnSelectEntered(SelectEnterEventArgs args)
         {
@@ -30,6 +22,7 @@ namespace NeanderthalTools.Hands
             var interactor = args.interactor;
             SetInteractorPose(interactor);
             SetAttachmentPose(interactor);
+            SetIgnoreCollision(interactor, true);
         }
 
         protected override void OnSelectExited(SelectExitEventArgs args)
@@ -39,6 +32,7 @@ namespace NeanderthalTools.Hands
             var interactor = args.interactor;
             ResetAttachmentPose(interactor);
             ClearInteractorPose();
+            SetIgnoreCollision(interactor, false);
         }
 
         #endregion
@@ -67,8 +61,6 @@ namespace NeanderthalTools.Hands
                 interactorAttachTransform.position = interactableTransform.position;
                 interactorAttachTransform.rotation = interactableTransform.rotation;
             }
-
-            ApplyLayer(colliders, interactor.gameObject.layer);
         }
 
         private void ResetAttachmentPose(XRBaseInteractor interactor)
@@ -76,8 +68,6 @@ namespace NeanderthalTools.Hands
             var interactorAttachTransform = interactor.attachTransform;
             interactorAttachTransform.localPosition = interactorPosition;
             interactorAttachTransform.localRotation = interactorRotation;
-
-            ApplyLayer(colliders, originalLayer);
         }
 
         private void ClearInteractorPose()
@@ -86,11 +76,25 @@ namespace NeanderthalTools.Hands
             interactorRotation = Quaternion.identity;
         }
 
-        private static void ApplyLayer(IEnumerable<Collider> colliders, int layer)
+        private void SetIgnoreCollision(Component interactor, bool ignore)
         {
-            foreach (var collider in colliders)
+            var physicsPoser = interactor.GetComponent<PhysicsPoser>();
+            if (physicsPoser == null)
             {
-                collider.gameObject.layer = layer;
+                return;
+            }
+
+            foreach (var physicsPoserCollider in physicsPoser.Colliders)
+            {
+                foreach (var interactableCollider in colliders)
+                {
+                    Debug.Log(physicsPoserCollider.name + " ~ " + interactableCollider.name + " ignore=" + ignore);
+                    Physics.IgnoreCollision(
+                        physicsPoserCollider,
+                        interactableCollider,
+                        ignore
+                    );
+                }
             }
         }
 
