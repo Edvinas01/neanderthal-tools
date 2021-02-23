@@ -10,29 +10,46 @@ namespace NeanderthalTools.Hands
 
         private Vector3 interactorPosition = Vector3.zero;
         private Quaternion interactorRotation = Quaternion.identity;
+        private GrabWelder grabWelder;
 
         #endregion
 
         #region Overrides
 
-        protected override void OnSelectEntered(SelectEnterEventArgs args)
+        protected override void Awake()
         {
-            base.OnSelectEntered(args);
+            base.Awake();
+            grabWelder = GetComponent<GrabWelder>();
+        }
+
+        protected override void OnSelectEntering(SelectEnterEventArgs args)
+        {
+            base.OnSelectEntering(args);
 
             var interactor = args.interactor;
             SetInteractorPose(interactor);
             SetAttachmentPose(interactor);
             SetIgnoreCollision(interactor, true);
+
+            if (grabWelder != null)
+            {
+                grabWelder.Weld(interactor);
+            }
         }
 
-        protected override void OnSelectExited(SelectExitEventArgs args)
+        protected override void OnSelectExiting(SelectExitEventArgs args)
         {
-            base.OnSelectExited(args);
+            base.OnSelectExiting(args);
 
             var interactor = args.interactor;
             ResetAttachmentPose(interactor);
             ClearInteractorPose();
             SetIgnoreCollision(interactor, false);
+
+            if (grabWelder != null)
+            {
+                grabWelder.UnWeld(interactor);
+            }
         }
 
         #endregion
@@ -88,7 +105,6 @@ namespace NeanderthalTools.Hands
             {
                 foreach (var interactableCollider in colliders)
                 {
-                    Debug.Log(physicsPoserCollider.name + " ~ " + interactableCollider.name + " ignore=" + ignore);
                     Physics.IgnoreCollision(
                         physicsPoserCollider,
                         interactableCollider,

@@ -558,6 +558,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2793066669039154004, guid: 29dc1bbe3dd4cb94f990e0d70ad6321b,
+        type: 3}
+      propertyPath: slowDownVelocity
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2793066669039154004, guid: 29dc1bbe3dd4cb94f990e0d70ad6321b,
+        type: 3}
+      propertyPath: maxRotationChange
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 2793066669039154004, guid: 29dc1bbe3dd4cb94f990e0d70ad6321b,
+        type: 3}
+      propertyPath: slowDownAngularVelocity
+      value: 0.9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29dc1bbe3dd4cb94f990e0d70ad6321b, type: 3}
 --- !u!4 &3196475255727433835 stripped
@@ -632,6 +647,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3966680190932552582, guid: 37f948aa9738c8a4c872d491b11a869d,
+        type: 3}
+      propertyPath: slowDownVelocity
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3966680190932552582, guid: 37f948aa9738c8a4c872d491b11a869d,
+        type: 3}
+      propertyPath: maxRotationChange
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3966680190932552582, guid: 37f948aa9738c8a4c872d491b11a869d,
+        type: 3}
+      propertyPath: slowDownAngularVelocity
+      value: 0.9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 37f948aa9738c8a4c872d491b11a869d, type: 3}
