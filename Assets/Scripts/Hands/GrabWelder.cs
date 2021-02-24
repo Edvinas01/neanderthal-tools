@@ -21,13 +21,13 @@ namespace NeanderthalTools.Hands
             rigidbody = GetComponent<Rigidbody>();
         }
 
-        public void Weld(XRBaseInteractor interactor)
+        public void Weld(SelectEnterEventArgs args)
         {
-            joint = interactor.gameObject.AddComponent<FixedJoint>();
+            joint = args.interactor.gameObject.AddComponent<FixedJoint>();
             joint.connectedBody = rigidbody;
         }
 
-        public void UnWeld(XRBaseInteractor interactor)
+        public void UnWeld(SelectExitEventArgs args)
         {
             if (joint != null)
             {

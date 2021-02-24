@@ -10,17 +10,10 @@ namespace NeanderthalTools.Hands
 
         private Vector3 interactorPosition = Vector3.zero;
         private Quaternion interactorRotation = Quaternion.identity;
-        private GrabWelder grabWelder;
 
         #endregion
 
         #region Overrides
-
-        protected override void Awake()
-        {
-            base.Awake();
-            grabWelder = GetComponent<GrabWelder>();
-        }
 
         protected override void OnSelectEntering(SelectEnterEventArgs args)
         {
@@ -30,11 +23,6 @@ namespace NeanderthalTools.Hands
             SetInteractorPose(interactor);
             SetAttachmentPose(interactor);
             SetIgnoreCollision(interactor, true);
-
-            if (grabWelder != null)
-            {
-                grabWelder.Weld(interactor);
-            }
         }
 
         protected override void OnSelectExiting(SelectExitEventArgs args)
@@ -45,11 +33,6 @@ namespace NeanderthalTools.Hands
             ResetAttachmentPose(interactor);
             ClearInteractorPose();
             SetIgnoreCollision(interactor, false);
-
-            if (grabWelder != null)
-            {
-                grabWelder.UnWeld(interactor);
-            }
         }
 
         #endregion
