@@ -10,13 +10,7 @@ namespace NeanderthalTools.Hands
         #region Editor
 
         [SerializeField]
-        [Tooltip("Which devices input to query")]
-        private XRNode node = XRNode.LeftHand;
-
-        [Min(0f)]
-        [SerializeField]
-        [Tooltip("Animation speed")]
-        private float speed = 10f;
+        private HandSettings settings;
 
         #endregion
 
@@ -65,10 +59,10 @@ namespace NeanderthalTools.Hands
         {
             if (!device.isValid)
             {
-                device = InputDevices.GetDeviceAtXRNode(node);
+                device = settings.InputDevice;
             }
 
-            var time = speed * Time.unscaledDeltaTime;
+            var time = settings.AnimationSpeed * Time.unscaledDeltaTime;
             foreach (var finger in fingers)
             {
                 finger.Animate(animator, device, time);

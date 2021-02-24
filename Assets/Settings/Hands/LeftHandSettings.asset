@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff2075953a4a40278d58ade51c0a9f0a, type: 3}
+  m_Name: LeftHandSettings
+  m_EditorClassIdentifier: 
+  xrNode: 4
+  animationSpeed: 10
+  positionAction: {fileID: -2024308242397127297, guid: c348712bda248c246b8c49b3db54643f,
+    type: 3}
+  rotationAction: {fileID: 8248158260566104461, guid: c348712bda248c246b8c49b3db54643f,
+    type: 3}
+  selectAction: {fileID: -6131295136447488360, guid: c348712bda248c246b8c49b3db54643f,
+    type: 3}
+  velocityMultiplier: 0.9
+  angularVelocityMultiplier: 0.9
+  positionChangeSpeed: 200
+  rotationChangeSpeed: 150
+  physicsRadius: 0.1
+  physicsMask:
+    serializedVersion: 2
+    m_Bits: 119
+  incorporealColliderLayer: IncorporealHands
+  regularColliderLayer: Hands
