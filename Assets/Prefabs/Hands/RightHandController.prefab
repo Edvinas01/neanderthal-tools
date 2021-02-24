@@ -40,7 +40,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1968165195990600647}
   - component: {fileID: 3966680190932552581}
-  - component: {fileID: 3966680190932552585}
+  - component: {fileID: 2325816063087878602}
+  - component: {fileID: 2253369546320397301}
   - component: {fileID: 1968165195990600699}
   - component: {fileID: 3966680190932552583}
   - component: {fileID: 3966680190932552582}
@@ -83,7 +84,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!135 &3966680190932552585
+--- !u!135 &2325816063087878602
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,8 +95,21 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.05
+  m_Center: {x: 0.02, y: -0.04, z: 0.014}
+--- !u!135 &2253369546320397301
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1968165195990600646}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.04
+  m_Center: {x: 0.03, y: -0.03, z: -0.03}
 --- !u!114 &1968165195990600699
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,7 +283,7 @@ MonoBehaviour:
   m_AudioClipForOnHoverExited: {fileID: 0}
   m_PlayAudioClipOnHoverCanceled: 0
   m_AudioClipForOnHoverCanceled: {fileID: 0}
-  m_PlayHapticsOnSelectEntered: 1
+  m_PlayHapticsOnSelectEntered: 0
   m_HapticSelectEnterIntensity: 0.5
   m_HapticSelectEnterDuration: 0.2
   m_PlayHapticsOnSelectExited: 0
@@ -278,7 +292,7 @@ MonoBehaviour:
   m_PlayHapticsOnSelectCanceled: 0
   m_HapticSelectCancelIntensity: 0
   m_HapticSelectCancelDuration: 0
-  m_PlayHapticsOnHoverEntered: 1
+  m_PlayHapticsOnHoverEntered: 0
   m_HapticHoverEnterIntensity: 0.2
   m_HapticHoverEnterDuration: 0.2
   m_PlayHapticsOnHoverExited: 0
