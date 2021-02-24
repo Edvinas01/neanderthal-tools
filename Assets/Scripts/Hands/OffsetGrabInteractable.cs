@@ -10,28 +10,10 @@ namespace NeanderthalTools.Hands
 
         private Vector3 interactorPosition = Vector3.zero;
         private Quaternion interactorRotation = Quaternion.identity;
-        private GrabInteractableWelder interactableWelder;
 
         #endregion
 
         #region Overrides
-
-        protected override void Awake()
-        {
-            base.Awake();
-            interactableWelder = GetComponent<GrabInteractableWelder>();
-        }
-
-        public override void ProcessInteractable(XRInteractionUpdateOrder.UpdatePhase updatePhase)
-        {
-            // Welding doesn't support or require any kind of movement.
-            if (interactableWelder != null)
-            {
-                return;
-            }
-
-            base.ProcessInteractable(updatePhase);
-        }
 
         protected override void OnSelectEntering(SelectEnterEventArgs args)
         {
