@@ -856,6 +856,12 @@ PrefabInstance:
       propertyPath: node
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: -1177831174280488310, guid: e5040dbdcffa59147886a6d1c2417a67,
+        type: 3}
+      propertyPath: settings
+      value: 
+      objectReference: {fileID: 11400000, guid: 720eef8b9b5679846acbbd84f54f4327,
+        type: 2}
     - target: {fileID: 1429868679553349225, guid: e5040dbdcffa59147886a6d1c2417a67,
         type: 3}
       propertyPath: order

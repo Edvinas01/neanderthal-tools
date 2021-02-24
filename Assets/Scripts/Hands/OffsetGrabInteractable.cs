@@ -10,10 +10,28 @@ namespace NeanderthalTools.Hands
 
         private Vector3 interactorPosition = Vector3.zero;
         private Quaternion interactorRotation = Quaternion.identity;
+        private GrabInteractableWelder interactableWelder;
 
         #endregion
 
         #region Overrides
+
+        protected override void Awake()
+        {
+            base.Awake();
+            interactableWelder = GetComponent<GrabInteractableWelder>();
+        }
+
+        public override void ProcessInteractable(XRInteractionUpdateOrder.UpdatePhase updatePhase)
+        {
+            // Welding doesn't support or require any kind of movement.
+            if (interactableWelder != null)
+            {
+                return;
+            }
+
+            base.ProcessInteractable(updatePhase);
+        }
 
         protected override void OnSelectEntering(SelectEnterEventArgs args)
         {
@@ -22,7 +40,6 @@ namespace NeanderthalTools.Hands
             var interactor = args.interactor;
             SetInteractorPose(interactor);
             SetAttachmentPose(interactor);
-            SetIgnoreCollision(interactor, true);
         }
 
         protected override void OnSelectExiting(SelectExitEventArgs args)
@@ -32,7 +49,6 @@ namespace NeanderthalTools.Hands
             var interactor = args.interactor;
             ResetAttachmentPose(interactor);
             ClearInteractorPose();
-            SetIgnoreCollision(interactor, false);
         }
 
         #endregion
@@ -48,19 +64,16 @@ namespace NeanderthalTools.Hands
 
         private void SetAttachmentPose(XRBaseInteractor interactor)
         {
-            var interactorAttachTransform = interactor.attachTransform;
             if (attachTransform != null)
             {
-                interactorAttachTransform.position = attachTransform.position;
-                interactorAttachTransform.rotation = attachTransform.rotation;
+                return;
             }
-            else
-            {
-                var interactableTransform = transform;
 
-                interactorAttachTransform.position = interactableTransform.position;
-                interactorAttachTransform.rotation = interactableTransform.rotation;
-            }
+            var interactorAttachTransform = interactor.attachTransform;
+            var interactableTransform = transform;
+
+            interactorAttachTransform.position = interactableTransform.position;
+            interactorAttachTransform.rotation = interactableTransform.rotation;
         }
 
         private void ResetAttachmentPose(XRBaseInteractor interactor)
@@ -74,27 +87,6 @@ namespace NeanderthalTools.Hands
         {
             interactorPosition = Vector3.zero;
             interactorRotation = Quaternion.identity;
-        }
-
-        private void SetIgnoreCollision(Component interactor, bool ignore)
-        {
-            var physicsPoser = interactor.GetComponent<PhysicsPoser>();
-            if (physicsPoser == null)
-            {
-                return;
-            }
-
-            foreach (var physicsPoserCollider in physicsPoser.Colliders)
-            {
-                foreach (var interactableCollider in colliders)
-                {
-                    Physics.IgnoreCollision(
-                        physicsPoserCollider,
-                        interactableCollider,
-                        ignore
-                    );
-                }
-            }
         }
 
         #endregion

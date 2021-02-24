@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &134761506417130357
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7725211326948490166}
+  m_Layer: 7
+  m_Name: Attach
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7725211326948490166
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 134761506417130357}
+  m_LocalRotation: {x: 0.20618282, y: -0.031530466, z: 0.07184146, w: 0.9753632}
+  m_LocalPosition: {x: 0.03, y: -0.025, z: -0.032}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1968165195990600647}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 24, y: -2, z: 8}
 --- !u!1 &1968165195990600646
 GameObject:
   m_ObjectHideFlags: 0
@@ -33,6 +63,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3966680192322933985}
+  - {fileID: 7725211326948490166}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -198,7 +229,7 @@ MonoBehaviour:
   m_InteractionLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_AttachTransform: {fileID: 0}
+  m_AttachTransform: {fileID: 7725211326948490166}
   m_StartingSelectedInteractable: {fileID: 0}
   m_HoverEntered:
     m_PersistentCalls:
@@ -224,7 +255,7 @@ MonoBehaviour:
   m_OnSelectExited:
     m_PersistentCalls:
       m_Calls: []
-  m_SelectActionTrigger: 0
+  m_SelectActionTrigger: 1
   m_HideControllerOnSelect: 0
   m_PlayAudioClipOnSelectEntered: 0
   m_AudioClipForOnSelectEntered: {fileID: 0}
@@ -238,18 +269,18 @@ MonoBehaviour:
   m_AudioClipForOnHoverExited: {fileID: 0}
   m_PlayAudioClipOnHoverCanceled: 0
   m_AudioClipForOnHoverCanceled: {fileID: 0}
-  m_PlayHapticsOnSelectEntered: 0
-  m_HapticSelectEnterIntensity: 0
-  m_HapticSelectEnterDuration: 0
+  m_PlayHapticsOnSelectEntered: 1
+  m_HapticSelectEnterIntensity: 0.5
+  m_HapticSelectEnterDuration: 0.2
   m_PlayHapticsOnSelectExited: 0
   m_HapticSelectExitIntensity: 0
   m_HapticSelectExitDuration: 0
   m_PlayHapticsOnSelectCanceled: 0
   m_HapticSelectCancelIntensity: 0
   m_HapticSelectCancelDuration: 0
-  m_PlayHapticsOnHoverEntered: 0
-  m_HapticHoverEnterIntensity: 0
-  m_HapticHoverEnterDuration: 0
+  m_PlayHapticsOnHoverEntered: 1
+  m_HapticHoverEnterIntensity: 0.2
+  m_HapticHoverEnterDuration: 0.2
   m_PlayHapticsOnHoverExited: 0
   m_HapticHoverExitIntensity: 0
   m_HapticHoverExitDuration: 0
@@ -268,14 +299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f4d26de68dab0b49a0c7c187dd8b007, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  positionAction: {fileID: -3326005586356538449, guid: c348712bda248c246b8c49b3db54643f,
-    type: 3}
-  rotationAction: {fileID: 5101698808175986029, guid: c348712bda248c246b8c49b3db54643f,
-    type: 3}
-  slowDownVelocity: 0.95
-  slowDownAngularVelocity: 0.95
-  maxPositionChange: 80
-  maxRotationChange: 80
+  settings: {fileID: 11400000, guid: e5b727c2e15a9f944b09e2ea330fe8dd, type: 2}
 --- !u!1 &3966680192322933984
 GameObject:
   m_ObjectHideFlags: 0
@@ -374,8 +398,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: RightHand
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3728902145494152793, guid: 6d020db7f60e48c4c81e79876ddd45a6, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d020db7f60e48c4c81e79876ddd45a6, type: 3}
 --- !u!4 &8146979771646642415 stripped
 Transform:
