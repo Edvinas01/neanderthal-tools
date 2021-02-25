@@ -7,14 +7,30 @@ namespace NeanderthalTools.Hands
     [RequireComponent(typeof(XRGrabInteractable))]
     public class GrabInteractableWelder : MonoBehaviour
     {
+        #region Editor
+
+        [Header("Interactable")]
+        [SerializeField]
+        [Tooltip("Should this interactable snap to interactor anchor position")]
+        private bool snapPosition;
+
+        [Header("Fixed joint")]
+        [Min(0f)]
+        [SerializeField]
+        [Tooltip("Enable pre-processing for the joint")]
+        private bool enablePreprocessing = true;
+
+        [Min(0f)]
+        [SerializeField]
+        [Tooltip("Mass scale applied to the connected body via joint")]
+        private float connectedMassScale = 1.0f;
+
+        #endregion
+
         #region Fields
 
         private XRGrabInteractable interactable;
         private FixedJoint joint;
-
-        [SerializeField]
-        [Tooltip("Should this interactable snap to interactor anchor position")]
-        private bool snapPosition;
 
         #endregion
 
@@ -99,6 +115,8 @@ namespace NeanderthalTools.Hands
         private void CreateJoint(Rigidbody interactorRigidbody)
         {
             joint = gameObject.AddComponent<FixedJoint>();
+            joint.enablePreprocessing = enablePreprocessing;
+            joint.connectedMassScale = connectedMassScale;
             joint.connectedBody = interactorRigidbody;
         }
 

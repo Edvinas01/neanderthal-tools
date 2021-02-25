@@ -20,7 +20,7 @@ namespace NeanderthalTools.Hands
         [Tooltip("Finger animation playback speed")]
         private float animationSpeed = 10f;
 
-        [Header("Physics")]
+        [Header("Inputs")]
         [SerializeField]
         private InputActionReference positionAction;
 
@@ -30,6 +30,7 @@ namespace NeanderthalTools.Hands
         [SerializeField]
         private InputActionReference selectAction;
 
+        [Header("Physics")]
         [Range(0, 1)]
         [SerializeField]
         [Tooltip("Velocity change multiplier, drag")]
