@@ -37,6 +37,11 @@ namespace NeanderthalTools.Scenes.Editor
         [OnOpenAsset]
         private static bool OnOpenAsset(int instanceID, int line)
         {
+            if (!EditorSceneSettings.BootstrapEditor)
+            {
+                return false;
+            }
+
             var sceneAsset = EditorUtility.InstanceIDToObject(instanceID) as SceneAsset;
             if (sceneAsset == null)
             {
