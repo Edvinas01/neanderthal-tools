@@ -65,6 +65,8 @@ namespace NeanderthalTools.UI
             }
 
             onFade(to);
+
+            yield return null;
         }
 
         private void SetAlpha(float alpha)
