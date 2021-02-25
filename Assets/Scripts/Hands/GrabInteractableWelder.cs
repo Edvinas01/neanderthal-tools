@@ -24,9 +24,6 @@ namespace NeanderthalTools.Hands
         {
             interactable = GetComponent<XRGrabInteractable>();
 
-            // PhysicsHand ignores tracking if a welder exists, so this is added here just in case.
-            // Other settings produce weird and glitched results when welding, as movement is
-            // handled by the joint.
             SetupInteractableTracking(false);
 
             if (snapPosition)
@@ -35,8 +32,16 @@ namespace NeanderthalTools.Hands
             }
         }
 
+        private void OnEnable()
+        {
+            interactable.selectEntered.AddListener(Weld);
+            interactable.selectExited.AddListener(UnWeld);
+        }
+
         private void OnDisable()
         {
+            interactable.selectEntered.RemoveListener(Weld);
+            interactable.selectExited.RemoveListener(UnWeld);
             DestroyJoint();
         }
 

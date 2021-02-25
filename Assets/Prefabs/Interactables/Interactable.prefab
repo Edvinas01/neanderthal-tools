@@ -90,34 +90,10 @@ MonoBehaviour:
       m_Calls: []
   m_SelectEntered:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8817423563159559448}
-        m_TargetAssemblyTypeName: NeanderthalTools.Hands.GrabWelder, Assembly-CSharp
-        m_MethodName: Weld
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_SelectExited:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8817423563159559448}
-        m_TargetAssemblyTypeName: NeanderthalTools.Hands.GrabWelder, Assembly-CSharp
-        m_MethodName: UnWeld
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_Activated:
     m_PersistentCalls:
       m_Calls: []
@@ -195,3 +171,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03332e7294f04b5594fef061f5f25d4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  snapPosition: 0
