@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using NaughtyAttributes;
 using NeanderthalTools.Logging.Writers;
-using UnityEditor;
 using UnityEngine;
 
 namespace NeanderthalTools.Logging
@@ -88,7 +87,7 @@ namespace NeanderthalTools.Logging
                 var loggingId = PlayerPrefs.GetString("LoggingId");
                 if (string.IsNullOrWhiteSpace(loggingId))
                 {
-                    loggingId = GUID.Generate().ToString();
+                    loggingId = Guid.NewGuid().ToString();
                     PlayerPrefs.SetString("LoggingId", loggingId);
                 }
 

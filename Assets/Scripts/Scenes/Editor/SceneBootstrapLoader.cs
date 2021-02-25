@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using NeanderthalTools.Util.Editor;
 using UnityEditor;
+using UnityEditor.Callbacks;
 using UnityEditor.SceneManagement;
 using UnityEngine.SceneManagement;
 using static NeanderthalTools.Util.Editor.ScriptableObjectExtensions;
@@ -30,29 +31,36 @@ namespace NeanderthalTools.Scenes.Editor
             EditorSceneSettings = FindOrCreateAsset<EditorSceneSettings>(EditorSceneSettingsPath);
             SceneSettings = FindOrCreateAsset<SceneSettings>(SceneSettingsPath);
 
-            EditorSceneManager.sceneOpened += OnSceneOpened;
             EditorApplication.playModeStateChanged += OnPlaymodeStateChanged;
         }
 
-        private static void OnSceneOpened(Scene scene, OpenSceneMode mode)
+        [OnOpenAsset]
+        private static bool OnOpenAsset(int instanceID, int line)
         {
-            if (!EditorSceneSettings.BootstrapEditor
-                || BuildPipeline.isBuildingPlayer
-                || !scene.IsValid()
-                || IsBootstrapScene(scene))
+            var sceneAsset = EditorUtility.InstanceIDToObject(instanceID) as SceneAsset;
+            if (sceneAsset == null)
             {
-                return;
+                return false;
             }
 
-            BootstrapSceneSetup(scene);
+            var scenePath = AssetDatabase.GetAssetPath(sceneAsset);
+            if (IsBootstrapScene(scenePath))
+            {
+                return false;
+            }
+
+            BootstrapSceneSetup(scenePath);
+
+            return true;
         }
 
-        private static bool IsBootstrapScene(Scene scene)
+        private static bool IsBootstrapScene(string scenePath)
         {
-            return scene.buildIndex == SceneSettings.BootstrapSceneIndex;
+            var buildIndex = SceneUtility.GetBuildIndexByScenePath(scenePath);
+            return buildIndex == SceneSettings.BootstrapSceneIndex;
         }
 
-        private static void BootstrapSceneSetup(Scene scene)
+        private static void BootstrapSceneSetup(string scenePath)
         {
             EditorSceneManager.RestoreSceneManagerSetup(new[]
             {
@@ -66,7 +74,7 @@ namespace NeanderthalTools.Scenes.Editor
                 {
                     isActive = true,
                     isLoaded = true,
-                    path = scene.path
+                    path = scenePath
                 }
             });
         }
