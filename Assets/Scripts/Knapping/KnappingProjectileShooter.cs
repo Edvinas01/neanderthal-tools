@@ -50,7 +50,7 @@ namespace NeanderthalTools.Knapping
 
         private void Update()
         {
-            if (IsFireProjectile())
+            if (Application.isFocused && IsFireProjectile())
             {
                 FireProjectile();
             }
@@ -111,7 +111,7 @@ namespace NeanderthalTools.Knapping
 
         private static void SetupKnappingProjectile(GameObject projectile)
         {
-            projectile.AddComponent<KnappingProjectile>();
+            projectile.AddComponent<Knapper>();
         }
 
         private IEnumerator DestroyAfterLifetime(Object projectile)

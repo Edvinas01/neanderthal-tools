@@ -2,21 +2,9 @@
 
 namespace NeanderthalTools.Knapping
 {
-    [RequireComponent(typeof(Rigidbody))]
-    public class KnappingProjectile : MonoBehaviour
+    public class Knapper : MonoBehaviour
     {
-        #region Fields
-
-        private new Rigidbody rigidbody;
-
-        #endregion
-
         #region Unity Lifecycle
-
-        private void Awake()
-        {
-            rigidbody = GetComponent<Rigidbody>();
-        }
 
         private void OnCollisionEnter(Collision collision)
         {
@@ -27,7 +15,7 @@ namespace NeanderthalTools.Knapping
             }
 
             var force = collision.impulse.magnitude / Time.fixedDeltaTime;
-            flake.Knapp(rigidbody.velocity, force);
+            flake.HandleImpact(collision.relativeVelocity, force);
         }
 
         #endregion
