@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using NaughtyAttributes;
 using UnityEngine;
 
 namespace NeanderthalTools.Knapping
@@ -108,7 +107,7 @@ namespace NeanderthalTools.Knapping
 
         #region Methods
 
-        public void HandleImpact(Vector3 impactVelocity, float impactForce)
+        public void HandleImpact(Vector3 impactDirection, float impactForce)
         {
             if (IsDetached())
             {
@@ -117,37 +116,37 @@ namespace NeanderthalTools.Knapping
 
             if (IsWeakImpact(impactForce))
             {
-                objective.OnWeakImpact.Invoke(this);
+                objective.HandleWeakImpact(this);
                 return;
             }
 
             if (IsDependenciesRemaining())
             {
-                objective.OnDependenciesRemaining.Invoke(this);
+                objective.HandleDependenciesRemaining(this);
                 return;
             }
 
             var flakeTransform = transform;
             var flakePosition = flakeTransform.position;
 
-            var impactDirection = impactVelocity.normalized;
+            var oppositeImpactDirection = -impactDirection;
             var flakeDirection = GetOffsetDirection();
 
             var impactColor = Color.red;
-            if (IsValidAngle(impactDirection, flakeDirection))
+
+            if (IsValidAngle(oppositeImpactDirection, flakeDirection))
             {
                 impactColor = Color.green;
 
                 ClearDependencies();
-                objective.OnDetach.Invoke(this);
                 Detach();
             }
             else
             {
-                objective.OnInvalidAngle.Invoke(this);
+                objective.HandleInvalidAngle(this);
             }
 
-            DrawDebugDay(flakePosition, impactDirection, impactColor);
+            DrawDebugDay(flakePosition, oppositeImpactDirection, impactColor);
             DrawDebugDay(flakePosition, flakeDirection, Color.green);
         }
 
@@ -197,8 +196,7 @@ namespace NeanderthalTools.Knapping
 
         private void Detach()
         {
-            gameObject.AddComponent<Rigidbody>();
-            transform.parent = null;
+            objective.HandleDetach(this);
             objective = null;
         }
 

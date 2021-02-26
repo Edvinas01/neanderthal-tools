@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   angleOffsetTransform: {fileID: 55072643}
-  maxAngle: 20
+  maxAngle: 35
   minForce: 20
   removalRatio: 1
   dependencies: []
@@ -254,7 +254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   angleOffsetTransform: {fileID: 1026093504}
-  maxAngle: 20
+  maxAngle: 35
   minForce: 20
   removalRatio: 1
   dependencies: []
@@ -368,7 +368,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   angleOffsetTransform: {fileID: 1549911796}
-  maxAngle: 20
+  maxAngle: 35
   minForce: 20
   removalRatio: 1
   dependencies: []
@@ -542,7 +542,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   angleOffsetTransform: {fileID: 1531801151}
-  maxAngle: 20
+  maxAngle: 35
   minForce: 20
   removalRatio: 1
   dependencies: []
@@ -686,7 +686,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   angleOffsetTransform: {fileID: 1268238030}
-  maxAngle: 20
+  maxAngle: 35
   minForce: 20
   removalRatio: 1
   dependencies: []
@@ -830,7 +830,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   angleOffsetTransform: {fileID: 218968458}
-  maxAngle: 20
+  maxAngle: 35
   minForce: 20
   removalRatio: 0.8
   dependencies:
@@ -950,7 +950,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   angleOffsetTransform: {fileID: 251020958}
-  maxAngle: 20
+  maxAngle: 35
   minForce: 20
   removalRatio: 1
   dependencies: []
@@ -1064,7 +1064,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   angleOffsetTransform: {fileID: 1439382674}
-  maxAngle: 20
+  maxAngle: 35
   minForce: 20
   removalRatio: 1
   dependencies: []
@@ -1238,7 +1238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   angleOffsetTransform: {fileID: 884040187}
-  maxAngle: 20
+  maxAngle: 35
   minForce: 20
   removalRatio: 0.8
   dependencies:
@@ -1388,7 +1388,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   angleOffsetTransform: {fileID: 664890549}
-  maxAngle: 20
+  maxAngle: 35
   minForce: 20
   removalRatio: 1
   dependencies: []
@@ -1532,7 +1532,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   angleOffsetTransform: {fileID: 1558556675}
-  maxAngle: 20
+  maxAngle: 35
   minForce: 20
   removalRatio: 1
   dependencies: []
@@ -1676,7 +1676,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   angleOffsetTransform: {fileID: 464468523}
-  maxAngle: 20
+  maxAngle: 35
   minForce: 20
   removalRatio: 1
   dependencies: []
@@ -1820,7 +1820,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   angleOffsetTransform: {fileID: 1300910049}
-  maxAngle: 20
+  maxAngle: 35
   minForce: 20
   removalRatio: 1
   dependencies: []
@@ -1994,7 +1994,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   angleOffsetTransform: {fileID: 1082604129}
-  maxAngle: 20
+  maxAngle: 35
   minForce: 20
   removalRatio: 1
   dependencies: []
@@ -2240,6 +2240,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecf829e16b63494d94855bce9cc35f83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactablePrefab: {fileID: 6199939711418622772, guid: 034ab232c300912419e61d64bfb87574,
+    type: 3}
   onDependenciesRemaining:
     m_PersistentCalls:
       m_Calls: []

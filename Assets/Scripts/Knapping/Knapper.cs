@@ -14,8 +14,10 @@ namespace NeanderthalTools.Knapping
                 return;
             }
 
+            var direction = (collision.contacts[0].point - transform.position).normalized;
             var force = collision.impulse.magnitude / Time.fixedDeltaTime;
-            flake.HandleImpact(collision.relativeVelocity, force);
+
+            flake.HandleImpact(direction, force);
         }
 
         #endregion
