@@ -3,7 +3,6 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 namespace NeanderthalTools.Knapping
 {
-    [RequireComponent(typeof(XRBaseInteractable))]
     public class Knapper : MonoBehaviour
     {
         #region Fields
@@ -21,7 +20,7 @@ namespace NeanderthalTools.Knapping
 
         private void OnCollisionEnter(Collision collision)
         {
-            if (!interactable.isSelected)
+            if (interactable != null && !interactable.isSelected)
             {
                 return;
             }
