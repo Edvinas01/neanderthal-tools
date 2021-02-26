@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using NeanderthalTools.Hands;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -111,6 +112,7 @@ namespace NeanderthalTools.Knapping
 
         private static void SetupKnappingProjectile(GameObject projectile)
         {
+            projectile.AddComponent<OffsetGrabInteractable>();
             projectile.AddComponent<Knapper>();
         }
 

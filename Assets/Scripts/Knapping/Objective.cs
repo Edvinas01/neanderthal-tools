@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using NeanderthalTools.Hands;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
@@ -73,10 +74,16 @@ namespace NeanderthalTools.Knapping
         private void RemoveInteractableColliders(Flake flake)
         {
             var interactableMap = new Dictionary<Collider, XRBaseInteractable>();
+            var interactor = interactable.selectingInteractor as PhysicsInteractor;
 
             interactable.interactionManager.GetColliderToInteractableMap(ref interactableMap);
-            foreach (var interactableCollider in flake.GetComponentsInChildren<Collider>())
+            foreach (var interactableCollider in flake.Colliders)
             {
+                if (interactor != null)
+                {
+                    interactor.Remove(interactableCollider);
+                }
+
                 interactable.colliders.Remove(interactableCollider);
                 interactableMap.Remove(interactableCollider);
             }

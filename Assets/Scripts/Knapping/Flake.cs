@@ -44,6 +44,15 @@ namespace NeanderthalTools.Knapping
 
         #endregion
 
+        #region Properties
+
+        /// <summary>
+        /// List of colliders attached to this flake.
+        /// </summary>
+        public List<Collider> Colliders { get; private set; }
+
+        #endregion
+
         #region Unity Lifecycle
 
         private void OnDrawGizmosSelected()
@@ -90,6 +99,7 @@ namespace NeanderthalTools.Knapping
         private void Awake()
         {
             objective = GetComponentInParent<Objective>();
+            Colliders = GetComponentsInChildren<Collider>().ToList();
 
             initialDependencyCount = dependencies.Count;
             foreach (var dependency in dependencies)
