@@ -49,6 +49,19 @@ namespace NeanderthalTools.Hands
             rigidbody = GetComponent<Rigidbody>();
         }
 
+        // private void Update()
+        // {
+        //     if (gameObject.name.Contains("Right"))
+        //     {
+        //         var valid = new List<XRBaseInteractable>();
+        //         var hover = new List<XRBaseInteractable>();
+        //         interactor.GetValidTargets(valid);
+        //         interactor.GetHoverTargets(hover);
+        //
+        //         Debug.Log("valid=" + valid.Count + ", hover=" + hover.Count);
+        //     }
+        // }
+
         private void OnEnable()
         {
             settings.PositionAction.performed += OnPositionChanged;

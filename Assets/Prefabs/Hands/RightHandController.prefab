@@ -43,8 +43,8 @@ GameObject:
   - component: {fileID: 2325816063087878602}
   - component: {fileID: 2253369546320397301}
   - component: {fileID: 1968165195990600699}
-  - component: {fileID: 3966680190932552583}
-  - component: {fileID: 3966680190932552582}
+  - component: {fileID: 1686485787790000114}
+  - component: {fileID: 1038095323525942595}
   m_Layer: 7
   m_Name: RightHandController
   m_TagString: Untagged
@@ -227,7 +227,7 @@ MonoBehaviour:
     m_Reference: {fileID: 875253871413052681, guid: c348712bda248c246b8c49b3db54643f,
       type: 3}
   m_ButtonPressPoint: 0.5
---- !u!114 &3966680190932552583
+--- !u!114 &1686485787790000114
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -236,13 +236,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1968165195990600646}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4253f32900bcc4d499d675566142ded0, type: 3}
+  m_Script: {fileID: 11500000, guid: d5da76d52cb648578931d150d1d76e2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
   m_InteractionLayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1024
   m_AttachTransform: {fileID: 7725211326948490166}
   m_StartingSelectedInteractable: {fileID: 0}
   m_HoverEntered:
@@ -284,8 +284,8 @@ MonoBehaviour:
   m_PlayAudioClipOnHoverCanceled: 0
   m_AudioClipForOnHoverCanceled: {fileID: 0}
   m_PlayHapticsOnSelectEntered: 0
-  m_HapticSelectEnterIntensity: 0.5
-  m_HapticSelectEnterDuration: 0.2
+  m_HapticSelectEnterIntensity: 0
+  m_HapticSelectEnterDuration: 0
   m_PlayHapticsOnSelectExited: 0
   m_HapticSelectExitIntensity: 0
   m_HapticSelectExitDuration: 0
@@ -293,15 +293,15 @@ MonoBehaviour:
   m_HapticSelectCancelIntensity: 0
   m_HapticSelectCancelDuration: 0
   m_PlayHapticsOnHoverEntered: 0
-  m_HapticHoverEnterIntensity: 0.2
-  m_HapticHoverEnterDuration: 0.2
+  m_HapticHoverEnterIntensity: 0
+  m_HapticHoverEnterDuration: 0
   m_PlayHapticsOnHoverExited: 0
   m_HapticHoverExitIntensity: 0
   m_HapticHoverExitDuration: 0
   m_PlayHapticsOnHoverCanceled: 0
   m_HapticHoverCancelIntensity: 0
   m_HapticHoverCancelDuration: 0
---- !u!114 &3966680190932552582
+--- !u!114 &1038095323525942595
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
