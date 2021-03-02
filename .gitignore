@@ -67,3 +67,7 @@ crashlytics-build.properties
 
 # Game specific
 Assets/Settings/Scenes/EditorSceneSettings.asset
+
+# Blender
+*.blend1
+*.blend1.meta
