@@ -81,7 +81,7 @@ namespace NeanderthalTools.Knapping
             {
                 if (interactor != null)
                 {
-                    interactor.Remove(interactableCollider);
+                    interactor.RemoveInteractableCollider(interactableCollider);
                 }
 
                 interactable.colliders.Remove(interactableCollider);

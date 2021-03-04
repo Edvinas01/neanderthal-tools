@@ -9,8 +9,8 @@ namespace NeanderthalTools.Knapping
         #region Editor
 
         [SerializeField]
-        [Tooltip("Transforms which outline the angles from which the flake must be hit")]
-        private List<Transform> angleOffsetTransforms;
+        [Tooltip("Transform which outlines the angle from which the flake must be hit")]
+        private Transform angleOffsetTransform;
 
         [SerializeField]
         [Range(0f, 180f)]
@@ -36,10 +36,9 @@ namespace NeanderthalTools.Knapping
         #region Fields
 
         private const float DebugRayDuration = 10f;
-        private const float DebugRayLength = 0.2f;
+        private const float DebugRayLength = 0.1f;
 
         private readonly List<Flake> dependants = new List<Flake>();
-
         private int initialDependencyCount;
         private Objective objective;
 
@@ -80,17 +79,21 @@ namespace NeanderthalTools.Knapping
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.green;
-
-            var position = transform.position;
-            foreach (var offsetDirection in GetOffsetDirections())
-            {
-                Gizmos.DrawRay(position, offsetDirection * DebugRayLength);
-            }
+            Gizmos.DrawRay(transform.position, GetOffsetDirection() * DebugRayLength);
         }
 
         private void OnValidate()
         {
-            angleOffsetTransforms = GetAngleOffsetTransforms();
+            if (angleOffsetTransform == null || angleOffsetTransform == transform)
+            {
+                angleOffsetTransform = GetComponentsInChildren<Transform>()
+                    .FirstOrDefault(childTransform => childTransform != transform);
+            }
+
+            if (angleOffsetTransform == null)
+            {
+                angleOffsetTransform = transform;
+            }
         }
 
         private void Awake()
@@ -102,11 +105,6 @@ namespace NeanderthalTools.Knapping
             foreach (var dependency in dependencies)
             {
                 dependency.dependants.Add(this);
-            }
-
-            if (angleOffsetTransforms.Count == 0)
-            {
-                angleOffsetTransforms = GetAngleOffsetTransforms();
             }
         }
 
@@ -142,21 +140,11 @@ namespace NeanderthalTools.Knapping
             var flakePosition = flakeTransform.position;
 
             var oppositeImpactDirection = -impactDirection;
-            var validAngleFound = false;
-
-            foreach (var offsetDirection in GetOffsetDirections())
-            {
-                if (IsValidAngle(oppositeImpactDirection, offsetDirection))
-                {
-                    validAngleFound = true;
-                    break;
-                }
-
-                DrawDebugDay(flakePosition, offsetDirection, Color.green);
-            }
+            var flakeDirection = GetOffsetDirection();
 
             var impactColor = Color.red;
-            if (validAngleFound)
+
+            if (IsValidAngle(oppositeImpactDirection, flakeDirection))
             {
                 impactColor = Color.green;
 
@@ -169,13 +157,7 @@ namespace NeanderthalTools.Knapping
             }
 
             DrawDebugDay(flakePosition, oppositeImpactDirection, impactColor);
-        }
-
-        private List<Transform> GetAngleOffsetTransforms()
-        {
-            return GetComponentsInChildren<Transform>()
-                .Where(childTransform => childTransform.GetComponents<Component>().Length == 1)
-                .ToList();
+            DrawDebugDay(flakePosition, flakeDirection, Color.green);
         }
 
         private bool IsDetached()
@@ -206,11 +188,9 @@ namespace NeanderthalTools.Knapping
             return impactAngle <= maxAngle;
         }
 
-        private List<Vector3> GetOffsetDirections()
+        private Vector3 GetOffsetDirection()
         {
-            return angleOffsetTransforms
-                .Select(offsetTransform => offsetTransform.rotation * Vector3.forward)
-                .ToList();
+            return angleOffsetTransform.rotation * Vector3.forward;
         }
 
         private void ClearDependencies()
