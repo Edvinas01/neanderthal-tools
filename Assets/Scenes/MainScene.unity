@@ -624,8 +624,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a35f6cfbfba9b548aaa00d52cfe8a50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_InteractionManager: {fileID: 0}
   m_Colliders:
   - {fileID: 430089469}
@@ -664,7 +664,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument:
           m_BoolArgument: 0
         m_CallState: 2
   m_Deactivated:
@@ -1253,7 +1253,7 @@ PrefabInstance:
     - target: {fileID: 8101903988340782310, guid: ddd8fea67a93f7249a51b80c42a1d922,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.374
+      value: 5.548
       objectReference: {fileID: 0}
     - target: {fileID: 8101903988340782310, guid: ddd8fea67a93f7249a51b80c42a1d922,
         type: 3}
@@ -1263,7 +1263,7 @@ PrefabInstance:
     - target: {fileID: 8101903988340782310, guid: ddd8fea67a93f7249a51b80c42a1d922,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.689
+      value: -2.804
       objectReference: {fileID: 0}
     - target: {fileID: 8101903988340782310, guid: ddd8fea67a93f7249a51b80c42a1d922,
         type: 3}
@@ -1332,8 +1332,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a35f6cfbfba9b548aaa00d52cfe8a50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_InteractionManager: {fileID: 0}
   m_Colliders:
   - {fileID: 858242247}
@@ -1372,7 +1372,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument:
           m_BoolArgument: 0
         m_CallState: 2
   m_Deactivated:
@@ -1891,8 +1891,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a35f6cfbfba9b548aaa00d52cfe8a50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_InteractionManager: {fileID: 0}
   m_Colliders:
   - {fileID: 1207129151}
@@ -1931,7 +1931,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument:
           m_BoolArgument: 0
         m_CallState: 2
   m_Deactivated:
@@ -2032,6 +2032,75 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 826050741}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1377268587
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5029254810064451945, guid: b6ebbf367bef8c04794e03d54841d1b3,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5029254810064451945, guid: b6ebbf367bef8c04794e03d54841d1b3,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.291091
+      objectReference: {fileID: 0}
+    - target: {fileID: 5029254810064451945, guid: b6ebbf367bef8c04794e03d54841d1b3,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.879
+      objectReference: {fileID: 0}
+    - target: {fileID: 5029254810064451945, guid: b6ebbf367bef8c04794e03d54841d1b3,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.6172695
+      objectReference: {fileID: 0}
+    - target: {fileID: 5029254810064451945, guid: b6ebbf367bef8c04794e03d54841d1b3,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.68790615
+      objectReference: {fileID: 0}
+    - target: {fileID: 5029254810064451945, guid: b6ebbf367bef8c04794e03d54841d1b3,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.03132948
+      objectReference: {fileID: 0}
+    - target: {fileID: 5029254810064451945, guid: b6ebbf367bef8c04794e03d54841d1b3,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7245128
+      objectReference: {fileID: 0}
+    - target: {fileID: 5029254810064451945, guid: b6ebbf367bef8c04794e03d54841d1b3,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.029746529
+      objectReference: {fileID: 0}
+    - target: {fileID: 5029254810064451945, guid: b6ebbf367bef8c04794e03d54841d1b3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 4.945
+      objectReference: {fileID: 0}
+    - target: {fileID: 5029254810064451945, guid: b6ebbf367bef8c04794e03d54841d1b3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 92.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 5029254810064451945, guid: b6ebbf367bef8c04794e03d54841d1b3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0.257
+      objectReference: {fileID: 0}
+    - target: {fileID: 5029254810064451946, guid: b6ebbf367bef8c04794e03d54841d1b3,
+        type: 3}
+      propertyPath: m_Name
+      value: CoreInteractable
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b6ebbf367bef8c04794e03d54841d1b3, type: 3}
 --- !u!1 &1387007429
 GameObject:
   m_ObjectHideFlags: 0
@@ -2075,7 +2144,7 @@ Transform:
   - {fileID: 1816414618}
   - {fileID: 58045543}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1394144134
 PrefabInstance:
@@ -2277,7 +2346,7 @@ Transform:
   - {fileID: 605123131}
   - {fileID: 829191263}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1694291901
 GameObject:
@@ -2927,7 +2996,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 45, y: 130, z: 90}
 --- !u!1001 &8333362960138839283
 PrefabInstance:
