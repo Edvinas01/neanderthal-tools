@@ -25,9 +25,17 @@ namespace NeanderthalTools.Knapping
                 return;
             }
 
-            var flake = collision.collider.GetComponent<Flake>();
+            var collisionCollider = collision.collider;
+            var flake = collisionCollider.GetComponentInParent<Flake>();
             if (flake == null)
             {
+                // Backwards compatibility for prototype knapping stone.
+                flake = collisionCollider.GetComponent<Flake>();
+                if (flake == null)
+                {
+                    return;
+                }
+
                 return;
             }
 
