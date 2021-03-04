@@ -624,8 +624,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a35f6cfbfba9b548aaa00d52cfe8a50, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
   m_Colliders:
   - {fileID: 430089469}
@@ -664,7 +664,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument:
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
   m_Deactivated:
@@ -961,12 +961,12 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 829191263}
     m_Modifications:
     - target: {fileID: 5640822456670726333, guid: 46706678985a6be48bbfd09482d5fe18,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5640822456670726333, guid: 46706678985a6be48bbfd09482d5fe18,
         type: 3}
@@ -1025,6 +1025,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46706678985a6be48bbfd09482d5fe18, type: 3}
+--- !u!4 &610415133 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5640822456670726333, guid: 46706678985a6be48bbfd09482d5fe18,
+    type: 3}
+  m_PrefabInstance: {fileID: 610415132}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &714126782 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1185073407702844865, guid: e6a40dead6c9d5c4ca9efe1f97849d1a,
@@ -1230,6 +1236,8 @@ Transform:
   - {fileID: 403297743}
   - {fileID: 1017049910}
   - {fileID: 1394144135}
+  - {fileID: 610415133}
+  - {fileID: 1377268588}
   m_Father: {fileID: 1622742271}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1332,8 +1340,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a35f6cfbfba9b548aaa00d52cfe8a50, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
   m_Colliders:
   - {fileID: 858242247}
@@ -1372,7 +1380,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument:
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
   m_Deactivated:
@@ -1891,8 +1899,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a35f6cfbfba9b548aaa00d52cfe8a50, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
   m_Colliders:
   - {fileID: 1207129151}
@@ -1931,7 +1939,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument:
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
   m_Deactivated:
@@ -2037,12 +2045,12 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 829191263}
     m_Modifications:
     - target: {fileID: 5029254810064451945, guid: b6ebbf367bef8c04794e03d54841d1b3,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5029254810064451945, guid: b6ebbf367bef8c04794e03d54841d1b3,
         type: 3}
@@ -2101,6 +2109,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6ebbf367bef8c04794e03d54841d1b3, type: 3}
+--- !u!4 &1377268588 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5029254810064451945, guid: b6ebbf367bef8c04794e03d54841d1b3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1377268587}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1387007429
 GameObject:
   m_ObjectHideFlags: 0
@@ -2144,7 +2158,7 @@ Transform:
   - {fileID: 1816414618}
   - {fileID: 58045543}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1394144134
 PrefabInstance:
@@ -2346,7 +2360,7 @@ Transform:
   - {fileID: 605123131}
   - {fileID: 829191263}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1694291901
 GameObject:
@@ -2996,7 +3010,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 45, y: 130, z: 90}
 --- !u!1001 &8333362960138839283
 PrefabInstance:
