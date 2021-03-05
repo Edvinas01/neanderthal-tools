@@ -109,7 +109,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 818bbf0ced92468cb29599304508a44f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angleOffsetTransform: {fileID: 55072643}
+  angleOffsetTransforms:
+  - {fileID: 55072643}
   maxAngle: 35
   minForce: 20
   removalRatio: 1
@@ -253,7 +254,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 818bbf0ced92468cb29599304508a44f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angleOffsetTransform: {fileID: 1026093504}
+  angleOffsetTransforms:
+  - {fileID: 1026093504}
   maxAngle: 35
   minForce: 20
   removalRatio: 1
@@ -367,7 +369,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 818bbf0ced92468cb29599304508a44f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angleOffsetTransform: {fileID: 1549911796}
+  angleOffsetTransforms:
+  - {fileID: 1549911796}
   maxAngle: 35
   minForce: 20
   removalRatio: 1
@@ -395,13 +398,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 218968457}
-  m_LocalRotation: {x: -0.924313, y: -0, z: -0, w: 0.38163513}
+  m_LocalRotation: {x: -0.92387956, y: 0, z: 0, w: 0.38268343}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 734203903}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -135.13, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -135, y: 0, z: 0}
 --- !u!1 &251020957
 GameObject:
   m_ObjectHideFlags: 0
@@ -541,7 +544,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 818bbf0ced92468cb29599304508a44f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angleOffsetTransform: {fileID: 1531801151}
+  angleOffsetTransforms:
+  - {fileID: 1531801151}
   maxAngle: 35
   minForce: 20
   removalRatio: 1
@@ -685,7 +689,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 818bbf0ced92468cb29599304508a44f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angleOffsetTransform: {fileID: 1268238030}
+  angleOffsetTransforms:
+  - {fileID: 1268238030}
   maxAngle: 35
   minForce: 20
   removalRatio: 1
@@ -829,7 +834,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 818bbf0ced92468cb29599304508a44f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angleOffsetTransform: {fileID: 218968458}
+  angleOffsetTransforms:
+  - {fileID: 218968458}
   maxAngle: 35
   minForce: 20
   removalRatio: 0.8
@@ -949,7 +955,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 818bbf0ced92468cb29599304508a44f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angleOffsetTransform: {fileID: 251020958}
+  angleOffsetTransforms:
+  - {fileID: 251020958}
   maxAngle: 35
   minForce: 20
   removalRatio: 1
@@ -1063,7 +1070,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 818bbf0ced92468cb29599304508a44f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angleOffsetTransform: {fileID: 1439382674}
+  angleOffsetTransforms:
+  - {fileID: 1439382674}
   maxAngle: 35
   minForce: 20
   removalRatio: 1
@@ -1237,7 +1245,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 818bbf0ced92468cb29599304508a44f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angleOffsetTransform: {fileID: 884040187}
+  angleOffsetTransforms:
+  - {fileID: 884040187}
   maxAngle: 35
   minForce: 20
   removalRatio: 0.8
@@ -1387,7 +1396,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 818bbf0ced92468cb29599304508a44f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angleOffsetTransform: {fileID: 664890549}
+  angleOffsetTransforms:
+  - {fileID: 664890549}
   maxAngle: 35
   minForce: 20
   removalRatio: 1
@@ -1531,7 +1541,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 818bbf0ced92468cb29599304508a44f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angleOffsetTransform: {fileID: 1558556675}
+  angleOffsetTransforms:
+  - {fileID: 1558556675}
   maxAngle: 35
   minForce: 20
   removalRatio: 1
@@ -1675,7 +1686,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 818bbf0ced92468cb29599304508a44f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angleOffsetTransform: {fileID: 464468523}
+  angleOffsetTransforms:
+  - {fileID: 464468523}
   maxAngle: 35
   minForce: 20
   removalRatio: 1
@@ -1819,7 +1831,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 818bbf0ced92468cb29599304508a44f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angleOffsetTransform: {fileID: 1300910049}
+  angleOffsetTransforms:
+  - {fileID: 1300910049}
   maxAngle: 35
   minForce: 20
   removalRatio: 1
@@ -1993,7 +2006,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 818bbf0ced92468cb29599304508a44f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angleOffsetTransform: {fileID: 1082604129}
+  angleOffsetTransforms:
+  - {fileID: 1082604129}
   maxAngle: 35
   minForce: 20
   removalRatio: 1
