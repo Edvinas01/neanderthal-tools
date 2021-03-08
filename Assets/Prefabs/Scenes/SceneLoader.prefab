@@ -105,6 +105,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneSettings: {fileID: 11400000, guid: 486b386fef32133428038f85923ef395, type: 2}
   fadeCanvas: {fileID: 0}
+  onSceneReady:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4558936614033502616
 GameObject:
   m_ObjectHideFlags: 0
@@ -254,6 +257,7 @@ Transform:
   - {fileID: 5853364467417627103}
   - {fileID: 4558936614033502619}
   - {fileID: 4425440079049991444}
+  - {fileID: 5133352302541408334}
   m_Father: {fileID: 4558936613671106772}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -307,6 +311,65 @@ MonoBehaviour:
       - m_Target: {fileID: 4558936613671106773}
         m_TargetAssemblyTypeName: NeanderthalTools.Scenes.SceneLoader, Assembly-CSharp
         m_MethodName: LoadNextScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!1 &6828927613521804621
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5133352302541408334}
+  - component: {fileID: 4905530129050375347}
+  m_Layer: 0
+  m_Name: LoadMenuSceneListener
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5133352302541408334
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6828927613521804621}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4558936614560569880}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4905530129050375347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6828927613521804621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2300d56ac22446e59de6de2fb87235d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scriptableEvent: {fileID: 11400000, guid: 58bd4096da69555458e440036193e553, type: 2}
+  onRaised:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4558936613671106773}
+        m_TargetAssemblyTypeName: NeanderthalTools.Scenes.SceneLoader, Assembly-CSharp
+        m_MethodName: LoadMenuScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

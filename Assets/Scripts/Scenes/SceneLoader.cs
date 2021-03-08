@@ -84,6 +84,14 @@ namespace NeanderthalTools.Scenes
         }
 
         /// <summary>
+        /// Load the main menu scene.
+        /// </summary>
+        public void LoadMenuScene()
+        {
+            StartLoadScene(sceneSettings.MenuSceneIndex);
+        }
+
+        /// <summary>
         /// Load the main game scene.
         /// </summary>
         public void LoadMainScene()

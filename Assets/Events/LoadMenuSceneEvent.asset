@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 731b2d40769d4ce09e97fa54664a1dab, type: 3}
-  m_Name: SceneSettings
+  m_Script: {fileID: 11500000, guid: 3ca9d72c0f5043e9b9ed7e25d63422f5, type: 3}
+  m_Name: LoadMenuSceneEvent
   m_EditorClassIdentifier: 
-  bootstrapSceneIndex: 0
-  menuSceneIndex: 1
-  mainSceneIndex: 2
+  description: Loads the main menu scene
+  lockDescription: 1
+  suppressExceptions: 0
+  trace: 0
