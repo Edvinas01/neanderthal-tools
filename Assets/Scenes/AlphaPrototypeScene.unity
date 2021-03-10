@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: 2e98513e9f7759a4a9fc0b4af6e7893f,
+  m_LightingDataAsset: {fileID: 112000004, guid: 2e98513e9f7759a4a9fc0b4af6e7893f,
     type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: 02afef233947eae4d8729f5fd0df0d23,
     type: 2}
@@ -508,8 +508,6 @@ Transform:
   - {fileID: 579900444}
   - {fileID: 1820820138}
   - {fileID: 1967744299}
-  - {fileID: 1712343414}
-  - {fileID: 2022260699}
   - {fileID: 1727438594}
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -1090,6 +1088,8 @@ Transform:
   - {fileID: 1543706865}
   - {fileID: 1175124636}
   - {fileID: 1889055655}
+  - {fileID: 1712343414}
+  - {fileID: 2022260699}
   m_Father: {fileID: 1034291596}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9122,7 +9122,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 168808669}
+    m_TransformParent: {fileID: 381319659}
     m_Modifications:
     - target: {fileID: 7341416156122229956, guid: b40d77b23ec912b4fbdd4d4da88bd4a5,
         type: 3}
@@ -9132,7 +9132,7 @@ PrefabInstance:
     - target: {fileID: 7341416156122229959, guid: b40d77b23ec912b4fbdd4d4da88bd4a5,
         type: 3}
       propertyPath: m_RootOrder
-      value: 44
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7341416156122229959, guid: b40d77b23ec912b4fbdd4d4da88bd4a5,
         type: 3}
@@ -9271,7 +9271,7 @@ PrefabInstance:
     - target: {fileID: 1166003029310987353, guid: 07a59278fd5462449a129f7bd25ce19f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 46
+      value: 44
       objectReference: {fileID: 0}
     - target: {fileID: 1166003029310987353, guid: 07a59278fd5462449a129f7bd25ce19f,
         type: 3}
@@ -10301,12 +10301,12 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 168808669}
+    m_TransformParent: {fileID: 381319659}
     m_Modifications:
     - target: {fileID: 5029254810064451945, guid: b6ebbf367bef8c04794e03d54841d1b3,
         type: 3}
       propertyPath: m_RootOrder
-      value: 45
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 5029254810064451945, guid: b6ebbf367bef8c04794e03d54841d1b3,
         type: 3}

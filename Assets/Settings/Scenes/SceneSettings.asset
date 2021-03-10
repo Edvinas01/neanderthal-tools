@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: SceneSettings
   m_EditorClassIdentifier: 
   bootstrapSceneIndex: 0
-  mainSceneIndex: 1
+  menuSceneIndex: 1
+  mainSceneIndex: 2
