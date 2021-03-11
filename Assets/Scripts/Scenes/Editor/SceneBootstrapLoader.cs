@@ -13,14 +13,42 @@ namespace NeanderthalTools.Scenes.Editor
     {
         #region Fields
 
-        private const string EditorSceneSettingsPath =
-            "Assets/Settings/Scenes/EditorSceneSettings.asset";
+        private static EditorSceneSettings editorSceneSettings;
+        private static SceneSettings sceneSettings;
 
-        private const string SceneSettingsPath =
-            "Assets/Settings/Scenes/SceneSettings.asset";
+        #endregion
 
-        private static readonly EditorSceneSettings EditorSceneSettings;
-        private static readonly SceneSettings SceneSettings;
+        #region Properties
+
+        private static EditorSceneSettings EditorSceneSettings
+        {
+            get
+            {
+                if (editorSceneSettings == null)
+                {
+                    editorSceneSettings = FindOrCreateAsset<EditorSceneSettings>(
+                        "Assets/Settings/Scenes/EditorSceneSettings.asset"
+                    );
+                }
+
+                return editorSceneSettings;
+            }
+        }
+
+        private static SceneSettings SceneSettings
+        {
+            get
+            {
+                if (sceneSettings == null)
+                {
+                    sceneSettings = FindOrCreateAsset<SceneSettings>(
+                        "Assets/Settings/Scenes/SceneSettings.asset"
+                    );
+                }
+
+                return sceneSettings;
+            }
+        }
 
         #endregion
 
@@ -28,9 +56,6 @@ namespace NeanderthalTools.Scenes.Editor
 
         static SceneBootstrapLoader()
         {
-            EditorSceneSettings = FindOrCreateAsset<EditorSceneSettings>(EditorSceneSettingsPath);
-            SceneSettings = FindOrCreateAsset<SceneSettings>(SceneSettingsPath);
-
             EditorApplication.playModeStateChanged += OnPlaymodeStateChanged;
         }
 
@@ -110,7 +135,11 @@ namespace NeanderthalTools.Scenes.Editor
             EditorSceneSettings.Setup = setup;
             AssetDatabase.SaveAssets();
 
-            SceneManager.SetActiveScene(SceneSettings.GetBootstrapScene());
+            var bootstrapScene = SceneSettings.GetBootstrapScene();
+            if (bootstrapScene.IsValid())
+            {
+                SceneManager.SetActiveScene(bootstrapScene);
+            }
         }
 
         private static void RestoreSceneSettings()
