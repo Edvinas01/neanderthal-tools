@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   randomizeAmplitude: 1
   amplitude: 0.7
-  amplitudeRange: {x: 0.7, y: 0.75}
+  amplitudeRange: {x: 0.7, y: 0.8}
   randomizeDuration: 1
   durationSeconds: 0.3
   durationSecondsRange: {x: 0.3, y: 0.35}

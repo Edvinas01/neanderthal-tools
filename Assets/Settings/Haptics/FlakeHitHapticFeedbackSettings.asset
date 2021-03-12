@@ -17,4 +17,4 @@ MonoBehaviour:
   amplitudeRange: {x: 0.4, y: 0.5}
   randomizeDuration: 1
   durationSeconds: 0.2
-  durationSecondsRange: {x: 0.2, y: 0.25}
+  durationSecondsRange: {x: 0.2, y: 0.3}
