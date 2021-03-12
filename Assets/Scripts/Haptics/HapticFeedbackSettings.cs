@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using UnityEngine.Serialization;
+﻿using NaughtyAttributes;
+using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
 namespace NeanderthalTools.Haptics
@@ -12,13 +12,31 @@ namespace NeanderthalTools.Haptics
     {
         #region Editor
 
+        [SerializeField]
+        private bool randomizeAmplitude;
+
         [Range(0f, 1f)]
         [SerializeField]
+        [HideIf("randomizeAmplitude")]
         private float amplitude = 0.5f;
 
-        [Min(0f)]
         [SerializeField]
+        [MinMaxSlider(0f, 1f)]
+        [ShowIf("randomizeAmplitude")]
+        private Vector2 amplitudeRange = new Vector2(0f, 0.5f);
+
+        [SerializeField]
+        private bool randomizeDuration;
+
+        [Range(0f, 10f)]
+        [SerializeField]
+        [HideIf("randomizeDuration")]
         private float durationSeconds = 0.5f;
+
+        [SerializeField]
+        [MinMaxSlider(0f, 10f)]
+        [ShowIf("randomizeDuration")]
+        private Vector2 durationSecondsRange = new Vector2(0f, 0.5f);
 
         #endregion
 
@@ -26,7 +44,27 @@ namespace NeanderthalTools.Haptics
 
         public void SendHapticImpulse(XRBaseController controller)
         {
-            controller.SendHapticImpulse(amplitude, durationSeconds);
+            controller.SendHapticImpulse(GetAmplitude(), GetDurationSeconds());
+        }
+
+        private float GetAmplitude()
+        {
+            if (randomizeAmplitude)
+            {
+                return Random.Range(amplitudeRange.x, amplitudeRange.y);
+            }
+
+            return amplitude;
+        }
+
+        private float GetDurationSeconds()
+        {
+            if (randomizeDuration)
+            {
+                return Random.Range(durationSecondsRange.x, durationSecondsRange.y);
+            }
+
+            return durationSeconds;
         }
 
         #endregion

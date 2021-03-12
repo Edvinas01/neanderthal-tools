@@ -48,27 +48,27 @@ namespace NeanderthalTools.Knapping
 
         #region Methods
 
-        public void HandleDependenciesRemaining(Flake flake)
+        public void HandleDependenciesRemaining(XRBaseInteractor knapperInteractor, Flake flake)
         {
-            onDependenciesRemaining.Invoke(CreateFlakeEventArgs(flake));
+            onDependenciesRemaining.Invoke(new FlakeEventArgs(knapperInteractor, flake));
         }
 
-        public void HandleInvalidAngle(Flake flake)
+        public void HandleInvalidAngle(XRBaseInteractor knapperInteractor, Flake flake)
         {
-            onInvalidAngle.Invoke(CreateFlakeEventArgs(flake));
+            onInvalidAngle.Invoke(new FlakeEventArgs(knapperInteractor, flake));
         }
 
-        public void HandleWeakImpact(Flake flake)
+        public void HandleWeakImpact(XRBaseInteractor knapperInteractor, Flake flake)
         {
-            onWeakImpact.Invoke(CreateFlakeEventArgs(flake));
+            onWeakImpact.Invoke(new FlakeEventArgs(knapperInteractor, flake));
         }
 
-        public void HandleDetach(Flake flake)
+        public void HandleDetach(XRBaseInteractor knapperInteractor, Flake flake)
         {
             RemoveInteractableColliders(flake);
             AddInteractable(flake);
 
-            onDetach.Invoke(CreateFlakeEventArgs(flake));
+            onDetach.Invoke(new FlakeEventArgs(knapperInteractor, flake));
         }
 
         private void RemoveInteractableColliders(Flake flake)
@@ -106,12 +106,6 @@ namespace NeanderthalTools.Knapping
             // won't have the desired effect, as "interactables" collect child colliders on "Awake"
             // which would normally fire upon calling "Instantiate".
             interactableFlake.SetActive(true);
-        }
-
-        private FlakeEventArgs CreateFlakeEventArgs(Flake flake)
-        {
-            var interactor = interactable != null ? interactable.selectingInteractor : null;
-            return new FlakeEventArgs(interactor, flake);
         }
 
         #endregion

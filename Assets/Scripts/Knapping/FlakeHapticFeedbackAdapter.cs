@@ -17,7 +17,7 @@ namespace NeanderthalTools.Knapping
 
         public void SendHapticImpulse(FlakeEventArgs args)
         {
-            var interactor = args.Interactor;
+            var interactor = args.KnapperInteractor;
             if (interactor == null)
             {
                 return;

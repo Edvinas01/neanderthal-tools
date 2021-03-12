@@ -6,11 +6,11 @@ namespace NeanderthalTools.Knapping
     {
         public Flake Flake { get; }
 
-        public XRBaseInteractor Interactor { get; }
+        public XRBaseInteractor KnapperInteractor { get; }
 
-        public FlakeEventArgs(XRBaseInteractor interactor, Flake flake)
+        public FlakeEventArgs(XRBaseInteractor knapperInteractor, Flake flake)
         {
-            Interactor = interactor;
+            KnapperInteractor = knapperInteractor;
             Flake = flake;
         }
     }

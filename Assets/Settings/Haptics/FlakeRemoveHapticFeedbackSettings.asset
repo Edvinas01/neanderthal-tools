@@ -12,5 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77fa439e618640f5b37cfe92b577023c, type: 3}
   m_Name: FlakeRemoveHapticFeedbackSettings
   m_EditorClassIdentifier: 
-  amplitude: 0.4
-  durationSeconds: 0.2
+  randomizeAmplitude: 1
+  amplitude: 0.7
+  amplitudeRange: {x: 0.7, y: 0.75}
+  randomizeDuration: 1
+  durationSeconds: 0.3
+  durationSecondsRange: {x: 0.3, y: 0.35}
