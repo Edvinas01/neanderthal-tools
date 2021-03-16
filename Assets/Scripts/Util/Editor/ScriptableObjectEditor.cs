@@ -34,7 +34,14 @@ namespace NeanderthalTools.Util.Editor
                 return;
             }
 
-            expanded = EditorGUILayout.Foldout(expanded, name, FoldoutStyle);
+            expanded = EditorGUI.Foldout(
+                EditorGUILayout.GetControlRect(),
+                expanded,
+                name,
+                true,
+                FoldoutStyle
+            );
+
             if (expanded)
             {
                 editor.DrawDefaultInspector();
