@@ -7,6 +7,8 @@ namespace NeanderthalTools.Util.Editor
     {
         #region Fields
 
+        private static readonly GUIStyle FoldoutStyle = CreateFoldoutStyle();
+
         private readonly ScriptableObject scriptableObject;
         private readonly UnityEditor.Editor editor;
         private readonly string name;
@@ -32,13 +34,20 @@ namespace NeanderthalTools.Util.Editor
                 return;
             }
 
-            expanded = EditorGUILayout.BeginFoldoutHeaderGroup(expanded, name);
+            expanded = EditorGUILayout.Foldout(expanded, name, FoldoutStyle);
             if (expanded)
             {
                 editor.DrawDefaultInspector();
+                EditorGUILayout.Space();
             }
+        }
 
-            EditorGUILayout.EndFoldoutHeaderGroup();
+        private static GUIStyle CreateFoldoutStyle()
+        {
+            return new GUIStyle(EditorStyles.foldout)
+            {
+                font = EditorStyles.boldFont
+            };
         }
 
         #endregion

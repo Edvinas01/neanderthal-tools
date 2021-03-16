@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Settings
   m_EditorClassIdentifier: 
   scriptableObjects:
-  - {fileID: 11400000, guid: addf3174840f21b4496f1eb9517a7afc, type: 2}
-  - {fileID: 11400000, guid: 6d03a70c8fca4c14a9a222cf041b2b6f, type: 2}
+  - {fileID: 11400000, guid: 720eef8b9b5679846acbbd84f54f4327, type: 2}
+  - {fileID: 11400000, guid: e5b727c2e15a9f944b09e2ea330fe8dd, type: 2}
+  - {fileID: 11400000, guid: 8637ebd1719fb6a41b7950f912baf081, type: 2}
+  - {fileID: 11400000, guid: 2ddc8dee064115845906554eb24e9749, type: 2}
