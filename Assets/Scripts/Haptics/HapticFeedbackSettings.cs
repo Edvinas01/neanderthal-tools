@@ -42,9 +42,15 @@ namespace NeanderthalTools.Haptics
 
         #region Methods
 
-        public void SendHapticImpulse(XRBaseController controller)
+        public void SendHapticImpulse(params XRBaseController[] controllers)
         {
-            controller.SendHapticImpulse(GetAmplitude(), GetDurationSeconds());
+            var calculatedAmplitude = GetAmplitude();
+            var calculatedDuration = GetDurationSeconds();
+
+            foreach (var controller in controllers)
+            {
+                controller.SendHapticImpulse(calculatedAmplitude, calculatedDuration);
+            }
         }
 
         private float GetAmplitude()

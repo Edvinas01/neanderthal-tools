@@ -2286,6 +2286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: e9a43e9aba31bb14bb7fb6ea5560c946, type: 2}
+  target: 2
 --- !u!1 &1124040216537945884
 GameObject:
   m_ObjectHideFlags: 0
@@ -2330,6 +2331,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: b4bcddd0c964c574db1f5ba33a303320, type: 2}
+  target: 2
 --- !u!1 &2510177032516128928
 GameObject:
   m_ObjectHideFlags: 0
@@ -2485,6 +2487,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: fe3aa1294f820c5408f009b1014841fe, type: 2}
+  target: 1
 --- !u!1001 &3753172087069439396
 PrefabInstance:
   m_ObjectHideFlags: 0
