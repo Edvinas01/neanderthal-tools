@@ -4,7 +4,7 @@ using UnityEngine.Events;
 namespace NeanderthalTools.Knapping
 {
     [Serializable]
-    public class FlakeUnityEvent : UnityEvent<Flake>
+    public class FlakeUnityEvent : UnityEvent<FlakeEventArgs>
     {
     }
 }

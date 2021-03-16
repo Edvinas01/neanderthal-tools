@@ -47,7 +47,7 @@ namespace NeanderthalTools.Knapping
             var direction = (collision.contacts[0].point - transform.position).normalized;
             var force = collision.impulse.magnitude / Time.fixedDeltaTime;
 
-            flake.HandleImpact(direction, force);
+            flake.HandleImpact(interactable.selectingInteractor, direction, force);
         }
 
         #endregion
