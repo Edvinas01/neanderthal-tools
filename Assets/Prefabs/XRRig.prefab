@@ -502,9 +502,6 @@ MonoBehaviour:
     type: 3}
   teleportCancel: {fileID: 2307464322626738743, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
-  continuousMoveProvider: {fileID: 3196475255756503417}
-  snapTurnProvider: {fileID: 3196475255756503399}
-  teleportationProvider: {fileID: 6997574930872788716}
   teleportController: {fileID: 4819223979918545742}
 --- !u!1 &3196475255899375026
 GameObject:
@@ -608,6 +605,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5243430594782466303, guid: 046509a871bc71e4dae0feebcf50d4a7,
+        type: 3}
+      propertyPath: m_ReferenceFrame
+      value: 
+      objectReference: {fileID: 3196475255756503398}
     - target: {fileID: 5243430594782466303, guid: 046509a871bc71e4dae0feebcf50d4a7,
         type: 3}
       propertyPath: m_InteractionManager

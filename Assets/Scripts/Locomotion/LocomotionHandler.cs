@@ -1,10 +1,12 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 
 namespace NeanderthalTools.Locomotion
 {
+    [RequireComponent(typeof(SnapTurnProviderBase))]
+    [RequireComponent(typeof(TeleportationProvider))]
+    [RequireComponent(typeof(ContinuousMoveProviderBase))]
     public class LocomotionHandler : MonoBehaviour
     {
         #region Editor
@@ -19,16 +21,13 @@ namespace NeanderthalTools.Locomotion
         private InputActionReference teleportCancel;
 
         [SerializeField]
-        private ContinuousMoveProviderBase continuousMoveProvider;
+        private XRBaseController teleportController;
 
-        [SerializeField]
+        private ContinuousMoveProviderBase continuousMoveProvider;
+        private TeleportationProvider teleportationProvider;
         private SnapTurnProviderBase snapTurnProvider;
 
-        [SerializeField]
-        private TeleportationProvider teleportationProvider;
-
-        [SerializeField]
-        private XRBaseController teleportController;
+        private bool teleportActive;
 
         #endregion
 
@@ -36,72 +35,64 @@ namespace NeanderthalTools.Locomotion
 
         private void Awake()
         {
+            continuousMoveProvider = GetComponent<ContinuousMoveProviderBase>();
+            teleportationProvider = GetComponent<TeleportationProvider>();
+            snapTurnProvider = GetComponent<SnapTurnProviderBase>();
+
             continuousMoveProvider.enabled = locomotionSettings.ContinuousMove;
-            snapTurnProvider.enabled = locomotionSettings.SnapTurn;
             teleportationProvider.enabled = locomotionSettings.Teleport;
+            snapTurnProvider.enabled = locomotionSettings.SnapTurn;
 
-            SetTeleportActivated(false);
+            SetTeleportController(false);
         }
 
-        private void OnEnable()
+        private void Update()
         {
-            teleportActivate.action.performed += OnTeleportActivatePerformed;
-            teleportActivate.action.canceled += OnTeleportActivateCanceled;
-            teleportCancel.action.performed += OnTeleportCancelPerformed;
-        }
-
-        private void OnDisable()
-        {
-            teleportActivate.action.performed -= OnTeleportActivatePerformed;
-            teleportActivate.action.canceled -= OnTeleportActivateCanceled;
-            teleportCancel.action.performed -= OnTeleportCancelPerformed;
+            if (locomotionSettings.Teleport)
+            {
+                UpdateTeleport();
+            }
         }
 
         #endregion
 
         #region Methods
 
-        private void OnTeleportActivatePerformed(InputAction.CallbackContext ctx)
+        private void UpdateTeleport()
         {
-            SetTeleportActivated(true);
-        }
-
-        private void OnTeleportActivateCanceled(InputAction.CallbackContext ctx)
-        {
-            if (IsTeleportActivated())
+            if (teleportActive)
             {
-                StartDeactivateTeleport();
+                UpdateActiveTeleport();
+            }
+            else
+            {
+                UpdateIdleTeleport();
             }
         }
 
-        private void OnTeleportCancelPerformed(InputAction.CallbackContext ctx)
+        private void UpdateActiveTeleport()
         {
-            if (IsTeleportActivated())
+            var teleportReleased = teleportActivate.action.phase == InputActionPhase.Waiting;
+            var teleportCanceled = teleportCancel.action.triggered;
+
+            if (teleportReleased || teleportCanceled)
             {
-                SetTeleportActivated(false);
+                SetTeleportController(false);
+                teleportActive = false;
             }
         }
 
-        private void StartDeactivateTeleport()
+        private void UpdateIdleTeleport()
         {
-            StopAllCoroutines();
-            StartCoroutine(DeactivateTeleport());
+            var teleportActivated = teleportActivate.action.triggered;
+            if (teleportActivated)
+            {
+                SetTeleportController(true);
+                teleportActive = true;
+            }
         }
 
-        private IEnumerator DeactivateTeleport()
-        {
-            // Wait one frame so that teleportation gets executed.
-            yield return null;
-
-            SetTeleportActivated(false);
-        }
-
-        private bool IsTeleportActivated()
-        {
-            return locomotionSettings.Teleport && teleportController.gameObject.activeSelf;
-        }
-
-        private void SetTeleportActivated(bool activated)
+        private void SetTeleportController(bool activated)
         {
             teleportController.gameObject.SetActive(activated);
         }
