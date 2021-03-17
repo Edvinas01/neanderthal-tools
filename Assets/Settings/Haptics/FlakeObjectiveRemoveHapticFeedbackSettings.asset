@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 77fa439e618640f5b37cfe92b577023c, type: 3}
-  m_Name: FlakeRemoveHapticFeedbackSettings
+  m_Name: FlakeObjectiveRemoveHapticFeedbackSettings
   m_EditorClassIdentifier: 
   randomizeAmplitude: 1
-  amplitude: 0.7
-  amplitudeRange: {x: 0.7, y: 0.8}
+  amplitude: 0.5
+  amplitudeRange: {x: 0.8, y: 0.9}
   randomizeDuration: 1
-  durationSeconds: 0.3
-  durationSecondsRange: {x: 0.3, y: 0.35}
+  durationSeconds: 0.5
+  durationSecondsRange: {x: 0.3, y: 0.4}
   overridePlaying: 1
