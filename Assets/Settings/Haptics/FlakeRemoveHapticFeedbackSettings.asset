@@ -18,3 +18,4 @@ MonoBehaviour:
   randomizeDuration: 1
   durationSeconds: 0.3
   durationSecondsRange: {x: 0.3, y: 0.35}
+  overridePlaying: 1

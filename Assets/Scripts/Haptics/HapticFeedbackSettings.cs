@@ -1,6 +1,5 @@
 ﻿using NaughtyAttributes;
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
 
 namespace NeanderthalTools.Haptics
 {
@@ -38,40 +37,23 @@ namespace NeanderthalTools.Haptics
         [ShowIf("randomizeDuration")]
         private Vector2 durationSecondsRange = new Vector2(0f, 0.5f);
 
+        [SerializeField]
+        [Tooltip("Should currently playing haptics be ignored and played over")]
+        private bool overridePlaying;
+
         #endregion
 
-        #region Methods
+        #region Properties
 
-        public void SendHapticImpulse(params XRBaseController[] controllers)
-        {
-            var calculatedAmplitude = GetAmplitude();
-            var calculatedDuration = GetDurationSeconds();
+        public float Amplitude => randomizeAmplitude
+            ? Random.Range(amplitudeRange.x, amplitudeRange.y)
+            : amplitude;
 
-            foreach (var controller in controllers)
-            {
-                controller.SendHapticImpulse(calculatedAmplitude, calculatedDuration);
-            }
-        }
+        public float Duration => randomizeDuration
+            ? Random.Range(durationSecondsRange.x, durationSecondsRange.y)
+            : durationSeconds;
 
-        private float GetAmplitude()
-        {
-            if (randomizeAmplitude)
-            {
-                return Random.Range(amplitudeRange.x, amplitudeRange.y);
-            }
-
-            return amplitude;
-        }
-
-        private float GetDurationSeconds()
-        {
-            if (randomizeDuration)
-            {
-                return Random.Range(durationSecondsRange.x, durationSecondsRange.y);
-            }
-
-            return durationSeconds;
-        }
+        public bool OverridePlaying => overridePlaying;
 
         #endregion
     }

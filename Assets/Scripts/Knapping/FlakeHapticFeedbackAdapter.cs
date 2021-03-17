@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using NeanderthalTools.Haptics;
+﻿using NeanderthalTools.Haptics;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
@@ -32,6 +31,11 @@ namespace NeanderthalTools.Knapping
 
         public void SendHapticImpulse(FlakeEventArgs args)
         {
+            if (!gameObject.activeInHierarchy)
+            {
+                return;
+            }
+
             switch (target)
             {
                 case Target.Knapper:
@@ -48,13 +52,21 @@ namespace NeanderthalTools.Knapping
 
         private void SendHapticImpulse(params XRBaseInteractor[] interactors)
         {
-            var controllers = interactors
-                .Where(interactor => interactor != null)
-                .Select(interactor => interactor.GetComponent<XRBaseController>())
-                .Where(controller => controller != null)
-                .ToArray();
+            foreach (var interactor in interactors)
+            {
+                if (interactor == null)
+                {
+                    continue;
+                }
 
-            settings.SendHapticImpulse(controllers);
+                var feedback = interactor.GetComponent<ManagedHapticFeedback>();
+                if (feedback == null)
+                {
+                    continue;
+                }
+
+                feedback.SendHapticImpulse(settings);
+            }
         }
 
         #endregion
