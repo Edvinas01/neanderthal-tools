@@ -48,27 +48,32 @@ namespace NeanderthalTools.Knapping
 
         #region Methods
 
-        public void HandleDependenciesRemaining(Flake flake)
+        public void HandleDependenciesRemaining(XRBaseInteractor knapperInteractor, Flake flake)
         {
-            onDependenciesRemaining.Invoke(flake);
+            onDependenciesRemaining.Invoke(CreateEventArgs(knapperInteractor, flake));
         }
 
-        public void HandleInvalidAngle(Flake flake)
+        public void HandleInvalidAngle(XRBaseInteractor knapperInteractor, Flake flake)
         {
-            onInvalidAngle.Invoke(flake);
+            onInvalidAngle.Invoke(CreateEventArgs(knapperInteractor, flake));
         }
 
-        public void HandleWeakImpact(Flake flake)
+        public void HandleWeakImpact(XRBaseInteractor knapperInteractor, Flake flake)
         {
-            onWeakImpact.Invoke(flake);
+            onWeakImpact.Invoke(CreateEventArgs(knapperInteractor, flake));
         }
 
-        public void HandleDetach(Flake flake)
+        public void HandleDetach(XRBaseInteractor knapperInteractor, Flake flake)
         {
             RemoveInteractableColliders(flake);
             AddInteractable(flake);
 
-            onDetach.Invoke(flake);
+            onDetach.Invoke(CreateEventArgs(knapperInteractor, flake));
+        }
+
+        private FlakeEventArgs CreateEventArgs(XRBaseInteractor knapperInteractor, Flake flake)
+        {
+            return new FlakeEventArgs(interactable.selectingInteractor, knapperInteractor, flake);
         }
 
         private void RemoveInteractableColliders(Flake flake)
