@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -31,6 +32,12 @@ namespace NeanderthalTools.Locomotion
 
         #endregion
 
+        #region Events
+
+        public event Action<LocomotionSystem> OnLocomotionEnd;
+
+        #endregion
+
         #region Unity Lifecycle
 
         private void Awake()
@@ -46,6 +53,20 @@ namespace NeanderthalTools.Locomotion
             SetTeleportController(false);
         }
 
+        private void OnEnable()
+        {
+            continuousMoveProvider.endLocomotion += InvokeOnLocomotionEnd;
+            teleportationProvider.endLocomotion += InvokeOnLocomotionEnd;
+            snapTurnProvider.endLocomotion += InvokeOnLocomotionEnd;
+        }
+
+        private void OnDisable()
+        {
+            continuousMoveProvider.endLocomotion -= InvokeOnLocomotionEnd;
+            teleportationProvider.endLocomotion -= InvokeOnLocomotionEnd;
+            snapTurnProvider.endLocomotion -= InvokeOnLocomotionEnd;
+        }
+
         private void Update()
         {
             if (locomotionSettings.Teleport)
@@ -57,6 +78,11 @@ namespace NeanderthalTools.Locomotion
         #endregion
 
         #region Methods
+
+        private void InvokeOnLocomotionEnd(LocomotionSystem locomotionSystem)
+        {
+            OnLocomotionEnd?.Invoke(locomotionSystem);
+        }
 
         private void UpdateTeleport()
         {
