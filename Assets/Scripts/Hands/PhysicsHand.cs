@@ -203,8 +203,9 @@ namespace NeanderthalTools.Hands
         {
             var worldPosition = transform.root.TransformPoint(targetPosition);
             var positionDiff = worldPosition - rigidbody.position;
+            var velocity = positionDiff / Time.deltaTime;
 
-            return positionDiff / Time.deltaTime;
+            return Vector3.ClampMagnitude(velocity, settings.MaxVelocity);
         }
 
         private void RotatePhysics()
