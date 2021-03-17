@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 1968165195990600699}
   - component: {fileID: 1686485787790000114}
   - component: {fileID: 1038095323525942595}
+  - component: {fileID: 5415943815951930276}
   m_Layer: 7
   m_Name: RightHandController
   m_TagString: Untagged
@@ -314,6 +315,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: e5b727c2e15a9f944b09e2ea330fe8dd, type: 2}
+--- !u!114 &5415943815951930276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1968165195990600646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43fdc33411e44c45b8e9103565e4371c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3966680192322933984
 GameObject:
   m_ObjectHideFlags: 0
