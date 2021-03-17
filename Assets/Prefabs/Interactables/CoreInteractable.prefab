@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 4470356974453892716}
   - component: {fileID: 2331841332324562001}
   m_Layer: 10
-  m_Name: FlakeObjectiveRemove
+  m_Name: FlakeRemove
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 5794970440423600365}
   - component: {fileID: 2243331388189286799}
   m_Layer: 10
-  m_Name: FlakeObjectiveHit
+  m_Name: FlakeWeak
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: 3424cb1ad985942459621e125fcb6061, type: 2}
-  target: 1
+  target: 2
 --- !u!1 &1129798621556932579
 GameObject:
   m_ObjectHideFlags: 0
@@ -161,7 +161,7 @@ GameObject:
   - component: {fileID: 6011987107428663715}
   - component: {fileID: 4875551127919369058}
   m_Layer: 10
-  m_Name: FlakeKnapper
+  m_Name: FlakeHit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -931,7 +931,20 @@ MonoBehaviour:
         m_CallState: 2
   onWeakImpact:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2243331388189286799}
+        m_TargetAssemblyTypeName: NeanderthalTools.Knapping.FlakeHapticFeedbackAdapter,
+          Assembly-CSharp
+        m_MethodName: SendHapticImpulse
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onDetach:
     m_PersistentCalls:
       m_Calls:
