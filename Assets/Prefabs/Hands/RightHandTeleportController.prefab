@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 3501273267410922407}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children: []
   m_Father: {fileID: 4229343138081018435}
   m_RootOrder: 0
@@ -306,8 +306,8 @@ MonoBehaviour:
   m_LineType: 1
   m_MaxRaycastDistance: 30
   m_ReferenceFrame: {fileID: 0}
-  m_Velocity: 8
-  m_Acceleration: 12
+  m_Velocity: 6
+  m_Acceleration: 9.81
   m_AdditionalFlightTime: 1
   m_EndPointDistance: 30
   m_EndPointHeight: -10
@@ -371,7 +371,7 @@ LineRenderer:
   m_Positions: []
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.02
+    widthMultiplier: 0.015
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -445,7 +445,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e988983f96fe1dd48800bcdfc82f23e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_LineWidth: 0.02
+  m_LineWidth: 0.015
   m_OverrideInteractorLineLength: 0
   m_LineLength: 10
   m_WidthCurve:
@@ -475,8 +475,8 @@ MonoBehaviour:
   m_ValidColorGradient:
     serializedVersion: 2
     key0: {r: 1, g: 1, b: 1, a: 0}
-    key1: {r: 1, g: 1, b: 1, a: 0.5019608}
-    key2: {r: 1, g: 1, b: 1, a: 0.5019608}
+    key1: {r: 1, g: 1, b: 1, a: 0.2509804}
+    key2: {r: 1, g: 1, b: 1, a: 0.2509804}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
@@ -504,8 +504,8 @@ MonoBehaviour:
   m_InvalidColorGradient:
     serializedVersion: 2
     key0: {r: 1, g: 0.03529412, b: 0, a: 0}
-    key1: {r: 1, g: 0.03529412, b: 0, a: 0.5019608}
-    key2: {r: 0, g: 0, b: 0, a: 0.5019608}
+    key1: {r: 1, g: 0.03529412, b: 0, a: 0.2509804}
+    key2: {r: 0, g: 0, b: 0, a: 0.2509804}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
