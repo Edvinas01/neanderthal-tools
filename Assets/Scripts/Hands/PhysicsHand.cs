@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using NeanderthalTools.Locomotion;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -26,6 +27,7 @@ namespace NeanderthalTools.Hands
         // Colliders that make up the hand.
         private List<Collider> colliders;
 
+        private LocomotionHandler locomotionHandler;
         private XRBaseInteractor interactor;
         private new Rigidbody rigidbody;
 
@@ -45,25 +47,15 @@ namespace NeanderthalTools.Hands
         private void Awake()
         {
             colliders = GetCollidersInChildren(gameObject);
+
+            locomotionHandler = GetComponentInParent<LocomotionHandler>();
             interactor = GetComponent<XRBaseInteractor>();
             rigidbody = GetComponent<Rigidbody>();
         }
 
-        // private void Update()
-        // {
-        //     if (gameObject.name.Contains("Right"))
-        //     {
-        //         var valid = new List<XRBaseInteractable>();
-        //         var hover = new List<XRBaseInteractable>();
-        //         interactor.GetValidTargets(valid);
-        //         interactor.GetHoverTargets(hover);
-        //
-        //         Debug.Log("valid=" + valid.Count + ", hover=" + hover.Count);
-        //     }
-        // }
-
         private void OnEnable()
         {
+            locomotionHandler.OnLocomotionEnd += AdjustInteractableOnLocomotionEnd;
             settings.PositionAction.performed += OnPositionChanged;
             settings.RotationAction.performed += OnRotationChanged;
             settings.SelectAction.performed += OnSelectChanged;
@@ -72,6 +64,7 @@ namespace NeanderthalTools.Hands
 
         private void OnDisable()
         {
+            locomotionHandler.OnLocomotionEnd -= AdjustInteractableOnLocomotionEnd;
             settings.PositionAction.performed -= OnPositionChanged;
             settings.RotationAction.performed -= OnRotationChanged;
             settings.SelectAction.performed -= OnSelectChanged;
@@ -104,6 +97,21 @@ namespace NeanderthalTools.Hands
         #endregion
 
         #region Methods
+
+        private void AdjustInteractableOnLocomotionEnd(LocomotionSystem locomotionSystem)
+        {
+            var interactable = interactor.selectTarget;
+            if (interactable == null)
+            {
+                return;
+            }
+
+            var interactableTransform = interactable.transform;
+            var attachTransform = interactor.attachTransform;
+
+            interactableTransform.position = attachTransform.position;
+            interactableTransform.rotation = attachTransform.rotation;
+        }
 
         private void OnPositionChanged(InputAction.CallbackContext ctx)
         {
@@ -195,8 +203,9 @@ namespace NeanderthalTools.Hands
         {
             var worldPosition = transform.root.TransformPoint(targetPosition);
             var positionDiff = worldPosition - rigidbody.position;
+            var velocity = positionDiff / Time.deltaTime;
 
-            return positionDiff / Time.deltaTime;
+            return Vector3.ClampMagnitude(velocity, settings.MaxVelocity);
         }
 
         private void RotatePhysics()
