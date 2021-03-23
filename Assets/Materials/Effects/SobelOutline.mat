@@ -100,7 +100,7 @@ Material:
     - _ColorThreshold: 0
     - _Cull: 2
     - _Cutoff: 0.5
-    - _DepthStrength: 15
+    - _DepthStrength: 10
     - _DepthThickness: 0.5
     - _DepthThreshold: 0.1
     - _DetailAlbedoMapScale: 1
@@ -120,7 +120,7 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
-    - _Thickness: 0.0008
+    - _Thickness: 0.0006
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:

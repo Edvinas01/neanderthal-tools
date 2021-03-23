@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 namespace NeanderthalTools.Knapping
 {
@@ -119,7 +120,11 @@ namespace NeanderthalTools.Knapping
 
         #region Methods
 
-        public void HandleImpact(Vector3 impactDirection, float impactForce)
+        public void HandleImpact(
+            XRBaseInteractor knapperInteractor,
+            Vector3 impactDirection,
+            float impactForce
+        )
         {
             if (IsDetached())
             {
@@ -128,13 +133,13 @@ namespace NeanderthalTools.Knapping
 
             if (IsWeakImpact(impactForce))
             {
-                objective.HandleWeakImpact(this);
+                objective.HandleWeakImpact(knapperInteractor, this);
                 return;
             }
 
             if (IsDependenciesRemaining())
             {
-                objective.HandleDependenciesRemaining(this);
+                objective.HandleDependenciesRemaining(knapperInteractor, this);
                 return;
             }
 
@@ -161,11 +166,11 @@ namespace NeanderthalTools.Knapping
                 impactColor = Color.green;
 
                 ClearDependencies();
-                Detach();
+                Detach(knapperInteractor);
             }
             else
             {
-                objective.HandleInvalidAngle(this);
+                objective.HandleInvalidAngle(knapperInteractor, this);
             }
 
             DrawDebugDay(flakePosition, oppositeImpactDirection, impactColor);
@@ -224,9 +229,9 @@ namespace NeanderthalTools.Knapping
             dependants.Clear();
         }
 
-        private void Detach()
+        private void Detach(XRBaseInteractor knapperInteractor)
         {
-            objective.HandleDetach(this);
+            objective.HandleDetach(knapperInteractor, this);
             objective = null;
         }
 

@@ -157,6 +157,7 @@ namespace NeanderthalTools.Scenes
 
             var loadedScene = SceneManager.GetSceneByBuildIndex(sceneIndex);
             SceneManager.SetActiveScene(loadedScene);
+            LightProbes.TetrahedralizeAsync();
 
             yield return fadeCanvas.FadeOut();
             loadingScene = false;
