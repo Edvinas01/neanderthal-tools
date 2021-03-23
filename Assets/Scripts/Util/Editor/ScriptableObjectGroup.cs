@@ -13,26 +13,13 @@ namespace NeanderthalTools.Util.Editor
 
         #endregion
 
-        #region Fields
-
-        private List<ScriptableObjectEditor> scriptableObjectEditors;
-
-        #endregion
-
         #region Properties
 
-        public List<ScriptableObjectEditor> ScriptableObjectEditors
-        {
-            get
-            {
-                if (scriptableObjectEditors == null)
-                {
-                    SetupScriptableObjectEditors();
-                }
+        public List<ScriptableObjectGroupState> GroupStates { get; set; }
 
-                return scriptableObjectEditors;
-            }
-        }
+        public List<ScriptableObject> ScriptableObjects => scriptableObjects;
+
+        public string Search { get; set; }
 
         #endregion
 
@@ -40,27 +27,7 @@ namespace NeanderthalTools.Util.Editor
 
         private void OnValidate()
         {
-            scriptableObjectEditors = null;
-        }
-
-        #endregion
-
-        #region Methods
-
-        private void SetupScriptableObjectEditors()
-        {
-            scriptableObjectEditors = new List<ScriptableObjectEditor>();
-
-            foreach (var scriptableObject in scriptableObjects)
-            {
-                // Missing or set to null in the inspector.
-                if (scriptableObject == null)
-                {
-                    continue;
-                }
-
-                ScriptableObjectEditors.Add(new ScriptableObjectEditor(scriptableObject));
-            }
+            GroupStates = null;
         }
 
         #endregion
