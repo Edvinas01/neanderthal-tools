@@ -9772,7 +9772,7 @@ MonoBehaviour:
   minIntensity: 11
   maxIntensity: 16
   smoothing: 15
-  movement: 0.1
+  movement: 0.3
   movementSpeed: 1
   minMovementInterval: 0.5
   maxMovementInterval: 1
