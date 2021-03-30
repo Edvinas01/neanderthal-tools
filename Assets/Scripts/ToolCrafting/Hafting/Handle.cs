@@ -53,42 +53,29 @@ namespace NeanderthalTools.ToolCrafting.Hafting
 
         public void HandleAttachAdhesive(Adhesive adhesive)
         {
-            RemoveComponents(adhesive);
             onAttachAdhesive.Invoke(CreateEventArgs(adhesive));
+            RemoveComponents(adhesive);
         }
 
         public void HandleAttachFlake(Flake flake)
         {
-            RemoveComponents(flake);
             onAttachFlake.Invoke(CreateEventArgs(flake));
+            RemoveComponents(flake);
         }
 
-        // todo: this is busted
         private static void RemoveComponents(Component part)
         {
-            // Can't pickup an attached piece.
-            if (part.TryGetComponent<XRBaseInteractable>(out var interactable))
-            {
-                Destroy(interactable);
-            }
+            RemoveComponent<GrabInteractableWelder>(part);
+            RemoveComponent<XRBaseInteractable>(part);
+            RemoveComponent<Rigidbody>(part);
+        }
 
-            // Can't weld an attached piece as well.
-            if (part.TryGetComponent<GrabInteractableWelder>(out var welder))
+        private static void RemoveComponent<T>(Component from) where T : Component
+        {
+            var component = from.GetComponent<T>();
+            if (component != null)
             {
-                Destroy(welder);
-            }
-
-            // Attached pieces moves as one with the handle.
-            if (part.TryGetComponent<Rigidbody>(out var rb))
-            {
-                Destroy(rb);
-            }
-
-            // Attach point is no longer necessary as the piece cannot be detached.
-            var attachPoint = part.GetComponentInParent<AttachPoint>();
-            if (attachPoint != null)
-            {
-                Destroy(attachPoint);
+                Destroy(component);
             }
         }
 

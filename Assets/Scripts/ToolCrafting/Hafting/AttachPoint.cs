@@ -5,7 +5,6 @@ using UnityEngine;
 
 namespace NeanderthalTools.ToolCrafting.Hafting
 {
-    [RequireComponent(typeof(Collider))]
     public class AttachPoint : MonoBehaviour
     {
         #region Enums
@@ -25,7 +24,7 @@ namespace NeanderthalTools.ToolCrafting.Hafting
         private List<AttachPoint> blockedAttachPoints;
 
         [SerializeField]
-        [Tooltip("Where to attach the object on this attacher")]
+        [Tooltip("Where to attach the object")]
         private Transform attachTransform;
 
         [SerializeField]
@@ -35,7 +34,6 @@ namespace NeanderthalTools.ToolCrafting.Hafting
 
         #region Fields
 
-        private Collider attachPointCollider;
         private Handle handle;
 
         #endregion
@@ -58,7 +56,6 @@ namespace NeanderthalTools.ToolCrafting.Hafting
 
         private void Awake()
         {
-            attachPointCollider = GetComponent<Collider>();
             handle = GetComponentInParent<Handle>();
             SetupAttachTransform();
             SetBlockedAttachPoints(false);
@@ -81,12 +78,6 @@ namespace NeanderthalTools.ToolCrafting.Hafting
                 default:
                     Debug.LogError($"Unsupported target: ${target}");
                     break;
-            }
-
-            if (IsAttached())
-            {
-                Destroy(attachPointCollider);
-                Destroy(this);
             }
         }
 
@@ -142,15 +133,15 @@ namespace NeanderthalTools.ToolCrafting.Hafting
             Attach(flake);
         }
 
-        private bool IsAttached()
-        {
-            return attachTransform.childCount > 0;
-        }
-
         private void Attach(Component part)
         {
-            part.transform.parent = attachTransform;
-            SetBlockedAttachPoints(false);
+            var partTransform = part.transform;
+            partTransform.position = attachTransform.position;
+            partTransform.rotation = attachTransform.rotation;
+            partTransform.parent = attachTransform;
+
+            SetBlockedAttachPoints(true);
+            Destroy(this);
         }
 
         #endregion
