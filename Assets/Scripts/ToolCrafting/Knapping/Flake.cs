@@ -29,12 +29,12 @@ namespace NeanderthalTools.ToolCrafting.Knapping
         private float removalRatio = 1f;
 
         [SerializeField]
-        [Tooltip("Other flakes that need to be detached before this one can be detached")]
-        private List<Flake> dependencies;
-
-        [SerializeField]
         [Tooltip("Is this flake be used as an attachable tool part")]
         private bool isAttachable;
+
+        [SerializeField]
+        [Tooltip("Other flakes that need to be detached before this one can be detached")]
+        private List<Flake> dependencies;
 
         #endregion
 

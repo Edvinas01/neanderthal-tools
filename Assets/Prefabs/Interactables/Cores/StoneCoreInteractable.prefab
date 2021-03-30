@@ -541,6 +541,7 @@ MonoBehaviour:
   maxAngle: 20
   minForce: 50
   removalRatio: 1
+  isAttachable: 1
   dependencies:
   - {fileID: 4716239800764297436}
   - {fileID: 261348359292308437}
@@ -572,6 +573,7 @@ MonoBehaviour:
   maxAngle: 30
   minForce: 50
   removalRatio: 1
+  isAttachable: 0
   dependencies: []
 --- !u!114 &2153386372645572537
 MonoBehaviour:
@@ -590,6 +592,7 @@ MonoBehaviour:
   maxAngle: 30
   minForce: 50
   removalRatio: 1
+  isAttachable: 0
   dependencies: []
 --- !u!114 &989399542518397112
 MonoBehaviour:
@@ -608,6 +611,7 @@ MonoBehaviour:
   maxAngle: 30
   minForce: 50
   removalRatio: 1
+  isAttachable: 0
   dependencies: []
 --- !u!114 &6537523894602196749
 MonoBehaviour:
@@ -626,6 +630,7 @@ MonoBehaviour:
   maxAngle: 30
   minForce: 50
   removalRatio: 1
+  isAttachable: 0
   dependencies: []
 --- !u!114 &4968308726703915228
 MonoBehaviour:
@@ -644,6 +649,7 @@ MonoBehaviour:
   maxAngle: 30
   minForce: 50
   removalRatio: 1
+  isAttachable: 0
   dependencies: []
 --- !u!114 &2771944615389374785
 MonoBehaviour:
@@ -662,6 +668,7 @@ MonoBehaviour:
   maxAngle: 30
   minForce: 50
   removalRatio: 1
+  isAttachable: 0
   dependencies: []
 --- !u!114 &47790704325435482
 MonoBehaviour:
@@ -680,6 +687,7 @@ MonoBehaviour:
   maxAngle: 30
   minForce: 50
   removalRatio: 1
+  isAttachable: 0
   dependencies: []
 --- !u!114 &4900685846389442613
 MonoBehaviour:
@@ -698,6 +706,7 @@ MonoBehaviour:
   maxAngle: 30
   minForce: 50
   removalRatio: 1
+  isAttachable: 0
   dependencies: []
 --- !u!114 &3713208792119253688
 MonoBehaviour:
@@ -716,6 +725,7 @@ MonoBehaviour:
   maxAngle: 30
   minForce: 50
   removalRatio: 1
+  isAttachable: 0
   dependencies: []
 --- !u!114 &1364976352568805993
 MonoBehaviour:
@@ -734,6 +744,7 @@ MonoBehaviour:
   maxAngle: 30
   minForce: 50
   removalRatio: 1
+  isAttachable: 0
   dependencies: []
 --- !u!114 &4730540281630045832
 MonoBehaviour:
@@ -752,6 +763,7 @@ MonoBehaviour:
   maxAngle: 30
   minForce: 50
   removalRatio: 1
+  isAttachable: 0
   dependencies: []
 --- !u!114 &7663426508176665302
 MonoBehaviour:
@@ -770,6 +782,7 @@ MonoBehaviour:
   maxAngle: 30
   minForce: 50
   removalRatio: 1
+  isAttachable: 0
   dependencies: []
 --- !u!114 &4716239800764297436
 MonoBehaviour:
@@ -789,6 +802,7 @@ MonoBehaviour:
   maxAngle: 30
   minForce: 50
   removalRatio: 1
+  isAttachable: 0
   dependencies:
   - {fileID: 7663426508176665302}
   - {fileID: 47790704325435482}
@@ -1429,7 +1443,7 @@ PrefabInstance:
     - target: {fileID: 5029254810064451946, guid: b6ebbf367bef8c04794e03d54841d1b3,
         type: 3}
       propertyPath: m_Name
-      value: CoreInteractable
+      value: StoneCoreInteractable
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6ebbf367bef8c04794e03d54841d1b3, type: 3}
