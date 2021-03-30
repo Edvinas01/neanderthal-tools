@@ -25,6 +25,25 @@ namespace NeanderthalTools.Effects
         [Tooltip("How much to smooth out the randomness; lower values = sparks, higher = lantern")]
         private int smoothing = 5;
 
+        [Min(0f)]
+        [SerializeField]
+        [Tooltip("Maximum random light movement amount")]
+        private float movement = 0.1f;
+
+        [Min(0f)]
+        [SerializeField]
+        private float movementSpeed = 1f;
+
+        [Min(0f)]
+        [SerializeField]
+        [Tooltip("Minimum random move interval in seconds")]
+        private float minMovementInterval = 0.5f;
+
+        [Min(0f)]
+        [SerializeField]
+        [Tooltip("Maximum random move interval in seconds")]
+        private float maxMovementInterval = 1f;
+
         #endregion
 
         #region Fields
@@ -33,12 +52,17 @@ namespace NeanderthalTools.Effects
         private float lastSum;
         private new Light light;
 
+        private Vector3 originalPosition;
+        private Vector3 targetPosition;
+        private float nextMoveTime;
+
         #endregion
 
         #region Unity Lifecycle
 
         private void Awake()
         {
+            originalPosition = transform.localPosition;
             smoothQueue = new Queue<float>(smoothing);
             light = GetComponent<Light>();
         }
@@ -50,6 +74,16 @@ namespace NeanderthalTools.Effects
         }
 
         private void Update()
+        {
+            UpdateIntensity();
+            UpdateMovement();
+        }
+
+        #endregion
+
+        #region Methods
+
+        private void UpdateIntensity()
         {
             while (smoothQueue.Count >= smoothing)
             {
@@ -63,6 +97,43 @@ namespace NeanderthalTools.Effects
 
             // Calculate new smoothed average.
             light.intensity = lastSum / smoothQueue.Count;
+        }
+
+        private void UpdateMovement()
+        {
+            if (nextMoveTime <= Time.time)
+            {
+                targetPosition = GetMovementPosition();
+                nextMoveTime = Random.Range(minMovementInterval, maxMovementInterval);
+            }
+
+            var lightTransform = transform;
+            var localPosition = lightTransform.localPosition;
+
+            localPosition = Vector3.Lerp(
+                localPosition,
+                targetPosition,
+                Time.deltaTime * movementSpeed
+            );
+
+            lightTransform.localPosition = localPosition;
+        }
+
+        private Vector3 GetMovementPosition()
+        {
+            var position = new Vector3(
+                GetMovement(),
+                GetMovement(),
+                GetMovement()
+            );
+
+            return originalPosition + position;
+        }
+
+        private float GetMovement()
+        {
+            var halfMovement = movement / 2;
+            return Random.Range(-halfMovement, halfMovement);
         }
 
         #endregion

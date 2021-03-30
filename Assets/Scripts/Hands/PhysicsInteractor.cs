@@ -36,6 +36,7 @@ namespace NeanderthalTools.Hands
         {
             base.OnDisable();
             interactionManager.interactableUnregistered -= OnInteractableUnregistered;
+            ClearCurrentInteractable();
         }
 
         private new void OnTriggerEnter(Collider other)
@@ -78,8 +79,20 @@ namespace NeanderthalTools.Hands
                 return;
             }
 
+            ClearCurrentInteractable();
+        }
+
+        protected override void OnSelectExited(SelectExitEventArgs args)
+        {
+            base.OnSelectExited(args);
+            ClearCurrentInteractable();
+        }
+
+        private void ClearCurrentInteractable()
+        {
             currentInteractable = null;
             validTargets.Clear();
+            colliders.Clear();
         }
 
         private void OnInteractableUnregistered(InteractableUnregisteredEventArgs obj)
