@@ -2,7 +2,6 @@
 using System.Linq;
 using NeanderthalTools.ToolCrafting.Knapping;
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
 
 namespace NeanderthalTools.ToolCrafting.Hafting
 {
@@ -22,8 +21,8 @@ namespace NeanderthalTools.ToolCrafting.Hafting
         #region Editor
 
         [SerializeField]
-        [Tooltip("Other parts that need attached")]
-        private List<AttachPoint> dependencies;
+        [Tooltip("Other parts are blocked by this part")]
+        private List<AttachPoint> blockedAttachPoints;
 
         [SerializeField]
         [Tooltip("Where to attach the object on this attacher")]
@@ -36,7 +35,6 @@ namespace NeanderthalTools.ToolCrafting.Hafting
 
         #region Fields
 
-        private readonly List<AttachPoint> dependants = new List<AttachPoint>();
         private Collider attachPointCollider;
         private Handle handle;
 
@@ -63,22 +61,15 @@ namespace NeanderthalTools.ToolCrafting.Hafting
             attachPointCollider = GetComponent<Collider>();
             handle = GetComponentInParent<Handle>();
             SetupAttachTransform();
-            SetupDependencies();
+            SetBlockedAttachPoints(false);
         }
 
-        private void OnDisable()
-        {
-            ClearDependencies();
-        }
+        #endregion
 
-        private void OnCollisionEnter(Collision collision)
-        {
-            if (IsDependencies() || IsAttached())
-            {
-                return;
-            }
+        #region Methods
 
-            var otherGameObject = collision.gameObject;
+        public void HandleAttach(GameObject otherGameObject)
+        {
             switch (target)
             {
                 case Target.Adhesive:
@@ -99,15 +90,19 @@ namespace NeanderthalTools.ToolCrafting.Hafting
             }
         }
 
-        #endregion
-
-        #region Methods
-
         private void SetupAttachTransform()
         {
             if (attachTransform == null)
             {
                 attachTransform = GetAttachTransform();
+            }
+        }
+
+        private void SetBlockedAttachPoints(bool active)
+        {
+            foreach (var blockedAttachPoint in blockedAttachPoints)
+            {
+                blockedAttachPoint.gameObject.SetActive(active);
             }
         }
 
@@ -123,17 +118,10 @@ namespace NeanderthalTools.ToolCrafting.Hafting
             return target.GetComponents<Component>().Length == 1;
         }
 
-        private void SetupDependencies()
-        {
-            foreach (var dependency in dependencies)
-            {
-                dependency.dependants.Add(this);
-            }
-        }
-
         private void HandleAttachAdhesive(GameObject otherGameObject)
         {
-            if (!otherGameObject.TryGetComponent<Adhesive>(out var adhesive))
+            var adhesive = otherGameObject.GetComponentInParent<Adhesive>();
+            if (adhesive == null)
             {
                 return;
             }
@@ -144,18 +132,14 @@ namespace NeanderthalTools.ToolCrafting.Hafting
 
         private void HandleAttachFlake(GameObject otherGameObject)
         {
-            if (!otherGameObject.TryGetComponent<Flake>(out var flake) || !flake.IsAttachable)
+            var flake = otherGameObject.GetComponentInParent<Flake>();
+            if (flake == null || !flake.IsAttachable)
             {
                 return;
             }
 
             handle.HandleAttachFlake(flake);
             Attach(flake);
-        }
-
-        private bool IsDependencies()
-        {
-            return dependencies.Count > 0;
         }
 
         private bool IsAttached()
@@ -166,28 +150,7 @@ namespace NeanderthalTools.ToolCrafting.Hafting
         private void Attach(Component part)
         {
             part.transform.parent = attachTransform;
-            if (part.TryGetComponent<XRBaseInteractable>(out var interactable))
-            {
-                Destroy(interactable);
-            }
-
-            if (part.TryGetComponent<Rigidbody>(out var rb))
-            {
-                Destroy(rb);
-            }
-
-            ClearDependencies();
-        }
-
-        private void ClearDependencies()
-        {
-            foreach (var dependant in dependants)
-            {
-                dependant.dependencies.Remove(this);
-            }
-
-            dependencies.Clear();
-            dependants.Clear();
+            SetBlockedAttachPoints(false);
         }
 
         #endregion
