@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace NeanderthalTools.Knapping
+namespace NeanderthalTools.ToolCrafting.Knapping
 {
     [RequireComponent(typeof(Camera))]
     public class KnappingProjectileShooter : MonoBehaviour
