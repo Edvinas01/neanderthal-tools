@@ -10,7 +10,7 @@ namespace NeanderthalTools.ToolCrafting.Hafting
         [Range(0f, 1f)]
         [SerializeField]
         [Tooltip("Amount that this raw adhesive material contributes to the production")]
-        private float amount = 0.1f;
+        private float produceAmount = 0.1f;
 
         [SerializeField]
         private UnityEvent onConsume;
@@ -19,7 +19,7 @@ namespace NeanderthalTools.ToolCrafting.Hafting
 
         #region Properties
 
-        public float Amount => amount;
+        public float ProduceAmount => produceAmount;
 
         #endregion
 

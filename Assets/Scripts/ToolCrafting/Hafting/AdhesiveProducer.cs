@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace NeanderthalTools.ToolCrafting.Hafting
 {
@@ -7,8 +8,8 @@ namespace NeanderthalTools.ToolCrafting.Hafting
         #region Editor
 
         [SerializeField]
-        [Tooltip("Target adhesive production point")]
-        private Adhesive produce;
+        [Tooltip("Target adhesive production points")]
+        private List<Adhesive> adhesives;
 
         #endregion
 
@@ -27,7 +28,11 @@ namespace NeanderthalTools.ToolCrafting.Hafting
 
         private void ProduceAdhesive(RawAdhesive rawAdhesive)
         {
-            produce.Amount += rawAdhesive.Amount;
+            foreach (var adhesive in adhesives)
+            {
+                adhesive.Amount += rawAdhesive.ProduceAmount;
+            }
+            
             rawAdhesive.HandleConsume();
         }
 

@@ -42,9 +42,10 @@ namespace NeanderthalTools.ToolCrafting.Hafting
             }
 
             var position = attachTransform.position;
-            var direction = attachTransform.rotation * Vector3.forward / 2;
+            var direction = attachTransform.rotation * Vector3.forward / 4;
 
-            Gizmos.DrawWireSphere(position, 0.1f);
+            Gizmos.DrawWireSphere(position, 0.025f);
+            Gizmos.DrawRay(position, -direction);
             Gizmos.DrawRay(position, direction);
         }
 

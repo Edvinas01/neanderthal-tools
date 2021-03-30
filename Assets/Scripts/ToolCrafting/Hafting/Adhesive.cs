@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace NeanderthalTools.ToolCrafting.Hafting
 {
@@ -68,6 +69,11 @@ namespace NeanderthalTools.ToolCrafting.Hafting
                 targetAmount,
                 Time.deltaTime * productionSpeed
             );
+
+            if (IsTargetAmount())
+            {
+                currentAmount = targetAmount;
+            }
         }
 
         private void UpdateScale()
@@ -77,7 +83,7 @@ namespace NeanderthalTools.ToolCrafting.Hafting
 
         private bool IsTargetAmount()
         {
-            return Mathf.Approximately(currentAmount, targetAmount);
+            return Math.Abs(currentAmount - targetAmount) < 0.01f;
         }
 
         #endregion
