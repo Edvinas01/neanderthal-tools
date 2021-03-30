@@ -10,6 +10,15 @@ namespace NeanderthalTools.ToolCrafting.Hafting
     {
         #region Editor
 
+        [Range(0f, 1f)]
+        [SerializeField]
+        [Tooltip("Required adhesive amount for hafting")]
+        private float requiredAdhesiveAmount = 0.1f;
+
+        [SerializeField]
+        [Tooltip("Adhesive prefab that will be instantiated on the handle")]
+        private GameObject adhesivePrefab;
+
         [SerializeField]
         private HaftUnityEvent onAttachAdhesive;
 
@@ -33,17 +42,15 @@ namespace NeanderthalTools.ToolCrafting.Hafting
 
         private void OnCollisionEnter(Collision collision)
         {
-            for (var i = 0; i < collision.contactCount; i++)
+            // Must be held.
+            if (!handleInteractable.isSelected)
             {
-                var contact = collision.GetContact(i);
-                var point = contact.thisCollider.GetComponent<AttachPoint>();
-                if (point == null)
-                {
-                    continue;
-                }
-
-                point.HandleAttach(collision.gameObject);
                 return;
+            }
+
+            if (FindAttachPoint(collision, out var otherGameObject, out var attachPoint))
+            {
+                HandleAttach(otherGameObject, attachPoint);
             }
         }
 
@@ -51,23 +58,84 @@ namespace NeanderthalTools.ToolCrafting.Hafting
 
         #region Methods
 
-        public void HandleAttachAdhesive(Adhesive adhesive)
+        private static bool FindAttachPoint(
+            Collision collision,
+            out GameObject otherGameObject,
+            out AttachPoint attachPoint
+        )
         {
-            onAttachAdhesive.Invoke(CreateEventArgs(adhesive));
-            RemoveComponents(adhesive);
+            otherGameObject = null;
+            attachPoint = null;
+
+            for (var i = 0; i < collision.contactCount; i++)
+            {
+                var collisionContact = collision.GetContact(i);
+                var thisCollider = collisionContact.thisCollider;
+
+                attachPoint = thisCollider.GetComponent<AttachPoint>();
+                if (attachPoint != null)
+                {
+                    otherGameObject = collisionContact.otherCollider.gameObject;
+                    return true;
+                }
+            }
+
+            return false;
         }
 
-        public void HandleAttachFlake(Flake flake)
+        private void HandleAttach(GameObject otherGameObject, AttachPoint attachPoint)
         {
+            var toolPart = otherGameObject.GetComponentInParent<IToolPart>();
+            if (toolPart == null || !attachPoint.IsMatchingPart(toolPart))
+            {
+                return;
+            }
+
+            switch (toolPart)
+            {
+                case Adhesive adhesive:
+                {
+                    HandleAttachAdhesive(attachPoint, adhesive);
+                    break;
+                }
+                case Flake flake:
+                {
+                    HandleAttachFlake(attachPoint, flake);
+                    break;
+                }
+            }
+        }
+
+        private void HandleAttachAdhesive(AttachPoint attachPoint, Adhesive adhesive)
+        {
+            if (adhesive.Amount < requiredAdhesiveAmount)
+            {
+                return;
+            }
+
+            adhesive.Amount -= requiredAdhesiveAmount;
+            attachPoint.Attach(Instantiate(adhesivePrefab));
+            onAttachAdhesive.Invoke(CreateEventArgs(adhesive));
+        }
+
+        private void HandleAttachFlake(AttachPoint attachPoint, Flake flake)
+        {
+            if (!flake.IsAttachable)
+            {
+                return;
+            }
+
+            attachPoint.Attach(flake.gameObject);
             onAttachFlake.Invoke(CreateEventArgs(flake));
             RemoveComponents(flake);
         }
 
-        private static void RemoveComponents(Component part)
+        private static void RemoveComponents(Flake flake)
         {
-            RemoveComponent<GrabInteractableWelder>(part);
-            RemoveComponent<XRBaseInteractable>(part);
-            RemoveComponent<Rigidbody>(part);
+            RemoveComponent<GrabInteractableWelder>(flake);
+            RemoveComponent<XRBaseInteractable>(flake);
+            RemoveComponent<Rigidbody>(flake);
+            Destroy(flake);
         }
 
         private static void RemoveComponent<T>(Component from) where T : Component
