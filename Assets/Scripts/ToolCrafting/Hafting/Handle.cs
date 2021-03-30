@@ -48,7 +48,12 @@ namespace NeanderthalTools.ToolCrafting.Hafting
                 return;
             }
 
-            if (FindAttachPoint(collision, out var otherGameObject, out var attachPoint))
+            if (!FindAttachPoint(collision, out var otherGameObject, out var attachPoint))
+            {
+                return;
+            }
+
+            if (IsHeld(otherGameObject))
             {
                 HandleAttach(otherGameObject, attachPoint);
             }
@@ -57,6 +62,14 @@ namespace NeanderthalTools.ToolCrafting.Hafting
         #endregion
 
         #region Methods
+
+        private static bool IsHeld(GameObject otherGameObject)
+        {
+            var interactable = otherGameObject.GetComponentInParent<XRBaseInteractable>();
+
+            // Can be held or fixed to the ground (e.g. adhesive is fixed).
+            return interactable == null || interactable.isSelected;
+        }
 
         private static bool FindAttachPoint(
             Collision collision,

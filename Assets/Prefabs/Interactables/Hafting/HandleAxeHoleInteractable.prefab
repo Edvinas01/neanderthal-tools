@@ -55,7 +55,7 @@ Transform:
   m_GameObject: {fileID: 1871320047}
   m_LocalRotation: {x: -0.0013720702, y: -0.06510037, z: -0.0012433524, w: 0.997877}
   m_LocalPosition: {x: -0.0037, y: 0.1358, z: 0.0011}
-  m_LocalScale: {x: 0.8948864, y: 2.568531, z: 1.3880221}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2114629080}
   m_RootOrder: 0
@@ -185,6 +185,27 @@ MonoBehaviour:
   - {fileID: 1972332545}
   attachTransform: {fileID: 1871320048}
   toolTypeName: NeanderthalTools.ToolCrafting.Hafting.Adhesive
+--- !u!114 &761662286235207117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6385425368758865735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82fa1b93ae7441bd842badab50be699b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requiredAdhesiveAmount: 0.1
+  adhesivePrefab: {fileID: 1069351999065465769, guid: f86a232e3c4fd1643aed72691268a42a,
+    type: 3}
+  onAttachAdhesive:
+    m_PersistentCalls:
+      m_Calls: []
+  onAttachFlake:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!64 &1546409024
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -274,10 +295,16 @@ PrefabInstance:
     - target: {fileID: 8817423563159559450, guid: 61d50381e359a5246a17433a8ea8c575,
         type: 3}
       propertyPath: m_Name
-      value: HandleAxeInteractable
+      value: HandleAxeHoleInteractable
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61d50381e359a5246a17433a8ea8c575, type: 3}
+--- !u!1 &6385425368758865735 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8817423563159559450, guid: 61d50381e359a5246a17433a8ea8c575,
+    type: 3}
+  m_PrefabInstance: {fileID: 2504105335471149661}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6385425368758865732 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8817423563159559449, guid: 61d50381e359a5246a17433a8ea8c575,
