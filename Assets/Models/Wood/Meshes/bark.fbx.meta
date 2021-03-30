@@ -3,7 +3,22 @@ guid: 3ab040391d2772645acb4ea71b9543c8
 ModelImporter:
   serializedVersion: 21100
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: birch_bark_inner
+    second: {fileID: 2100000, guid: e49bf5ce0ffa9e145b88a46c6e3a3006, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: birch_bark_outer
+    second: {fileID: 2100000, guid: 43c1f45c8905b8b47ba08aa10e55633a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: birch_bark_pattern
+    second: {fileID: 2100000, guid: b5561fb577f8cf341b75fbe7888a2a93, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
