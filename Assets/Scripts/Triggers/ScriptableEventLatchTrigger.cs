@@ -25,7 +25,7 @@ namespace NeanderthalTools.Triggers
 
         #region Fields
 
-        private bool closed;
+        private bool closed = true;
 
         #endregion
 
