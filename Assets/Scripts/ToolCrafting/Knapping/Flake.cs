@@ -3,9 +3,9 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-namespace NeanderthalTools.Knapping
+namespace NeanderthalTools.ToolCrafting.Knapping
 {
-    public class Flake : MonoBehaviour
+    public class Flake : MonoBehaviour, IToolPart
     {
         #region Editor
 
@@ -27,6 +27,10 @@ namespace NeanderthalTools.Knapping
         [SerializeField]
         [Tooltip("Ratio of other flakes that have to be removed in order for this piece to detach")]
         private float removalRatio = 1f;
+
+        [SerializeField]
+        [Tooltip("Is this flake be used as an attachable tool part")]
+        private bool isAttachable;
 
         [SerializeField]
         [Tooltip("Other flakes that need to be detached before this one can be detached")]
@@ -52,6 +56,8 @@ namespace NeanderthalTools.Knapping
         /// List of colliders attached to this flake.
         /// </summary>
         public List<Collider> Colliders { get; private set; }
+
+        public bool IsAttachable => IsDetached() && isAttachable;
 
         #endregion
 

@@ -82,6 +82,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -224,6 +225,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -284,6 +286,7 @@ MonoBehaviour:
   maxAngle: 35
   minForce: 20
   removalRatio: 0.8
+  isAttachable: 1
   dependencies:
   - {fileID: 3999432833724999076}
   - {fileID: 2286346172256502811}
@@ -375,6 +378,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -435,6 +439,7 @@ MonoBehaviour:
   maxAngle: 35
   minForce: 20
   removalRatio: 0.8
+  isAttachable: 1
   dependencies:
   - {fileID: 8824245637117102069}
   - {fileID: 4056731968701123307}
@@ -592,6 +597,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -652,6 +658,7 @@ MonoBehaviour:
   maxAngle: 35
   minForce: 20
   removalRatio: 1
+  isAttachable: 0
   dependencies: []
 --- !u!1 &2360208892874304516
 GameObject:
@@ -812,6 +819,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -872,6 +880,7 @@ MonoBehaviour:
   maxAngle: 35
   minForce: 20
   removalRatio: 1
+  isAttachable: 0
   dependencies: []
 --- !u!1 &3971609851356706781
 GameObject:
@@ -1017,6 +1026,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1077,6 +1087,7 @@ MonoBehaviour:
   maxAngle: 35
   minForce: 20
   removalRatio: 1
+  isAttachable: 0
   dependencies: []
 --- !u!1 &5000215993837863077
 GameObject:
@@ -1168,6 +1179,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1228,6 +1240,7 @@ MonoBehaviour:
   maxAngle: 35
   minForce: 20
   removalRatio: 1
+  isAttachable: 0
   dependencies: []
 --- !u!1 &5127814221995261433
 GameObject:
@@ -1313,6 +1326,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1373,6 +1387,7 @@ MonoBehaviour:
   maxAngle: 35
   minForce: 20
   removalRatio: 1
+  isAttachable: 0
   dependencies: []
 --- !u!1 &5541884664155278379
 GameObject:
@@ -1473,6 +1488,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1533,6 +1549,7 @@ MonoBehaviour:
   maxAngle: 35
   minForce: 20
   removalRatio: 1
+  isAttachable: 0
   dependencies: []
 --- !u!1 &5652500338090749336
 GameObject:
@@ -1588,6 +1605,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1648,6 +1666,7 @@ MonoBehaviour:
   maxAngle: 35
   minForce: 20
   removalRatio: 1
+  isAttachable: 0
   dependencies: []
 --- !u!1 &5878054613361063089
 GameObject:
@@ -1826,6 +1845,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1886,6 +1906,7 @@ MonoBehaviour:
   maxAngle: 35
   minForce: 20
   removalRatio: 1
+  isAttachable: 0
   dependencies: []
 --- !u!1 &7203223111023530983
 GameObject:
@@ -1974,6 +1995,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -2034,6 +2056,7 @@ MonoBehaviour:
   maxAngle: 35
   minForce: 20
   removalRatio: 1
+  isAttachable: 0
   dependencies: []
 --- !u!1 &7837259210627385969
 GameObject:
@@ -2089,6 +2112,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -2149,6 +2173,7 @@ MonoBehaviour:
   maxAngle: 35
   minForce: 20
   removalRatio: 1
+  isAttachable: 0
   dependencies: []
 --- !u!1 &7895698893233351442
 GameObject:
@@ -2204,6 +2229,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -2264,6 +2290,7 @@ MonoBehaviour:
   maxAngle: 35
   minForce: 20
   removalRatio: 1
+  isAttachable: 0
   dependencies: []
 --- !u!1 &7949802972176366173
 GameObject:
@@ -2319,6 +2346,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -2379,6 +2407,7 @@ MonoBehaviour:
   maxAngle: 35
   minForce: 20
   removalRatio: 1
+  isAttachable: 0
   dependencies: []
 --- !u!1 &8747798342200311372
 GameObject:
@@ -2475,7 +2504,7 @@ PrefabInstance:
     - target: {fileID: 5029254810064451946, guid: b6ebbf367bef8c04794e03d54841d1b3,
         type: 3}
       propertyPath: m_Name
-      value: CoreInteractable
+      value: CubeCoreInteractable
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6ebbf367bef8c04794e03d54841d1b3, type: 3}

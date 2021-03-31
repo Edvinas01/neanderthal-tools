@@ -3,7 +3,7 @@ using NeanderthalTools.Hands;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-namespace NeanderthalTools.Knapping
+namespace NeanderthalTools.ToolCrafting.Knapping
 {
     [RequireComponent(typeof(XRBaseInteractable))]
     public class Objective : MonoBehaviour
