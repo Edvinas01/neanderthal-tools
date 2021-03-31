@@ -13,7 +13,12 @@ namespace NeanderthalTools.Util
         private SimpleScriptableEvent nextStateTrigger;
 
         [SerializeField]
+        [Tooltip("The next state in line")]
         private State nextState;
+
+        [SerializeField]
+        [Tooltip("Should this state trigger on game start")]
+        private bool triggerOnStart;
 
         [SerializeField]
         private UnityEvent onEnter;
@@ -27,28 +32,26 @@ namespace NeanderthalTools.Util
 
         private void OnEnable()
         {
-            Debug.Log("entered " + name); // todo remove
-            StartState();
-
-            if (nextStateTrigger == null)
+            if (nextStateTrigger != null)
             {
-                return;
+                nextStateTrigger.Add(this);
             }
-
-            nextStateTrigger.Add(this);
         }
 
         private void OnDisable()
         {
-            Debug.Log("exited " + name); // todo remove
-            StartNextState();
-
-            if (nextStateTrigger == null)
+            if (nextStateTrigger != null)
             {
-                return;
+                nextStateTrigger.Remove(this);
             }
+        }
 
-            nextStateTrigger.Remove(this);
+        private void Start()
+        {
+            if (triggerOnStart)
+            {
+                StartState();
+            }
         }
 
         #endregion
@@ -57,20 +60,22 @@ namespace NeanderthalTools.Util
 
         public void OnRaised(SimpleArg arg)
         {
-            gameObject.SetActive(false);
+            StartNextState();
         }
 
-        private void StartState()
+        public void StartState()
         {
             onEnter.Invoke();
         }
 
-        private void StartNextState()
+        public void StartNextState()
         {
             onExit.Invoke();
+
             if (nextState != null)
             {
                 nextState.gameObject.SetActive(true);
+                nextState.StartState();
             }
 
             gameObject.SetActive(false);
