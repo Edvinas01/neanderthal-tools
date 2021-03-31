@@ -237,8 +237,9 @@ namespace NeanderthalTools.ToolCrafting.Knapping
 
         private void Detach(XRBaseInteractor knapperInteractor)
         {
-            objective.HandleDetach(knapperInteractor, this);
+            var oldObjective = objective;
             objective = null;
+            oldObjective.HandleDetach(knapperInteractor, this);
         }
 
         private static void DrawDebugDay(Vector3 position, Vector3 direction, Color color)

@@ -27,6 +27,7 @@ namespace NeanderthalTools.Util
 
         private void OnEnable()
         {
+            Debug.Log("entered " + name); // todo remove
             StartState();
 
             if (nextStateTrigger == null)
@@ -39,6 +40,7 @@ namespace NeanderthalTools.Util
 
         private void OnDisable()
         {
+            Debug.Log("exited " + name); // todo remove
             StartNextState();
 
             if (nextStateTrigger == null)
