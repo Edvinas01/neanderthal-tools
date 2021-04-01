@@ -147,9 +147,14 @@ MonoBehaviour:
   ghost: {fileID: 9060854428612600181}
   fadeInDuration: 5
   fadeOutDuration: 5
-  fadedInAlpha: 1
   fadedOutAlpha: 0
   colorPropertyName: _Color
+  onFadedIn:
+    m_PersistentCalls:
+      m_Calls: []
+  onFadedOut:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4310875227291026501
 GameObject:
   m_ObjectHideFlags: 0
@@ -271,7 +276,7 @@ PrefabInstance:
     - target: {fileID: 1619898878459787673, guid: aa1bfd60a81153a419b28aa0bb95f8d9,
         type: 3}
       propertyPath: m_Name
-      value: GhostlyGuide
+      value: Ghost
       objectReference: {fileID: 0}
     - target: {fileID: 8923141988298350183, guid: aa1bfd60a81153a419b28aa0bb95f8d9,
         type: 3}
