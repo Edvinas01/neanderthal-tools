@@ -57,7 +57,7 @@ namespace NeanderthalTools.Hands
 
         private void OnEnable()
         {
-            locomotionHandler.OnLocomotionEnd += AdjustInteractableOnLocomotionEnd;
+            locomotionHandler.OnLocomotionEnd += OnLocomotionEndAdjustPositions;
             settings.PositionAction.performed += OnPositionChanged;
             settings.RotationAction.performed += OnRotationChanged;
             settings.SelectAction.performed += OnSelectChanged;
@@ -66,7 +66,7 @@ namespace NeanderthalTools.Hands
 
         private void OnDisable()
         {
-            locomotionHandler.OnLocomotionEnd -= AdjustInteractableOnLocomotionEnd;
+            locomotionHandler.OnLocomotionEnd -= OnLocomotionEndAdjustPositions;
             settings.PositionAction.performed -= OnPositionChanged;
             settings.RotationAction.performed -= OnRotationChanged;
             settings.SelectAction.performed -= OnSelectChanged;
@@ -100,7 +100,14 @@ namespace NeanderthalTools.Hands
 
         #region Methods
 
-        private void AdjustInteractableOnLocomotionEnd(LocomotionSystem locomotionSystem)
+        private void OnLocomotionEndAdjustPositions(LocomotionSystem locomotionSystem)
+        {
+            // Snap the hands and interactables to they don't jitter during movement.
+            MoveImmediate();
+            OrientInteractableImmediate();
+        }
+
+        private void OrientInteractableImmediate()
         {
             var interactable = interactor.selectTarget;
             if (interactable == null)
