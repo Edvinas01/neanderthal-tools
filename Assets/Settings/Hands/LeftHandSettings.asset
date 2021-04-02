@@ -20,11 +20,12 @@ MonoBehaviour:
     type: 3}
   selectAction: {fileID: -6131295136447488360, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
-  velocityMultiplier: 0.9
+  maxAngularVelocity: 20
   maxVelocity: 12
-  angularVelocityMultiplier: 0.9
+  velocityMultiplier: 0.9
+  angularVelocityMultiplier: 0.95
   positionChangeSpeed: 200
-  rotationChangeSpeed: 150
+  rotationChangeSpeed: 200
   physicsRadius: 0.1
   physicsMask:
     serializedVersion: 2

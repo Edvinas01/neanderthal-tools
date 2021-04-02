@@ -30,11 +30,33 @@ namespace NeanderthalTools.Hands
         #region Fields
 
         private XRGrabInteractable interactable;
-        private FixedJoint joint;
+        private Joint joint;
 
         #endregion
 
         #region Unity Lifecycle
+
+        private void OnDrawGizmos()
+        {
+            if (joint == null)
+            {
+                return;
+            }
+
+            var connectedRigidbody = joint.connectedBody;
+            var connectedPosition = connectedRigidbody.position
+                                    + connectedRigidbody.rotation
+                                    * joint.connectedAnchor;
+
+            var anchorTransform = transform;
+            var anchorPosition = anchorTransform.position
+                                 + anchorTransform.rotation
+                                 * joint.anchor;
+
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawWireSphere(connectedPosition, 0.05f);
+            Gizmos.DrawWireSphere(anchorPosition, 0.05f);
+        }
 
         private void Awake()
         {
@@ -95,7 +117,7 @@ namespace NeanderthalTools.Hands
                 SnapPosition(interactor);
             }
 
-            CreateJoint(interactorRigidbody);
+            CreateJoint(interactorRigidbody, interactor);
         }
 
         public void UnWeld(SelectExitEventArgs args)
@@ -112,17 +134,52 @@ namespace NeanderthalTools.Hands
             interactableTransform.rotation = interactorAttachTransform.rotation;
         }
 
-        private void CreateJoint(Rigidbody interactorRigidbody)
+        private void CreateJoint(Rigidbody interactorRigidbody, XRBaseInteractor interactor)
         {
-            joint = gameObject.AddComponent<FixedJoint>();
-            joint.enablePreprocessing = enablePreprocessing;
-            joint.connectedMassScale = connectedMassScale;
-            joint.connectedBody = interactorRigidbody;
+            var configurableJoint = gameObject.AddComponent<ConfigurableJoint>();
+
+            SetupJointConstraints(configurableJoint);
+            SetupJointMass(configurableJoint);
+            SetupJointConnectedBody(configurableJoint, interactorRigidbody, interactor);
+
+            joint = configurableJoint;
         }
 
         private void DestroyJoint()
         {
             Destroy(joint);
+        }
+
+        private static void SetupJointConstraints(ConfigurableJoint configurableJoint)
+        {
+            configurableJoint.xMotion = ConfigurableJointMotion.Limited;
+            configurableJoint.yMotion = ConfigurableJointMotion.Limited;
+            configurableJoint.zMotion = ConfigurableJointMotion.Limited;
+            configurableJoint.angularXMotion = ConfigurableJointMotion.Limited;
+            configurableJoint.angularYMotion = ConfigurableJointMotion.Limited;
+            configurableJoint.angularZMotion = ConfigurableJointMotion.Limited;
+        }
+
+        private void SetupJointMass(ConfigurableJoint configurableJoint)
+        {
+            configurableJoint.enablePreprocessing = enablePreprocessing;
+            configurableJoint.connectedMassScale = connectedMassScale;
+        }
+
+        private void SetupJointConnectedBody(
+            ConfigurableJoint configurableJoint,
+            Rigidbody interactorRigidbody,
+            XRBaseInteractor interactor
+        )
+        {
+            configurableJoint.autoConfigureConnectedAnchor = false;
+            configurableJoint.connectedBody = interactorRigidbody;
+
+            var worldAnchor = interactor.transform.position;
+            var localAnchor = transform.InverseTransformPoint(worldAnchor);
+
+            configurableJoint.connectedAnchor = Vector3.zero;
+            configurableJoint.anchor = localAnchor;
         }
 
         #endregion

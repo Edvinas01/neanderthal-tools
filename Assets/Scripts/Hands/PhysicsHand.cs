@@ -51,6 +51,8 @@ namespace NeanderthalTools.Hands
             locomotionHandler = GetComponentInParent<LocomotionHandler>();
             interactor = GetComponent<XRBaseInteractor>();
             rigidbody = GetComponent<Rigidbody>();
+
+            rigidbody.maxAngularVelocity = settings.MaxAngularVelocity;
         }
 
         private void OnEnable()
@@ -82,15 +84,15 @@ namespace NeanderthalTools.Hands
 
         private void FixedUpdate()
         {
-            if (IsHoldingObject() || !IsColliderInRange())
-            {
-                MoveImmediate();
-                RotateImmediate();
-            }
-            else
+            if (IsHoldingObject() || IsColliderInRange())
             {
                 MovePhysics();
                 RotatePhysics();
+            }
+            else
+            {
+                MoveImmediate();
+                RotateImmediate();
             }
         }
 
