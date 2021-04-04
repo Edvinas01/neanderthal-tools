@@ -22,9 +22,6 @@ namespace NeanderthalTools.Effects
         private float fadeOutDuration = 2f;
 
         [SerializeField]
-        private float fadedOutAlpha;
-
-        [SerializeField]
         private string colorPropertyName = "_Color";
 
         [SerializeField]
@@ -38,7 +35,11 @@ namespace NeanderthalTools.Effects
         #region Fields
 
         private Material material;
+        private new Light light;
+
         private float initialAlpha;
+        private float initialLightIntensity;
+
         private int colorPropertyId;
 
         #endregion
@@ -54,8 +55,13 @@ namespace NeanderthalTools.Effects
         private void Awake()
         {
             colorPropertyId = Shader.PropertyToID(colorPropertyName);
+
             material = transform.GetComponentInChildren<Renderer>(true).material;
             initialAlpha = material.GetColor(colorPropertyId).a;
+
+            light = ghost.GetComponentInChildren<Light>();
+            initialLightIntensity = light.intensity;
+
             ghost.gameObject.SetActive(false);
         }
 
@@ -81,40 +87,51 @@ namespace NeanderthalTools.Effects
         private IEnumerator FadeIn()
         {
             ghost.gameObject.SetActive(true);
-            yield return Fade(fadedOutAlpha, initialAlpha, fadeInDuration);
+            yield return Fade(0f, 1f, fadeInDuration);
             onFadedIn.Invoke();
         }
 
         private IEnumerator FadeOut()
         {
-            yield return Fade(initialAlpha, fadedOutAlpha, fadeOutDuration);
+            yield return Fade(1f, 0f, fadeOutDuration);
             ghost.gameObject.SetActive(false);
             onFadedOut.Invoke();
         }
 
         private IEnumerator Fade(float from, float to, float duration)
         {
-            SetAlpha(from);
+            SetAlphaMultiplier(from);
+            SetLightIntensityMultiplier(from);
 
             var progress = 0f;
             while (progress < 1f)
             {
-                var alpha = Mathf.Lerp(from, to, progress);
-                SetAlpha(alpha);
+                var multiplier = Mathf.Lerp(from, to, progress);
+
+                SetAlphaMultiplier(multiplier);
+                SetLightIntensityMultiplier(multiplier);
+
                 progress += Time.unscaledDeltaTime / duration;
+
                 yield return null;
             }
 
-            SetAlpha(to);
+            SetAlphaMultiplier(to);
+            SetLightIntensityMultiplier(to);
 
             yield return null;
         }
 
-        private void SetAlpha(float alpha)
+        private void SetAlphaMultiplier(float multiplier)
         {
             var color = material.GetColor(colorPropertyId);
-            color.a = alpha;
+            color.a = initialAlpha * multiplier;
             material.SetColor(colorPropertyId, color);
+        }
+
+        private void SetLightIntensityMultiplier(float multiplier)
+        {
+            light.intensity = initialLightIntensity * multiplier;
         }
 
         #endregion

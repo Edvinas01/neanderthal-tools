@@ -77,5 +77,10 @@ PrefabInstance:
       propertyPath: m_Text
       value: Apply adhesive on the handle
       objectReference: {fileID: 0}
+    - target: {fileID: 7666382460535264727, guid: dd9536f34ff82a642a232fef25b76a84,
+        type: 3}
+      propertyPath: m_Name
+      value: Ghost
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd9536f34ff82a642a232fef25b76a84, type: 3}
