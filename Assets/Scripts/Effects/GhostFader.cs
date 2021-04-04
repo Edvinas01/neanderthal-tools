@@ -56,10 +56,6 @@ namespace NeanderthalTools.Effects
             colorPropertyId = Shader.PropertyToID(colorPropertyName);
             material = transform.GetComponentInChildren<Renderer>(true).material;
             initialAlpha = material.GetColor(colorPropertyId).a;
-        }
-
-        private void Start()
-        {
             ghost.gameObject.SetActive(false);
         }
 
