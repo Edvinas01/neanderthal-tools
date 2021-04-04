@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using NeanderthalTools.Util;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -87,39 +88,21 @@ namespace NeanderthalTools.Effects
         private IEnumerator FadeIn()
         {
             ghost.gameObject.SetActive(true);
-            yield return Fade(0f, 1f, fadeInDuration);
+            yield return Coroutines.Progress(0f, 1f, fadeInDuration, SetMultipliers);
             onFadedIn.Invoke();
         }
 
         private IEnumerator FadeOut()
         {
-            yield return Fade(1f, 0f, fadeOutDuration);
+            yield return Coroutines.Progress(1f, 0f, fadeOutDuration, SetMultipliers);
             ghost.gameObject.SetActive(false);
             onFadedOut.Invoke();
         }
 
-        private IEnumerator Fade(float from, float to, float duration)
+        private void SetMultipliers(float value)
         {
-            SetAlphaMultiplier(from);
-            SetLightIntensityMultiplier(from);
-
-            var progress = 0f;
-            while (progress < 1f)
-            {
-                var multiplier = Mathf.Lerp(from, to, progress);
-
-                SetAlphaMultiplier(multiplier);
-                SetLightIntensityMultiplier(multiplier);
-
-                progress += Time.unscaledDeltaTime / duration;
-
-                yield return null;
-            }
-
-            SetAlphaMultiplier(to);
-            SetLightIntensityMultiplier(to);
-
-            yield return null;
+            SetAlphaMultiplier(value);
+            SetLightIntensityMultiplier(value);
         }
 
         private void SetAlphaMultiplier(float multiplier)

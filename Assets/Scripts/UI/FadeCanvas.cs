@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
+using NeanderthalTools.Util;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -39,7 +39,7 @@ namespace NeanderthalTools.UI
         /// </summary>
         public IEnumerator FadeOut()
         {
-            yield return Fade(1, 0, SetAlpha);
+            yield return Coroutines.Progress(1f, 0f, fadeDuration, SetAlpha);
             canvas.enabled = false;
         }
 
@@ -49,24 +49,7 @@ namespace NeanderthalTools.UI
         public IEnumerator FadeIn()
         {
             canvas.enabled = true;
-            yield return Fade(0, 1, SetAlpha);
-        }
-
-        private IEnumerator Fade(float from, float to, Action<float> onFade)
-        {
-            onFade(from);
-
-            var progress = 0f;
-            while (progress < 1f)
-            {
-                onFade(Mathf.Lerp(from, to, progress));
-                progress += Time.unscaledDeltaTime / fadeDuration;
-                yield return new WaitForEndOfFrame();
-            }
-
-            onFade(to);
-
-            yield return null;
+            yield return Coroutines.Progress(0f, 1f, fadeDuration, SetAlpha);
         }
 
         private void SetAlpha(float alpha)
