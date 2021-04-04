@@ -147,9 +147,14 @@ MonoBehaviour:
   ghost: {fileID: 9060854428612600181}
   fadeInDuration: 5
   fadeOutDuration: 5
-  fadedInAlpha: 1
   fadedOutAlpha: 0
   colorPropertyName: _Color
+  onFadedIn:
+    m_PersistentCalls:
+      m_Calls: []
+  onFadedOut:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4310875227291026501
 GameObject:
   m_ObjectHideFlags: 0
@@ -244,7 +249,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &9060854428612600181
 Transform:
   m_ObjectHideFlags: 0

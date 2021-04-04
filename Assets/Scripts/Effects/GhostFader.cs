@@ -58,9 +58,10 @@ namespace NeanderthalTools.Effects
             initialAlpha = material.GetColor(colorPropertyId).a;
         }
 
-        #endregion
-
-        #region Unity Lifecycle
+        private void Start()
+        {
+            ghost.gameObject.SetActive(false);
+        }
 
         private void OnDisable()
         {
