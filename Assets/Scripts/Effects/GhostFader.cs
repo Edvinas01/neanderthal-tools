@@ -55,15 +55,16 @@ namespace NeanderthalTools.Effects
 
         private void Awake()
         {
+            material = transform.GetComponentInChildren<Renderer>().material;
+            light = ghost.GetComponentInChildren<Light>();
+
             colorPropertyId = Shader.PropertyToID(colorPropertyName);
 
-            material = transform.GetComponentInChildren<Renderer>(true).material;
             initialAlpha = material.GetColor(colorPropertyId).a;
-
-            light = ghost.GetComponentInChildren<Light>();
             initialLightIntensity = light.intensity;
 
             ghost.gameObject.SetActive(false);
+            SetMultipliers(0f);
         }
 
         private void OnDisable()
