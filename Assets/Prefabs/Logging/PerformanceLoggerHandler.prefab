@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   logWriterProvider: {fileID: 11400000, guid: de142c94aa923394191620fc1055d65a, type: 2}
+  performanceLoggerSettings: {fileID: 11400000, guid: c20535ad16622644596518e7c6876f7f,
+    type: 2}
 --- !u!1001 &2943683601681358877
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28,12 +30,12 @@ PrefabInstance:
     - target: {fileID: 2856962472499427678, guid: 43683708bd10fab4297a9a2d9134a3db,
         type: 3}
       propertyPath: m_Name
-      value: PerformanceLogger
+      value: PerformanceLoggerHandler
       objectReference: {fileID: 0}
     - target: {fileID: 3466615599730223628, guid: 43683708bd10fab4297a9a2d9134a3db,
         type: 3}
       propertyPath: m_Name
-      value: Performance
+      value: PerformanceLogger
       objectReference: {fileID: 0}
     - target: {fileID: 4616476735290367450, guid: 43683708bd10fab4297a9a2d9134a3db,
         type: 3}

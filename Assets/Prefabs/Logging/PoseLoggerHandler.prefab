@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   logWriterProvider: {fileID: 11400000, guid: 0c0a400a2ddb66f4e9c624e8cb4343cf, type: 2}
+  poseLoggerSettings: {fileID: 11400000, guid: 546f5fdafd0d93547a171cc85a6ebba6, type: 2}
+  poses: []
 --- !u!1001 &6914835800997859150
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28,7 +30,12 @@ PrefabInstance:
     - target: {fileID: 2856962472499427678, guid: 43683708bd10fab4297a9a2d9134a3db,
         type: 3}
       propertyPath: m_Name
-      value: PoseLogger
+      value: PoseLoggerHandler
+      objectReference: {fileID: 0}
+    - target: {fileID: 3466615599730223628, guid: 43683708bd10fab4297a9a2d9134a3db,
+        type: 3}
+      propertyPath: m_Name
+      value: PostLogger
       objectReference: {fileID: 0}
     - target: {fileID: 4616476735290367450, guid: 43683708bd10fab4297a9a2d9134a3db,
         type: 3}

@@ -4,6 +4,7 @@ using System.IO;
 using NaughtyAttributes;
 using NeanderthalTools.Logging.Writers;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace NeanderthalTools.Logging
 {
@@ -12,13 +13,10 @@ namespace NeanderthalTools.Logging
     {
         #region Fields
 
+        [Header("General logs")]
         [SerializeField]
         [Tooltip("Should logging be enabled")]
         private bool enableLogging;
-
-        [SerializeField]
-        [Tooltip("Should each log file be compressed using gzip")]
-        private bool compressLogs = true;
 
         [SerializeField]
         [Tooltip("Should logs be uploaded to dropbox")]
@@ -30,12 +28,22 @@ namespace NeanderthalTools.Logging
         private string dropboxAuthorizationToken;
 
         [SerializeField]
-        [Tooltip("Log file type for all log writers")]
+        [Tooltip("Directory where to store all logs")]
+        private string logFileDirectory = "logs";
+
+        [Scene]
+        [SerializeField]
+        [Tooltip("List of scenes which should generate logs")]
+        private List<int> loggingSceneIndexes;
+
+        [Header("Steaming logs")]
+        [SerializeField]
+        [Tooltip("Log file type for streaming log writers")]
         private LogWriterType logWriterType = LogWriterType.None;
 
         [SerializeField]
-        [Tooltip("Directory where to store all logs")]
-        private string logFileDirectory = "logs";
+        [Tooltip("Should each log file be compressed using gzip")]
+        private bool compressLogs = true;
 
         [SerializeField]
         [Tooltip("Suffix of log files")]
@@ -44,12 +52,7 @@ namespace NeanderthalTools.Logging
         [Min(0f)]
         [SerializeField]
         [Tooltip("How often to write (dump) aggregated log samples to a file (in seconds)")]
-        private float writeIntervalSeconds = 0.1f;
-
-        [Scene]
-        [SerializeField]
-        [Tooltip("List of scenes which should generate logs")]
-        private List<int> loggingSceneIndexes;
+        private float writeInterval = 0.1f;
 
         #endregion
 
@@ -57,16 +60,11 @@ namespace NeanderthalTools.Logging
 
         public bool EnableLogging => enableLogging;
 
-        public bool CompressLogs => compressLogs;
-
         public bool UploadLogsToDropbox => uploadLogsToDropbox;
 
         public string DropboxAuthorizationToken => dropboxAuthorizationToken;
 
-        public LogWriterType LogWriterType => logWriterType;
-
-        [field: NonSerialized]
-        public string CurrentLogFileDirectory { get; private set; }
+        [field: NonSerialized] public string CurrentLogFileDirectory { get; private set; }
 
         public string LogFileDirectory
         {
@@ -74,11 +72,15 @@ namespace NeanderthalTools.Logging
             set => CurrentLogFileDirectory = value;
         }
 
+        public List<int> LoggingSceneIndexes => loggingSceneIndexes;
+
+        public LogWriterType LogWriterType => logWriterType;
+
+        public bool CompressLogs => compressLogs;
+
         public string LogFileSuffix => logFileSuffix;
 
-        public float WriteIntervalSeconds => writeIntervalSeconds;
-
-        public List<int> LoggingSceneIndexes => loggingSceneIndexes;
+        public float WriteInterval => writeInterval;
 
         public string LoggingId
         {

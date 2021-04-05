@@ -8,13 +8,18 @@ namespace NeanderthalTools.Logging.Loggers
         #region Editor
 
         [SerializeField]
-        private LogWriterProvider logWriterProvider;
+        private StreamingLogWriterProvider logWriterProvider;
+
+        [SerializeField]
+        private PerformanceLoggerSettings performanceLoggerSettings;
 
         #endregion
 
         #region Fields
 
-        private ILogWriter logWriter;
+        private IStreamingLogWriter logWriter;
+        private float nextSampleTime;
+        private float fps;
 
         #endregion
 
@@ -39,7 +44,42 @@ namespace NeanderthalTools.Logging.Loggers
 
         private void Update()
         {
-            var fps = 1f / Time.deltaTime;
+            UpdateFps();
+            if (!IsFpsThreshold() || !IsSample())
+            {
+                return;
+            }
+
+            UpdateNextSampleTime();
+            LogPerformance();
+        }
+
+        #endregion
+
+        #region Methods
+
+        private void UpdateFps()
+        {
+            fps = 1f / Time.deltaTime;
+        }
+
+        private bool IsFpsThreshold()
+        {
+            return fps <= performanceLoggerSettings.FpsThreshold;
+        }
+
+        private bool IsSample()
+        {
+            return Time.time >= nextSampleTime;
+        }
+
+        private void UpdateNextSampleTime()
+        {
+            nextSampleTime = Time.time + performanceLoggerSettings.SampleInterval;
+        }
+
+        private void LogPerformance()
+        {
             logWriter.Write(Time.time, fps);
         }
 

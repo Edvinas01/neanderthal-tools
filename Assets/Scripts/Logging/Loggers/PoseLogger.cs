@@ -1,4 +1,5 @@
-﻿using NeanderthalTools.Logging.Writers;
+﻿using System.Collections.Generic;
+using NeanderthalTools.Logging.Writers;
 using UnityEngine;
 
 namespace NeanderthalTools.Logging.Loggers
@@ -8,37 +9,44 @@ namespace NeanderthalTools.Logging.Loggers
         #region Editor
 
         [SerializeField]
-        private LogWriterProvider logWriterProvider;
+        private StreamingLogWriterProvider logWriterProvider;
+
+        [SerializeField]
+        private PoseLoggerSettings poseLoggerSettings;
+
+        [SerializeField]
+        private List<Transform> poses;
 
         #endregion
 
         #region Fields
 
-        private Transform loggableTransform;
-        private ILogWriter logWriter;
+        private IStreamingLogWriter logWriter;
+        private float nextSampleTime;
 
         #endregion
 
         #region Unity Lifecycle
-
-        private void Awake()
-        {
-            loggableTransform = transform;
-        }
 
         private void OnEnable()
         {
             logWriter = logWriterProvider.CreateLogWriter(name);
 
             logWriter.Start();
-            logWriter.Write(
-                "PositionX",
-                "PositionY",
-                "PositionZ",
-                "RotationX",
-                "RotationY",
-                "RotationZ"
-            );
+            logWriter.Write("Time");
+
+            foreach (var pose in poses)
+            {
+                var poseName = pose.name;
+                logWriter.Write(
+                    $"{poseName}_PositionX",
+                    $"{poseName}_PositionY",
+                    $"{poseName}_PositionZ",
+                    $"{poseName}_RotationX",
+                    $"{poseName}_RotationY",
+                    $"{poseName}_RotationZ"
+                );
+            }
         }
 
         private void OnDisable()
@@ -49,8 +57,42 @@ namespace NeanderthalTools.Logging.Loggers
 
         private void Update()
         {
-            var position = loggableTransform.position;
-            var rotation = loggableTransform.rotation.eulerAngles;
+            if (!IsSample())
+            {
+                return;
+            }
+
+            UpdateNextSampleTime();
+            LogPoses();
+        }
+
+        #endregion
+
+        #region Methods
+
+        private bool IsSample()
+        {
+            return Time.time >= nextSampleTime;
+        }
+
+        private void UpdateNextSampleTime()
+        {
+            nextSampleTime = Time.time + poseLoggerSettings.SampleInterval;
+        }
+
+        private void LogPoses()
+        {
+
+            foreach (var pose in poses)
+            {
+                LogPose(pose);
+            }
+        }
+
+        private void LogPose(Transform pose)
+        {
+            var position = pose.position;
+            var rotation = pose.rotation.eulerAngles;
 
             logWriter.Write(
                 position.x, position.y, position.z,

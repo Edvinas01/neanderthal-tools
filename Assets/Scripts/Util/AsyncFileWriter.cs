@@ -15,7 +15,7 @@ namespace NeanderthalTools.Util
         private readonly string directoryName;
         private readonly string fileName;
         private readonly bool compress;
-        private readonly float writeIntervalSeconds;
+        private readonly float writeInterval;
 
         private readonly string compressedSuffix;
         private readonly int bufferSize;
@@ -38,7 +38,7 @@ namespace NeanderthalTools.Util
             string directoryName,
             string fileName,
             bool compress,
-            float writeIntervalSeconds,
+            float writeInterval,
             string compressedSuffix = "gz",
             int bufferSize = 4096
         )
@@ -46,7 +46,7 @@ namespace NeanderthalTools.Util
             this.directoryName = directoryName;
             this.fileName = fileName;
             this.compress = compress;
-            this.writeIntervalSeconds = writeIntervalSeconds;
+            this.writeInterval = writeInterval;
             this.compressedSuffix = compressedSuffix;
             this.bufferSize = bufferSize;
         }
@@ -129,7 +129,7 @@ namespace NeanderthalTools.Util
                     await stream.WriteAsync(value, 0, value.Length);
                 }
 
-                await Task.Delay((int) (writeIntervalSeconds * 1000));
+                await Task.Delay((int) (writeInterval * 1000));
             }
         }
 

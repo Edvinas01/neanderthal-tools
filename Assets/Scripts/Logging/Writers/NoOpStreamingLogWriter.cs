@@ -3,17 +3,17 @@
     /// <summary>
     /// Log writer which does nothing.
     /// </summary>
-    public class NoOpLogWriter : ILogWriter
+    public class NoOpStreamingLogWriter : IStreamingLogWriter
     {
         #region Fields
 
-        public static readonly ILogWriter Instance = new NoOpLogWriter();
+        public static readonly IStreamingLogWriter Instance = new NoOpStreamingLogWriter();
 
         #endregion
 
         #region Methods
 
-        private NoOpLogWriter()
+        private NoOpStreamingLogWriter()
         {
         }
 

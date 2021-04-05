@@ -1,6 +1,6 @@
 ﻿namespace NeanderthalTools.Logging.Writers
 {
-    public interface ILogWriter
+    public interface IStreamingLogWriter
     {
         /// <summary>
         /// Initialize the log writer and underlying writing task.

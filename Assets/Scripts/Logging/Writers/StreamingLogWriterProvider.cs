@@ -4,20 +4,15 @@ using UnityEngine;
 namespace NeanderthalTools.Logging.Writers
 {
     [CreateAssetMenu(
-        fileName = "LoggerWriterProvider",
-        menuName = "Game/Logging/Log Writer Provider"
+        fileName = "StreamingLoggerWriterProvider",
+        menuName = "Game/Logging/Streaming Log Writer Provider"
     )]
-    public class LogWriterProvider : ScriptableObject
+    public class StreamingLogWriterProvider : ScriptableObject
     {
         #region Editor
 
         [SerializeField]
         private LoggingSettings loggingSettings;
-
-        [Min(0f)]
-        [SerializeField]
-        [Tooltip("How often to sample logs from loggables (in seconds)")]
-        protected float sampleIntervalSeconds = 0.01f;
 
         #endregion
 
@@ -26,11 +21,11 @@ namespace NeanderthalTools.Logging.Writers
         /// <returns>
         /// New log writer instance with given name.
         /// </returns>
-        public ILogWriter CreateLogWriter(string loggerName)
+        public IStreamingLogWriter CreateLogWriter(string loggerName)
         {
             if (loggingSettings.LogWriterType == LogWriterType.None)
             {
-                return NoOpLogWriter.Instance;
+                return NoOpStreamingLogWriter.Instance;
             }
 
             var fileName = CreateLogFileName(loggerName);
@@ -38,9 +33,9 @@ namespace NeanderthalTools.Logging.Writers
 
             return loggingSettings.LogWriterType switch
             {
-                LogWriterType.Csv => new CsvLogWriter(writer, sampleIntervalSeconds),
-                LogWriterType.Binary => new BinaryLogWriter(writer, sampleIntervalSeconds),
-                _ => NoOpLogWriter.Instance
+                LogWriterType.Csv => new CsvStreamingLogWriter(writer),
+                LogWriterType.Binary => new BinaryStreamingLogWriter(writer),
+                _ => NoOpStreamingLogWriter.Instance
             };
         }
 
@@ -57,7 +52,7 @@ namespace NeanderthalTools.Logging.Writers
                 loggingSettings.LogFileDirectory,
                 fileName,
                 loggingSettings.CompressLogs,
-                loggingSettings.WriteIntervalSeconds
+                loggingSettings.WriteInterval
             );
         }
 

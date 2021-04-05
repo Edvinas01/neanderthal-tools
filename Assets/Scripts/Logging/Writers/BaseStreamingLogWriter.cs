@@ -3,34 +3,24 @@ using UnityEngine;
 
 namespace NeanderthalTools.Logging.Writers
 {
-    public abstract class BaseLogWriter : ILogWriter
+    public abstract class BaseStreamingLogWriter : IStreamingLogWriter
     {
         #region Fields
 
         private readonly AsyncFileWriter writer;
-        private readonly float sampleIntervalSeconds;
-
-        private float nextSampleTime;
 
         #endregion
 
         #region Methods
 
-        protected BaseLogWriter(AsyncFileWriter writer, float sampleIntervalSeconds)
+        protected BaseStreamingLogWriter(AsyncFileWriter writer)
         {
             this.writer = writer;
-            this.sampleIntervalSeconds = sampleIntervalSeconds;
         }
 
         public void Write(params object[] values)
         {
-            if (Time.time < nextSampleTime)
-            {
-                return;
-            }
-
             WriteValues(values);
-            nextSampleTime = Time.time + sampleIntervalSeconds;
         }
 
         /// <summary>
@@ -46,7 +36,6 @@ namespace NeanderthalTools.Logging.Writers
 
         public void Close()
         {
-            nextSampleTime = 0f;
             writer.Close();
             Debug.Log($"Stopped writing logs to: {writer.FilePath}");
         }

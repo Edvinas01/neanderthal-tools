@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae4b8ed339f04795ab21637d5af6c789, type: 3}
-  m_Name: PerformanceLogWriterProvider
+  m_Script: {fileID: 11500000, guid: 2cd6289afaa4423397a289b49ddb8226, type: 3}
+  m_Name: PoseLoggerSettings
   m_EditorClassIdentifier: 
-  loggingSettings: {fileID: 11400000, guid: 2ddc8dee064115845906554eb24e9749, type: 2}
-  sampleIntervalSeconds: 0.01111111
+  sampleInterval: 0.1
