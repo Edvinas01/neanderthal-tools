@@ -34,6 +34,8 @@ namespace NeanderthalTools.ToolCrafting.Knapping
 
         #region Properties
 
+        public FlakeUnityEvent OnDependenciesRemaining => onDependenciesRemaining;
+
         public FlakeUnityEvent OnInvalidAngle => onInvalidAngle;
 
         public FlakeUnityEvent OnWeakImpact => onWeakImpact;

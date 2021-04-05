@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections;
+using System.Linq;
 using NeanderthalTools.Util;
 using UnityEngine;
 
@@ -15,19 +16,32 @@ namespace NeanderthalTools.ToolCrafting.Knapping
         [Min(0)]
         [SerializeField]
         [Tooltip("How many times the user can fail until a signifier is shown")]
-        private int failureThreshold = 1;
+        private int failureThreshold = 5;
 
         [Min(0f)]
         [SerializeField]
         [Tooltip("Position offset of the signifier from the flake")]
         private float offset = 0.2f;
 
+        [Min(0f)]
+        [SerializeField]
+        [Tooltip("Delay to deactivate the signifier")]
+        private float deactivateDelay = 0.5f;
+
+        [SerializeField]
+        private string animationGrowTrigger = "Grow";
+
+        [SerializeField]
+        private string animationShrinkTrigger = "Shrink";
+
         #endregion
 
         #region Fields
 
-        private GameObject signifier;
         private Objective objective;
+
+        private GameObject signifier;
+        private Animator signifierAnimator;
 
         private int failures;
 
@@ -43,18 +57,22 @@ namespace NeanderthalTools.ToolCrafting.Knapping
         private void Start()
         {
             signifier = Instantiate(signifierPrefab, transform);
+            signifierAnimator = signifier.GetComponentInChildren<Animator>();
+
             signifier.SetActive(false);
         }
 
         private void OnEnable()
         {
-            objective.OnInvalidAngle.AddListener(OnInvalidAngle);
+            objective.OnDependenciesRemaining.AddListener(OnInvalidHit);
+            objective.OnInvalidAngle.AddListener(OnInvalidHit);
             objective.OnDetach.AddListener(OnDetach);
         }
 
         private void OnDisable()
         {
-            objective.OnInvalidAngle.RemoveListener(OnInvalidAngle);
+            objective.OnDependenciesRemaining.RemoveListener(OnInvalidHit);
+            objective.OnInvalidAngle.RemoveListener(OnInvalidHit);
             objective.OnDetach.RemoveListener(OnDetach);
         }
 
@@ -62,7 +80,7 @@ namespace NeanderthalTools.ToolCrafting.Knapping
 
         #region Methods
 
-        private void OnInvalidAngle(FlakeEventArgs args)
+        private void OnInvalidHit(FlakeEventArgs args)
         {
             if (IsShowSignifier())
             {
@@ -71,7 +89,7 @@ namespace NeanderthalTools.ToolCrafting.Knapping
                     return;
                 }
 
-                var flake = FindRandomFlake();
+                var flake = FindFlake(args);
                 if (flake == null)
                 {
                     return;
@@ -87,7 +105,7 @@ namespace NeanderthalTools.ToolCrafting.Knapping
 
         private void OnDetach(FlakeEventArgs args)
         {
-            signifier.SetActive(false);
+            HideSignifier();
             failures = 0;
         }
 
@@ -99,6 +117,19 @@ namespace NeanderthalTools.ToolCrafting.Knapping
         private bool IsShowingSignifier()
         {
             return signifier.activeSelf;
+        }
+
+        private Flake FindFlake(FlakeEventArgs args)
+        {
+            var flake = args.Flake;
+            if (flake == null)
+            {
+                return null;
+            }
+
+            return flake.IsDependencies
+                ? FindRandomFlake()
+                : flake;
         }
 
         private Flake FindRandomFlake()
@@ -119,7 +150,25 @@ namespace NeanderthalTools.ToolCrafting.Knapping
             signifierTransform.up = direction;
             signifierTransform.position = position + direction * offset;
 
+            signifierAnimator.SetTrigger(animationGrowTrigger);
             signifier.SetActive(true);
+        }
+
+        private void HideSignifier()
+        {
+            signifierAnimator.SetTrigger(animationShrinkTrigger);
+            StartSetSignifierActiveDelayed(false);
+        }
+
+        private void StartSetSignifierActiveDelayed(bool active)
+        {
+            StartCoroutine(SetSignifierActiveDelayed(active));
+        }
+
+        private IEnumerator SetSignifierActiveDelayed(bool active)
+        {
+            yield return new WaitForSeconds(deactivateDelay);
+            signifier.SetActive(active);
         }
 
         #endregion

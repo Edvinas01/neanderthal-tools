@@ -210,8 +210,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   signifierPrefab: {fileID: 8324121668401799469, guid: f53ab62899c494043b6c62e937a1b2fa,
     type: 3}
-  failureThreshold: 1
+  failureThreshold: 5
   offset: 0.2
+  deactivateDelay: 0.5
+  animationGrowTrigger: Grow
+  animationShrinkTrigger: Shrink
 --- !u!114 &7630137278535017349
 MonoBehaviour:
   m_ObjectHideFlags: 0
