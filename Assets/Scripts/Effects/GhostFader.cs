@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using NeanderthalTools.Util;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -22,9 +23,6 @@ namespace NeanderthalTools.Effects
         private float fadeOutDuration = 2f;
 
         [SerializeField]
-        private float fadedOutAlpha;
-
-        [SerializeField]
         private string colorPropertyName = "_Color";
 
         [SerializeField]
@@ -38,7 +36,12 @@ namespace NeanderthalTools.Effects
         #region Fields
 
         private Material material;
+        private new Light light;
+        private new ParticleSystem particleSystem;
+
         private float initialAlpha;
+        private float initialLightIntensity;
+
         private int colorPropertyId;
 
         #endregion
@@ -53,14 +56,18 @@ namespace NeanderthalTools.Effects
 
         private void Awake()
         {
+            material = transform.GetComponentInChildren<Renderer>().material;
+            light = ghost.GetComponentInChildren<Light>();
+            particleSystem = ghost.GetComponentInChildren<ParticleSystem>();
+
             colorPropertyId = Shader.PropertyToID(colorPropertyName);
-            material = transform.GetComponentInChildren<Renderer>(true).material;
+
             initialAlpha = material.GetColor(colorPropertyId).a;
+            initialLightIntensity = light.intensity;
+
+            ghost.gameObject.SetActive(false);
+            SetMultipliers(0f);
         }
-
-        #endregion
-
-        #region Unity Lifecycle
 
         private void OnDisable()
         {
@@ -84,40 +91,41 @@ namespace NeanderthalTools.Effects
         private IEnumerator FadeIn()
         {
             ghost.gameObject.SetActive(true);
-            yield return Fade(fadedOutAlpha, initialAlpha, fadeInDuration);
+            SetActiveParticleEmission(true);
+            yield return Coroutines.Progress(0f, 1f, fadeInDuration, SetMultipliers);
             onFadedIn.Invoke();
         }
 
         private IEnumerator FadeOut()
         {
-            yield return Fade(initialAlpha, fadedOutAlpha, fadeOutDuration);
+            SetActiveParticleEmission(false);
+            yield return Coroutines.Progress(1f, 0f, fadeOutDuration, SetMultipliers);
             ghost.gameObject.SetActive(false);
             onFadedOut.Invoke();
         }
 
-        private IEnumerator Fade(float from, float to, float duration)
+        private void SetActiveParticleEmission(bool active)
         {
-            SetAlpha(from);
-
-            var progress = 0f;
-            while (progress < 1f)
-            {
-                var alpha = Mathf.Lerp(from, to, progress);
-                SetAlpha(alpha);
-                progress += Time.unscaledDeltaTime / duration;
-                yield return null;
-            }
-
-            SetAlpha(to);
-
-            yield return null;
+            var emission = particleSystem.emission;
+            emission.enabled = active;
         }
 
-        private void SetAlpha(float alpha)
+        private void SetMultipliers(float value)
+        {
+            SetAlphaMultiplier(value);
+            SetLightIntensityMultiplier(value);
+        }
+
+        private void SetAlphaMultiplier(float multiplier)
         {
             var color = material.GetColor(colorPropertyId);
-            color.a = alpha;
+            color.a = initialAlpha * multiplier;
             material.SetColor(colorPropertyId, color);
+        }
+
+        private void SetLightIntensityMultiplier(float multiplier)
+        {
+            light.intensity = initialLightIntensity * multiplier;
         }
 
         #endregion

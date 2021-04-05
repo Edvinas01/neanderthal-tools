@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: 6c9341dd73dcb244f97a69d8ebedd4b3
+labels:
+- Environment
 PrefabImporter:
   externalObjects: {}
   userData: 
