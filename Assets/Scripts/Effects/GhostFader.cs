@@ -37,6 +37,7 @@ namespace NeanderthalTools.Effects
 
         private Material material;
         private new Light light;
+        private new ParticleSystem particleSystem;
 
         private float initialAlpha;
         private float initialLightIntensity;
@@ -57,6 +58,7 @@ namespace NeanderthalTools.Effects
         {
             material = transform.GetComponentInChildren<Renderer>().material;
             light = ghost.GetComponentInChildren<Light>();
+            particleSystem = ghost.GetComponentInChildren<ParticleSystem>();
 
             colorPropertyId = Shader.PropertyToID(colorPropertyName);
 
@@ -89,15 +91,23 @@ namespace NeanderthalTools.Effects
         private IEnumerator FadeIn()
         {
             ghost.gameObject.SetActive(true);
+            SetActiveParticleEmission(true);
             yield return Coroutines.Progress(0f, 1f, fadeInDuration, SetMultipliers);
             onFadedIn.Invoke();
         }
 
         private IEnumerator FadeOut()
         {
+            SetActiveParticleEmission(false);
             yield return Coroutines.Progress(1f, 0f, fadeOutDuration, SetMultipliers);
             ghost.gameObject.SetActive(false);
             onFadedOut.Invoke();
+        }
+
+        private void SetActiveParticleEmission(bool active)
+        {
+            var emission = particleSystem.emission;
+            emission.enabled = active;
         }
 
         private void SetMultipliers(float value)

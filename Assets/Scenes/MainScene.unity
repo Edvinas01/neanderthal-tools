@@ -13229,13 +13229,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 566015910}
+  - component: {fileID: 566015911}
   m_Layer: 0
   m_Name: Handles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &566015910
 Transform:
   m_ObjectHideFlags: 0
@@ -13256,6 +13257,18 @@ Transform:
   m_Father: {fileID: 381319659}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &566015911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 566015909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 947b7e22bed04931b21d9a30b23e62ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &568458331
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17048,13 +17061,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 747255016}
+  - component: {fileID: 747255017}
   m_Layer: 0
   m_Name: Cores
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &747255016
 Transform:
   m_ObjectHideFlags: 0
@@ -17077,6 +17091,18 @@ Transform:
   m_Father: {fileID: 381319659}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &747255017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 747255015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 947b7e22bed04931b21d9a30b23e62ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &748011211 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6690782378083127922, guid: 1f3f3bd74d9886b4b9fdf75b3ada6dfa,
@@ -20363,10 +20389,11 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1277137694}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1277137696}
+        m_TargetAssemblyTypeName: NeanderthalTools.Effects.GradualChildrenActivator,
+          Assembly-CSharp
+        m_MethodName: ActivateChildren
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -20375,10 +20402,11 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 747255015}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 747255017}
+        m_TargetAssemblyTypeName: NeanderthalTools.Effects.GradualChildrenActivator,
+          Assembly-CSharp
+        m_MethodName: ActivateChildren
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -20406,30 +20434,6 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: NeanderthalTools.Effects.GhostFader, Assembly-CSharp
         m_MethodName: StartFadeOut
         m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1277137694}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 747255015}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -36630,13 +36634,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1277137695}
+  - component: {fileID: 1277137696}
   m_Layer: 0
   m_Name: Percussors
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1277137695
 Transform:
   m_ObjectHideFlags: 0
@@ -36654,6 +36659,18 @@ Transform:
   m_Father: {fileID: 381319659}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1277137696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1277137694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 947b7e22bed04931b21d9a30b23e62ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1292826450 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 764449439663954140, guid: 576e7a204b9a51d40a4544716eaefeab,
@@ -37752,10 +37769,11 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1814474437}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1814474439}
+        m_TargetAssemblyTypeName: NeanderthalTools.Effects.GradualChildrenActivator,
+          Assembly-CSharp
+        m_MethodName: ActivateChildren
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -37783,18 +37801,6 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: NeanderthalTools.Effects.GhostFader, Assembly-CSharp
         m_MethodName: StartFadeOut
         m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1814474437}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -43483,10 +43489,11 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 566015909}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 566015911}
+        m_TargetAssemblyTypeName: NeanderthalTools.Effects.GradualChildrenActivator,
+          Assembly-CSharp
+        m_MethodName: ActivateChildren
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -43514,18 +43521,6 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: NeanderthalTools.Effects.GhostFader, Assembly-CSharp
         m_MethodName: StartFadeOut
         m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 566015909}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -51562,13 +51557,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1814474438}
+  - component: {fileID: 1814474439}
   m_Layer: 0
   m_Name: AdhesiveMaterials
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1814474438
 Transform:
   m_ObjectHideFlags: 0
@@ -51599,6 +51595,18 @@ Transform:
   m_Father: {fileID: 381319659}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1814474439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1814474437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 947b7e22bed04931b21d9a30b23e62ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1820162617
 PrefabInstance:
   m_ObjectHideFlags: 0
