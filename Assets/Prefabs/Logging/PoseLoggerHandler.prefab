@@ -35,7 +35,7 @@ PrefabInstance:
     - target: {fileID: 3466615599730223628, guid: 43683708bd10fab4297a9a2d9134a3db,
         type: 3}
       propertyPath: m_Name
-      value: PostLogger
+      value: PoseLogger
       objectReference: {fileID: 0}
     - target: {fileID: 4616476735290367450, guid: 43683708bd10fab4297a9a2d9134a3db,
         type: 3}

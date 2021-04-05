@@ -4,7 +4,6 @@ using System.IO;
 using NaughtyAttributes;
 using NeanderthalTools.Logging.Writers;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace NeanderthalTools.Logging
 {

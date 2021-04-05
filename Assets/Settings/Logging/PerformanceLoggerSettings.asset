@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: PerformanceLoggerSettings
   m_EditorClassIdentifier: 
   sampleInterval: 0.01
-  fpsThreshold: 60
+  fpsThreshold: 80

@@ -27,19 +27,13 @@ namespace NeanderthalTools.Logging.Loggers
 
         private void OnEnable()
         {
-            logWriter = logWriterProvider.CreateLogWriter(name);
-
-            logWriter.Start();
-            logWriter.Write(
-                "Time",
-                "FPS"
-            );
+            SetupLogWriter();
+            LogMeta();
         }
 
         private void OnDisable()
         {
-            logWriter.Close();
-            logWriter = null;
+            CleanupLogWriter();
         }
 
         private void Update()
@@ -57,6 +51,26 @@ namespace NeanderthalTools.Logging.Loggers
         #endregion
 
         #region Methods
+
+        private void SetupLogWriter()
+        {
+            logWriter = logWriterProvider.CreateLogWriter(name);
+            logWriter.Start();
+        }
+
+        private void CleanupLogWriter()
+        {
+            logWriter.Close();
+            logWriter = null;
+        }
+
+        private void LogMeta()
+        {
+            logWriter.Write(
+                "Time",
+                "FPS"
+            );
+        }
 
         private void UpdateFps()
         {

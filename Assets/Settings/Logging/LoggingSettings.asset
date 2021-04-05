@@ -20,4 +20,4 @@ MonoBehaviour:
   logWriterType: 1
   compressLogs: 1
   logFileSuffix: log
-  writeIntervalSeconds: 0.1
+  writeInterval: 0.1
