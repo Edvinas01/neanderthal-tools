@@ -168,6 +168,50 @@ Transform:
   m_Father: {fileID: 5029254810064451945}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2661655624754305606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5029254810064451946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec0cd5909273411dbfbec792634ea528, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onDetach:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 898ec1bc4680d8945bf48f53c276c2b8, type: 2}
+        m_TargetAssemblyTypeName: ScriptableEvents.Simple.SimpleScriptableEvent,
+          Chark.ScriptableEvents
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &3341761076073706045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5029254810064451946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41847d7d2f014498a5d5f0691f504c34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  signifierPrefab: {fileID: 8324121668401799469, guid: f53ab62899c494043b6c62e937a1b2fa,
+    type: 3}
+  failureThreshold: 1
+  offset: 0.2
 --- !u!114 &7630137278535017349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -290,34 +334,6 @@ MonoBehaviour:
           Assembly-CSharp
         m_MethodName: OnDetach
         m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &2661655624754305606
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5029254810064451946}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec0cd5909273411dbfbec792634ea528, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onDetach:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11400000, guid: 898ec1bc4680d8945bf48f53c276c2b8, type: 2}
-        m_TargetAssemblyTypeName: ScriptableEvents.Simple.SimpleScriptableEvent,
-          Chark.ScriptableEvents
-        m_MethodName: Raise
-        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

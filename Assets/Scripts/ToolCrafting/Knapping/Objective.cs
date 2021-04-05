@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using NeanderthalTools.Hands;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -31,9 +32,22 @@ namespace NeanderthalTools.ToolCrafting.Knapping
 
         #endregion
 
+        #region Properties
+
+        public FlakeUnityEvent OnInvalidAngle => onInvalidAngle;
+
+        public FlakeUnityEvent OnWeakImpact => onWeakImpact;
+
+        public FlakeUnityEvent OnDetach => onDetach;
+
+        public IReadOnlyList<Flake> Flakes => flakes;
+
+        #endregion
+
         #region Fields
 
         private XRBaseInteractable interactable;
+        private List<Flake> flakes;
 
         #endregion
 
@@ -42,6 +56,7 @@ namespace NeanderthalTools.ToolCrafting.Knapping
         private void Awake()
         {
             interactable = GetComponent<XRBaseInteractable>();
+            flakes = GetComponentsInChildren<Flake>().ToList();
         }
 
         #endregion
@@ -65,6 +80,7 @@ namespace NeanderthalTools.ToolCrafting.Knapping
 
         public void HandleDetach(XRBaseInteractor knapperInteractor, Flake flake)
         {
+            flakes.Remove(flake);
             RemoveInteractableColliders(flake);
             AddInteractable(flake);
 
