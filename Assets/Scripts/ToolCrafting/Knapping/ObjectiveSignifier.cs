@@ -25,8 +25,16 @@ namespace NeanderthalTools.ToolCrafting.Knapping
 
         [Min(0f)]
         [SerializeField]
-        [Tooltip("Delay to deactivate the signifier")]
+        [Tooltip("Delay in seconds to deactivate the signifier on resetting failures")]
         private float deactivateDelay = 0.5f;
+
+        [Min(0f)]
+        [SerializeField]
+        [Tooltip(
+            "Delay in seconds to deactivate cleanup the signifier, e.g. when the objective is " +
+            "not used"
+        )]
+        private float cleanupDelay = 30f;
 
         [SerializeField]
         private string animationGrowTrigger = "Grow";
@@ -45,6 +53,39 @@ namespace NeanderthalTools.ToolCrafting.Knapping
 
         private int failures;
 
+        private Coroutine cleanupCoroutine;
+
+        #endregion
+
+        #region Properties
+
+        private GameObject Signifier
+        {
+            get
+            {
+                if (signifier == null)
+                {
+                    signifier = Instantiate(signifierPrefab, transform);
+                    signifier.SetActive(false);
+                }
+
+                return signifier;
+            }
+        }
+
+        private Animator SignifierAnimator
+        {
+            get
+            {
+                if (signifierAnimator == null)
+                {
+                    signifierAnimator = Signifier.GetComponentInChildren<Animator>();
+                }
+
+                return signifierAnimator;
+            }
+        }
+
         #endregion
 
         #region Unity Lifecylce
@@ -52,14 +93,6 @@ namespace NeanderthalTools.ToolCrafting.Knapping
         private void Awake()
         {
             objective = GetComponent<Objective>();
-        }
-
-        private void Start()
-        {
-            signifier = Instantiate(signifierPrefab, transform);
-            signifierAnimator = signifier.GetComponentInChildren<Animator>();
-
-            signifier.SetActive(false);
         }
 
         private void OnEnable()
@@ -116,7 +149,7 @@ namespace NeanderthalTools.ToolCrafting.Knapping
 
         private bool IsShowingSignifier()
         {
-            return signifier.activeSelf;
+            return Signifier.activeSelf;
         }
 
         private Flake FindFlake(FlakeEventArgs args)
@@ -146,29 +179,51 @@ namespace NeanderthalTools.ToolCrafting.Knapping
             var direction = flake.OffsetDirections.GetRandom();
             var position = flake.transform.position;
 
-            var signifierTransform = signifier.transform;
+            var signifierTransform = Signifier.transform;
             signifierTransform.up = direction;
             signifierTransform.position = position + direction * offset;
 
-            signifierAnimator.SetTrigger(animationGrowTrigger);
-            signifier.SetActive(true);
+            ShowSignifier();
+            StartCleanupSignifier();
+        }
+
+        private void ShowSignifier()
+        {
+            SignifierAnimator.SetTrigger(animationGrowTrigger);
+            Signifier.SetActive(true);
         }
 
         private void HideSignifier()
         {
-            signifierAnimator.SetTrigger(animationShrinkTrigger);
-            StartSetSignifierActiveDelayed(false);
+            SignifierAnimator.SetTrigger(animationShrinkTrigger);
+            StartSetSignifierActive(false);
         }
 
-        private void StartSetSignifierActiveDelayed(bool active)
+        private void StartSetSignifierActive(bool active)
         {
-            StartCoroutine(SetSignifierActiveDelayed(active));
+            StartCoroutine(SetActiveSignifier(active));
         }
 
-        private IEnumerator SetSignifierActiveDelayed(bool active)
+        private IEnumerator SetActiveSignifier(bool active)
         {
             yield return new WaitForSeconds(deactivateDelay);
-            signifier.SetActive(active);
+            Signifier.SetActive(active);
+        }
+
+        private void StartCleanupSignifier()
+        {
+            if (cleanupCoroutine != null)
+            {
+                StopCoroutine(cleanupCoroutine);
+            }
+
+            cleanupCoroutine = StartCoroutine(SetCleanupSignifier());
+        }
+
+        private IEnumerator SetCleanupSignifier()
+        {
+            yield return new WaitForSeconds(cleanupDelay);
+            HideSignifier();
         }
 
         #endregion
