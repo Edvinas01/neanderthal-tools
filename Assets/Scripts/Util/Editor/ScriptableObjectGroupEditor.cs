@@ -128,7 +128,7 @@ namespace NeanderthalTools.Util.Editor
 
             if (expanded)
             {
-                groupState.Editor.DrawDefaultInspector();
+                groupState.Editor.OnInspectorGUI();
                 EditorGUILayout.Space();
             }
 
