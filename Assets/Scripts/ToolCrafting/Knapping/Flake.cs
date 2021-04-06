@@ -52,10 +52,14 @@ namespace NeanderthalTools.ToolCrafting.Knapping
 
         #region Properties
 
+        public IReadOnlyList<Vector3> OffsetDirections => GetOffsetDirections();
+
         /// <summary>
         /// List of colliders attached to this flake.
         /// </summary>
         public List<Collider> Colliders { get; private set; }
+
+        public bool IsDependencies => dependencies.Count > 0;
 
         public bool IsAttachable => IsDetached() && isAttachable;
 
