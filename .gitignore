@@ -72,3 +72,6 @@ Assets/Settings/Scenes/EditorSceneSettings*.asset.meta
 # Blender
 *.blend1
 *.blend1.meta
+
+# ProBuilder
+ProjectSettings/Packages/com.unity.probuilder/Settings.json
