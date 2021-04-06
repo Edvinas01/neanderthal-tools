@@ -26,6 +26,10 @@ namespace NeanderthalTools.Effects
         private string colorPropertyName = "_Color";
 
         [SerializeField]
+        [Tooltip("Should the the ghost be deactivated on awake")]
+        private bool deactivateOnAwake = true;
+
+        [SerializeField]
         private UnityEvent onFadedIn;
 
         [SerializeField]
@@ -65,8 +69,11 @@ namespace NeanderthalTools.Effects
             initialAlpha = material.GetColor(colorPropertyId).a;
             initialLightIntensity = light.intensity;
 
-            ghost.gameObject.SetActive(false);
-            SetMultipliers(0f);
+            if (deactivateOnAwake)
+            {
+                ghost.gameObject.SetActive(false);
+                SetMultipliers(0f);
+            }
         }
 
         private void OnDisable()
