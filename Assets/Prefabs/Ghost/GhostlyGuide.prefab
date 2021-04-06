@@ -145,8 +145,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ghost: {fileID: 9060854428612600181}
-  fadeInDuration: 5
-  fadeOutDuration: 5
+  fadeInDuration: 3
+  fadeOutDuration: 3
   colorPropertyName: _Color
   deactivateOnAwake: 1
   onFadedIn:

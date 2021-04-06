@@ -1,4 +1,5 @@
-﻿using ScriptableEvents;
+﻿using System.Collections;
+using ScriptableEvents;
 using ScriptableEvents.Simple;
 using UnityEngine;
 using UnityEngine.Events;
@@ -19,6 +20,11 @@ namespace NeanderthalTools.Util
         [SerializeField]
         [Tooltip("Should this state trigger on game start")]
         private bool triggerOnStart;
+
+        [Min(0f)]
+        [SerializeField]
+        [Tooltip("State start delay in seconds")]
+        private float startDelay = 2f;
 
         [SerializeField]
         private UnityEvent onEnter;
@@ -65,11 +71,13 @@ namespace NeanderthalTools.Util
 
         public void StartState()
         {
-            onEnter.Invoke();
+            StartCoroutine(StartStateDelayed());
         }
 
         public void StartNextState()
         {
+            StopAllCoroutines();
+
             onExit.Invoke();
 
             if (nextState != null)
@@ -79,6 +87,12 @@ namespace NeanderthalTools.Util
             }
 
             gameObject.SetActive(false);
+        }
+
+        private IEnumerator StartStateDelayed()
+        {
+            yield return new WaitForSeconds(startDelay);
+            onEnter.Invoke();
         }
 
         #endregion
