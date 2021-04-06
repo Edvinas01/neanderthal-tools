@@ -39,10 +39,6 @@ namespace NeanderthalTools.Logging
         [Tooltip("Should each log file be compressed using gzip")]
         private bool compressLogs = true;
 
-        [SerializeField]
-        [Tooltip("Suffix of log files")]
-        private string logFileSuffix = "log";
-
         [Min(0f)]
         [SerializeField]
         [Tooltip("How often to write (dump) aggregated log samples to a file (in seconds)")]
@@ -70,8 +66,6 @@ namespace NeanderthalTools.Logging
         public List<int> LoggingSceneIndexes => loggingSceneIndexes;
 
         public bool CompressLogs => compressLogs;
-
-        public string LogFileSuffix => logFileSuffix;
 
         public float WriteInterval => writeInterval;
 

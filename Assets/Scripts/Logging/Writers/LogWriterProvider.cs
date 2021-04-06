@@ -18,6 +18,9 @@ namespace NeanderthalTools.Logging.Writers
         [Tooltip("Log file type for streaming log writers")]
         private LogWriterType logWriterType = LogWriterType.None;
 
+        [SerializeField]
+        private string logFileSuffix = "log";
+
         #endregion
 
         #region Methods
@@ -45,7 +48,7 @@ namespace NeanderthalTools.Logging.Writers
 
         private string CreateLogFileName(string loggerName)
         {
-            return Files.CreateFileName(this, loggerName, loggingSettings.LogFileSuffix);
+            return Files.CreateFileName(this, loggerName, logFileSuffix);
         }
 
         private CsvStreamingLogWriter CreateCsvStreamingLogWriter(string fileName)
