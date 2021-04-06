@@ -95,15 +95,15 @@ namespace NeanderthalTools.Logging.Loggers.Session
             sessionData.Pickups.Add(data);
         }
 
-        public void LogEnterState(string stateName)
+        public void LogEnterState(Util.State state)
         {
-            var stateData = FindOrCreateStateData(stateName);
+            var stateData = FindOrCreateStateData(state.name);
             stateData.StartTime = Time.time;
         }
 
-        public void LogExitState(string stateName)
+        public void LogExitState(Util.State state)
         {
-            var stateData = FindOrCreateStateData(stateName);
+            var stateData = FindOrCreateStateData(state.name);
             stateData.EndTime = Time.time;
         }
 
