@@ -6,11 +6,35 @@ using UnityEngine;
 
 namespace NeanderthalTools.Logging.Visualizers.Editor
 {
+    // TODO:
+    // 1. trimming
+    // 2. multi-user support
+    // 3. gzip support
+
     public class PoseLoggerVisualizer : EditorWindow
     {
+        #region Structs
+
+        private readonly struct User
+        {
+            public Vector3[][] Poses { get; }
+
+            public Color Color { get; }
+
+            public User(Vector3[][] poses, Color color)
+            {
+                Poses = poses;
+                Color = color;
+            }
+        }
+
+        #endregion
+
         #region Fields
 
-        private readonly List<List<Vector3>> positionGroups = new List<List<Vector3>>();
+        // Use same seed to ensure consistency when randomising colors, etc.
+        private static readonly System.Random Random = new System.Random(0);
+        private readonly List<User> users = new List<User>();
 
         #endregion
 
@@ -43,20 +67,13 @@ namespace NeanderthalTools.Logging.Visualizers.Editor
 
         private void DuringSceneGUI(SceneView sceneView)
         {
-            foreach (var positions in positionGroups)
+            foreach (var user in users)
             {
-                Vector3[] positionArray;
-                if (positions.Count % 2 == 0)
+                Handles.color = user.Color;
+                foreach (var positions in user.Poses)
                 {
-                    positionArray = positions.ToArray();
+                    Handles.DrawPolyLine(positions);
                 }
-                else
-                {
-                    positionArray = positions.Skip(1).ToArray();
-                }
-
-                Handles.color = GetRandomColor();
-                Handles.DrawPolyLine(positionArray);
             }
         }
 
@@ -73,43 +90,96 @@ namespace NeanderthalTools.Logging.Visualizers.Editor
 
         private void PickFile(string path)
         {
-            positionGroups.Clear();
+            // todo path may contain gzip data
+            // path
 
-            var header = true;
-            foreach (var line in File.ReadLines(path))
+            users.Clear();
+
+            // Reading file.
+            var lines = File.ReadAllLines(path);
+            if (lines.Length == 0)
             {
+                return;
+            }
+
+            var poseCount = GetPoseCount(lines);
+            var positionCount = GetPositionCount(lines);
+            var rawPositionCount = GetRawPositionCount(lines);
+
+            var poses = CreatePoses(poseCount, positionCount);
+            ParsePoses(poses, lines);
+            PadPoses(poses, rawPositionCount);
+
+            var color = GetRandomColor();
+            var user = new User(poses, color);
+
+            users.Add(user);
+        }
+
+        private static int GetPoseCount(IEnumerable<string> lines)
+        {
+            var line = lines.FirstOrDefault();
+            if (line == null)
+            {
+                return 0;
+            }
+
+            // -1 to ignore the Time column, / 6 as each pose consists of Vector3 x 2.
+            return (line.Split(',').Length - 1) / 6;
+        }
+
+        private static int GetPositionCount(IReadOnlyCollection<string> lines)
+        {
+            var positionCount = GetRawPositionCount(lines);
+            if (positionCount % 2 == 0)
+            {
+                return positionCount;
+            }
+
+            // Ensure that each position has a pari (necessary for drawing).
+            return positionCount + 1;
+        }
+
+        private static int GetRawPositionCount(IReadOnlyCollection<string> lines)
+        {
+            // -1 to ignore the header row.
+            return Mathf.Max(lines.Count - 1, 0);
+        }
+
+        private static Vector3[][] CreatePoses(int poseCount, int positionCount)
+        {
+            var poses = new Vector3[poseCount][];
+            for (var index = 0; index < poseCount; index++)
+            {
+                poses[index] = new Vector3[positionCount];
+            }
+
+            return poses;
+        }
+
+        private static void ParsePoses(IReadOnlyList<Vector3[]> poses, IReadOnlyList<string> lines)
+        {
+            // Starting from 1 to skip the header.
+            for (var lineIndex = 1; lineIndex < lines.Count; lineIndex++)
+            {
+                var line = lines[lineIndex];
                 var parts = line.Split(',');
-                if (header)
-                {
-                    var positionGroupCount = (parts.Length - 1) / 6;
-                    for (var index = 0; index < positionGroupCount; index++)
-                    {
-                        positionGroups.Add(new List<Vector3>());
-                    }
 
-                    header = false;
-                    continue;
-                }
+                var positionIndex = 0;
 
-                var positionGroupIndex = 0;
+                // Starting from 1 as first column is Time.
                 for (var index = 1; index < parts.Length; index += 6)
                 {
                     var position = ParsePosition(parts, index);
+                    // ReSharper disable once UnusedVariable
                     var rotation = ParseRotation(parts, index + 3);
 
-                    var positions = positionGroups[positionGroupIndex++];
-                    positions.Add(position);
+                    var positions = poses[positionIndex++];
+
+                    // -1 since line index starts from 1.
+                    positions[lineIndex - 1] = position;
                 }
             }
-        }
-
-        private static Color GetRandomColor()
-        {
-            return new Color(
-                Random.Range(0f, 1f),
-                Random.Range(0f, 1f),
-                Random.Range(0f, 1f)
-            );
         }
 
         private static Vector3 ParsePosition(IReadOnlyList<string> parts, int index)
@@ -128,6 +198,27 @@ namespace NeanderthalTools.Logging.Visualizers.Editor
                 float.Parse(parts[index + 1]),
                 float.Parse(parts[index + 2])
             );
+        }
+
+        private static Color GetRandomColor()
+        {
+            return new Color(
+                (float) Random.NextDouble(),
+                (float) Random.NextDouble(),
+                (float) Random.NextDouble()
+            );
+        }
+
+        private static void PadPoses(IEnumerable<Vector3[]> poses, int fromIndex)
+        {
+            foreach (var positions in poses)
+            {
+                for (var index = fromIndex; index < positions.Length; index++)
+                {
+                    var previousPosition = positions[index - 1];
+                    positions[index] = previousPosition;
+                }
+            }
         }
 
         #endregion
