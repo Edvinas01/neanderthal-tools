@@ -79,7 +79,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _AlphaClip: 0
-    - _AlphaClipThreshold: 0
+    - _AlphaClipThreshold: 0.3
     - _Blend: 0
     - _BumpScale: 1
     - _ClearCoatMask: 0
@@ -88,7 +88,7 @@ Material:
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
-    - _DissolveScale: 0
+    - _DissolveScale: 4
     - _DstBlend: 0
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
