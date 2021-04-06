@@ -24,6 +24,16 @@ namespace NeanderthalTools.Locomotion
         [SerializeField]
         private XRBaseController teleportController;
 
+        [SerializeField]
+        private LocomotionSystemUnityEvent onTeleport;
+
+        [SerializeField]
+        private LocomotionSystemUnityEvent onSnapTurn;
+
+        #endregion
+
+        #region Fields
+
         private ContinuousMoveProviderBase continuousMoveProvider;
         private TeleportationProvider teleportationProvider;
         private SnapTurnProviderBase snapTurnProvider;
@@ -58,6 +68,8 @@ namespace NeanderthalTools.Locomotion
             continuousMoveProvider.endLocomotion += InvokeOnLocomotionEnd;
             teleportationProvider.endLocomotion += InvokeOnLocomotionEnd;
             snapTurnProvider.endLocomotion += InvokeOnLocomotionEnd;
+            snapTurnProvider.endLocomotion += InvokeOnTeleport;
+            snapTurnProvider.endLocomotion += InvokeOnSnapTurn;
         }
 
         private void OnDisable()
@@ -65,6 +77,8 @@ namespace NeanderthalTools.Locomotion
             continuousMoveProvider.endLocomotion -= InvokeOnLocomotionEnd;
             teleportationProvider.endLocomotion -= InvokeOnLocomotionEnd;
             snapTurnProvider.endLocomotion -= InvokeOnLocomotionEnd;
+            snapTurnProvider.endLocomotion -= InvokeOnTeleport;
+            snapTurnProvider.endLocomotion -= InvokeOnSnapTurn;
         }
 
         private void Update()
@@ -82,6 +96,16 @@ namespace NeanderthalTools.Locomotion
         private void InvokeOnLocomotionEnd(LocomotionSystem locomotionSystem)
         {
             OnLocomotionEnd?.Invoke(locomotionSystem);
+        }
+
+        private void InvokeOnTeleport(LocomotionSystem locomotionSystem)
+        {
+            onTeleport.Invoke(locomotionSystem);
+        }
+
+        private void InvokeOnSnapTurn(LocomotionSystem locomotionSystem)
+        {
+            onSnapTurn.Invoke(locomotionSystem);
         }
 
         private void UpdateTeleport()

@@ -31,6 +31,8 @@ namespace NeanderthalTools.ToolCrafting.Hafting
             set => targetAmount = Mathf.Min(value, 1f);
         }
 
+        public string Name => name;
+
         #endregion
 
         #region Unity Lifecycle

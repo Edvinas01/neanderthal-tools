@@ -2,5 +2,6 @@
 {
     public interface IToolPart
     {
+        public string Name { get; }
     }
 }

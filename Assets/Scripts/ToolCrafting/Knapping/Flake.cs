@@ -59,6 +59,8 @@ namespace NeanderthalTools.ToolCrafting.Knapping
 
         public bool IsAttachable => IsDetached() && isAttachable;
 
+        public string Name => name;
+
         #endregion
 
         #region Unity Lifecycle

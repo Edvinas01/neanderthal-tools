@@ -73,7 +73,12 @@ namespace NeanderthalTools.ToolCrafting.Knapping
 
         private FlakeEventArgs CreateEventArgs(XRBaseInteractor knapperInteractor, Flake flake)
         {
-            return new FlakeEventArgs(interactable.selectingInteractor, knapperInteractor, flake);
+            return new FlakeEventArgs(
+                interactable.selectingInteractor,
+                knapperInteractor,
+                this,
+                flake
+            );
         }
 
         private void RemoveInteractableColliders(Flake flake)

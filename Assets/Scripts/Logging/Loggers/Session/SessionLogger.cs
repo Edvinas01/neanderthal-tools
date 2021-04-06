@@ -1,8 +1,13 @@
-﻿using NeanderthalTools.Logging.Writers;
+﻿using System.Linq;
+using NeanderthalTools.Logging.Writers;
+using NeanderthalTools.ToolCrafting.Hafting;
+using NeanderthalTools.ToolCrafting.Knapping;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 namespace NeanderthalTools.Logging.Loggers.Session
 {
+    // todo - consider logging positions and expand hand data (e.g. which object is held).
     public class SessionLogger : MonoBehaviour
     {
         #region Editor
@@ -35,18 +40,78 @@ namespace NeanderthalTools.Logging.Loggers.Session
             CleanupLogWriter();
         }
 
-        private void Start()
-        {
-            // todo debug
-            sessionData.Pickups.Add(new PickupData
-            {
-                HandName = "gello"
-            });
-        }
-
         #endregion
 
         #region Methods
+
+        public void LogTeleport(LocomotionSystem locomotionSystem)
+        {
+            sessionData.TeleportCount++;
+        }
+
+        public void LogSnapTurn(LocomotionSystem locomotionSystem)
+        {
+            sessionData.SnapTurnCount++;
+        }
+
+        public void LogDependenciesRemaining(FlakeEventArgs args)
+        {
+            var data = CreateHitData(args);
+            sessionData.DependenciesRemainingHits.Add(data);
+        }
+
+        public void LogInvalidAngleHit(FlakeEventArgs args)
+        {
+            var data = CreateHitData(args);
+            sessionData.InvalidAngleHits.Add(data);
+        }
+
+        public void LogWeakHit(FlakeEventArgs args)
+        {
+            var data = CreateHitData(args);
+            sessionData.WeakHits.Add(data);
+        }
+
+        public void LogAttachAdhesive(HaftEventArgs args)
+        {
+            var data = CreateAttachData(args);
+            sessionData.AttachedAdhesives.Add(data);
+        }
+
+        public void LogAttachFlake(HaftEventArgs args)
+        {
+            var data = CreateAttachData(args);
+            sessionData.AttachedFlakes.Add(data);
+        }
+
+        public void LogConsumeAdhesive(RawAdhesive rawAdhesive)
+        {
+            sessionData.ConsumedAdhesives.Add(rawAdhesive.name);
+        }
+
+        public void LogPickup(SelectEnterEventArgs args)
+        {
+            var data = CreatePickupData(args);
+            sessionData.Pickups.Add(data);
+        }
+
+        public void LogEnterState(string stateName)
+        {
+            var stateData = FindOrCreateStateData(stateName);
+            stateData.StartTime = Time.time;
+        }
+
+        public void LogExitState(string stateName)
+        {
+            var stateData = FindOrCreateStateData(stateName);
+            stateData.EndTime = Time.time;
+        }
+
+        private void SetupLogWriter()
+        {
+            logWriter = logWriterProvider.CreateLogWriter(name);
+            logWriter.Start();
+        }
 
         private void SetupSessionData()
         {
@@ -56,17 +121,65 @@ namespace NeanderthalTools.Logging.Loggers.Session
             };
         }
 
-        private void SetupLogWriter()
-        {
-            logWriter = logWriterProvider.CreateLogWriter(name);
-            logWriter.Start();
-        }
-
         private void CleanupLogWriter()
         {
             logWriter.Write(sessionData);
             logWriter.Close();
             logWriter = null;
+        }
+
+        private static HitData CreateHitData(FlakeEventArgs args)
+        {
+            var objective = args.Objective;
+            var flake = args.Flake;
+
+            return new HitData
+            {
+                ObjectiveName = objective.name,
+                KnapperName = args.KnapperInteractor.name,
+                FlakeName = flake.name,
+                Time = Time.time
+            };
+        }
+
+        private static AttachData CreateAttachData(HaftEventArgs args)
+        {
+            return new AttachData
+            {
+                ToolPartName = args.ToolPart.Name,
+                HandleName = args.HandleInteractable.name,
+                Time = Time.time
+            };
+        }
+
+        private static PickupData CreatePickupData(SelectEnterEventArgs args)
+        {
+            return new PickupData
+            {
+                TargetName = args.interactable.name,
+                HandName = args.interactor.name
+            };
+        }
+
+        private StateData FindOrCreateStateData(string stateName)
+        {
+            var data = sessionData.States.FirstOrDefault(state =>
+                state.StateName == stateName
+            );
+
+            if (data != null)
+            {
+                return data;
+            }
+
+            var newData = new StateData
+            {
+                StateName = stateName
+            };
+
+            sessionData.States.Add(newData);
+
+            return newData;
         }
 
         #endregion
