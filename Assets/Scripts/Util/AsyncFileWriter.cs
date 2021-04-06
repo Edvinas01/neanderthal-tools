@@ -2,7 +2,6 @@
 using System.IO;
 using System.IO.Compression;
 using System.Threading.Tasks;
-using UnityEngine;
 
 namespace NeanderthalTools.Util
 {
@@ -92,21 +91,17 @@ namespace NeanderthalTools.Util
 
         private string CreateFilePath()
         {
-            var completeFileName = compress
-                ? $"{fileName}.{compressedSuffix}"
-                : fileName;
-
-            return Path.Combine(
-                Application.persistentDataPath,
+            return Files.CreateFilePath(
                 directoryName,
-                completeFileName
+                fileName,
+                compress,
+                compressedSuffix
             );
         }
 
         private static void CreateDirectory(string path)
         {
-            var directoryName = Path.GetDirectoryName(path);
-            Directory.CreateDirectory(directoryName ?? string.Empty);
+            Files.CreateDirectory(path);
         }
 
         private Stream CreateCompressedStream(string path)

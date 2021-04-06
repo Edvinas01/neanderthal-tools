@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using NaughtyAttributes;
-using NeanderthalTools.Logging.Writers;
 using UnityEngine;
 
 namespace NeanderthalTools.Logging
@@ -35,11 +34,7 @@ namespace NeanderthalTools.Logging
         [Tooltip("List of scenes which should generate logs")]
         private List<int> loggingSceneIndexes;
 
-        [Header("Steaming logs")]
-        [SerializeField]
-        [Tooltip("Log file type for streaming log writers")]
-        private LogWriterType logWriterType = LogWriterType.None;
-
+        [Header("Log files and types")]
         [SerializeField]
         [Tooltip("Should each log file be compressed using gzip")]
         private bool compressLogs = true;
@@ -63,7 +58,8 @@ namespace NeanderthalTools.Logging
 
         public string DropboxAuthorizationToken => dropboxAuthorizationToken;
 
-        [field: NonSerialized] public string CurrentLogFileDirectory { get; private set; }
+        [field: NonSerialized]
+        public string CurrentLogFileDirectory { get; private set; }
 
         public string LogFileDirectory
         {
@@ -72,8 +68,6 @@ namespace NeanderthalTools.Logging
         }
 
         public List<int> LoggingSceneIndexes => loggingSceneIndexes;
-
-        public LogWriterType LogWriterType => logWriterType;
 
         public bool CompressLogs => compressLogs;
 

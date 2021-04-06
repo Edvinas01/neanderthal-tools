@@ -9,7 +9,7 @@ namespace NeanderthalTools.Logging.Loggers
         #region Editor
 
         [SerializeField]
-        private StreamingLogWriterProvider logWriterProvider;
+        private LogWriterProvider logWriterProvider;
 
         [SerializeField]
         private PoseLoggerSettings poseLoggerSettings;
@@ -21,7 +21,7 @@ namespace NeanderthalTools.Logging.Loggers
 
         #region Fields
 
-        private IStreamingLogWriter logWriter;
+        private ILogWriter logWriter;
         private float nextSampleTime;
 
         private object[] batch;

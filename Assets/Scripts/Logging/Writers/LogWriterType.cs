@@ -8,6 +8,9 @@ namespace NeanderthalTools.Logging.Writers
 
         [InspectorName("CSV")]
         Csv,
-        Binary
+        Binary,
+
+        [InspectorName("JSON")]
+        Json
     }
 }

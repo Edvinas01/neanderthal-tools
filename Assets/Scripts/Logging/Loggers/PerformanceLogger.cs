@@ -8,7 +8,7 @@ namespace NeanderthalTools.Logging.Loggers
         #region Editor
 
         [SerializeField]
-        private StreamingLogWriterProvider logWriterProvider;
+        private LogWriterProvider logWriterProvider;
 
         [SerializeField]
         private PerformanceLoggerSettings performanceLoggerSettings;
@@ -17,7 +17,7 @@ namespace NeanderthalTools.Logging.Loggers
 
         #region Fields
 
-        private IStreamingLogWriter logWriter;
+        private ILogWriter logWriter;
         private float nextSampleTime;
         private float fps;
 

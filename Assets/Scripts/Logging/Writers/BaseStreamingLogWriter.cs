@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace NeanderthalTools.Logging.Writers
 {
-    public abstract class BaseStreamingLogWriter : IStreamingLogWriter
+    public abstract class BaseStreamingLogWriter : ILogWriter
     {
         #region Fields
 
