@@ -27,7 +27,9 @@ namespace NeanderthalTools.ToolCrafting.Hafting
         public void HandleConsume()
         {
             onConsume.Invoke(new AdhesiveEventArgs(this));
-            Destroy(gameObject);
+            var rawAdhesiveGameObject = gameObject;
+            rawAdhesiveGameObject.SetActive(false);
+            Destroy(rawAdhesiveGameObject);
         }
 
         #endregion

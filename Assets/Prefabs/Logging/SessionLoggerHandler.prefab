@@ -50,7 +50,7 @@ MonoBehaviour:
       - m_Target: {fileID: 7896777151672891815}
         m_TargetAssemblyTypeName: NeanderthalTools.Logging.Loggers.Session.SessionLogger,
           Assembly-CSharp
-        m_MethodName: LogPickup
+        m_MethodName: LogGrab
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

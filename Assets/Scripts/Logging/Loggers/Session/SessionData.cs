@@ -13,10 +13,16 @@ namespace NeanderthalTools.Logging.Loggers.Session
         private string loggingId;
 
         [SerializeField]
-        private int teleportCount;
+        private float startTime;
 
         [SerializeField]
-        private int snapTurnCount;
+        private float endTime;
+
+        [SerializeField]
+        private List<LocomotionData> teleports = new List<LocomotionData>();
+
+        [SerializeField]
+        private List<LocomotionData> snapTurns = new List<LocomotionData>();
 
         [SerializeField]
         private List<HitData> dependenciesRemainingHits = new List<HitData>();
@@ -28,16 +34,19 @@ namespace NeanderthalTools.Logging.Loggers.Session
         private List<HitData> weakHits = new List<HitData>();
 
         [SerializeField]
+        private List<HitData> removals = new List<HitData>();
+
+        [SerializeField]
         private List<AttachData> attachedAdhesives = new List<AttachData>();
 
         [SerializeField]
         private List<AttachData> attachedFlakes = new List<AttachData>();
 
         [SerializeField]
-        private List<string> consumedAdhesives = new List<string>();
+        private List<ConsumeData> consumedAdhesives = new List<ConsumeData>();
 
         [SerializeField]
-        private List<PickupData> pickups = new List<PickupData>();
+        private List<GrabData> grabs = new List<GrabData>();
 
         [SerializeField]
         private List<StateData> states = new List<StateData>();
@@ -52,16 +61,28 @@ namespace NeanderthalTools.Logging.Loggers.Session
             set => loggingId = value;
         }
 
-        public int TeleportCount
+        public float StartTime
         {
-            get => teleportCount;
-            set => teleportCount = value;
+            get => startTime;
+            set => startTime = value;
         }
 
-        public int SnapTurnCount
+        public float EndTime
         {
-            get => snapTurnCount;
-            set => snapTurnCount = value;
+            get => endTime;
+            set => endTime = value;
+        }
+
+        public List<LocomotionData> Teleports
+        {
+            get => teleports;
+            set => teleports = value;
+        }
+
+        public List<LocomotionData> SnapTurns
+        {
+            get => snapTurns;
+            set => snapTurns = value;
         }
 
         public List<HitData> DependenciesRemainingHits => dependenciesRemainingHits;
@@ -70,13 +91,15 @@ namespace NeanderthalTools.Logging.Loggers.Session
 
         public List<HitData> WeakHits => weakHits;
 
+        public List<HitData> Removals => removals;
+
         public List<AttachData> AttachedAdhesives => attachedAdhesives;
 
         public List<AttachData> AttachedFlakes => attachedFlakes;
 
-        public List<string> ConsumedAdhesives => consumedAdhesives;
+        public List<ConsumeData> ConsumedAdhesives => consumedAdhesives;
 
-        public List<PickupData> Pickups => pickups;
+        public List<GrabData> Grabs => grabs;
 
         public List<StateData> States => states;
 

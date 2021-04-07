@@ -4,7 +4,7 @@ using UnityEngine;
 namespace NeanderthalTools.Logging.Loggers.Session
 {
     [Serializable]
-    public class PickupData
+    public class GrabData
     {
         #region Fields
 

@@ -9,6 +9,12 @@ namespace NeanderthalTools.Logging.Loggers.Session
         #region Fields
 
         [SerializeField]
+        private string objectiveHandName;
+
+        [SerializeField]
+        private string knapperHandName;
+
+        [SerializeField]
         private string objectiveName;
 
         [SerializeField]
@@ -23,6 +29,18 @@ namespace NeanderthalTools.Logging.Loggers.Session
         #endregion
 
         #region Properties
+
+        public string ObjectiveHandName
+        {
+            get => objectiveHandName;
+            set => objectiveHandName = value;
+        }
+
+        public string KnapperHandName
+        {
+            get => knapperHandName;
+            set => knapperHandName = value;
+        }
 
         public string ObjectiveName
         {

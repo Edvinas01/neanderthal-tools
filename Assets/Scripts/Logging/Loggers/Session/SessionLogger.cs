@@ -39,6 +39,7 @@ namespace NeanderthalTools.Logging.Loggers.Session
 
         private void OnDisable()
         {
+            sessionData.EndTime = Time.time;
             CleanupLogWriter();
         }
 
@@ -48,12 +49,14 @@ namespace NeanderthalTools.Logging.Loggers.Session
 
         public void LogTeleport(LocomotionEventArgs args)
         {
-            sessionData.TeleportCount++;
+            var data = CreateLocomotionData(args);
+            sessionData.Teleports.Add(data);
         }
 
         public void LogSnapTurn(LocomotionEventArgs args)
         {
-            sessionData.SnapTurnCount++;
+            var data = CreateLocomotionData(args);
+            sessionData.SnapTurns.Add(data);
         }
 
         public void LogDependenciesRemaining(FlakeEventArgs args)
@@ -76,7 +79,8 @@ namespace NeanderthalTools.Logging.Loggers.Session
 
         public void LogDetach(FlakeEventArgs args)
         {
-            // todo
+            var data = CreateHitData(args);
+            sessionData.Removals.Add(data);
         }
 
         public void LogAttachAdhesive(HaftEventArgs args)
@@ -93,14 +97,14 @@ namespace NeanderthalTools.Logging.Loggers.Session
 
         public void LogConsumeAdhesive(AdhesiveEventArgs args)
         {
-            var rawAdhesiveName = args.RawAdhesive.name;
-            sessionData.ConsumedAdhesives.Add(rawAdhesiveName);
+            var data = CreateConsumeData(args);
+            sessionData.ConsumedAdhesives.Add(data);
         }
 
-        public void LogPickup(BaseInteractionEventArgs args)
+        public void LogGrab(BaseInteractionEventArgs args)
         {
-            var data = CreatePickupData(args);
-            sessionData.Pickups.Add(data);
+            var data = CreateGrabData(args);
+            sessionData.Grabs.Add(data);
         }
 
         public void LogEnterState(StateEventArgs args)
@@ -127,7 +131,8 @@ namespace NeanderthalTools.Logging.Loggers.Session
         {
             sessionData = new SessionData
             {
-                LoggingId = loggingSettings.LoggingId
+                LoggingId = loggingSettings.LoggingId,
+                StartTime = Time.time
             };
         }
 
@@ -138,15 +143,32 @@ namespace NeanderthalTools.Logging.Loggers.Session
             logWriter = null;
         }
 
+        private static LocomotionData CreateLocomotionData(LocomotionEventArgs args)
+        {
+            var xrRig = args.LocomotionSystem.xrRig;
+            var position = xrRig.transform.position;
+
+            return new LocomotionData
+            {
+                Position = position,
+                Time = Time.time
+            };
+        }
+
         private static HitData CreateHitData(FlakeEventArgs args)
         {
+            var objectiveInteractor = args.ObjectiveInteractor;
+            var knapperInteractor = args.KnapperInteractor;
             var objective = args.Objective;
             var flake = args.Flake;
 
             return new HitData
             {
+                // Can be hit without being held.
+                ObjectiveHandName = objectiveInteractor == null ? null : objectiveInteractor.name,
+                KnapperHandName = knapperInteractor.name,
                 ObjectiveName = objective.name,
-                KnapperName = args.KnapperInteractor.name,
+                KnapperName = knapperInteractor.selectTarget.name,
                 FlakeName = flake.name,
                 Time = Time.time
             };
@@ -154,20 +176,36 @@ namespace NeanderthalTools.Logging.Loggers.Session
 
         private static AttachData CreateAttachData(HaftEventArgs args)
         {
+            var toolPartInteractor = args.ToolPartInteractor;
+            var handleInteractor = args.HandleInteractor;
+
             return new AttachData
             {
+                // Can be attached without holding the tool part (e.g. tar).
+                ToolPartHandName = toolPartInteractor == null ? null : toolPartInteractor.name,
+                HandleHandName = handleInteractor.name,
                 ToolPartName = args.ToolPart.Name,
-                HandleName = args.HandleInteractable.name,
+                HandleName = handleInteractor.selectTarget.name,
                 Time = Time.time
             };
         }
 
-        private static PickupData CreatePickupData(BaseInteractionEventArgs args)
+        private static ConsumeData CreateConsumeData(AdhesiveEventArgs args)
         {
-            return new PickupData
+            return new ConsumeData
+            {
+                AdhesiveName = args.RawAdhesive.name,
+                Time = Time.time
+            };
+        }
+
+        private static GrabData CreateGrabData(BaseInteractionEventArgs args)
+        {
+            return new GrabData
             {
                 TargetName = args.interactable.name,
-                HandName = args.interactor.name
+                HandName = args.interactor.name,
+                Time = Time.time
             };
         }
 

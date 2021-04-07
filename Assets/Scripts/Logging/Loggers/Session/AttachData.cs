@@ -9,6 +9,12 @@ namespace NeanderthalTools.Logging.Loggers.Session
         #region Fields
 
         [SerializeField]
+        private string toolPartHandName;
+
+        [SerializeField]
+        private string handleHandName;
+
+        [SerializeField]
         private string toolPartName;
 
         [SerializeField]
@@ -20,6 +26,18 @@ namespace NeanderthalTools.Logging.Loggers.Session
         #endregion
 
         #region Properties
+
+        public string ToolPartHandName
+        {
+            get => toolPartHandName;
+            set => toolPartHandName = value;
+        }
+
+        public string HandleHandName
+        {
+            get => handleHandName;
+            set => handleHandName = value;
+        }
 
         public string ToolPartName
         {

@@ -68,7 +68,8 @@ namespace NeanderthalTools.Locomotion
             continuousMoveProvider.endLocomotion += InvokeOnLocomotionEnd;
             teleportationProvider.endLocomotion += InvokeOnLocomotionEnd;
             snapTurnProvider.endLocomotion += InvokeOnLocomotionEnd;
-            snapTurnProvider.endLocomotion += InvokeOnTeleport;
+
+            teleportationProvider.endLocomotion += InvokeOnTeleport;
             snapTurnProvider.endLocomotion += InvokeOnSnapTurn;
         }
 
@@ -77,7 +78,8 @@ namespace NeanderthalTools.Locomotion
             continuousMoveProvider.endLocomotion -= InvokeOnLocomotionEnd;
             teleportationProvider.endLocomotion -= InvokeOnLocomotionEnd;
             snapTurnProvider.endLocomotion -= InvokeOnLocomotionEnd;
-            snapTurnProvider.endLocomotion -= InvokeOnTeleport;
+
+            teleportationProvider.endLocomotion -= InvokeOnTeleport;
             snapTurnProvider.endLocomotion -= InvokeOnSnapTurn;
         }
 
