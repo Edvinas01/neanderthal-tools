@@ -25,10 +25,10 @@ namespace NeanderthalTools.Locomotion
         private XRBaseController teleportController;
 
         [SerializeField]
-        private LocomotionSystemUnityEvent onTeleport;
+        private LocomotionUnityEvent onTeleport;
 
         [SerializeField]
-        private LocomotionSystemUnityEvent onSnapTurn;
+        private LocomotionUnityEvent onSnapTurn;
 
         #endregion
 
@@ -100,12 +100,17 @@ namespace NeanderthalTools.Locomotion
 
         private void InvokeOnTeleport(LocomotionSystem locomotionSystem)
         {
-            onTeleport.Invoke(locomotionSystem);
+            onTeleport.Invoke(CreateLocomotionEventArgs(locomotionSystem));
         }
 
         private void InvokeOnSnapTurn(LocomotionSystem locomotionSystem)
         {
-            onSnapTurn.Invoke(locomotionSystem);
+            onSnapTurn.Invoke(CreateLocomotionEventArgs(locomotionSystem));
+        }
+
+        private LocomotionEventArgs CreateLocomotionEventArgs(LocomotionSystem locomotionSystem)
+        {
+            return new LocomotionEventArgs(locomotionSystem);
         }
 
         private void UpdateTeleport()

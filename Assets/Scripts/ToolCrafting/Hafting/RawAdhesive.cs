@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.Events;
 
 namespace NeanderthalTools.ToolCrafting.Hafting
 {
@@ -13,7 +12,7 @@ namespace NeanderthalTools.ToolCrafting.Hafting
         private float produceAmount = 0.1f;
 
         [SerializeField]
-        private UnityEvent onConsume;
+        private AdhesiveUnityEvent onConsume;
 
         #endregion
 
@@ -27,7 +26,7 @@ namespace NeanderthalTools.ToolCrafting.Hafting
 
         public void HandleConsume()
         {
-            onConsume.Invoke();
+            onConsume.Invoke(new AdhesiveEventArgs(this));
             Destroy(gameObject);
         }
 

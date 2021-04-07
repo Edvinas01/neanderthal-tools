@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using NeanderthalTools.Locomotion;
 using NeanderthalTools.Logging.Writers;
 using NeanderthalTools.States;
 using NeanderthalTools.ToolCrafting.Hafting;
@@ -45,12 +46,12 @@ namespace NeanderthalTools.Logging.Loggers.Session
 
         #region Methods
 
-        public void LogTeleport(LocomotionSystem locomotionSystem)
+        public void LogTeleport(LocomotionEventArgs args)
         {
             sessionData.TeleportCount++;
         }
 
-        public void LogSnapTurn(LocomotionSystem locomotionSystem)
+        public void LogSnapTurn(LocomotionEventArgs args)
         {
             sessionData.SnapTurnCount++;
         }
@@ -85,9 +86,10 @@ namespace NeanderthalTools.Logging.Loggers.Session
             sessionData.AttachedFlakes.Add(data);
         }
 
-        public void LogConsumeAdhesive(RawAdhesive rawAdhesive)
+        public void LogConsumeAdhesive(AdhesiveEventArgs args)
         {
-            sessionData.ConsumedAdhesives.Add(rawAdhesive.name);
+            var rawAdhesiveName = args.RawAdhesive.name;
+            sessionData.ConsumedAdhesives.Add(rawAdhesiveName);
         }
 
         public void LogPickup(SelectEnterEventArgs args)
