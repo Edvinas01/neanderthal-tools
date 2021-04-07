@@ -103,6 +103,8 @@ namespace NeanderthalTools.Logging.Loggers.Session
             var stateName = args.State.name;
             var stateData = FindOrCreateStateData(stateName);
             stateData.StartTime = Time.time;
+
+            Debug.Log("enter: " + stateName);
         }
 
         public void LogExitState(StateEventArgs args)
@@ -110,6 +112,8 @@ namespace NeanderthalTools.Logging.Loggers.Session
             var stateName = args.State.name;
             var stateData = FindOrCreateStateData(stateName);
             stateData.EndTime = Time.time;
+            
+            Debug.Log("exit: " + stateName);
         }
 
         private void SetupLogWriter()

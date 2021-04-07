@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5bf4c72f52d47b9bc42fe42a19cd4c2, type: 3}
   m_Name: StateEnterScriptableEvent
   m_EditorClassIdentifier: 
-  description: 
+  description: 'Fired when a state is entered
+
+'
   lockDescription: 1
   suppressExceptions: 0
   trace: 0
