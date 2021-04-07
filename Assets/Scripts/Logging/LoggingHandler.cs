@@ -147,8 +147,7 @@ namespace NeanderthalTools.Logging
 
         private static void Log(UnityWebRequest request)
         {
-            var pathInfo = Dropbox.GetPathInfo(request);
-            Debug.Log($"{request.method} request {request.url} path {pathInfo}");
+            Debug.Log($"{request.method} {request.url} path {Dropbox.GetPathInfo(request)}");
         }
 
         private static bool IsError(UnityWebRequest request)
@@ -160,7 +159,7 @@ namespace NeanderthalTools.Logging
 
         private void LogError(UnityWebRequest request)
         {
-            Debug.LogError($"{request.method} request {request.url} error: {request.error}", this);
+            Debug.LogError($"{request.method} {request.url} error: {request.error}", this);
             Debug.LogError($"{request.downloadHandler.text}", this);
         }
 
