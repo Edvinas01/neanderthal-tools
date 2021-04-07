@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2925093d40714d9089a685e728a4a332, type: 3}
   m_Name: LoggingSettings
   m_EditorClassIdentifier: 
-  enableLogging: 1
+  enableLogging: 0
   uploadLogsToDropbox: 0
   dropboxAuthorizationToken: sl.ArpR7EnLNRlyvy7XosH2uMuyfUDwRGYE0KJ4j14Tdkoa1B_csEHVMXxVSNivFaLgBEj44oHwQS8BnKSHsPj5OXIFEeMh8W5IdGGG_atqYPfiuKBLpPy3cBclBpJPvztTZNUohnI
   logFileDirectory: logs

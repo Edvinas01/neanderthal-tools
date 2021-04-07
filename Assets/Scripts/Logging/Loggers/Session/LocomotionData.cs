@@ -9,10 +9,16 @@ namespace NeanderthalTools.Logging.Loggers.Session
         #region Fields
 
         [SerializeField]
-        private Vector3 position;
+        private Vector3 cameraPosition;
 
         [SerializeField]
-        private Vector3 rotation;
+        private Vector3 cameraRotation;
+
+        [SerializeField]
+        private Vector3 rigPosition;
+
+        [SerializeField]
+        private Vector3 rigRotation;
 
         [SerializeField]
         private float time;
@@ -21,16 +27,28 @@ namespace NeanderthalTools.Logging.Loggers.Session
 
         #region Properties
 
-        public Vector3 Position
+        public Vector3 CameraPosition
         {
-            get => position;
-            set => position = value;
+            get => cameraPosition;
+            set => cameraPosition = value;
         }
 
-        public Vector3 Rotation
+        public Vector3 CameraRotation
         {
-            get => rotation;
-            set => rotation = value;
+            get => cameraRotation;
+            set => cameraRotation = value;
+        }
+
+        public Vector3 RigPosition
+        {
+            get => rigPosition;
+            set => rigPosition = value;
+        }
+
+        public Vector3 RigRotation
+        {
+            get => rigRotation;
+            set => rigRotation = value;
         }
 
         public float Time

@@ -144,12 +144,17 @@ namespace NeanderthalTools.Logging.Loggers.Session
 
         private static LocomotionData CreateLocomotionData(LocomotionEventArgs args)
         {
-            var xrRigTransform = args.LocomotionSystem.xrRig.transform;
+            var xrRig = args.LocomotionSystem.xrRig;
+
+            var cameraTransform = xrRig.cameraGameObject.transform;
+            var xrRigTransform = xrRig.transform;
 
             return new LocomotionData
             {
-                Position = xrRigTransform.position,
-                Rotation = xrRigTransform.eulerAngles,
+                CameraPosition = cameraTransform.position,
+                CameraRotation = cameraTransform.eulerAngles,
+                RigPosition = xrRigTransform.position,
+                RigRotation = xrRigTransform.eulerAngles,
                 Time = Time.time
             };
         }
