@@ -1717,7 +1717,7 @@ PrefabInstance:
     - target: {fileID: 7341416156122229956, guid: b40d77b23ec912b4fbdd4d4da88bd4a5,
         type: 3}
       propertyPath: m_Name
-      value: KnapperInteractable (1)
+      value: KnapperInteractable01
       objectReference: {fileID: 0}
     - target: {fileID: 7341416156122229959, guid: b40d77b23ec912b4fbdd4d4da88bd4a5,
         type: 3}
@@ -1882,7 +1882,7 @@ PrefabInstance:
     - target: {fileID: 5691564427853631628, guid: b5dda0393bbf75142bcdbb0619398b14,
         type: 3}
       propertyPath: m_Name
-      value: HandleAxeSplitInteractable (1)
+      value: HandleAxeSplitInteractable02
       objectReference: {fileID: 0}
     - target: {fileID: 5691564427853631631, guid: b5dda0393bbf75142bcdbb0619398b14,
         type: 3}
@@ -2378,7 +2378,7 @@ PrefabInstance:
     - target: {fileID: 764449439663954143, guid: 576e7a204b9a51d40a4544716eaefeab,
         type: 3}
       propertyPath: m_Name
-      value: BarkInteractable (4)
+      value: BarkInteractable04
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 576e7a204b9a51d40a4544716eaefeab, type: 3}
@@ -2869,7 +2869,7 @@ PrefabInstance:
     - target: {fileID: 764449439663954143, guid: 576e7a204b9a51d40a4544716eaefeab,
         type: 3}
       propertyPath: m_Name
-      value: BarkInteractable (13)
+      value: BarkInteractable14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 576e7a204b9a51d40a4544716eaefeab, type: 3}
@@ -2936,7 +2936,7 @@ PrefabInstance:
     - target: {fileID: 6690782378083127921, guid: 1f3f3bd74d9886b4b9fdf75b3ada6dfa,
         type: 3}
       propertyPath: m_Name
-      value: StoneCoreInteractable (2)
+      value: StoneCoreInteractable03
       objectReference: {fileID: 0}
     - target: {fileID: 6690782378083127922, guid: 1f3f3bd74d9886b4b9fdf75b3ada6dfa,
         type: 3}
@@ -3515,7 +3515,7 @@ PrefabInstance:
     - target: {fileID: 6690782378083127921, guid: 1f3f3bd74d9886b4b9fdf75b3ada6dfa,
         type: 3}
       propertyPath: m_Name
-      value: StoneCoreInteractable (5)
+      value: StoneCoreInteractable06
       objectReference: {fileID: 0}
     - target: {fileID: 6690782378083127922, guid: 1f3f3bd74d9886b4b9fdf75b3ada6dfa,
         type: 3}
@@ -5536,7 +5536,7 @@ PrefabInstance:
     - target: {fileID: 764449439663954143, guid: 576e7a204b9a51d40a4544716eaefeab,
         type: 3}
       propertyPath: m_Name
-      value: BarkInteractable (10)
+      value: BarkInteractable10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 576e7a204b9a51d40a4544716eaefeab, type: 3}
@@ -10058,7 +10058,7 @@ PrefabInstance:
     - target: {fileID: 7341416156122229956, guid: b40d77b23ec912b4fbdd4d4da88bd4a5,
         type: 3}
       propertyPath: m_Name
-      value: KnapperInteractable
+      value: KnapperInteractable03
       objectReference: {fileID: 0}
     - target: {fileID: 7341416156122229959, guid: b40d77b23ec912b4fbdd4d4da88bd4a5,
         type: 3}
@@ -10500,7 +10500,7 @@ PrefabInstance:
     - target: {fileID: 764449439663954143, guid: 576e7a204b9a51d40a4544716eaefeab,
         type: 3}
       propertyPath: m_Name
-      value: BarkInteractable (9)
+      value: BarkInteractable09
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 576e7a204b9a51d40a4544716eaefeab, type: 3}
@@ -11795,8 +11795,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1072204274}
-  - {fileID: 601358985}
   - {fileID: 974844013}
+  - {fileID: 601358985}
   - {fileID: 1937837925}
   - {fileID: 651348170}
   - {fileID: 20143104}
@@ -12185,12 +12185,12 @@ PrefabInstance:
     - target: {fileID: 5691564427853631628, guid: b5dda0393bbf75142bcdbb0619398b14,
         type: 3}
       propertyPath: m_Name
-      value: HandleAxeSplitInteractable
+      value: HandleAxeSplitInteractable01
       objectReference: {fileID: 0}
     - target: {fileID: 5691564427853631631, guid: b5dda0393bbf75142bcdbb0619398b14,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5691564427853631631, guid: b5dda0393bbf75142bcdbb0619398b14,
         type: 3}
@@ -13653,7 +13653,7 @@ PrefabInstance:
     - target: {fileID: 6385425368758865735, guid: 6f78d7cf5dc5f8447a6d1aec890c26c9,
         type: 3}
       propertyPath: m_Name
-      value: HandleAxeHoleInteractable (1)
+      value: HandleAxeHoleInteractable01
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f78d7cf5dc5f8447a6d1aec890c26c9, type: 3}
@@ -13673,7 +13673,7 @@ PrefabInstance:
     - target: {fileID: 6690782378083127921, guid: 1f3f3bd74d9886b4b9fdf75b3ada6dfa,
         type: 3}
       propertyPath: m_Name
-      value: StoneCoreInteractable (4)
+      value: StoneCoreInteractable05
       objectReference: {fileID: 0}
     - target: {fileID: 6690782378083127922, guid: 1f3f3bd74d9886b4b9fdf75b3ada6dfa,
         type: 3}
@@ -13742,7 +13742,7 @@ PrefabInstance:
     - target: {fileID: 6690782378083127921, guid: 1f3f3bd74d9886b4b9fdf75b3ada6dfa,
         type: 3}
       propertyPath: m_Name
-      value: StoneCoreInteractable (6)
+      value: StoneCoreInteractable07
       objectReference: {fileID: 0}
     - target: {fileID: 6690782378083127922, guid: 1f3f3bd74d9886b4b9fdf75b3ada6dfa,
         type: 3}
@@ -13992,7 +13992,7 @@ PrefabInstance:
     - target: {fileID: 764449439663954143, guid: 576e7a204b9a51d40a4544716eaefeab,
         type: 3}
       propertyPath: m_Name
-      value: BarkInteractable (15)
+      value: BarkInteractable16
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 576e7a204b9a51d40a4544716eaefeab, type: 3}
@@ -16741,7 +16741,7 @@ PrefabInstance:
     - target: {fileID: 764449439663954143, guid: 576e7a204b9a51d40a4544716eaefeab,
         type: 3}
       propertyPath: m_Name
-      value: BarkInteractable (5)
+      value: BarkInteractable05
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 576e7a204b9a51d40a4544716eaefeab, type: 3}
@@ -23963,12 +23963,12 @@ PrefabInstance:
     - target: {fileID: 6663478646307715900, guid: e2bf300aca28bb344b1887689e79aa8c,
         type: 3}
       propertyPath: m_Name
-      value: HandleSpearInteractable
+      value: HandleSpearInteractable02
       objectReference: {fileID: 0}
     - target: {fileID: 6663478646307715903, guid: e2bf300aca28bb344b1887689e79aa8c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6663478646307715903, guid: e2bf300aca28bb344b1887689e79aa8c,
         type: 3}
@@ -28247,7 +28247,7 @@ PrefabInstance:
     - target: {fileID: 6663478646307715900, guid: e2bf300aca28bb344b1887689e79aa8c,
         type: 3}
       propertyPath: m_Name
-      value: HandleSpearInteractable (1)
+      value: HandleSpearInteractable01
       objectReference: {fileID: 0}
     - target: {fileID: 6663478646307715903, guid: e2bf300aca28bb344b1887689e79aa8c,
         type: 3}
@@ -28489,7 +28489,7 @@ PrefabInstance:
     - target: {fileID: 764449439663954143, guid: 576e7a204b9a51d40a4544716eaefeab,
         type: 3}
       propertyPath: m_Name
-      value: BarkInteractable (8)
+      value: BarkInteractable08
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 576e7a204b9a51d40a4544716eaefeab, type: 3}
@@ -30904,7 +30904,7 @@ PrefabInstance:
     - target: {fileID: 764449439663954143, guid: 576e7a204b9a51d40a4544716eaefeab,
         type: 3}
       propertyPath: m_Name
-      value: BarkInteractable (6)
+      value: BarkInteractable06
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 576e7a204b9a51d40a4544716eaefeab, type: 3}
@@ -32041,7 +32041,7 @@ PrefabInstance:
     - target: {fileID: 6690782378083127921, guid: 1f3f3bd74d9886b4b9fdf75b3ada6dfa,
         type: 3}
       propertyPath: m_Name
-      value: StoneCoreInteractable (7)
+      value: StoneCoreInteractable08
       objectReference: {fileID: 0}
     - target: {fileID: 6690782378083127922, guid: 1f3f3bd74d9886b4b9fdf75b3ada6dfa,
         type: 3}
@@ -33349,7 +33349,7 @@ PrefabInstance:
     - target: {fileID: 764449439663954143, guid: 576e7a204b9a51d40a4544716eaefeab,
         type: 3}
       propertyPath: m_Name
-      value: BarkInteractable (2)
+      value: BarkInteractable02
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 576e7a204b9a51d40a4544716eaefeab, type: 3}
@@ -39821,7 +39821,7 @@ PrefabInstance:
     - target: {fileID: 764449439663954143, guid: 576e7a204b9a51d40a4544716eaefeab,
         type: 3}
       propertyPath: m_Name
-      value: BarkInteractable (14)
+      value: BarkInteractable15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 576e7a204b9a51d40a4544716eaefeab, type: 3}
@@ -39980,7 +39980,7 @@ PrefabInstance:
     - target: {fileID: 764449439663954143, guid: 576e7a204b9a51d40a4544716eaefeab,
         type: 3}
       propertyPath: m_Name
-      value: BarkInteractable
+      value: BarkInteractable13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 576e7a204b9a51d40a4544716eaefeab, type: 3}
@@ -40157,7 +40157,7 @@ PrefabInstance:
     - target: {fileID: 764449439663954143, guid: 576e7a204b9a51d40a4544716eaefeab,
         type: 3}
       propertyPath: m_Name
-      value: BarkInteractable (3)
+      value: BarkInteractable03
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 576e7a204b9a51d40a4544716eaefeab, type: 3}
@@ -40177,7 +40177,7 @@ PrefabInstance:
     - target: {fileID: 6690782378083127921, guid: 1f3f3bd74d9886b4b9fdf75b3ada6dfa,
         type: 3}
       propertyPath: m_Name
-      value: StoneCoreInteractable
+      value: StoneCoreInteractable01
       objectReference: {fileID: 0}
     - target: {fileID: 6690782378083127922, guid: 1f3f3bd74d9886b4b9fdf75b3ada6dfa,
         type: 3}
@@ -41606,7 +41606,7 @@ PrefabInstance:
     - target: {fileID: 7341416156122229956, guid: b40d77b23ec912b4fbdd4d4da88bd4a5,
         type: 3}
       propertyPath: m_Name
-      value: KnapperInteractable (2)
+      value: KnapperInteractable02
       objectReference: {fileID: 0}
     - target: {fileID: 7341416156122229959, guid: b40d77b23ec912b4fbdd4d4da88bd4a5,
         type: 3}
@@ -44651,7 +44651,7 @@ PrefabInstance:
     - target: {fileID: 6690782378083127921, guid: 1f3f3bd74d9886b4b9fdf75b3ada6dfa,
         type: 3}
       propertyPath: m_Name
-      value: StoneCoreInteractable (3)
+      value: StoneCoreInteractable04
       objectReference: {fileID: 0}
     - target: {fileID: 6690782378083127922, guid: 1f3f3bd74d9886b4b9fdf75b3ada6dfa,
         type: 3}
@@ -47325,7 +47325,7 @@ PrefabInstance:
     - target: {fileID: 764449439663954143, guid: 576e7a204b9a51d40a4544716eaefeab,
         type: 3}
       propertyPath: m_Name
-      value: BarkInteractable (7)
+      value: BarkInteractable07
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 576e7a204b9a51d40a4544716eaefeab, type: 3}
@@ -48518,7 +48518,7 @@ PrefabInstance:
     - target: {fileID: 764449439663954143, guid: 576e7a204b9a51d40a4544716eaefeab,
         type: 3}
       propertyPath: m_Name
-      value: BarkInteractable (11)
+      value: BarkInteractable11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 576e7a204b9a51d40a4544716eaefeab, type: 3}
@@ -50127,7 +50127,7 @@ PrefabInstance:
     - target: {fileID: 764449439663954143, guid: 576e7a204b9a51d40a4544716eaefeab,
         type: 3}
       propertyPath: m_Name
-      value: BarkInteractable (12)
+      value: BarkInteractable12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 576e7a204b9a51d40a4544716eaefeab, type: 3}
@@ -51471,7 +51471,7 @@ PrefabInstance:
     - target: {fileID: 6385425368758865735, guid: 6f78d7cf5dc5f8447a6d1aec890c26c9,
         type: 3}
       propertyPath: m_Name
-      value: HandleAxeHoleInteractable
+      value: HandleAxeHoleInteractable02
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f78d7cf5dc5f8447a6d1aec890c26c9, type: 3}
@@ -51636,7 +51636,7 @@ PrefabInstance:
     - target: {fileID: 764449439663954143, guid: 576e7a204b9a51d40a4544716eaefeab,
         type: 3}
       propertyPath: m_Name
-      value: BarkInteractable (1)
+      value: BarkInteractable01
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 576e7a204b9a51d40a4544716eaefeab, type: 3}
@@ -55914,7 +55914,7 @@ PrefabInstance:
     - target: {fileID: 6690782378083127921, guid: 1f3f3bd74d9886b4b9fdf75b3ada6dfa,
         type: 3}
       propertyPath: m_Name
-      value: StoneCoreInteractable (1)
+      value: StoneCoreInteractable02
       objectReference: {fileID: 0}
     - target: {fileID: 6690782378083127922, guid: 1f3f3bd74d9886b4b9fdf75b3ada6dfa,
         type: 3}
