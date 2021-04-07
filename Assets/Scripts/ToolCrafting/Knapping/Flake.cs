@@ -123,11 +123,6 @@ namespace NeanderthalTools.ToolCrafting.Knapping
             }
         }
 
-        private void OnDisable()
-        {
-            ClearDependencies();
-        }
-
         #endregion
 
         #region Methods
