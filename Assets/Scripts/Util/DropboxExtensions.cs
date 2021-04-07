@@ -9,6 +9,7 @@ namespace NeanderthalTools.Util
     {
         #region Fields
 
+        private const string PathHeader = "Dropbox-API-Arg";
         private const string UploadUrl = "https://content.dropboxapi.com/2/files/upload";
 
         #endregion
@@ -16,66 +17,55 @@ namespace NeanderthalTools.Util
         #region Methods
 
         /// <summary>
-        /// Uploads all files in given directory to dropbox.
+        /// Creates a list of requests for uploading all files in given directory.
         /// </summary>
-        public static void UploadDirectory(
-            this Object obj,
+        public static List<UnityWebRequest> CreateUploadRequests(
             string srcDir,
             string dstDir,
             string token
         )
         {
             var persistentDirectory = Path.Combine(Application.persistentDataPath, srcDir);
-            var operations = new List<UnityWebRequestAsyncOperation>();
+            var requests = new List<UnityWebRequest>();
 
             foreach (var srcPath in Directory.GetFiles(persistentDirectory))
             {
                 var dstPath = $"/{dstDir}/{Path.GetFileName(srcPath)}";
-                var request = CreateRequest(srcPath, dstPath, token);
+                var request = CreateUploadRequest(srcPath, dstPath, token);
 
-                Debug.Log($"Uploading {srcPath} to {dstPath}", obj);
-                operations.Add(request.SendWebRequest());
+                requests.Add(request);
             }
 
-            WaitCompletion(obj, operations);
+            return requests;
         }
 
-        private static UnityWebRequest CreateRequest(string srcPath, string dstPath, string token)
+        /// <returns>
+        /// Path header info.
+        /// </returns>
+        public static string GetPathInfo(UnityWebRequest request)
+        {
+            return request.GetRequestHeader(PathHeader);
+        }
+
+        private static UnityWebRequest CreateUploadRequest(
+            string srcPath,
+            string dstPath,
+            string token
+        )
         {
             var request = new UnityWebRequest
             {
+                downloadHandler = new DownloadHandlerBuffer(),
                 uploadHandler = new UploadHandlerFile(srcPath),
                 method = UnityWebRequest.kHttpVerbPOST,
                 url = UploadUrl
             };
 
             request.SetRequestHeader("Authorization", $"Bearer {token}");
-            request.SetRequestHeader("Dropbox-API-Arg", "{\"path\": \"" + dstPath + "\"}");
+            request.SetRequestHeader(PathHeader, "{\"path\": \"" + dstPath + "\"}");
             request.SetRequestHeader("Content-Type", "application/octet-stream");
 
             return request;
-        }
-
-        private static void WaitCompletion(
-            Object obj,
-            IEnumerable<UnityWebRequestAsyncOperation> operations
-        )
-        {
-            foreach (var operation in operations)
-            {
-                while (!operation.isDone)
-                {
-                }
-
-                var request = operation.webRequest;
-                if (!string.IsNullOrWhiteSpace(request.error))
-                {
-                    Debug.LogError(
-                        $"{request.method} request {request.url} error: {request.error}",
-                        obj
-                    );
-                }
-            }
         }
 
         #endregion

@@ -1,6 +1,9 @@
-﻿using NeanderthalTools.Util;
+﻿using System.Collections;
+using System.Collections.Generic;
+using NeanderthalTools.Util;
 using ScriptableEvents.Simple;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 
 namespace NeanderthalTools.Logging
@@ -39,6 +42,10 @@ namespace NeanderthalTools.Logging
             if (currentLoggingScene.IsValid())
             {
                 StopLogging();
+                if (IsUploadLogs())
+                {
+                    ImmediateUploadLogs();
+                }
             }
         }
 
@@ -56,6 +63,10 @@ namespace NeanderthalTools.Logging
             if (currentLoggingScene.IsValid() && currentLoggingScene == oldScene)
             {
                 StopLogging();
+                if (IsUploadLogs())
+                {
+                    StartUploadLogs();
+                }
             }
 
             if (IsLoggingScene(newScene))
@@ -74,10 +85,6 @@ namespace NeanderthalTools.Logging
         private void StopLogging()
         {
             stopLoggingEvent.Raise();
-            if (loggingSettings.UploadLogsToDropbox)
-            {
-                UploadLogs();
-            }
         }
 
         private bool IsLoggingScene(Scene scene)
@@ -85,13 +92,76 @@ namespace NeanderthalTools.Logging
             return loggingSettings.LoggingSceneIndexes.Contains(scene.buildIndex);
         }
 
-        private void UploadLogs()
+        private bool IsUploadLogs()
         {
-            this.UploadDirectory(
+            return loggingSettings.UploadLogsToDropbox;
+        }
+
+        private void ImmediateUploadLogs()
+        {
+            var requests = CreateUploadRequests();
+            foreach (var request in requests)
+            {
+                Log(request);
+                var operation = request.SendWebRequest();
+
+                while (!operation.isDone)
+                {
+                }
+
+                if (IsError(request))
+                {
+                    LogError(request);
+                }
+            }
+        }
+
+        private void StartUploadLogs()
+        {
+            StartCoroutine(UploadLogs());
+        }
+
+        private IEnumerator UploadLogs()
+        {
+            var requests = CreateUploadRequests();
+            foreach (var request in requests)
+            {
+                Log(request);
+                yield return request.SendWebRequest();
+
+                if (IsError(request))
+                {
+                    LogError(request);
+                }
+            }
+        }
+
+        private IEnumerable<UnityWebRequest> CreateUploadRequests()
+        {
+            return Dropbox.CreateUploadRequests(
                 loggingSettings.LogFileDirectory,
                 $"{loggingSettings.LoggingId}/{loggingSettings.CurrentLogFileDirectory}",
                 loggingSettings.DropboxAuthorizationToken
             );
+        }
+
+        private static void Log(UnityWebRequest request)
+        {
+            var pathInfo = Dropbox.GetPathInfo(request);
+            Debug.Log($"{request.method} request {request.url} path {pathInfo}");
+        }
+
+        private static bool IsError(UnityWebRequest request)
+        {
+            var result = request.result;
+            return result == UnityWebRequest.Result.ConnectionError
+                   || result == UnityWebRequest.Result.ProtocolError;
+        }
+
+        private void LogError(UnityWebRequest request)
+        {
+            Debug.LogError($"{request.method} request {request.url} error: {request.error}", this);
+            Debug.LogError($"{request.downloadHandler.text}", this);
         }
 
         #endregion

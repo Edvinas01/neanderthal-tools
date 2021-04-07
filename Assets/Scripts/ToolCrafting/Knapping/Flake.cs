@@ -241,8 +241,11 @@ namespace NeanderthalTools.ToolCrafting.Knapping
         private void Detach(XRBaseInteractor knapperInteractor, float impactForce)
         {
             var oldObjective = objective;
+            var args = CreateEventArgs(knapperInteractor, impactForce);
+
+            // Objective is set to null before handling, as IsAttachable depends on it.
             objective = null;
-            oldObjective.HandleDetach(CreateEventArgs(knapperInteractor, impactForce));
+            oldObjective.HandleDetach(args);
         }
 
         private static void DrawDebugDay(Vector3 position, Vector3 direction, Color color)
