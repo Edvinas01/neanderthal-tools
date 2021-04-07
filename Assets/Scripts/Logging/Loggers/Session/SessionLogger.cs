@@ -74,6 +74,11 @@ namespace NeanderthalTools.Logging.Loggers.Session
             sessionData.WeakHits.Add(data);
         }
 
+        public void LogDetach(FlakeEventArgs args)
+        {
+            // todo
+        }
+
         public void LogAttachAdhesive(HaftEventArgs args)
         {
             var data = CreateAttachData(args);
@@ -92,7 +97,7 @@ namespace NeanderthalTools.Logging.Loggers.Session
             sessionData.ConsumedAdhesives.Add(rawAdhesiveName);
         }
 
-        public void LogPickup(SelectEnterEventArgs args)
+        public void LogPickup(BaseInteractionEventArgs args)
         {
             var data = CreatePickupData(args);
             sessionData.Pickups.Add(data);
@@ -157,7 +162,7 @@ namespace NeanderthalTools.Logging.Loggers.Session
             };
         }
 
-        private static PickupData CreatePickupData(SelectEnterEventArgs args)
+        private static PickupData CreatePickupData(BaseInteractionEventArgs args)
         {
             return new PickupData
             {

@@ -213,6 +213,7 @@ MonoBehaviour:
   failureThreshold: 5
   offset: 0.2
   deactivateDelay: 0.5
+  cleanupDelay: 30
   animationGrowTrigger: Grow
   animationShrinkTrigger: Shrink
 --- !u!114 &7630137278535017349
@@ -258,6 +259,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: b7871765e859b15459d7999af906d68f, type: 2}
+        m_TargetAssemblyTypeName: ScriptableEvents.BaseScriptableEvent`1[[NeanderthalTools.ToolCrafting.Knapping.FlakeEventArgs,
+          Assembly-CSharp
+        m_MethodName: Raise
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onInvalidAngle:
     m_PersistentCalls:
       m_Calls:
@@ -287,6 +301,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: a17af4bf57040b74cabd60fb31af0f0b, type: 2}
+        m_TargetAssemblyTypeName: ScriptableEvents.BaseScriptableEvent`1[[NeanderthalTools.ToolCrafting.Knapping.FlakeEventArgs,
+          Assembly-CSharp
+        m_MethodName: Raise
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onWeakImpact:
     m_PersistentCalls:
       m_Calls:
@@ -294,6 +321,19 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: NeanderthalTools.Knapping.FlakeHapticFeedbackAdapter,
           Assembly-CSharp
         m_MethodName: SendHapticImpulse
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 9249fc8c3ec2ea44a96a6a839b006da1, type: 2}
+        m_TargetAssemblyTypeName: ScriptableEvents.BaseScriptableEvent`1[[NeanderthalTools.ToolCrafting.Knapping.FlakeEventArgs,
+          Assembly-CSharp
+        m_MethodName: Raise
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -336,6 +376,19 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: NeanderthalTools.ToolCrafting.Knapping.AttachableFlakeAdapter,
           Assembly-CSharp
         m_MethodName: OnDetach
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: e51eedde5521a5e428ef9909f33fb01a, type: 2}
+        m_TargetAssemblyTypeName: ScriptableEvents.BaseScriptableEvent`1[[NeanderthalTools.ToolCrafting.Knapping.FlakeEventArgs,
+          Assembly-CSharp
+        m_MethodName: Raise
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

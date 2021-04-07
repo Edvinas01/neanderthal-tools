@@ -341,6 +341,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 0f4a2872941f1a948b5efca9bd641c21, type: 2}
+        m_TargetAssemblyTypeName: ScriptableEvents.BaseScriptableEvent`1[[NeanderthalTools.ToolCrafting.Hafting.AdhesiveEventArgs,
+          Assembly-CSharp
+        m_MethodName: Raise
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &5156615472834133307
 MonoBehaviour:
   m_ObjectHideFlags: 0
