@@ -1371,7 +1371,7 @@ PrefabInstance:
     - target: {fileID: 4345210422533723150, guid: 7775fefdd81e5ef4aa22d3a7f8fc1369,
         type: 3}
       propertyPath: m_Name
-      value: FireAdhesive (1)
+      value: FireAdhesive02
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7775fefdd81e5ef4aa22d3a7f8fc1369, type: 3}
@@ -1573,7 +1573,7 @@ PrefabInstance:
     - target: {fileID: 4345210422533723150, guid: 7775fefdd81e5ef4aa22d3a7f8fc1369,
         type: 3}
       propertyPath: m_Name
-      value: FireAdhesive
+      value: FireAdhesive01
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7775fefdd81e5ef4aa22d3a7f8fc1369, type: 3}
@@ -2255,7 +2255,7 @@ PrefabInstance:
     - target: {fileID: 4345210422533723150, guid: 7775fefdd81e5ef4aa22d3a7f8fc1369,
         type: 3}
       propertyPath: m_Name
-      value: FireAdhesive (2)
+      value: FireAdhesive03
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7775fefdd81e5ef4aa22d3a7f8fc1369, type: 3}

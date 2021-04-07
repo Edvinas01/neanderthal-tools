@@ -9,8 +9,6 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 namespace NeanderthalTools.Logging.Loggers.Session
 {
-    // 1. Zip json based on boolean flag
-    // 3. Test & document
     public class SessionLogger : MonoBehaviour
     {
         #region Editor

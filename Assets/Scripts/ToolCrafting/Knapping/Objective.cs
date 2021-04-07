@@ -123,7 +123,7 @@ namespace NeanderthalTools.ToolCrafting.Knapping
                 null
             );
 
-            interactable.name = flake.name;
+            interactableFlake.name = $"{name}_{flake.name}";
             flakeTransform.parent = interactableFlake.transform;
 
             // Assuming that the prefab is disabled beforehand. Otherwise "flakeTransform.parent"
