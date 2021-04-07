@@ -21,6 +21,15 @@ namespace NeanderthalTools.Logging.Writers
         [SerializeField]
         private string logFileSuffix = "log";
 
+        [SerializeField]
+        [Tooltip("Should each log file be compressed using gzip")]
+        private bool compressLogs = true;
+
+        [Min(0f)]
+        [SerializeField]
+        [Tooltip("How often to write (dump) aggregated log samples to a file (in seconds)")]
+        private float writeInterval = 0.1f;
+
         #endregion
 
         #region Methods
@@ -63,12 +72,17 @@ namespace NeanderthalTools.Logging.Writers
             return new BinaryStreamingLogWriter(writer);
         }
 
-        private JsonFileLogWriter CreateJsonFileLogWriter(string fileName)
+        private JsonLogWriter CreateJsonFileLogWriter(string fileName)
         {
-            var filePath = Files.CreateFilePath(loggingSettings.LogFileDirectory, fileName);
+            var filePath = Files.CreateFilePath(
+                loggingSettings.LogFileDirectory,
+                fileName,
+                compressLogs
+            );
+
             Files.CreateDirectory(filePath);
 
-            return new JsonFileLogWriter(filePath);
+            return new JsonLogWriter(filePath, compressLogs);
         }
 
         private AsyncFileWriter CreateFileWriter(string fileName)
@@ -76,8 +90,8 @@ namespace NeanderthalTools.Logging.Writers
             return new AsyncFileWriter(
                 loggingSettings.LogFileDirectory,
                 fileName,
-                loggingSettings.CompressLogs,
-                loggingSettings.WriteInterval
+                compressLogs,
+                writeInterval
             );
         }
 

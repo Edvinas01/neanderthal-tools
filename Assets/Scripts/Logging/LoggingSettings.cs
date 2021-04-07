@@ -11,7 +11,6 @@ namespace NeanderthalTools.Logging
     {
         #region Fields
 
-        [Header("General logs")]
         [SerializeField]
         [Tooltip("Should logging be enabled")]
         private bool enableLogging;
@@ -34,16 +33,6 @@ namespace NeanderthalTools.Logging
         [Tooltip("List of scenes which should generate logs")]
         private List<int> loggingSceneIndexes;
 
-        [Header("Log files and types")]
-        [SerializeField]
-        [Tooltip("Should each log file be compressed using gzip")]
-        private bool compressLogs = true;
-
-        [Min(0f)]
-        [SerializeField]
-        [Tooltip("How often to write (dump) aggregated log samples to a file (in seconds)")]
-        private float writeInterval = 0.1f;
-
         #endregion
 
         #region Properties
@@ -64,10 +53,6 @@ namespace NeanderthalTools.Logging
         }
 
         public List<int> LoggingSceneIndexes => loggingSceneIndexes;
-
-        public bool CompressLogs => compressLogs;
-
-        public float WriteInterval => writeInterval;
 
         public string LoggingId
         {
