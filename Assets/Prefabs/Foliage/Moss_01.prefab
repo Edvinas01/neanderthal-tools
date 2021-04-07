@@ -95,11 +95,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: d486f83c042286442b5d7a7098843659,
         type: 3}
-      propertyPath: m_ReceiveGI
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: d486f83c042286442b5d7a7098843659,
-        type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 5d4e444096e6be246ba65fed7f3b46c2, type: 2}

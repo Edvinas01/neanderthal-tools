@@ -1,4 +1,6 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using NeanderthalTools.Util;
 using UnityEngine;
 using UnityEngine.Events;
@@ -7,6 +9,23 @@ namespace NeanderthalTools.Effects
 {
     public class GhostFader : MonoBehaviour
     {
+        #region Helper Classes
+
+        private class MaterialWrapper
+        {
+            public float InitialAlpha { get; }
+
+            public Material Material { get; }
+
+            public MaterialWrapper(float initialAlpha, Material material)
+            {
+                InitialAlpha = initialAlpha;
+                Material = material;
+            }
+        }
+
+        #endregion
+
         #region Editor
 
         [SerializeField]
@@ -39,11 +58,10 @@ namespace NeanderthalTools.Effects
 
         #region Fields
 
-        private Material material;
+        private List<MaterialWrapper> materialWrappers;
         private new Light light;
         private new ParticleSystem particleSystem;
 
-        private float initialAlpha;
         private float initialLightIntensity;
 
         private int colorPropertyId;
@@ -60,14 +78,11 @@ namespace NeanderthalTools.Effects
 
         private void Awake()
         {
-            material = transform.GetComponentInChildren<Renderer>().material;
-            light = ghost.GetComponentInChildren<Light>();
-            particleSystem = ghost.GetComponentInChildren<ParticleSystem>();
-
             colorPropertyId = Shader.PropertyToID(colorPropertyName);
-
-            initialAlpha = material.GetColor(colorPropertyId).a;
+            materialWrappers = GetMaterialWrappers();
+            light = ghost.GetComponentInChildren<Light>();
             initialLightIntensity = light.intensity;
+            particleSystem = ghost.GetComponentInChildren<ParticleSystem>();
 
             if (deactivateOnAwake)
             {
@@ -93,6 +108,20 @@ namespace NeanderthalTools.Effects
         public void StartFadeOut()
         {
             StartCoroutine(FadeOut());
+        }
+
+        private List<MaterialWrapper> GetMaterialWrappers()
+        {
+            return GetComponentsInChildren<Renderer>()
+                .SelectMany(rend => rend.materials)
+                .Select(CreateMaterialWrapper)
+                .ToList();
+        }
+
+        private MaterialWrapper CreateMaterialWrapper(Material material)
+        {
+            var initialAlpha = material.GetColor(colorPropertyId).a;
+            return new MaterialWrapper(initialAlpha, material);
         }
 
         private IEnumerator FadeIn()
@@ -125,9 +154,17 @@ namespace NeanderthalTools.Effects
 
         private void SetAlphaMultiplier(float multiplier)
         {
-            var color = material.GetColor(colorPropertyId);
-            color.a = initialAlpha * multiplier;
-            material.SetColor(colorPropertyId, color);
+            // ReSharper disable once ForCanBeConvertedToForeach
+            for (var index = 0; index < materialWrappers.Count; index++)
+            {
+                var materialWrapper = materialWrappers[index];
+                var initialAlpha = materialWrapper.InitialAlpha;
+                var material = materialWrapper.Material;
+
+                var color = material.GetColor(colorPropertyId);
+                color.a = initialAlpha * multiplier;
+                material.SetColor(colorPropertyId, color);
+            }
         }
 
         private void SetLightIntensityMultiplier(float multiplier)
