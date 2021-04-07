@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using NeanderthalTools.Logging.Writers;
+using NeanderthalTools.States;
 using NeanderthalTools.ToolCrafting.Hafting;
 using NeanderthalTools.ToolCrafting.Knapping;
 using UnityEngine;
@@ -95,15 +96,17 @@ namespace NeanderthalTools.Logging.Loggers.Session
             sessionData.Pickups.Add(data);
         }
 
-        public void LogEnterState(Util.State state)
+        public void LogEnterState(StateEventArgs args)
         {
-            var stateData = FindOrCreateStateData(state.name);
+            var stateName = args.State.name;
+            var stateData = FindOrCreateStateData(stateName);
             stateData.StartTime = Time.time;
         }
 
-        public void LogExitState(Util.State state)
+        public void LogExitState(StateEventArgs args)
         {
-            var stateData = FindOrCreateStateData(state.name);
+            var stateName = args.State.name;
+            var stateData = FindOrCreateStateData(stateName);
             stateData.EndTime = Time.time;
         }
 

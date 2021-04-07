@@ -2,9 +2,8 @@
 using ScriptableEvents;
 using ScriptableEvents.Simple;
 using UnityEngine;
-using UnityEngine.Events;
 
-namespace NeanderthalTools.Util
+namespace NeanderthalTools.States
 {
     public class State : MonoBehaviour, IScriptableEventListener<SimpleArg>
     {
@@ -27,10 +26,10 @@ namespace NeanderthalTools.Util
         private float startDelay = 2f;
 
         [SerializeField]
-        private UnityEvent onEnter;
+        private StateUnityEvent onEnter;
 
         [SerializeField]
-        private UnityEvent onExit;
+        private StateUnityEvent onExit;
 
         #endregion
 
@@ -78,7 +77,7 @@ namespace NeanderthalTools.Util
         {
             StopAllCoroutines();
 
-            onExit.Invoke();
+            onExit.Invoke(CreateStateEventArgs());
 
             if (nextState != null)
             {
@@ -92,7 +91,12 @@ namespace NeanderthalTools.Util
         private IEnumerator StartStateDelayed()
         {
             yield return new WaitForSeconds(startDelay);
-            onEnter.Invoke();
+            onEnter.Invoke(CreateStateEventArgs());
+        }
+
+        private StateEventArgs CreateStateEventArgs()
+        {
+            return new StateEventArgs(this);
         }
 
         #endregion
