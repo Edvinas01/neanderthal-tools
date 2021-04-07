@@ -9,7 +9,6 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 namespace NeanderthalTools.Logging.Loggers.Session
 {
-    // todo - consider logging positions and expand hand data (e.g. which object is held).
     public class SessionLogger : MonoBehaviour
     {
         #region Editor
@@ -145,12 +144,12 @@ namespace NeanderthalTools.Logging.Loggers.Session
 
         private static LocomotionData CreateLocomotionData(LocomotionEventArgs args)
         {
-            var xrRig = args.LocomotionSystem.xrRig;
-            var position = xrRig.transform.position;
+            var xrRigTransform = args.LocomotionSystem.xrRig.transform;
 
             return new LocomotionData
             {
-                Position = position,
+                Position = xrRigTransform.position,
+                Rotation = xrRigTransform.eulerAngles,
                 Time = Time.time
             };
         }

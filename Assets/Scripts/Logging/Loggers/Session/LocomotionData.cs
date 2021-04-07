@@ -12,6 +12,9 @@ namespace NeanderthalTools.Logging.Loggers.Session
         private Vector3 position;
 
         [SerializeField]
+        private Vector3 rotation;
+
+        [SerializeField]
         private float time;
 
         #endregion
@@ -22,6 +25,12 @@ namespace NeanderthalTools.Logging.Loggers.Session
         {
             get => position;
             set => position = value;
+        }
+
+        public Vector3 Rotation
+        {
+            get => rotation;
+            set => rotation = value;
         }
 
         public float Time
