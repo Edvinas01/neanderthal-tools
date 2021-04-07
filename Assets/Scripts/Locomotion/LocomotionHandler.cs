@@ -24,6 +24,16 @@ namespace NeanderthalTools.Locomotion
         [SerializeField]
         private XRBaseController teleportController;
 
+        [SerializeField]
+        private LocomotionUnityEvent onTeleport;
+
+        [SerializeField]
+        private LocomotionUnityEvent onSnapTurn;
+
+        #endregion
+
+        #region Fields
+
         private ContinuousMoveProviderBase continuousMoveProvider;
         private TeleportationProvider teleportationProvider;
         private SnapTurnProviderBase snapTurnProvider;
@@ -58,6 +68,9 @@ namespace NeanderthalTools.Locomotion
             continuousMoveProvider.endLocomotion += InvokeOnLocomotionEnd;
             teleportationProvider.endLocomotion += InvokeOnLocomotionEnd;
             snapTurnProvider.endLocomotion += InvokeOnLocomotionEnd;
+
+            teleportationProvider.endLocomotion += InvokeOnTeleport;
+            snapTurnProvider.endLocomotion += InvokeOnSnapTurn;
         }
 
         private void OnDisable()
@@ -65,6 +78,9 @@ namespace NeanderthalTools.Locomotion
             continuousMoveProvider.endLocomotion -= InvokeOnLocomotionEnd;
             teleportationProvider.endLocomotion -= InvokeOnLocomotionEnd;
             snapTurnProvider.endLocomotion -= InvokeOnLocomotionEnd;
+
+            teleportationProvider.endLocomotion -= InvokeOnTeleport;
+            snapTurnProvider.endLocomotion -= InvokeOnSnapTurn;
         }
 
         private void Update()
@@ -82,6 +98,21 @@ namespace NeanderthalTools.Locomotion
         private void InvokeOnLocomotionEnd(LocomotionSystem locomotionSystem)
         {
             OnLocomotionEnd?.Invoke(locomotionSystem);
+        }
+
+        private void InvokeOnTeleport(LocomotionSystem locomotionSystem)
+        {
+            onTeleport.Invoke(CreateLocomotionEventArgs(locomotionSystem));
+        }
+
+        private void InvokeOnSnapTurn(LocomotionSystem locomotionSystem)
+        {
+            onSnapTurn.Invoke(CreateLocomotionEventArgs(locomotionSystem));
+        }
+
+        private LocomotionEventArgs CreateLocomotionEventArgs(LocomotionSystem locomotionSystem)
+        {
+            return new LocomotionEventArgs(locomotionSystem);
         }
 
         private void UpdateTeleport()

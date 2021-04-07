@@ -10,11 +10,16 @@ namespace NeanderthalTools.Logging.Loggers
         [SerializeField]
         private LogWriterProvider logWriterProvider;
 
+        [SerializeField]
+        private PerformanceLoggerSettings performanceLoggerSettings;
+
         #endregion
 
         #region Fields
 
         private ILogWriter logWriter;
+        private float nextSampleTime;
+        private float fps;
 
         #endregion
 
@@ -22,24 +27,73 @@ namespace NeanderthalTools.Logging.Loggers
 
         private void OnEnable()
         {
-            logWriter = logWriterProvider.CreateLogWriter(name);
+            SetupLogWriter();
+            LogMeta();
+        }
 
+        private void OnDisable()
+        {
+            CleanupLogWriter();
+        }
+
+        private void Update()
+        {
+            UpdateFps();
+            if (!IsFpsThreshold() || !IsSample())
+            {
+                return;
+            }
+
+            UpdateNextSampleTime();
+            LogPerformance();
+        }
+
+        #endregion
+
+        #region Methods
+
+        private void SetupLogWriter()
+        {
+            logWriter = logWriterProvider.CreateLogWriter(name);
             logWriter.Start();
+        }
+
+        private void CleanupLogWriter()
+        {
+            logWriter.Close();
+            logWriter = null;
+        }
+
+        private void LogMeta()
+        {
             logWriter.Write(
                 "Time",
                 "FPS"
             );
         }
 
-        private void OnDisable()
+        private void UpdateFps()
         {
-            logWriter.Close();
-            logWriter = null;
+            fps = 1f / Time.deltaTime;
         }
 
-        private void Update()
+        private bool IsFpsThreshold()
         {
-            var fps = 1f / Time.deltaTime;
+            return fps <= performanceLoggerSettings.FpsThreshold;
+        }
+
+        private bool IsSample()
+        {
+            return Time.time >= nextSampleTime;
+        }
+
+        private void UpdateNextSampleTime()
+        {
+            nextSampleTime = Time.time + performanceLoggerSettings.SampleInterval;
+        }
+
+        private void LogPerformance()
+        {
             logWriter.Write(Time.time, fps);
         }
 

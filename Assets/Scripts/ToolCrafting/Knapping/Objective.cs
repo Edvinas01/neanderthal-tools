@@ -44,6 +44,11 @@ namespace NeanderthalTools.ToolCrafting.Knapping
 
         public IReadOnlyList<Flake> Flakes => flakes;
 
+        /// <summary>
+        /// Interactor that holds the objective, can be null.
+        /// </summary>
+        public XRBaseInteractor Interactor => interactable.selectingInteractor;
+
         #endregion
 
         #region Fields
@@ -65,33 +70,29 @@ namespace NeanderthalTools.ToolCrafting.Knapping
 
         #region Methods
 
-        public void HandleDependenciesRemaining(XRBaseInteractor knapperInteractor, Flake flake)
+        public void HandleDependenciesRemaining(FlakeEventArgs args)
         {
-            onDependenciesRemaining.Invoke(CreateEventArgs(knapperInteractor, flake));
+            onDependenciesRemaining.Invoke(args);
         }
 
-        public void HandleInvalidAngle(XRBaseInteractor knapperInteractor, Flake flake)
+        public void HandleInvalidAngle(FlakeEventArgs args)
         {
-            onInvalidAngle.Invoke(CreateEventArgs(knapperInteractor, flake));
+            onInvalidAngle.Invoke(args);
         }
 
-        public void HandleWeakImpact(XRBaseInteractor knapperInteractor, Flake flake)
+        public void HandleWeakImpact(FlakeEventArgs args)
         {
-            onWeakImpact.Invoke(CreateEventArgs(knapperInteractor, flake));
+            onWeakImpact.Invoke(args);
         }
 
-        public void HandleDetach(XRBaseInteractor knapperInteractor, Flake flake)
+        public void HandleDetach(FlakeEventArgs args)
         {
+            var flake = args.Flake;
             flakes.Remove(flake);
             RemoveInteractableColliders(flake);
             AddInteractable(flake);
 
-            onDetach.Invoke(CreateEventArgs(knapperInteractor, flake));
-        }
-
-        private FlakeEventArgs CreateEventArgs(XRBaseInteractor knapperInteractor, Flake flake)
-        {
-            return new FlakeEventArgs(interactable.selectingInteractor, knapperInteractor, flake);
+            onDetach.Invoke(args);
         }
 
         private void RemoveInteractableColliders(Flake flake)
@@ -122,7 +123,7 @@ namespace NeanderthalTools.ToolCrafting.Knapping
                 null
             );
 
-            interactable.name = flake.name;
+            interactableFlake.name = $"{name}_{flake.name}";
             flakeTransform.parent = interactableFlake.transform;
 
             // Assuming that the prefab is disabled beforehand. Otherwise "flakeTransform.parent"

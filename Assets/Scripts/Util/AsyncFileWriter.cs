@@ -2,7 +2,6 @@
 using System.IO;
 using System.IO.Compression;
 using System.Threading.Tasks;
-using UnityEngine;
 
 namespace NeanderthalTools.Util
 {
@@ -15,7 +14,7 @@ namespace NeanderthalTools.Util
         private readonly string directoryName;
         private readonly string fileName;
         private readonly bool compress;
-        private readonly float writeIntervalSeconds;
+        private readonly float writeInterval;
 
         private readonly string compressedSuffix;
         private readonly int bufferSize;
@@ -38,7 +37,7 @@ namespace NeanderthalTools.Util
             string directoryName,
             string fileName,
             bool compress,
-            float writeIntervalSeconds,
+            float writeInterval,
             string compressedSuffix = "gz",
             int bufferSize = 4096
         )
@@ -46,7 +45,7 @@ namespace NeanderthalTools.Util
             this.directoryName = directoryName;
             this.fileName = fileName;
             this.compress = compress;
-            this.writeIntervalSeconds = writeIntervalSeconds;
+            this.writeInterval = writeInterval;
             this.compressedSuffix = compressedSuffix;
             this.bufferSize = bufferSize;
         }
@@ -92,21 +91,17 @@ namespace NeanderthalTools.Util
 
         private string CreateFilePath()
         {
-            var completeFileName = compress
-                ? $"{fileName}.{compressedSuffix}"
-                : fileName;
-
-            return Path.Combine(
-                Application.persistentDataPath,
+            return Files.CreateFilePath(
                 directoryName,
-                completeFileName
+                fileName,
+                compress,
+                compressedSuffix
             );
         }
 
         private static void CreateDirectory(string path)
         {
-            var directoryName = Path.GetDirectoryName(path);
-            Directory.CreateDirectory(directoryName ?? string.Empty);
+            Files.CreateDirectory(path);
         }
 
         private Stream CreateCompressedStream(string path)
@@ -129,7 +124,7 @@ namespace NeanderthalTools.Util
                     await stream.WriteAsync(value, 0, value.Length);
                 }
 
-                await Task.Delay((int) (writeIntervalSeconds * 1000));
+                await Task.Delay((int) (writeInterval * 1000));
             }
         }
 

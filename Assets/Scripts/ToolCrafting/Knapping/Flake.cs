@@ -63,6 +63,8 @@ namespace NeanderthalTools.ToolCrafting.Knapping
 
         public bool IsAttachable => IsDetached() && isAttachable;
 
+        public string Name => name;
+
         #endregion
 
         #region Unity Lifecycle
@@ -121,11 +123,6 @@ namespace NeanderthalTools.ToolCrafting.Knapping
             }
         }
 
-        private void OnDisable()
-        {
-            ClearDependencies();
-        }
-
         #endregion
 
         #region Methods
@@ -141,15 +138,17 @@ namespace NeanderthalTools.ToolCrafting.Knapping
                 return;
             }
 
+            var eventArgs = CreateEventArgs(knapperInteractor, impactForce);
             if (IsWeakImpact(impactForce))
             {
-                objective.HandleWeakImpact(knapperInteractor, this);
+                objective.HandleWeakImpact(eventArgs);
                 return;
             }
 
             if (IsDependenciesRemaining())
             {
-                objective.HandleDependenciesRemaining(knapperInteractor, this);
+                objective.HandleDependenciesRemaining(eventArgs);
+
                 return;
             }
 
@@ -176,11 +175,11 @@ namespace NeanderthalTools.ToolCrafting.Knapping
                 impactColor = Color.green;
 
                 ClearDependencies();
-                Detach(knapperInteractor);
+                Detach(knapperInteractor, impactForce);
             }
             else
             {
-                objective.HandleInvalidAngle(knapperInteractor, this);
+                objective.HandleInvalidAngle(eventArgs);
             }
 
             DrawDebugDay(flakePosition, oppositeImpactDirection, impactColor);
@@ -239,16 +238,33 @@ namespace NeanderthalTools.ToolCrafting.Knapping
             dependants.Clear();
         }
 
-        private void Detach(XRBaseInteractor knapperInteractor)
+        private void Detach(XRBaseInteractor knapperInteractor, float impactForce)
         {
             var oldObjective = objective;
+            var args = CreateEventArgs(knapperInteractor, impactForce);
+
+            // Objective is set to null before handling, as IsAttachable depends on it.
             objective = null;
-            oldObjective.HandleDetach(knapperInteractor, this);
+            oldObjective.HandleDetach(args);
         }
 
         private static void DrawDebugDay(Vector3 position, Vector3 direction, Color color)
         {
             Debug.DrawRay(position, direction * DebugRayLength, color, DebugRayDuration);
+        }
+
+        private FlakeEventArgs CreateEventArgs(
+            XRBaseInteractor knapperInteractor,
+            float impactForce
+        )
+        {
+            return new FlakeEventArgs(
+                objective.Interactor,
+                knapperInteractor,
+                objective,
+                this,
+                impactForce
+            );
         }
 
         #endregion

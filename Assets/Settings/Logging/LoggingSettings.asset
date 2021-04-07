@@ -13,11 +13,7 @@ MonoBehaviour:
   m_Name: LoggingSettings
   m_EditorClassIdentifier: 
   enableLogging: 0
-  compressLogs: 1
   uploadLogsToDropbox: 0
-  dropboxAuthorizationToken: sl.ArpR7EnLNRlyvy7XosH2uMuyfUDwRGYE0KJ4j14Tdkoa1B_csEHVMXxVSNivFaLgBEj44oHwQS8BnKSHsPj5OXIFEeMh8W5IdGGG_atqYPfiuKBLpPy3cBclBpJPvztTZNUohnI
-  logWriterType: 1
+  dropboxAuthorizationToken: jNkW887pPnsAAAAAAAAAAbR6pcm0vVYf2cwo1YVKYvLRCpZpTyuTRD4QL2LQT9A_
   logFileDirectory: logs
-  logFileSuffix: log
-  writeIntervalSeconds: 0.1
-  loggingSceneIndexes: 01000000
+  loggingSceneIndexes: 02000000

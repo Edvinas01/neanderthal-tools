@@ -3,17 +3,17 @@
     public interface ILogWriter
     {
         /// <summary>
-        /// Initialize the log writer and underlying writing task.
+        /// Initialize the log writer.
         /// </summary>
         void Start();
 
         /// <summary>
-        /// Cleanup writing task and stop the logger.
+        /// Cleanup writing log and stop the log writer.
         /// </summary>
         void Close();
 
         /// <summary>
-        /// Write given log values
+        /// Write given values.
         /// </summary>
         void Write(params object[] values);
     }

@@ -128,7 +128,7 @@ namespace NeanderthalTools.ToolCrafting.Hafting
 
             adhesive.Amount -= requiredAdhesiveAmount;
             attachPoint.Attach(Instantiate(adhesivePrefab));
-            onAttachAdhesive.Invoke(CreateEventArgs(adhesive));
+            onAttachAdhesive.Invoke(CreateEventArgs(null, adhesive));
         }
 
         private void HandleAttachFlake(AttachPoint attachPoint, Flake flake)
@@ -138,8 +138,9 @@ namespace NeanderthalTools.ToolCrafting.Hafting
                 return;
             }
 
+            var flakeInteractable = flake.GetComponentInParent<XRBaseInteractable>();
             attachPoint.Attach(flake.gameObject);
-            onAttachFlake.Invoke(CreateEventArgs(flake));
+            onAttachFlake.Invoke(CreateEventArgs(flakeInteractable.selectingInteractor, flake));
             RemoveComponents(flake);
         }
 
@@ -160,9 +161,16 @@ namespace NeanderthalTools.ToolCrafting.Hafting
             }
         }
 
-        private HaftEventArgs CreateEventArgs(IToolPart toolPart)
+        private HaftEventArgs CreateEventArgs(
+            XRBaseInteractor toolPartInteractor,
+            IToolPart toolPart
+        )
         {
-            return new HaftEventArgs(handleInteractable, toolPart);
+            return new HaftEventArgs(
+                toolPartInteractor,
+                handleInteractable.selectingInteractor,
+                toolPart
+            );
         }
 
         #endregion

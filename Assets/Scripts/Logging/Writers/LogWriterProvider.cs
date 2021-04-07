@@ -4,7 +4,7 @@ using UnityEngine;
 namespace NeanderthalTools.Logging.Writers
 {
     [CreateAssetMenu(
-        fileName = "LoggerWriterProvider",
+        fileName = "LogWriterProvider",
         menuName = "Game/Logging/Log Writer Provider"
     )]
     public class LogWriterProvider : ScriptableObject
@@ -14,10 +14,21 @@ namespace NeanderthalTools.Logging.Writers
         [SerializeField]
         private LoggingSettings loggingSettings;
 
+        [SerializeField]
+        [Tooltip("Log file type for streaming log writers")]
+        private LogWriterType logWriterType = LogWriterType.None;
+
+        [SerializeField]
+        private string logFileSuffix = "log";
+
+        [SerializeField]
+        [Tooltip("Should each log file be compressed using gzip")]
+        private bool compressLogs = true;
+
         [Min(0f)]
         [SerializeField]
-        [Tooltip("How often to sample logs from loggables (in seconds)")]
-        protected float sampleIntervalSeconds = 0.01f;
+        [Tooltip("How often to write (dump) aggregated log samples to a file (in seconds)")]
+        private float writeInterval = 0.1f;
 
         #endregion
 
@@ -28,27 +39,50 @@ namespace NeanderthalTools.Logging.Writers
         /// </returns>
         public ILogWriter CreateLogWriter(string loggerName)
         {
-            if (loggingSettings.LogWriterType == LogWriterType.None)
+            if (logWriterType == LogWriterType.None)
             {
                 return NoOpLogWriter.Instance;
             }
 
             var fileName = CreateLogFileName(loggerName);
-            var writer = CreateFileWriter(fileName);
 
-            return loggingSettings.LogWriterType switch
+            return logWriterType switch
             {
-                LogWriterType.Csv => new CsvLogWriter(writer, sampleIntervalSeconds),
-                LogWriterType.Binary => new BinaryLogWriter(writer, sampleIntervalSeconds),
+                LogWriterType.Csv => CreateCsvStreamingLogWriter(fileName),
+                LogWriterType.Binary => CreateBinaryStreamingLogWriter(fileName),
+                LogWriterType.Json => CreateJsonFileLogWriter(fileName),
                 _ => NoOpLogWriter.Instance
             };
         }
 
         private string CreateLogFileName(string loggerName)
         {
-            var logFileName = string.IsNullOrWhiteSpace(loggerName) ? name : loggerName;
+            return Files.CreateFileName(this, loggerName, logFileSuffix);
+        }
 
-            return $"{logFileName}.{loggingSettings.LogFileSuffix}";
+        private CsvStreamingLogWriter CreateCsvStreamingLogWriter(string fileName)
+        {
+            var writer = CreateFileWriter(fileName);
+            return new CsvStreamingLogWriter(writer);
+        }
+
+        private BinaryStreamingLogWriter CreateBinaryStreamingLogWriter(string fileName)
+        {
+            var writer = CreateFileWriter(fileName);
+            return new BinaryStreamingLogWriter(writer);
+        }
+
+        private JsonLogWriter CreateJsonFileLogWriter(string fileName)
+        {
+            var filePath = Files.CreateFilePath(
+                loggingSettings.LogFileDirectory,
+                fileName,
+                compressLogs
+            );
+
+            Files.CreateDirectory(filePath);
+
+            return new JsonLogWriter(filePath, compressLogs);
         }
 
         private AsyncFileWriter CreateFileWriter(string fileName)
@@ -56,8 +90,8 @@ namespace NeanderthalTools.Logging.Writers
             return new AsyncFileWriter(
                 loggingSettings.LogFileDirectory,
                 fileName,
-                loggingSettings.CompressLogs,
-                loggingSettings.WriteIntervalSeconds
+                compressLogs,
+                writeInterval
             );
         }
 

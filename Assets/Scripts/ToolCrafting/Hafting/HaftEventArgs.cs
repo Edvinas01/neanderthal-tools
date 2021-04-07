@@ -4,13 +4,23 @@ namespace NeanderthalTools.ToolCrafting.Hafting
 {
     public class HaftEventArgs
     {
-        public XRBaseInteractable HandleInteractable { get; }
+        /// <summary>
+        /// The interactor that the tool part is grabbed by, can be null.
+        /// </summary>
+        public XRBaseInteractor ToolPartInteractor { get; }
+
+        public XRBaseInteractor HandleInteractor { get; }
 
         public IToolPart ToolPart { get; }
 
-        public HaftEventArgs(XRBaseInteractable handleInteractable, IToolPart toolPart)
+        public HaftEventArgs(
+            XRBaseInteractor toolPartInteractor,
+            XRBaseInteractor handleInteractor,
+            IToolPart toolPart
+        )
         {
-            HandleInteractable = handleInteractable;
+            ToolPartInteractor = toolPartInteractor;
+            HandleInteractor = handleInteractor;
             ToolPart = toolPart;
         }
     }

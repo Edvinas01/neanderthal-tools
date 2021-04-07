@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using NaughtyAttributes;
-using NeanderthalTools.Logging.Writers;
 using UnityEngine;
 
 namespace NeanderthalTools.Logging
@@ -17,10 +16,6 @@ namespace NeanderthalTools.Logging
         private bool enableLogging;
 
         [SerializeField]
-        [Tooltip("Should each log file be compressed using gzip")]
-        private bool compressLogs = true;
-
-        [SerializeField]
         [Tooltip("Should logs be uploaded to dropbox")]
         private bool uploadLogsToDropbox;
 
@@ -30,21 +25,8 @@ namespace NeanderthalTools.Logging
         private string dropboxAuthorizationToken;
 
         [SerializeField]
-        [Tooltip("Log file type for all log writers")]
-        private LogWriterType logWriterType = LogWriterType.None;
-
-        [SerializeField]
         [Tooltip("Directory where to store all logs")]
         private string logFileDirectory = "logs";
-
-        [SerializeField]
-        [Tooltip("Suffix of log files")]
-        private string logFileSuffix = "log";
-
-        [Min(0f)]
-        [SerializeField]
-        [Tooltip("How often to write (dump) aggregated log samples to a file (in seconds)")]
-        private float writeIntervalSeconds = 0.1f;
 
         [Scene]
         [SerializeField]
@@ -57,13 +39,9 @@ namespace NeanderthalTools.Logging
 
         public bool EnableLogging => enableLogging;
 
-        public bool CompressLogs => compressLogs;
-
         public bool UploadLogsToDropbox => uploadLogsToDropbox;
 
         public string DropboxAuthorizationToken => dropboxAuthorizationToken;
-
-        public LogWriterType LogWriterType => logWriterType;
 
         [field: NonSerialized]
         public string CurrentLogFileDirectory { get; private set; }
@@ -73,10 +51,6 @@ namespace NeanderthalTools.Logging
             get => Path.Combine(logFileDirectory, CurrentLogFileDirectory);
             set => CurrentLogFileDirectory = value;
         }
-
-        public string LogFileSuffix => logFileSuffix;
-
-        public float WriteIntervalSeconds => writeIntervalSeconds;
 
         public List<int> LoggingSceneIndexes => loggingSceneIndexes;
 

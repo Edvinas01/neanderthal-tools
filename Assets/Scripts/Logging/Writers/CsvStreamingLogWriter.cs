@@ -3,10 +3,9 @@ using NeanderthalTools.Util;
 
 namespace NeanderthalTools.Logging.Writers
 {
-    public class CsvLogWriter : BaseLogWriter
+    public class CsvStreamingLogWriter : BaseStreamingLogWriter
     {
-        public CsvLogWriter(AsyncFileWriter writer, float sampleIntervalSeconds)
-            : base(writer, sampleIntervalSeconds)
+        public CsvStreamingLogWriter(AsyncFileWriter writer) : base(writer)
         {
         }
 

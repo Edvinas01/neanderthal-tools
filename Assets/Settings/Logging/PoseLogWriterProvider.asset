@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: PoseLogWriterProvider
   m_EditorClassIdentifier: 
   loggingSettings: {fileID: 11400000, guid: 2ddc8dee064115845906554eb24e9749, type: 2}
-  sampleIntervalSeconds: 0.1
+  logWriterType: 1
+  logFileSuffix: csv

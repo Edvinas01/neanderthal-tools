@@ -4,10 +4,9 @@ using NeanderthalTools.Util;
 
 namespace NeanderthalTools.Logging.Writers
 {
-    public class BinaryLogWriter : BaseLogWriter
+    public class BinaryStreamingLogWriter : BaseStreamingLogWriter
     {
-        public BinaryLogWriter(AsyncFileWriter writer, float sampleIntervalSeconds)
-            : base(writer, sampleIntervalSeconds)
+        public BinaryStreamingLogWriter(AsyncFileWriter writer) : base(writer)
         {
         }
 
