@@ -66,12 +66,7 @@ namespace NeanderthalTools.Logging.Visualizers.Editor
                 var headerParts = header.Split('_');
                 var headerPrefix = headerParts[0];
 
-                var pose = new PoseData
-                {
-                    Name = headerPrefix,
-                    Positions = new List<Vector3>()
-                };
-
+                var pose = new PoseData(headerPrefix, new List<Vector3>());
                 poses.Add(pose);
             }
 

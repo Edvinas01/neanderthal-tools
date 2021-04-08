@@ -6,6 +6,8 @@ namespace NeanderthalTools.Logging.Visualizers.Editor
 {
     public static class SessionDataReader
     {
+        #region Methods
+
         public static SessionData Read(string filePath)
         {
             var lines = LogFileReader.Read(filePath);
@@ -13,5 +15,7 @@ namespace NeanderthalTools.Logging.Visualizers.Editor
 
             return JsonUtility.FromJson<SessionData>(json);
         }
+
+        #endregion
     }
 }

@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using UnityEditor;
 using UnityEngine;
@@ -20,7 +22,11 @@ namespace NeanderthalTools.Logging.Visualizers.Editor
             );
 
         private readonly List<UserData> users = new List<UserData>();
+
+        private Vector2 usersScroll;
         private int maxPositions;
+        private int seekStart;
+        private int seekSize;
 
         #endregion
 
@@ -46,33 +52,24 @@ namespace NeanderthalTools.Logging.Visualizers.Editor
 
         private void OnGUI()
         {
-            foreach (var user in users)
+            EditorGUILayout.LabelField("Users", EditorStyles.boldLabel);
+            EditorGUILayout.Space();
+
+            usersScroll = EditorGUILayout.BeginScrollView(
+                usersScroll,
+                GUIStyle.none,
+                GUI.skin.verticalScrollbar
+            );
+
+            DrawUserGUI();
+            EditorGUILayout.EndScrollView();
+
+            DrawSeekingGUI();
+            EditorGUILayout.Space();
+
+            if (GUILayout.Button("Add sessions"))
             {
-                EditorGUILayout.LabelField(user.Session.LoggingId);
-                user.IsDraw = EditorGUILayout.Toggle("Draw", user.IsDraw);
-                user.Color = EditorGUILayout.ColorField("Color", user.Color);
-                EditorGUILayout.Space();
-            }
-
-            if (GUILayout.Button("Add user"))
-            {
-                users.Clear();
-
-                var directoryPath = EditorUtility.OpenFolderPanel("Open user directory", "", "");
-                if (string.IsNullOrWhiteSpace(directoryPath))
-                {
-                    return;
-                }
-
-                var user = UserDataReader.Read(directoryPath);
-                if (user.Session == null)
-                {
-                    Debug.LogError($"No session data found for {directoryPath}", this);
-                    return;
-                }
-
-                ReplaceOrAdd(user);
-                maxPositions = FindMaxPositions();
+                AddSessions();
             }
         }
 
@@ -83,30 +80,126 @@ namespace NeanderthalTools.Logging.Visualizers.Editor
                 return;
             }
 
-            foreach (var user in users)
-            {
-                if (user.IsDraw)
-                {
-                    Draw(user);
-                }
-            }
+            DrawUserData();
         }
 
         #endregion
 
-        #region Methods
+        #region GUI drawing methods
+
+        private void DrawUserGUI()
+        {
+            for (var userIndex = users.Count - 1; userIndex >= 0; userIndex--)
+            {
+                var user = users[userIndex];
+                DrawUserHeaderGUI(user);
+
+                EditorGUI.indentLevel++;
+
+                var sessions = user.Sessions;
+                for (var sessionIndex = sessions.Count - 1; sessionIndex >= 0; sessionIndex--)
+                {
+                    var session = sessions[sessionIndex];
+
+                    DrawSessionGUI(sessions, session);
+                    EditorGUILayout.Space();
+                }
+
+                EditorGUI.indentLevel--;
+
+                EditorGUILayout.Space();
+            }
+        }
+
+        private void DrawUserHeaderGUI(UserData user)
+        {
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.LabelField(user.LoggingId, EditorStyles.boldLabel);
+            if (GUILayout.Button("Remove"))
+            {
+                users.Remove(user);
+            }
+
+            EditorGUILayout.EndHorizontal();
+        }
+
+        private static void DrawSessionGUI(
+            ICollection<AggregatedSessionData> sessions,
+            AggregatedSessionData session
+        )
+        {
+            DrawSessionHeaderGUI(sessions, session);
+            DrawSessionPoseGUI(session);
+
+            session.IsDraw = EditorGUILayout.Toggle("Draw all", session.IsDraw);
+            session.Color = EditorGUILayout.ColorField("Color", session.Color);
+        }
+
+        private static void DrawSessionHeaderGUI(
+            ICollection<AggregatedSessionData> sessions,
+            AggregatedSessionData session
+        )
+        {
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.LabelField(session.SessionName);
+            if (GUILayout.Button("Remove"))
+            {
+                sessions.Remove(session);
+            }
+
+            EditorGUILayout.EndHorizontal();
+        }
+
+        private static void DrawSessionPoseGUI(AggregatedSessionData session)
+        {
+            foreach (var pose in session.Poses)
+            {
+                pose.IsDraw = EditorGUILayout.Toggle($"Draw {pose.Name}", pose.IsDraw);
+            }
+        }
+
+        private void DrawSeekingGUI()
+        {
+            EditorGUILayout.LabelField("Seeking", EditorStyles.boldLabel);
+            seekStart = EditorGUILayout.IntSlider("Seek start", seekStart, 0, maxPositions);
+            seekSize = EditorGUILayout.IntSlider("Seek size", seekSize, 0, maxPositions);
+        }
+
+        private void AddSessions()
+        {
+            var directoryPath = EditorUtility.OpenFolderPanel("Open sessions directory", "", "");
+            if (string.IsNullOrWhiteSpace(directoryPath))
+            {
+                return;
+            }
+
+            var sessions = AggregatedSessionDataReader.Read(directoryPath);
+            foreach (var session in sessions)
+            {
+                AddOrReplace(session);
+            }
+
+            maxPositions = FindMaxPositions();
+        }
+
+        #endregion
+
+        #region Utility methods
 
         private int FindMaxPositions()
         {
             var max = 0;
             foreach (var user in users)
             {
-                foreach (var pose in user.Poses)
+                foreach (var session in user.Sessions)
                 {
-                    var positionCount = pose.Positions.Count;
-                    if (max < positionCount)
+                    foreach (var pose in session.Poses)
                     {
-                        max = positionCount;
+                        var positionCount = pose.Positions.Count;
+                        if (max < positionCount)
+                        {
+                            max = positionCount;
+                        }
                     }
                 }
             }
@@ -114,45 +207,84 @@ namespace NeanderthalTools.Logging.Visualizers.Editor
             return max;
         }
 
-        private void ReplaceOrAdd(UserData newUser)
+        private void AddOrReplace(AggregatedSessionData session)
         {
-            var index = users.FindIndex(existingUser =>
-                existingUser.Session.LoggingId == newUser.Session.LoggingId
-            );
-
-            if (index == -1)
+            var existingUser = users.FirstOrDefault(user => user.LoggingId == session.LoggingId);
+            if (existingUser != null)
             {
-                users.Add(newUser);
+                var sessions = existingUser.Sessions;
+                var index = sessions.FindIndex(
+                    existingSession => existingSession.SessionName == session.SessionName
+                );
+
+                if (index != -1)
+                {
+                    sessions[index] = session;
+                }
+                else
+                {
+                    sessions.Add(session);
+                }
+
+                sessions.Sort((sessionA, sessionB) =>
+                    string.CompareOrdinal(sessionA.SessionName, sessionB.SessionName)
+                );
             }
             else
             {
-                users[index] = newUser;
+                var newUser = new UserData(session);
+                users.Add(newUser);
             }
         }
 
-        private static void Draw(UserData user)
+        #endregion
+
+        #region Scene drawing methods
+
+        private void DrawUserData()
+        {
+            foreach (var user in users)
+            {
+                foreach (var session in user.Sessions)
+                {
+                    if (session.IsDraw)
+                    {
+                        Draw(session);
+                    }
+                }
+            }
+        }
+
+        private void Draw(AggregatedSessionData session)
         {
             ApplyWireMaterial();
 
             GL.PushMatrix();
             GL.MultMatrix(Handles.matrix);
 
-            var poses = user.Poses;
+            var poses = session.Poses;
             foreach (var pose in poses)
             {
-                Draw(pose, user.Color);
+                if (pose.IsDraw)
+                {
+                    Draw(pose, session.Color);
+                }
             }
 
             GL.PopMatrix();
         }
 
-        private static void Draw(PoseData pose, Color color)
+        private void Draw(PoseData pose, Color color)
         {
             GL.Begin(GL.LINE_STRIP);
             GL.Color(color);
 
             var positions = pose.Positions;
-            for (var index = 0; index < positions.Count - 1; index++)
+
+            var startIndex = Math.Min(seekStart, positions.Count);
+            var endIndex = Math.Min(seekStart + seekSize, positions.Count) - 1;
+
+            for (var index = startIndex; index < endIndex; index++)
             {
                 var currentPosition = positions[index];
                 var nextPosition = positions[index + 1];

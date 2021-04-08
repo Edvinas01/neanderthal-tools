@@ -1,17 +1,25 @@
 ﻿using System.Collections.Generic;
-using NeanderthalTools.Logging.Loggers.Session;
-using UnityEngine;
 
 namespace NeanderthalTools.Logging.Visualizers.Editor
 {
     public class UserData
     {
-        public SessionData Session { get; set; }
+        #region Properties
 
-        public List<PoseData> Poses { get; set; }
+        public string LoggingId { get; }
 
-        public bool IsDraw { get; set; } = true;
+        public List<AggregatedSessionData> Sessions { get; }
 
-        public Color Color { get; set; }
+        #endregion
+
+        #region Methods
+
+        public UserData(AggregatedSessionData session)
+        {
+            LoggingId = session.LoggingId;
+            Sessions = new List<AggregatedSessionData> {session};
+        }
+
+        #endregion
     }
 }

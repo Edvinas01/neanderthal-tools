@@ -5,8 +5,24 @@ namespace NeanderthalTools.Logging.Visualizers.Editor
 {
     public class PoseData
     {
-        public string Name { get; set; }
+        #region Properties
 
-        public List<Vector3> Positions { get; set; }
+        public bool IsDraw { get; set; } = true;
+
+        public string Name { get; }
+
+        public List<Vector3> Positions { get; }
+
+        #endregion
+
+        #region Methods
+
+        public PoseData(string name, List<Vector3> positions)
+        {
+            Name = name;
+            Positions = positions;
+        }
+
+        #endregion
     }
 }
