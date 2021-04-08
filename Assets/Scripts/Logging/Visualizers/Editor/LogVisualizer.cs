@@ -26,6 +26,7 @@ namespace NeanderthalTools.Logging.Visualizers.Editor
         private UserSessions userSessions;
 
         private Vector2 usersScroll;
+        private bool drawUserPositions;
         private int maxPositions;
         private int seekStart;
         private int seekSize;
@@ -71,7 +72,7 @@ namespace NeanderthalTools.Logging.Visualizers.Editor
             DrawUsersGUI();
             EditorGUILayout.EndScrollView();
 
-            DrawSeekingGUI();
+            DrawVisualizerGUI();
             EditorGUILayout.Space();
 
             if (GUILayout.Button("Save user sessions"))
@@ -92,7 +93,10 @@ namespace NeanderthalTools.Logging.Visualizers.Editor
                 return;
             }
 
-            DrawUserData();
+            if (drawUserPositions)
+            {
+                DrawUserPositions();
+            }
         }
 
         #endregion
@@ -175,9 +179,10 @@ namespace NeanderthalTools.Logging.Visualizers.Editor
             }
         }
 
-        private void DrawSeekingGUI()
+        private void DrawVisualizerGUI()
         {
-            EditorGUILayout.LabelField("Seeking", EditorStyles.boldLabel);
+            EditorGUILayout.LabelField("Controls", EditorStyles.boldLabel);
+            drawUserPositions = EditorGUILayout.Toggle("Draw user positions", drawUserPositions);
             seekStart = EditorGUILayout.IntSlider("Seek start", seekStart, 0, maxPositions);
             seekSize = EditorGUILayout.IntSlider("Seek size", seekSize, 0, maxPositions);
         }
@@ -276,7 +281,7 @@ namespace NeanderthalTools.Logging.Visualizers.Editor
 
         #region Scene drawing methods
 
-        private void DrawUserData()
+        private void DrawUserPositions()
         {
             foreach (var user in users)
             {
@@ -284,13 +289,13 @@ namespace NeanderthalTools.Logging.Visualizers.Editor
                 {
                     if (session.IsDraw)
                     {
-                        Draw(session);
+                        DrawPositions(session);
                     }
                 }
             }
         }
 
-        private void Draw(AggregatedSessionData session)
+        private void DrawPositions(AggregatedSessionData session)
         {
             ApplyWireMaterial();
 
@@ -302,14 +307,14 @@ namespace NeanderthalTools.Logging.Visualizers.Editor
             {
                 if (pose.IsDraw)
                 {
-                    Draw(pose, session.Color);
+                    DrawPositions(pose, session.Color);
                 }
             }
 
             GL.PopMatrix();
         }
 
-        private void Draw(PoseData pose, Color color)
+        private void DrawPositions(PoseData pose, Color color)
         {
             GL.Begin(GL.LINE_STRIP);
             GL.Color(color);
