@@ -61,7 +61,7 @@ namespace NeanderthalTools.Logging.Visualizers.Editor
                 GUI.skin.verticalScrollbar
             );
 
-            DrawUserGUI();
+            DrawUsersGUI();
             EditorGUILayout.EndScrollView();
 
             DrawSeekingGUI();
@@ -87,40 +87,45 @@ namespace NeanderthalTools.Logging.Visualizers.Editor
 
         #region GUI drawing methods
 
-        private void DrawUserGUI()
+        private void DrawUsersGUI()
         {
             for (var userIndex = users.Count - 1; userIndex >= 0; userIndex--)
             {
                 var user = users[userIndex];
-                DrawUserHeaderGUI(user);
+                user.Foldout = EditorGUILayout.BeginFoldoutHeaderGroup(
+                    user.Foldout,
+                    user.LoggingId
+                );
 
-                EditorGUI.indentLevel++;
-
-                var sessions = user.Sessions;
-                for (var sessionIndex = sessions.Count - 1; sessionIndex >= 0; sessionIndex--)
+                if (user.Foldout)
                 {
-                    var session = sessions[sessionIndex];
-
-                    DrawSessionGUI(sessions, session);
-                    EditorGUILayout.Space();
+                    DrawUserGUI(user);
                 }
 
-                EditorGUI.indentLevel--;
-
-                EditorGUILayout.Space();
+                EditorGUILayout.EndFoldoutHeaderGroup();
             }
         }
 
-        private void DrawUserHeaderGUI(UserData user)
+        private void DrawUserGUI(UserData user)
         {
-            EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField(user.LoggingId, EditorStyles.boldLabel);
+            EditorGUI.indentLevel++;
+
+            var sessions = user.Sessions;
+            for (var sessionIndex = sessions.Count - 1; sessionIndex >= 0; sessionIndex--)
+            {
+                var session = sessions[sessionIndex];
+
+                DrawSessionGUI(sessions, session);
+                EditorGUILayout.Space();
+            }
+
+            EditorGUI.indentLevel--;
             if (GUILayout.Button("Remove"))
             {
                 users.Remove(user);
             }
 
-            EditorGUILayout.EndHorizontal();
+            EditorGUILayout.Space();
         }
 
         private static void DrawSessionGUI(

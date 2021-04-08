@@ -8,6 +8,8 @@ namespace NeanderthalTools.Logging.Visualizers.Editor
 
         public string LoggingId { get; }
 
+        public bool Foldout { get; set; }
+
         public List<AggregatedSessionData> Sessions { get; }
 
         #endregion
