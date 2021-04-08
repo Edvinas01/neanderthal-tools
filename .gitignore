@@ -68,8 +68,8 @@ crashlytics-build.properties
 # Game specific
 Assets/Settings/Scenes/EditorSceneSettings*.asset
 Assets/Settings/Scenes/EditorSceneSettings*.asset.meta
-Assets/Settings/Logging/SavedUserSessions*.asset
-Assets/Settings/Logging/SavedUserSessions*.asset.meta
+Assets/Settings/Logging/UserSessions*.asset
+Assets/Settings/Logging/UserSessions*.asset.meta
 
 # Blender
 *.blend1

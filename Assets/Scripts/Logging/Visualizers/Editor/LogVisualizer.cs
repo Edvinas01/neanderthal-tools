@@ -23,7 +23,7 @@ namespace NeanderthalTools.Logging.Visualizers.Editor
             );
 
         private readonly List<UserData> users = new List<UserData>();
-        private UserSessions savedUserSessions;
+        private UserSessions userSessions;
 
         private Vector2 usersScroll;
         private int maxPositions;
@@ -54,9 +54,9 @@ namespace NeanderthalTools.Logging.Visualizers.Editor
 
         private void OnGUI()
         {
-            if (savedUserSessions == null)
+            if (userSessions == null)
             {
-                LoadSavedUserSessions();
+                LoadUserSessions();
             }
 
             EditorGUILayout.LabelField("Users", EditorStyles.boldLabel);
@@ -186,21 +186,21 @@ namespace NeanderthalTools.Logging.Visualizers.Editor
 
         #region Utility methods
 
-        private void LoadSavedUserSessions()
+        private void LoadUserSessions()
         {
-            savedUserSessions = ScriptableObjectExtensions.FindOrCreateAsset<UserSessions>(
-                "Assets/Settings/Logging/SavedUserSessions.asset"
+            userSessions = ScriptableObjectExtensions.FindOrCreateAsset<UserSessions>(
+                "Assets/Settings/Logging/UserSessions.asset"
             );
 
-            users.AddRange(savedUserSessions.Users);
+            users.AddRange(userSessions.Users);
             maxPositions = FindMaxPositions();
             seekSize = maxPositions;
         }
 
         private void SaveUserSessions()
         {
-            savedUserSessions.Users.Clear();
-            savedUserSessions.Users.AddRange(users);
+            userSessions.Users.Clear();
+            userSessions.Users.AddRange(users);
             AssetDatabase.SaveAssets();
         }
 
