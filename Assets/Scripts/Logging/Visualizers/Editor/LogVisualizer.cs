@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using NeanderthalTools.Util.Editor;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -22,6 +23,7 @@ namespace NeanderthalTools.Logging.Visualizers.Editor
             );
 
         private readonly List<UserData> users = new List<UserData>();
+        private UserSessions savedUserSessions;
 
         private Vector2 usersScroll;
         private int maxPositions;
@@ -52,6 +54,11 @@ namespace NeanderthalTools.Logging.Visualizers.Editor
 
         private void OnGUI()
         {
+            if (savedUserSessions == null)
+            {
+                LoadSavedUserSessions();
+            }
+
             EditorGUILayout.LabelField("Users", EditorStyles.boldLabel);
             EditorGUILayout.Space();
 
@@ -67,7 +74,12 @@ namespace NeanderthalTools.Logging.Visualizers.Editor
             DrawSeekingGUI();
             EditorGUILayout.Space();
 
-            if (GUILayout.Button("Add sessions"))
+            if (GUILayout.Button("Save user sessions"))
+            {
+                SaveUserSessions();
+            }
+
+            if (GUILayout.Button("Add user sessions"))
             {
                 AddSessions();
             }
@@ -120,7 +132,7 @@ namespace NeanderthalTools.Logging.Visualizers.Editor
             }
 
             EditorGUI.indentLevel--;
-            if (GUILayout.Button("Remove"))
+            if (GUILayout.Button("Remove user"))
             {
                 users.Remove(user);
             }
@@ -147,7 +159,7 @@ namespace NeanderthalTools.Logging.Visualizers.Editor
         {
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.LabelField(session.SessionName);
-            if (GUILayout.Button("Remove"))
+            if (GUILayout.Button("Remove session"))
             {
                 sessions.Remove(session);
             }
@@ -170,6 +182,28 @@ namespace NeanderthalTools.Logging.Visualizers.Editor
             seekSize = EditorGUILayout.IntSlider("Seek size", seekSize, 0, maxPositions);
         }
 
+        #endregion
+
+        #region Utility methods
+
+        private void LoadSavedUserSessions()
+        {
+            savedUserSessions = ScriptableObjectExtensions.FindOrCreateAsset<UserSessions>(
+                "Assets/Settings/Logging/SavedUserSessions.asset"
+            );
+
+            users.AddRange(savedUserSessions.Users);
+            maxPositions = FindMaxPositions();
+            seekSize = maxPositions;
+        }
+
+        private void SaveUserSessions()
+        {
+            savedUserSessions.Users.Clear();
+            savedUserSessions.Users.AddRange(users);
+            AssetDatabase.SaveAssets();
+        }
+
         private void AddSessions()
         {
             var directoryPath = EditorUtility.OpenFolderPanel("Open sessions directory", "", "");
@@ -186,10 +220,6 @@ namespace NeanderthalTools.Logging.Visualizers.Editor
 
             maxPositions = FindMaxPositions();
         }
-
-        #endregion
-
-        #region Utility methods
 
         private int FindMaxPositions()
         {
