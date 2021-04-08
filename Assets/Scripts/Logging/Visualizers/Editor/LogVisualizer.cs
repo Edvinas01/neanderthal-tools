@@ -23,11 +23,17 @@ namespace NeanderthalTools.Logging.Visualizers.Editor
             );
 
         private readonly List<UserData> users = new List<UserData>();
-        private UserSessions userSessions;
+
+        private readonly Dictionary<Vector3, int> heatmap =
+            new SerializedDictionary<Vector3, int>();
+
+        private LogVisualizerSettings settings;
 
         private Vector2 usersScroll;
-        private bool drawUserPositions;
+
+        private int maxHeatmapValue;
         private int maxPositions;
+
         private int seekStart;
         private int seekSize;
 
@@ -40,6 +46,12 @@ namespace NeanderthalTools.Logging.Visualizers.Editor
         {
             var window = GetWindow<LogVisualizer>("Log visualizer");
             window.Show();
+        }
+
+        private void OnEnable()
+        {
+            LoadSettings();
+            LoadHeatmap();
         }
 
         private void OnFocus()
@@ -55,11 +67,6 @@ namespace NeanderthalTools.Logging.Visualizers.Editor
 
         private void OnGUI()
         {
-            if (userSessions == null)
-            {
-                LoadUserSessions();
-            }
-
             EditorGUILayout.LabelField("Users", EditorStyles.boldLabel);
             EditorGUILayout.Space();
 
@@ -72,7 +79,10 @@ namespace NeanderthalTools.Logging.Visualizers.Editor
             DrawUsersGUI();
             EditorGUILayout.EndScrollView();
 
-            DrawVisualizerGUI();
+            DrawPositionsGUI();
+            EditorGUILayout.Space();
+
+            DrawHeatmapGUI();
             EditorGUILayout.Space();
 
             if (GUILayout.Button("Save user sessions"))
@@ -80,9 +90,15 @@ namespace NeanderthalTools.Logging.Visualizers.Editor
                 SaveUserSessions();
             }
 
+            if (GUILayout.Button("Reload heatmap"))
+            {
+                LoadHeatmap();
+            }
+
             if (GUILayout.Button("Add user sessions"))
             {
                 AddSessions();
+                LoadHeatmap();
             }
         }
 
@@ -93,9 +109,14 @@ namespace NeanderthalTools.Logging.Visualizers.Editor
                 return;
             }
 
-            if (drawUserPositions)
+            if (settings.IsDrawUserPositions)
             {
                 DrawUserPositions();
+            }
+
+            if (settings.IsDrawHeatmap)
+            {
+                DrawHeatmap();
             }
         }
 
@@ -150,9 +171,10 @@ namespace NeanderthalTools.Logging.Visualizers.Editor
         )
         {
             DrawSessionHeaderGUI(sessions, session);
+            EditorGUI.indentLevel++;
             DrawSessionPoseGUI(session);
+            EditorGUI.indentLevel--;
 
-            session.IsDraw = EditorGUILayout.Toggle("Draw all", session.IsDraw);
             session.Color = EditorGUILayout.ColorField("Color", session.Color);
         }
 
@@ -175,37 +197,102 @@ namespace NeanderthalTools.Logging.Visualizers.Editor
         {
             foreach (var pose in session.Poses)
             {
-                pose.IsDraw = EditorGUILayout.Toggle($"Draw {pose.Name}", pose.IsDraw);
+                EditorGUILayout.LabelField(pose.Name);
+                EditorGUI.indentLevel++;
+                pose.IsHeatmap = EditorGUILayout.Toggle("Include in heatmap", pose.IsHeatmap);
+                pose.IsDraw = EditorGUILayout.Toggle("Draw positions", pose.IsDraw);
+                EditorGUI.indentLevel--;
             }
         }
 
-        private void DrawVisualizerGUI()
+        private void DrawPositionsGUI()
         {
-            EditorGUILayout.LabelField("Controls", EditorStyles.boldLabel);
-            drawUserPositions = EditorGUILayout.Toggle("Draw user positions", drawUserPositions);
+            EditorGUILayout.LabelField("Positions", EditorStyles.boldLabel);
+            settings.IsDrawUserPositions = EditorGUILayout
+                .Toggle("Draw", settings.IsDrawUserPositions);
+
             seekStart = EditorGUILayout.IntSlider("Seek start", seekStart, 0, maxPositions);
             seekSize = EditorGUILayout.IntSlider("Seek size", seekSize, 0, maxPositions);
         }
 
-        #endregion
-
-        #region Utility methods
-
-        private void LoadUserSessions()
+        private void DrawHeatmapGUI()
         {
-            userSessions = ScriptableObjectExtensions.FindOrCreateAsset<UserSessions>(
-                "Assets/Settings/Logging/UserSessions.asset"
+            EditorGUILayout.LabelField("Heatmap", EditorStyles.boldLabel);
+
+            // IsDrawHeatmap
+            settings.IsDrawHeatmap = EditorGUILayout.Toggle(
+                "Draw",
+                settings.IsDrawHeatmap
             );
 
-            users.AddRange(userSessions.Users);
+            // HeatmapCellMaxScale
+            settings.HeatmapCellMaxScale = EditorGUILayout.FloatField(
+                "Cell max scale",
+                settings.HeatmapCellMaxScale
+            );
+            settings.HeatmapCellMaxScale = Math.Max(settings.HeatmapCellMaxScale, 0);
+
+            // HeatmapCellSize
+            settings.HeatmapCellSize = EditorGUILayout.FloatField(
+                "Cell size",
+                settings.HeatmapCellSize
+            );
+            settings.HeatmapCellSize = Math.Max(settings.HeatmapCellSize, 0);
+
+            // HeatmapMaterial
+            settings.HeatmapMaterial = (Material) EditorGUILayout.ObjectField(
+                "Material",
+                settings.HeatmapMaterial,
+                typeof(Material),
+                false
+            );
+
+            // HeatmapMesh
+            settings.HeatmapMesh = (Mesh) EditorGUILayout.ObjectField(
+                "Mesh",
+                settings.HeatmapMesh,
+                typeof(Mesh),
+                false
+            );
+
+            // HeatmapColorProperty
+            settings.HeatmapColorProperty = EditorGUILayout.TextField(
+                "Color property",
+                settings.HeatmapColorProperty
+            );
+
+            // HeatmapToColor
+            settings.HeatmapFromColor = EditorGUILayout.ColorField(
+                "From color",
+                settings.HeatmapFromColor
+            );
+
+            // HeatmapToColor
+            settings.HeatmapToColor = EditorGUILayout.ColorField(
+                "To color",
+                settings.HeatmapToColor
+            );
+        }
+
+        #endregion
+
+        #region User utility methods
+
+        private void LoadSettings()
+        {
+            settings = ScriptableObjectExtensions.FindOrCreateAsset<LogVisualizerSettings>(
+                "Assets/Settings/Logging/LogVisualizerSettings.asset"
+            );
+
+            users.AddRange(settings.Users);
             maxPositions = FindMaxPositions();
             seekSize = maxPositions;
         }
 
         private void SaveUserSessions()
         {
-            userSessions.Users.Clear();
-            userSessions.Users.AddRange(users);
+            settings.Users.Clear();
+            settings.Users.AddRange(users);
             AssetDatabase.SaveAssets();
         }
 
@@ -279,7 +366,90 @@ namespace NeanderthalTools.Logging.Visualizers.Editor
 
         #endregion
 
-        #region Scene drawing methods
+        #region Heatmap utility methods
+
+        private void LoadHeatmap()
+        {
+            heatmap.Clear();
+
+            foreach (var user in users)
+            {
+                foreach (var session in user.Sessions)
+                {
+                    foreach (var pose in session.Poses)
+                    {
+                        if (!pose.IsHeatmap)
+                        {
+                            continue;
+                        }
+
+                        foreach (var posePosition in pose.Positions)
+                        {
+                            AddToHeatmap(posePosition);
+                        }
+                    }
+                }
+            }
+
+            maxHeatmapValue = FindMaxHeatmapValue();
+        }
+
+        private int FindMaxHeatmapValue()
+        {
+            var max = 0;
+            foreach (var value in heatmap.Values)
+            {
+                if (max < value)
+                {
+                    max = value;
+                }
+            }
+
+            return max;
+        }
+
+        private bool IsLoadHeatmapRenderers()
+        {
+            return settings.HeatmapMaterial == null || settings.HeatmapMesh == null;
+        }
+
+        private void LoadHeatmapRenderers()
+        {
+            var sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+
+            var renderer = sphere.GetComponent<Renderer>();
+            settings.HeatmapMaterial = renderer.sharedMaterial;
+
+            var meshFilter = sphere.GetComponent<MeshFilter>();
+            settings.HeatmapMesh = meshFilter.sharedMesh;
+
+            DestroyImmediate(sphere);
+        }
+
+        private void AddToHeatmap(Vector3 worldPosition)
+        {
+            var heatmapScale = settings.HeatmapCellSize;
+
+            var heatmapPosition = new Vector3(
+                Mathf.Round(worldPosition.x / heatmapScale) * heatmapScale,
+                Mathf.Round(worldPosition.y / heatmapScale) * heatmapScale,
+                Mathf.Round(worldPosition.z / heatmapScale) * heatmapScale
+            );
+
+            if (heatmap.TryGetValue(heatmapPosition, out var heatmapValue))
+            {
+                heatmapValue += 1;
+                heatmap[heatmapPosition] = heatmapValue;
+            }
+            else
+            {
+                heatmap[heatmapPosition] = 1;
+            }
+        }
+
+        #endregion
+
+        #region User session drawing methods
 
         private void DrawUserPositions()
         {
@@ -287,10 +457,7 @@ namespace NeanderthalTools.Logging.Visualizers.Editor
             {
                 foreach (var session in user.Sessions)
                 {
-                    if (session.IsDraw)
-                    {
-                        DrawPositions(session);
-                    }
+                    DrawPositions(session);
                 }
             }
         }
@@ -339,6 +506,51 @@ namespace NeanderthalTools.Logging.Visualizers.Editor
         private static void ApplyWireMaterial()
         {
             ApplyWireMaterialMethod.Invoke(null, new object[] {Handles.zTest});
+        }
+
+        #endregion
+
+        #region Heatmap drawing methods
+
+        private void DrawHeatmap()
+        {
+            if (IsLoadHeatmapRenderers())
+            {
+                LoadHeatmapRenderers();
+            }
+
+            var colorProperty = Shader.PropertyToID(settings.HeatmapColorProperty);
+            var material = settings.HeatmapMaterial;
+
+            foreach (var heatmapKeyValue in heatmap)
+            {
+                var cellPosition = heatmapKeyValue.Key;
+                var cellValue = heatmapKeyValue.Value;
+
+                var progress = cellValue / (float) maxHeatmapValue;
+                var scale = Vector3.Lerp(
+                    Vector3.one * settings.HeatmapCellSize,
+                    Vector3.one * settings.HeatmapCellMaxScale,
+                    progress
+                );
+
+                var color = Color.Lerp(
+                    settings.HeatmapFromColor,
+                    settings.HeatmapToColor,
+                    progress
+                );
+
+                material.SetColor(colorProperty, color);
+                material.SetPass(0);
+
+                var matrix = Handles.matrix * Matrix4x4.TRS(
+                    cellPosition,
+                    Quaternion.identity,
+                    scale
+                );
+
+                Graphics.DrawMeshNow(settings.HeatmapMesh, matrix);
+            }
         }
 
         #endregion

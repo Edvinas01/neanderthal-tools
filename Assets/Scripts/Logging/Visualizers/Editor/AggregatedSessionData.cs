@@ -14,9 +14,6 @@ namespace NeanderthalTools.Logging.Visualizers.Editor
         private string sessionName;
 
         [SerializeField]
-        private bool isDraw = true;
-
-        [SerializeField]
         private SessionData session;
 
         [SerializeField]
@@ -30,12 +27,6 @@ namespace NeanderthalTools.Logging.Visualizers.Editor
         #region Properties
 
         public string SessionName => sessionName;
-
-        public bool IsDraw
-        {
-            get => isDraw;
-            set => isDraw = value;
-        }
 
         public string LoggingId => Session.LoggingId;
 

@@ -10,6 +10,9 @@ namespace NeanderthalTools.Logging.Visualizers.Editor
         #region Fields
 
         [SerializeField]
+        private bool isHeatmap = true;
+
+        [SerializeField]
         private bool isDraw = true;
 
         [SerializeField]
@@ -21,6 +24,12 @@ namespace NeanderthalTools.Logging.Visualizers.Editor
         #endregion
 
         #region Properties
+
+        public bool IsHeatmap
+        {
+            get => isHeatmap;
+            set => isHeatmap = value;
+        }
 
         public bool IsDraw
         {
