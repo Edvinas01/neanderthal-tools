@@ -33,6 +33,14 @@ namespace NeanderthalTools.States
 
         #endregion
 
+        #region Fields
+
+        private Coroutine startCoroutine;
+        private Coroutine startNextStateCoroutine;
+        private bool started;
+
+        #endregion
+
         #region Unity Lifecycle
 
         private void OnEnable()
@@ -49,6 +57,11 @@ namespace NeanderthalTools.States
             {
                 nextStateTrigger.Remove(this);
             }
+
+            StopAllCoroutines();
+            startCoroutine = null;
+            startNextStateCoroutine = null;
+            started = false;
         }
 
         private void Start()
@@ -70,12 +83,38 @@ namespace NeanderthalTools.States
 
         public void StartState()
         {
-            StartCoroutine(StartStateDelayed());
+            if (IsStateStarting())
+            {
+                return;
+            }
+
+            startCoroutine = StartCoroutine(StartStateDelayed());
         }
 
         public void StartNextState()
         {
-            StopAllCoroutines();
+            if (IsNextStateStarting())
+            {
+                return;
+            }
+
+            startNextStateCoroutine = StartCoroutine(StartNextStateDelayed());
+        }
+
+        private IEnumerator StartStateDelayed()
+        {
+            yield return new WaitForSeconds(startDelay);
+            onEnter.Invoke(CreateStateEventArgs());
+            started = true;
+        }
+
+        private IEnumerator StartNextStateDelayed()
+        {
+            // Next state coroutines are allowed to fire immediately without waiting for the state
+            // to actually start. This is useful as it solves problems related to states firing out
+            // of order. Due to this, we have to wait until the state has actually started before
+            // we can continue.
+            yield return WaitForStart();
 
             onExit.Invoke(CreateStateEventArgs());
 
@@ -88,15 +127,24 @@ namespace NeanderthalTools.States
             gameObject.SetActive(false);
         }
 
-        private IEnumerator StartStateDelayed()
-        {
-            yield return new WaitForSeconds(startDelay);
-            onEnter.Invoke(CreateStateEventArgs());
-        }
-
         private StateEventArgs CreateStateEventArgs()
         {
             return new StateEventArgs(this);
+        }
+
+        private bool IsStateStarting()
+        {
+            return startCoroutine != null;
+        }
+
+        private bool IsNextStateStarting()
+        {
+            return startNextStateCoroutine != null;
+        }
+
+        private IEnumerator WaitForStart()
+        {
+            yield return new WaitUntil(() => started);
         }
 
         #endregion

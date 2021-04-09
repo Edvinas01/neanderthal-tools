@@ -66,6 +66,10 @@ namespace NeanderthalTools.Effects
 
         private int colorPropertyId;
 
+        private Coroutine fadeInCoroutine;
+        private Coroutine fadeOutCoroutine;
+        private bool fadedIn;
+
         #endregion
 
         #region Unity Lifecycle
@@ -89,11 +93,15 @@ namespace NeanderthalTools.Effects
                 ghost.gameObject.SetActive(false);
                 SetMultipliers(0f);
             }
+
+            fadedIn = ghost.gameObject.activeInHierarchy;
         }
 
         private void OnDisable()
         {
             StopAllCoroutines();
+            fadeInCoroutine = null;
+            fadeOutCoroutine = null;
         }
 
         #endregion
@@ -102,12 +110,22 @@ namespace NeanderthalTools.Effects
 
         public void StartFadeIn()
         {
-            StartCoroutine(FadeIn());
+            if (IsFadingIn())
+            {
+                return;
+            }
+
+            fadeInCoroutine = StartCoroutine(FadeIn());
         }
 
         public void StartFadeOut()
         {
-            StartCoroutine(FadeOut());
+            if (IsFadingOut())
+            {
+                return;
+            }
+
+            fadeOutCoroutine = StartCoroutine(FadeOut());
         }
 
         private List<MaterialWrapper> GetMaterialWrappers()
@@ -126,18 +144,28 @@ namespace NeanderthalTools.Effects
 
         private IEnumerator FadeIn()
         {
+            yield return WaitForFadeOut();
+
             ghost.gameObject.SetActive(true);
             SetActiveParticleEmission(true);
             yield return Coroutines.Progress(0f, 1f, fadeInDuration, SetMultipliers);
             onFadedIn.Invoke();
+
+            fadeInCoroutine = null;
+            fadedIn = true;
         }
 
         private IEnumerator FadeOut()
         {
+            yield return WaitForFadeIn();
+
             SetActiveParticleEmission(false);
             yield return Coroutines.Progress(1f, 0f, fadeOutDuration, SetMultipliers);
             ghost.gameObject.SetActive(false);
             onFadedOut.Invoke();
+
+            fadeOutCoroutine = null;
+            fadedIn = false;
         }
 
         private void SetActiveParticleEmission(bool active)
@@ -170,6 +198,26 @@ namespace NeanderthalTools.Effects
         private void SetLightIntensityMultiplier(float multiplier)
         {
             light.intensity = initialLightIntensity * multiplier;
+        }
+
+        private bool IsFadingIn()
+        {
+            return fadeInCoroutine != null;
+        }
+
+        private bool IsFadingOut()
+        {
+            return fadeOutCoroutine != null;
+        }
+
+        private IEnumerator WaitForFadeOut()
+        {
+            yield return new WaitUntil(() => !fadedIn);
+        }
+
+        private IEnumerator WaitForFadeIn()
+        {
+            yield return new WaitUntil(() => fadedIn);
         }
 
         #endregion
