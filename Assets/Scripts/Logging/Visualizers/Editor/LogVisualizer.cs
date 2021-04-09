@@ -293,7 +293,9 @@ namespace NeanderthalTools.Logging.Visualizers.Editor
         {
             settings.Users.Clear();
             settings.Users.AddRange(users);
+            EditorUtility.SetDirty(settings);
             AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
         }
 
         private void AddSessions()
