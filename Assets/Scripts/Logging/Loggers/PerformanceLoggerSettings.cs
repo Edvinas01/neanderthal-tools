@@ -17,11 +17,6 @@ namespace NeanderthalTools.Logging.Loggers
 
         [Min(0f)]
         [SerializeField]
-        [Tooltip("How many times per second to update the fps")]
-        private float fpsUpdateRate = 4f;
-
-        [Min(0f)]
-        [SerializeField]
         [Tooltip("Threshold below which to start sampling performance")]
         private float fpsThreshold = 60f;
 
@@ -30,8 +25,6 @@ namespace NeanderthalTools.Logging.Loggers
         #region Properties
 
         public float SampleInterval => sampleInterval;
-
-        public float FpsUpdateRate => fpsUpdateRate;
 
         public float FpsThreshold => fpsThreshold;
 
