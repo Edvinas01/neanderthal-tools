@@ -19,6 +19,10 @@ namespace NeanderthalTools.Logging.Loggers
 
         private ILogWriter logWriter;
         private float nextSampleTime;
+
+        private int frameCount;
+
+        private float deltaTime;
         private float fps;
 
         #endregion
@@ -72,9 +76,23 @@ namespace NeanderthalTools.Logging.Loggers
             );
         }
 
+        // See https://answers.unity.com/questions/64331/accurate-frames-per-second-count.html
         private void UpdateFps()
         {
-            fps = 1f / Time.deltaTime;
+            var fpsUpdateRate = performanceLoggerSettings.FpsUpdateRate;
+
+            frameCount++;
+
+            deltaTime += Time.deltaTime;
+            if (deltaTime > 1f / fpsUpdateRate)
+            {
+                fps = frameCount / deltaTime;
+                frameCount = 0;
+
+                deltaTime -= 1f / fpsUpdateRate;
+            }
+            
+            Debug.Log(fps);
         }
 
         private bool IsFpsThreshold()
