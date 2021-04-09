@@ -10,10 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3ca9d72c0f5043e9b9ed7e25d63422f5, type: 3}
-  m_Name: FindFlakingToolsStateEvent
+  m_Name: TriggerCreatedToolStateEvent
   m_EditorClassIdentifier: 
-  description: 'Fired when the player is supposed to find flaking tools (objective
-    and percussor)
+  description: 'Fired when the player creates a tool
 
 '
   lockDescription: 1

@@ -9,10 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a6628b3f1d14b7ab7c9a6bd09461a93, type: 3}
-  m_Name: ConsumeAdhesiveEvent
+  m_Script: {fileID: 11500000, guid: 3ca9d72c0f5043e9b9ed7e25d63422f5, type: 3}
+  m_Name: TriggerProduceAdhesiveStateEvent
   m_EditorClassIdentifier: 
-  description: 
+  description: 'Fired when the player is supposed to find raw adhesive material and
+    use it to produce adhesive
+
+'
   lockDescription: 1
   suppressExceptions: 0
   trace: 0

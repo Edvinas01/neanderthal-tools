@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 29113f34c60c45acb3038f25191969e2, type: 3}
-  m_Name: GrabInteractionScriptableEvent
+  m_Name: GrabInteractionEvent
   m_EditorClassIdentifier: 
   description: 
   lockDescription: 1

@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3ca9d72c0f5043e9b9ed7e25d63422f5, type: 3}
-  m_Name: CreatedToolStateEvent
+  m_Name: TriggerCreateToolStateEvent
   m_EditorClassIdentifier: 
-  description: 'Fired when the player creates a tool
+  description: 'Fired when the player has to create a tool
 
 '
   lockDescription: 1
