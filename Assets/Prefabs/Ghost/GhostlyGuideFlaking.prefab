@@ -7,6 +7,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8533775901025436270, guid: dd9536f34ff82a642a232fef25b76a84,
+        type: 3}
+      propertyPath: scriptableEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: a809fb3ac4799e74baa34b0664e29430,
+        type: 2}
+    - target: {fileID: 246448705259081851, guid: dd9536f34ff82a642a232fef25b76a84,
+        type: 3}
+      propertyPath: scriptableEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: cb4490707c68da44b9003ef20a986937,
+        type: 2}
     - target: {fileID: 3202076306156464025, guid: dd9536f34ff82a642a232fef25b76a84,
         type: 3}
       propertyPath: m_Name

@@ -101,6 +101,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8533775901025436270, guid: dd9536f34ff82a642a232fef25b76a84,
+        type: 3}
+      propertyPath: scriptableEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: c7339ce10e294934990a02b77b2fcdcd,
+        type: 2}
+    - target: {fileID: 246448705259081851, guid: dd9536f34ff82a642a232fef25b76a84,
+        type: 3}
+      propertyPath: scriptableEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: cc4cef267df6f684797237798b210bab,
+        type: 2}
     - target: {fileID: 3202076306156464025, guid: dd9536f34ff82a642a232fef25b76a84,
         type: 3}
       propertyPath: m_Name
