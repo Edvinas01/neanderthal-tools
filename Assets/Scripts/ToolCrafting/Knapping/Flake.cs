@@ -65,11 +65,8 @@ namespace NeanderthalTools.ToolCrafting.Knapping
 
         public string Name
         {
-            get
-            {
-                var interactable = GetComponentInParent<XRBaseInteractable>();
-                return interactable != null ? interactable.name : name;
-            }
+            get => name;
+            set => name = value;
         }
 
         #endregion

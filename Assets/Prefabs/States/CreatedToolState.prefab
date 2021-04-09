@@ -76,8 +76,7 @@ PrefabInstance:
         type: 3}
       propertyPath: nextStateTrigger
       value: 
-      objectReference: {fileID: 11400000, guid: f6e05ffe554d8844d9c58d9bf9014cdc,
-        type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 7606146803401405803, guid: 33895fa97c0794d4fa2696374a70c4ee,
         type: 3}
       propertyPath: onExit.m_PersistentCalls.m_Calls.Array.size
