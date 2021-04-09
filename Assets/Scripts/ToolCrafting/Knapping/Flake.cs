@@ -63,11 +63,7 @@ namespace NeanderthalTools.ToolCrafting.Knapping
 
         public bool IsAttachable => IsDetached() && isAttachable;
 
-        public string Name
-        {
-            get => name;
-            set => name = value;
-        }
+        public string Name { get; set; }
 
         #endregion
 
