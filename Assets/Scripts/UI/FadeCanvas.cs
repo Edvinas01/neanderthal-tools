@@ -10,8 +10,13 @@ namespace NeanderthalTools.UI
     {
         #region Editor
 
+        [Min(0f)]
         [SerializeField]
-        private float fadeDuration = 1.0f;
+        private float fadeInDuration = 1.0f;
+
+        [Min(0f)]
+        [SerializeField]
+        private float fadeOutDuration = 1.0f;
 
         #endregion
 
@@ -39,7 +44,7 @@ namespace NeanderthalTools.UI
         /// </summary>
         public IEnumerator FadeOut()
         {
-            yield return Coroutines.Progress(1f, 0f, fadeDuration, SetAlpha);
+            yield return Coroutines.Progress(1f, 0f, fadeOutDuration, SetAlpha);
             canvas.enabled = false;
         }
 
@@ -49,7 +54,7 @@ namespace NeanderthalTools.UI
         public IEnumerator FadeIn()
         {
             canvas.enabled = true;
-            yield return Coroutines.Progress(0f, 1f, fadeDuration, SetAlpha);
+            yield return Coroutines.Progress(0f, 1f, fadeInDuration, SetAlpha);
         }
 
         private void SetAlpha(float alpha)
