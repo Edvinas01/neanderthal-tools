@@ -27,6 +27,9 @@ namespace NeanderthalTools.Logging.Loggers.Session
         private float impactForce;
 
         [SerializeField]
+        private float impactAngle;
+
+        [SerializeField]
         private float time;
 
         #endregion
@@ -67,6 +70,12 @@ namespace NeanderthalTools.Logging.Loggers.Session
         {
             get => impactForce;
             set => impactForce = value;
+        }
+
+        public float ImpactAngle
+        {
+            get => impactAngle;
+            set => impactAngle = value;
         }
 
         public float Time

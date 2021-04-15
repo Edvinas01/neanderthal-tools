@@ -17,12 +17,15 @@ namespace NeanderthalTools.ToolCrafting.Knapping
 
         public float ImpactForce { get; }
 
+        public float ImpactAngle { get; }
+
         public FlakeEventArgs(
             XRBaseInteractor objectiveInteractor,
             XRBaseInteractor knapperInteractor,
             Objective objective,
             Flake flake,
-            float impactForce
+            float impactForce,
+            float impactAngle
         )
         {
             ObjectiveInteractor = objectiveInteractor;
@@ -30,6 +33,7 @@ namespace NeanderthalTools.ToolCrafting.Knapping
             Objective = objective;
             Flake = flake;
             ImpactForce = impactForce;
+            ImpactAngle = impactAngle;
         }
     }
 }

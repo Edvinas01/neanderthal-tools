@@ -152,15 +152,15 @@ namespace NeanderthalTools.ToolCrafting.Knapping
                 return;
             }
 
-            var flakeTransform = transform;
-            var flakePosition = flakeTransform.position;
+            var flakePosition = transform.position;
+            var impactAngle = float.NaN;
 
-            var oppositeImpactDirection = -impactDirection;
+            var oppositeDirection = -impactDirection;
             var validAngleFound = false;
 
             foreach (var offsetDirection in GetOffsetDirections())
             {
-                if (IsValidAngle(oppositeImpactDirection, offsetDirection))
+                if (IsValidAngle(oppositeDirection, offsetDirection, out impactAngle))
                 {
                     validAngleFound = true;
                     break;
@@ -175,14 +175,14 @@ namespace NeanderthalTools.ToolCrafting.Knapping
                 impactColor = Color.green;
 
                 ClearDependencies();
-                Detach(knapperInteractor, impactForce);
+                Detach(knapperInteractor, impactForce, impactAngle);
             }
             else
             {
                 objective.HandleInvalidAngle(eventArgs);
             }
 
-            DrawDebugDay(flakePosition, oppositeImpactDirection, impactColor);
+            DrawDebugDay(flakePosition, oppositeDirection, impactColor);
         }
 
         private List<Transform> GetAngleOffsetTransforms()
@@ -214,9 +214,13 @@ namespace NeanderthalTools.ToolCrafting.Knapping
             return removedRatio < removalRatio;
         }
 
-        private bool IsValidAngle(Vector3 impactDirection, Vector3 flakeDirection)
+        private bool IsValidAngle(
+            Vector3 impactDirection,
+            Vector3 flakeDirection,
+            out float impactAngle
+        )
         {
-            var impactAngle = Vector3.Angle(impactDirection, flakeDirection);
+            impactAngle = Vector3.Angle(impactDirection, flakeDirection);
             return impactAngle <= maxAngle;
         }
 
@@ -238,10 +242,14 @@ namespace NeanderthalTools.ToolCrafting.Knapping
             dependants.Clear();
         }
 
-        private void Detach(XRBaseInteractor knapperInteractor, float impactForce)
+        private void Detach(
+            XRBaseInteractor knapperInteractor,
+            float impactForce,
+            float impactAngle
+        )
         {
             var oldObjective = objective;
-            var args = CreateEventArgs(knapperInteractor, impactForce);
+            var args = CreateEventArgs(knapperInteractor, impactForce, impactAngle);
 
             // Objective is set to null before handling, as IsAttachable depends on it.
             objective = null;
@@ -255,7 +263,8 @@ namespace NeanderthalTools.ToolCrafting.Knapping
 
         private FlakeEventArgs CreateEventArgs(
             XRBaseInteractor knapperInteractor,
-            float impactForce
+            float impactForce,
+            float impactAngle = float.NaN
         )
         {
             return new FlakeEventArgs(
@@ -263,7 +272,8 @@ namespace NeanderthalTools.ToolCrafting.Knapping
                 knapperInteractor,
                 objective,
                 this,
-                impactForce
+                impactForce,
+                impactAngle
             );
         }
 

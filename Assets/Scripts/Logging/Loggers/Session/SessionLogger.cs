@@ -175,6 +175,7 @@ namespace NeanderthalTools.Logging.Loggers.Session
                 KnapperName = knapperInteractor.selectTarget.name,
                 FlakeName = flake.name,
                 ImpactForce = args.ImpactForce,
+                ImpactAngle = args.ImpactAngle,
                 Time = Time.time
             };
         }
