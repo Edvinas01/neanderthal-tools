@@ -40,7 +40,7 @@ namespace NeanderthalTools.Audio
         private bool randomizePitch;
 
         [SerializeField]
-        [MinMaxSlider(0f, 10f)]
+        [MinMaxSlider(0f, 2f)]
         [ShowIf("randomizePitch")]
         private Vector2 pitchRange = new Vector2(0.9f, 1.0f);
 
@@ -122,7 +122,7 @@ namespace NeanderthalTools.Audio
 
             if (destroyOnStop)
             {
-                // StartCoroutine(DestroyDelayed());
+                StartCoroutine(DestroyDelayed());
             }
         }
 
