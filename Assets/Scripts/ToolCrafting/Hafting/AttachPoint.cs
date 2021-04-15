@@ -17,7 +17,17 @@ namespace NeanderthalTools.ToolCrafting.Hafting
 
         [SerializeField]
         [Tooltip("Where to attach the object")]
-        private Transform attachTransform;
+        private List<Transform> attachTransforms;
+
+        [SerializeField]
+        [Range(0f, 180f)]
+        [Tooltip("Max impact angle that still registers as an attachment")]
+        private float maxAngle = 180f;
+
+        [Min(0f)]
+        [SerializeField]
+        [Tooltip("Min impact force required to attach the tool part")]
+        private float minForce;
 
         [SerializeField]
         [NaughtyAttributes.Dropdown("FindToolTypeNames")]
@@ -36,17 +46,20 @@ namespace NeanderthalTools.ToolCrafting.Hafting
 
         private void OnDrawGizmos()
         {
-            if (attachTransform == null)
+            if (attachTransforms == null)
             {
                 return;
             }
 
-            var position = attachTransform.position;
-            var direction = attachTransform.rotation * Vector3.forward / 4;
+            foreach (var attachTransform in attachTransforms)
+            {
+                var position = attachTransform.position;
+                var direction = attachTransform.rotation * Vector3.forward / 4;
 
-            Gizmos.DrawWireSphere(position, 0.025f);
-            Gizmos.DrawRay(position, -direction);
-            Gizmos.DrawRay(position, direction);
+                Gizmos.DrawWireSphere(position, 0.025f);
+                Gizmos.DrawRay(position, -direction);
+                Gizmos.DrawRay(position, direction);
+            }
         }
 
         private void OnValidate()
@@ -55,6 +68,8 @@ namespace NeanderthalTools.ToolCrafting.Hafting
             {
                 toolTypeName = FindToolTypeNames().FirstOrDefault();
             }
+
+            attachTransforms = GetAttachTransforms();
         }
 
         private void Awake()
@@ -75,13 +90,49 @@ namespace NeanderthalTools.ToolCrafting.Hafting
             return toolType.IsInstanceOfType(toolPart);
         }
 
-        public void Attach(GameObject part)
+        public bool Attach(IToolPart toolPart, GameObject attachPart, float impactForce)
         {
-            AttachTransform(part);
+            if (IsWeakImpact(impactForce))
+            {
+                return false;
+            }
+
+            if (!IsValidAngle(toolPart, out var attachTransform))
+            {
+                return false;
+            }
+
+            AttachTransform(attachPart, attachTransform);
             SetActiveNextAttachPoints(true);
 
             attachCollider.enabled = false;
             Destroy(this);
+
+            return true;
+        }
+
+        private bool IsWeakImpact(float force)
+        {
+            return force < minForce;
+        }
+
+        private bool IsValidAngle(IToolPart toolPart, out Transform attachTransform)
+        {
+            attachTransform = null;
+
+            foreach (var currentTransform in attachTransforms)
+            {
+                var direction = toolPart.AttachDirection;
+                var angle = Vector3.Angle(direction, currentTransform.rotation * Vector3.forward);
+
+                if (angle <= maxAngle)
+                {
+                    attachTransform = currentTransform;
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         // ReSharper disable once UnusedMember.Local
@@ -97,7 +148,7 @@ namespace NeanderthalTools.ToolCrafting.Hafting
                 .ToList();
         }
 
-        private void AttachTransform(GameObject part)
+        private void AttachTransform(GameObject part, Transform attachTransform)
         {
             var partTransform = part.transform;
             partTransform.position = attachTransform.position;
@@ -107,17 +158,17 @@ namespace NeanderthalTools.ToolCrafting.Hafting
 
         private void SetupAttachTransform()
         {
-            if (attachTransform == null)
+            if (attachTransforms.Count == 0)
             {
-                attachTransform = GetAttachTransform();
+                attachTransforms = GetAttachTransforms();
             }
         }
 
-        private Transform GetAttachTransform()
+        private List<Transform> GetAttachTransforms()
         {
-            return GetComponentsInChildren<Transform>().FirstOrDefault(
-                target => target.GetComponents<Component>().Length == 1
-            ) ?? transform;
+            return GetComponentsInChildren<Transform>()
+                .Where(childTransform => childTransform.GetComponents<Component>().Length == 1)
+                .ToList();
         }
 
         private void SetActiveNextAttachPoints(bool active)

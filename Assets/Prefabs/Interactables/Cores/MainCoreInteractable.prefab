@@ -523,6 +523,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   angleOffsetTransforms:
   - {fileID: 2077267305131079000}
+  attachDirection: {x: -0.0747, y: -0.226, z: 0.967}
   maxAngle: 20
   minForce: 50
   removalRatio: 1
@@ -555,6 +556,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   angleOffsetTransforms:
   - {fileID: 5950279391489662077}
+  attachDirection: {x: 0, y: 0, z: 0}
   maxAngle: 30
   minForce: 50
   removalRatio: 1
@@ -574,6 +576,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   angleOffsetTransforms:
   - {fileID: 2495266882130583155}
+  attachDirection: {x: 0, y: 0, z: 0}
   maxAngle: 30
   minForce: 50
   removalRatio: 1
@@ -593,6 +596,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   angleOffsetTransforms:
   - {fileID: 1196902298620698502}
+  attachDirection: {x: 0, y: 0, z: 0}
   maxAngle: 30
   minForce: 50
   removalRatio: 1
@@ -612,6 +616,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   angleOffsetTransforms:
   - {fileID: 2291208521985731309}
+  attachDirection: {x: 0, y: 0, z: 0}
   maxAngle: 30
   minForce: 50
   removalRatio: 1
@@ -631,6 +636,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   angleOffsetTransforms:
   - {fileID: 6896704605538062996}
+  attachDirection: {x: 0, y: 0, z: 0}
   maxAngle: 30
   minForce: 50
   removalRatio: 1
@@ -650,6 +656,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   angleOffsetTransforms:
   - {fileID: 8941357012016769011}
+  attachDirection: {x: 0, y: 0, z: 0}
   maxAngle: 30
   minForce: 50
   removalRatio: 1
@@ -669,6 +676,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   angleOffsetTransforms:
   - {fileID: 1135655662029506760}
+  attachDirection: {x: 0, y: 0, z: 0}
   maxAngle: 30
   minForce: 50
   removalRatio: 1
@@ -688,6 +696,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   angleOffsetTransforms:
   - {fileID: 5251560723622839200}
+  attachDirection: {x: 0, y: 0, z: 0}
   maxAngle: 30
   minForce: 50
   removalRatio: 1
@@ -707,6 +716,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   angleOffsetTransforms:
   - {fileID: 4105123933993724427}
+  attachDirection: {x: 0, y: 0, z: 0}
   maxAngle: 30
   minForce: 50
   removalRatio: 1
@@ -726,6 +736,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   angleOffsetTransforms:
   - {fileID: 368462048514324090}
+  attachDirection: {x: 0, y: 0, z: 0}
   maxAngle: 30
   minForce: 50
   removalRatio: 1
@@ -745,6 +756,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   angleOffsetTransforms:
   - {fileID: 7740536172454139460}
+  attachDirection: {x: 0, y: 0, z: 0}
   maxAngle: 30
   minForce: 50
   removalRatio: 1
@@ -764,6 +776,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   angleOffsetTransforms:
   - {fileID: 7095644980292523346}
+  attachDirection: {x: 0, y: 0, z: 0}
   maxAngle: 30
   minForce: 50
   removalRatio: 1
@@ -784,6 +797,7 @@ MonoBehaviour:
   angleOffsetTransforms:
   - {fileID: 489254801902915214}
   - {fileID: 2894903506093761969}
+  attachDirection: {x: 0, y: 0, z: 0}
   maxAngle: 30
   minForce: 50
   removalRatio: 1

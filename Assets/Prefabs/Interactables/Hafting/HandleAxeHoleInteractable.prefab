@@ -23,13 +23,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 169840827}
-  m_LocalRotation: {x: 0.70960003, y: -0.70351946, z: -0.0044039306, w: 0.038844187}
-  m_LocalPosition: {x: -0.0098, y: 0.1609, z: 0.0665}
+  m_LocalRotation: {x: 0.6735178, y: -0.73813653, z: -0.002455228, w: 0.039015863}
+  m_LocalPosition: {x: -0.0129, y: 0.1539, z: 0.0671}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1972332544}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 2.805, y: -176.504, z: -90.407}
+  m_LocalEulerAnglesHint: {x: 2.805, y: -176.504, z: -84.673}
 --- !u!1 &1871320047
 GameObject:
   m_ObjectHideFlags: 0
@@ -90,6 +90,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 169840828}
+  - {fileID: 4444688978594097491}
   m_Father: {fileID: 6385425368758865732}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -120,7 +121,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextAttachPoints: []
-  attachTransform: {fileID: 169840828}
+  attachTransforms:
+  - {fileID: 169840828}
+  - {fileID: 4444688978594097491}
+  maxAngle: 20
+  minForce: 5
   toolTypeName: NeanderthalTools.ToolCrafting.Knapping.Flake
 --- !u!1 &2114629079
 GameObject:
@@ -183,22 +188,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextAttachPoints:
   - {fileID: 1972332545}
-  attachTransform: {fileID: 1871320048}
+  attachTransforms:
+  - {fileID: 1871320048}
+  maxAngle: 180
+  minForce: 0
   toolTypeName: NeanderthalTools.ToolCrafting.Hafting.Adhesive
---- !u!64 &1546409024
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3314991655080172113}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -9157495930332903582, guid: 00fb4c5e4f45ab34da74a99539b42992, type: 3}
 --- !u!114 &761662286235207117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -272,6 +266,50 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!64 &1546409024
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3314991655080172113}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -9157495930332903582, guid: 00fb4c5e4f45ab34da74a99539b42992, type: 3}
+--- !u!1 &3652283886055406888
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4444688978594097491}
+  m_Layer: 10
+  m_Name: Attach (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4444688978594097491
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3652283886055406888}
+  m_LocalRotation: {x: 0.04363026, y: -0.095385894, z: 0.6624433, w: -0.7417324}
+  m_LocalPosition: {x: -0.0026, y: 0.1522, z: -0.0714}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1972332544}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 3.535, y: -348.481, z: -83.18}
 --- !u!1001 &2504105335471149661
 PrefabInstance:
   m_ObjectHideFlags: 0

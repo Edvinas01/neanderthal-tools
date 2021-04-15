@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
@@ -12,6 +13,10 @@ namespace NeanderthalTools.ToolCrafting.Knapping
         [SerializeField]
         [Tooltip("Transforms which outline the angles from which the flake must be hit")]
         private List<Transform> angleOffsetTransforms;
+
+        [SerializeField]
+        [ShowIf("isAttachable")]
+        private Vector3 attachDirection;
 
         [SerializeField]
         [Range(0f, 180f)]
@@ -63,6 +68,8 @@ namespace NeanderthalTools.ToolCrafting.Knapping
 
         public bool IsAttachable => IsDetached() && isAttachable;
 
+        public Vector3 AttachDirection => transform.rotation * attachDirection.normalized;
+
         public string Name { get; set; }
 
         #endregion
@@ -98,6 +105,12 @@ namespace NeanderthalTools.ToolCrafting.Knapping
             foreach (var offsetDirection in GetOffsetDirections())
             {
                 Gizmos.DrawRay(position, offsetDirection * DebugRayLength);
+            }
+
+            if (isAttachable)
+            {
+                Gizmos.color = Color.cyan;
+                Gizmos.DrawRay(position, AttachDirection * DebugRayLength);
             }
         }
 
@@ -199,7 +212,7 @@ namespace NeanderthalTools.ToolCrafting.Knapping
 
         private bool IsWeakImpact(float force)
         {
-            return force <= minForce;
+            return force < minForce;
         }
 
         private bool IsDependenciesRemaining()

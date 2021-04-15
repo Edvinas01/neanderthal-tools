@@ -31,6 +31,8 @@ namespace NeanderthalTools.ToolCrafting.Hafting
             set => targetAmount = Mathf.Min(value, 1f);
         }
 
+        public Vector3 AttachDirection => Vector3.zero;
+
         public string Name => name;
 
         #endregion

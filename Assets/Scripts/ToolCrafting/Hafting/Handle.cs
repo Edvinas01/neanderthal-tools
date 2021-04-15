@@ -55,7 +55,7 @@ namespace NeanderthalTools.ToolCrafting.Hafting
 
             if (IsHeld(otherGameObject))
             {
-                HandleAttach(otherGameObject, attachPoint);
+                HandleAttach(otherGameObject, attachPoint, collision);
             }
         }
 
@@ -96,7 +96,11 @@ namespace NeanderthalTools.ToolCrafting.Hafting
             return false;
         }
 
-        private void HandleAttach(GameObject otherGameObject, AttachPoint attachPoint)
+        private void HandleAttach(
+            GameObject otherGameObject,
+            AttachPoint attachPoint,
+            Collision collision
+        )
         {
             var toolPart = otherGameObject.GetComponentInParent<IToolPart>();
             if (toolPart == null || !attachPoint.IsMatchingPart(toolPart))
@@ -108,30 +112,39 @@ namespace NeanderthalTools.ToolCrafting.Hafting
             {
                 case Adhesive adhesive:
                 {
-                    HandleAttachAdhesive(attachPoint, adhesive);
+                    HandleAttachAdhesive(attachPoint, adhesive, collision);
                     break;
                 }
                 case Flake flake:
                 {
-                    HandleAttachFlake(attachPoint, flake);
+                    HandleAttachFlake(attachPoint, flake, collision);
                     break;
                 }
             }
         }
 
-        private void HandleAttachAdhesive(AttachPoint attachPoint, Adhesive adhesive)
+        private void HandleAttachAdhesive(
+            AttachPoint attachPoint,
+            Adhesive adhesive,
+            Collision collision
+        )
         {
             if (adhesive.Amount < requiredAdhesiveAmount)
             {
                 return;
             }
 
-            adhesive.Amount -= requiredAdhesiveAmount;
-            attachPoint.Attach(Instantiate(adhesivePrefab));
-            onAttachAdhesive.Invoke(CreateEventArgs(null, adhesive));
+            var attachPart = Instantiate(adhesivePrefab);
+            var force = GetForce(collision);
+
+            if (attachPoint.Attach(adhesive, attachPart, force))
+            {
+                adhesive.Amount -= requiredAdhesiveAmount;
+                onAttachAdhesive.Invoke(CreateEventArgs(null, adhesive));
+            }
         }
 
-        private void HandleAttachFlake(AttachPoint attachPoint, Flake flake)
+        private void HandleAttachFlake(AttachPoint attachPoint, Flake flake, Collision collision)
         {
             if (!flake.IsAttachable)
             {
@@ -139,9 +152,19 @@ namespace NeanderthalTools.ToolCrafting.Hafting
             }
 
             var flakeInteractable = flake.GetComponentInParent<XRBaseInteractable>();
-            attachPoint.Attach(flake.gameObject);
-            onAttachFlake.Invoke(CreateEventArgs(flakeInteractable.selectingInteractor, flake));
-            RemoveComponents(flake);
+            var attachPart = flake.gameObject;
+            var force = GetForce(collision);
+
+            if (attachPoint.Attach(flake, attachPart, force))
+            {
+                onAttachFlake.Invoke(CreateEventArgs(flakeInteractable.selectingInteractor, flake));
+                RemoveComponents(flake);
+            }
+        }
+
+        private static float GetForce(Collision collision)
+        {
+            return collision.impulse.magnitude / Time.fixedDeltaTime;
         }
 
         private static void RemoveComponents(Flake flake)

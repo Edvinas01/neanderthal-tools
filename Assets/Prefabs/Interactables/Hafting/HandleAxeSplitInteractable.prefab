@@ -30,6 +30,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4852967675363065100}
+  - {fileID: 2048866669418246907}
   m_Father: {fileID: 5691564427853631631}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -60,7 +61,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextAttachPoints: []
-  attachTransform: {fileID: 4852967675363065100}
+  attachTransforms:
+  - {fileID: 4852967675363065100}
+  - {fileID: 2048866669418246907}
+  maxAngle: 20
+  minForce: 5
   toolTypeName: NeanderthalTools.ToolCrafting.Knapping.Flake
 --- !u!64 &1695474691
 MeshCollider:
@@ -270,8 +275,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextAttachPoints:
   - {fileID: 1342792328520360004}
-  attachTransform: {fileID: 2161963787565916947}
+  attachTransforms:
+  - {fileID: 2161963787565916947}
+  maxAngle: 180
+  minForce: 0
   toolTypeName: NeanderthalTools.ToolCrafting.Hafting.Adhesive
+--- !u!1 &7223463834037702603
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2048866669418246907}
+  m_Layer: 10
+  m_Name: Attach (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2048866669418246907
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7223463834037702603}
+  m_LocalRotation: {x: -0.07979528, y: 0.08136001, z: -0.64513516, w: 0.7555223}
+  m_LocalPosition: {x: -0.0007, y: 0.1768, z: -0.0675}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2134337450889720809}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: -0.894, y: 13.057, z: -81.09}
 --- !u!1001 &3792514339146310526
 PrefabInstance:
   m_ObjectHideFlags: 0
