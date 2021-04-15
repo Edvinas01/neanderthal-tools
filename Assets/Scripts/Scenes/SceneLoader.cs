@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using NeanderthalTools.Audio;
 using NeanderthalTools.UI;
 using UnityEditor;
 using UnityEngine;
@@ -16,6 +17,9 @@ namespace NeanderthalTools.Scenes
 
         [SerializeField]
         private FadeCanvas fadeCanvas;
+
+        [SerializeField]
+        private AudioFade audioFade;
 
         [SerializeField]
         private UnityEvent onSceneReady;
@@ -145,7 +149,7 @@ namespace NeanderthalTools.Scenes
         private IEnumerator LoadScene(int sceneIndex)
         {
             loadingScene = true;
-            yield return fadeCanvas.FadeIn();
+            yield return FadeOutScene();
 
             var activeScene = SceneManager.GetActiveScene();
             if (activeScene.buildIndex != sceneSettings.BootstrapSceneIndex)
@@ -159,8 +163,32 @@ namespace NeanderthalTools.Scenes
             SceneManager.SetActiveScene(loadedScene);
             LightProbes.TetrahedralizeAsync();
 
-            yield return fadeCanvas.FadeOut();
+            yield return FadeInScene();
             loadingScene = false;
+        }
+
+        private IEnumerator FadeOutScene()
+        {
+            // Canvas fades in - blocks the view.
+            var canvasFadeInCoroutine = StartCoroutine(fadeCanvas.FadeIn());
+
+            // Audio fades out.
+            var audioFadeInCoroutine = StartCoroutine(audioFade.FadeOut());
+
+            yield return canvasFadeInCoroutine;
+            yield return audioFadeInCoroutine;
+        }
+
+        private IEnumerator FadeInScene()
+        {
+            // Canvas fades out - unblocks the view.
+            var canvasFadeOutCoroutine = StartCoroutine(fadeCanvas.FadeOut());
+
+            // Camera fades in.
+            var audioFadeOutCoroutine = StartCoroutine(audioFade.FadeIn());
+
+            yield return canvasFadeOutCoroutine;
+            yield return audioFadeOutCoroutine;
         }
 
         #endregion
