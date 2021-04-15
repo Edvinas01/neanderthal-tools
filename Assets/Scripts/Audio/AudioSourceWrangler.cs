@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using NaughtyAttributes;
 using NeanderthalTools.Util;
 using UnityEngine;
@@ -43,6 +44,20 @@ namespace NeanderthalTools.Audio
         [ShowIf("randomizePitch")]
         private Vector2 pitchRange = new Vector2(0.9f, 1.0f);
 
+        [SerializeField]
+        private bool randomizeClips;
+
+        [SerializeField]
+        [ShowIf("randomizeClips")]
+        private List<AudioClip> randomClips;
+
+        [FormerlySerializedAs("destroyOnFinish")]
+        [SerializeField]
+        private bool destroyOnStop;
+
+        [SerializeField]
+        private bool playOnStart;
+
         #endregion
 
         #region Fields
@@ -58,6 +73,14 @@ namespace NeanderthalTools.Audio
         {
             audioSource = GetComponent<AudioSource>();
             initialVolume = audioSource.volume;
+        }
+
+        private void Start()
+        {
+            if (playOnStart)
+            {
+                Play();
+            }
         }
 
         private void Update()
@@ -79,7 +102,12 @@ namespace NeanderthalTools.Audio
             audioSource.time = startTime;
             if (randomizePitch)
             {
-                audioSource.pitch = Random.Range(pitchRange.x, pitchRange.y);
+                audioSource.pitch = GetRandomPitch();
+            }
+
+            if (randomizeClips)
+            {
+                audioSource.clip = GetRandomClip();
             }
 
             if (fadeInOnPlay)
@@ -90,6 +118,11 @@ namespace NeanderthalTools.Audio
             else
             {
                 audioSource.Play();
+            }
+
+            if (destroyOnStop)
+            {
+                // StartCoroutine(DestroyDelayed());
             }
         }
 
@@ -117,6 +150,28 @@ namespace NeanderthalTools.Audio
         {
             yield return Coroutines.Progress(initialVolume, 0f, fadeOutDuration, SetVolume);
             audioSource.Stop();
+        }
+
+        private IEnumerator DestroyDelayed()
+        {
+            yield return new WaitUntil(() => !audioSource.isPlaying);
+            Destroy(gameObject);
+        }
+
+        private AudioClip GetRandomClip()
+        {
+            var clip = randomClips.GetRandom();
+            if (clip == null)
+            {
+                return audioSource.clip;
+            }
+
+            return clip;
+        }
+
+        private float GetRandomPitch()
+        {
+            return Random.Range(pitchRange.x, pitchRange.y);
         }
 
         private void SetVolume(float volume)

@@ -399,6 +399,10 @@ MonoBehaviour:
   fadeOutDuration: 0
   randomizePitch: 1
   pitchRange: {x: 0.95, y: 1.15}
+  randomizeClips: 0
+  randomClips: []
+  destroyOnStop: 0
+  playOnStart: 0
 --- !u!1 &4310875227291026501
 GameObject:
   m_ObjectHideFlags: 0
@@ -587,7 +591,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 1737005710de0f242ae20c4c875239fb, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.4
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -596,7 +600,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 13
+  MaxDistance: 5
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
@@ -608,12 +612,12 @@ AudioSource:
     - serializedVersion: 3
       time: 0.1
       value: 1
-      inSlope: -2.1339278
-      outSlope: -2.1339278
+      inSlope: -3.569195
+      outSlope: -3.569195
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.07407408
+      outWeight: 0.049382724
     - serializedVersion: 3
       time: 1
       value: 0
@@ -691,6 +695,10 @@ MonoBehaviour:
   fadeOutDuration: 0.5
   randomizePitch: 0
   pitchRange: {x: 0.9, y: 1}
+  randomizeClips: 0
+  randomClips: []
+  destroyOnStop: 0
+  playOnStart: 0
 --- !u!1001 &8944007333518470222
 PrefabInstance:
   m_ObjectHideFlags: 0

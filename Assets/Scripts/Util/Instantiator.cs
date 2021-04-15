@@ -8,6 +8,9 @@ namespace NeanderthalTools.Util
         #region Editor
 
         [SerializeField]
+        private bool randomize;
+
+        [SerializeField]
         private List<GameObject> prefabs;
 
         #endregion
@@ -16,15 +19,41 @@ namespace NeanderthalTools.Util
 
         public void Instantiate()
         {
+            if (randomize)
+            {
+                InstantiateRandom();
+            }
+            else
+            {
+                InstantiateAll();
+            }
+        }
+
+        private void InstantiateAll()
+        {
+            foreach (var prefab in prefabs)
+            {
+                Instantiate(prefab);
+            }
+        }
+
+        private void InstantiateRandom()
+        {
             var randomPrefab = prefabs.GetRandom();
             if (randomPrefab == null)
             {
                 return;
             }
 
+            Instantiate(randomPrefab);
+        }
+
+        private void Instantiate(GameObject prefab)
+        {
             var instantiatorTransform = transform;
+
             Instantiate(
-                randomPrefab,
+                prefab,
                 instantiatorTransform.position,
                 instantiatorTransform.rotation
             );
