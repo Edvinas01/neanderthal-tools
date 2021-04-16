@@ -171,4 +171,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeInDuration: 1
-  fadeOutDuration: 0.5
+  fadeOutDuration: 0.2
