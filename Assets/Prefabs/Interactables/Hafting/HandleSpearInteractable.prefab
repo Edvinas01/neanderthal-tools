@@ -266,7 +266,7 @@ MonoBehaviour:
   nextAttachPoints: []
   attachTransforms:
   - {fileID: 4682016309837351655}
-  maxAngle: 20
+  maxAngle: 30
   minForce: 5
   toolTypeName: NeanderthalTools.ToolCrafting.Knapping.Flake
 --- !u!1 &8942782982286574166
