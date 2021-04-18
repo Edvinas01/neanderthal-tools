@@ -71,6 +71,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  componentBlacklistTypeNames:
+  - NeanderthalTools.ToolCrafting.Knapping.Objective
 --- !u!64 &4665977804580416463
 MeshCollider:
   m_ObjectHideFlags: 0
