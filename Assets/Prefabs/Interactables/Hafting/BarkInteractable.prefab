@@ -416,7 +416,7 @@ PrefabInstance:
     - target: {fileID: 8817423563159559447, guid: 61d50381e359a5246a17433a8ea8c575,
         type: 3}
       propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8817423563159559447, guid: 61d50381e359a5246a17433a8ea8c575,
         type: 3}
@@ -425,12 +425,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8817423563159559447, guid: 61d50381e359a5246a17433a8ea8c575,
         type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8817423563159559447, guid: 61d50381e359a5246a17433a8ea8c575,
+        type: 3}
       propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 3352025370597797885}
     - target: {fileID: 8817423563159559447, guid: 61d50381e359a5246a17433a8ea8c575,
         type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: 353586d6012235b478b910b3e6081cb0,
+        type: 2}
+    - target: {fileID: 8817423563159559447, guid: 61d50381e359a5246a17433a8ea8c575,
+        type: 3}
       propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8817423563159559447, guid: 61d50381e359a5246a17433a8ea8c575,
+        type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8817423563159559447, guid: 61d50381e359a5246a17433a8ea8c575,
@@ -440,12 +456,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8817423563159559447, guid: 61d50381e359a5246a17433a8ea8c575,
         type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: Raise
+      objectReference: {fileID: 0}
+    - target: {fileID: 8817423563159559447, guid: 61d50381e359a5246a17433a8ea8c575,
+        type: 3}
       propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: NeanderthalTools.Audio.AudioSourceWrangler, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8817423563159559447, guid: 61d50381e359a5246a17433a8ea8c575,
         type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: ScriptableEvents.BaseScriptableEvent`1[[UnityEngine.XR.Interaction.Toolkit.BaseInteractionEventArgs,
+        Unity.XR.Interaction.Toolkit
+      objectReference: {fileID: 0}
+    - target: {fileID: 8817423563159559447, guid: 61d50381e359a5246a17433a8ea8c575,
+        type: 3}
       propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8817423563159559447, guid: 61d50381e359a5246a17433a8ea8c575,
+        type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8817423563159559449, guid: 61d50381e359a5246a17433a8ea8c575,
