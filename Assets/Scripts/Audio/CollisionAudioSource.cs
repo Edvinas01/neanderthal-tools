@@ -1,12 +1,48 @@
+using System;
+using System.Collections.Generic;
 using NaughtyAttributes;
 using NeanderthalTools.Util;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace NeanderthalTools.Audio
 {
     [RequireComponent(typeof(AudioSource))]
     public class CollisionAudioSource : MonoBehaviour
     {
+        #region Helpers
+
+        [Serializable]
+        private class ClipConfiguration
+        {
+            #region Fields
+
+            [Min(0f)]
+            [SerializeField]
+            private float startTime;
+
+            [SerializeField]
+            private AudioClip clip;
+
+            #endregion
+
+            #region Properties
+
+            public float StartTime => startTime;
+
+            public AudioClip Clip => clip;
+
+            #endregion
+
+            #region Methods
+
+
+
+            #endregion
+        }
+
+        #endregion
+
         #region Editor
 
         [SerializeField]
@@ -41,6 +77,9 @@ namespace NeanderthalTools.Audio
         [SerializeField]
         private float maxForce = 100f;
 
+        [SerializeField]
+        private List<ClipConfiguration> clips;
+
         #endregion
 
         #region Fields
@@ -63,6 +102,7 @@ namespace NeanderthalTools.Audio
         public void Play(Collision collision)
         {
             var force = collision.impulse.magnitude / Time.fixedDeltaTime;
+            Debug.Log(force); // todo remove
             if (force < minForce)
             {
                 return;
@@ -74,6 +114,14 @@ namespace NeanderthalTools.Audio
 
             audioSource.volume = volume;
             audioSource.pitch = pitch;
+
+            var clip = GetClipConfiguration();
+            if (clip != null)
+            {
+                audioSource.time = clip.StartTime;
+                audioSource.clip = clip.Clip;
+            }
+
             audioSource.Play();
         }
 
@@ -114,6 +162,11 @@ namespace NeanderthalTools.Audio
         private static float GetRandomOffset(Vector2 range)
         {
             return Random.Range(range.x, range.y);
+        }
+
+        private ClipConfiguration GetClipConfiguration()
+        {
+            return clips.GetRandom();
         }
 
         #endregion
