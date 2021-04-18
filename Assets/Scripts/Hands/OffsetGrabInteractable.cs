@@ -9,20 +9,12 @@ namespace NeanderthalTools.Hands
     {
         #region Fields
 
-        private new Rigidbody rigidbody;
-
         private Vector3 savedLocalAttachPosition;
         private Quaternion savedLocalAttachRotation;
 
         #endregion
 
         #region Overrides
-
-        protected override void Awake()
-        {
-            base.Awake();
-            rigidbody = GetComponent<Rigidbody>();
-        }
 
         protected override void OnSelectEntering(SelectEnterEventArgs args)
         {
@@ -60,9 +52,10 @@ namespace NeanderthalTools.Hands
 
         private void ApplyOffsetAttachPose(Transform interactorAttachTransform)
         {
+            var interactableTransform = transform;
             interactorAttachTransform.SetPositionAndRotation(
-                rigidbody.worldCenterOfMass,
-                transform.rotation
+                interactableTransform.position, // rigidbody.worldCenterOfMass,
+                interactableTransform.rotation
             );
         }
 
