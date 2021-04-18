@@ -178,6 +178,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1279442479455503726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5691564427853631628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 940a538c5fe54e9e82ae991f1b160f0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onCollision:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5999855805256797020}
+        m_TargetAssemblyTypeName: NeanderthalTools.Audio.CollisionAudioSource, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4070552060486579422
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,6 +295,7 @@ Transform:
   - {fileID: 3196931894166177962}
   - {fileID: 6924163081706304763}
   - {fileID: 3183074402498382512}
+  - {fileID: 5387237908347365657}
   m_Father: {fileID: 5691564427853631631}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -776,6 +804,98 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a236d171ae494d1eaeb4824bf5074f49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &7377044624053098588
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4892267566522537599}
+    m_Modifications:
+    - target: {fileID: 3216651321687142725, guid: 3abc0ed5134530841bd63767108c09a9,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3216651321687142725, guid: 3abc0ed5134530841bd63767108c09a9,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3216651321687142725, guid: 3abc0ed5134530841bd63767108c09a9,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3216651321687142725, guid: 3abc0ed5134530841bd63767108c09a9,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3216651321687142725, guid: 3abc0ed5134530841bd63767108c09a9,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3216651321687142725, guid: 3abc0ed5134530841bd63767108c09a9,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3216651321687142725, guid: 3abc0ed5134530841bd63767108c09a9,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3216651321687142725, guid: 3abc0ed5134530841bd63767108c09a9,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3216651321687142725, guid: 3abc0ed5134530841bd63767108c09a9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3216651321687142725, guid: 3abc0ed5134530841bd63767108c09a9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3216651321687142725, guid: 3abc0ed5134530841bd63767108c09a9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3828976748490806016, guid: 3abc0ed5134530841bd63767108c09a9,
+        type: 3}
+      propertyPath: pitchRange.y
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6346106523242685549, guid: 3abc0ed5134530841bd63767108c09a9,
+        type: 3}
+      propertyPath: m_Name
+      value: WoodDropEffect
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3abc0ed5134530841bd63767108c09a9, type: 3}
+--- !u!4 &5387237908347365657 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3216651321687142725, guid: 3abc0ed5134530841bd63767108c09a9,
+    type: 3}
+  m_PrefabInstance: {fileID: 7377044624053098588}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5999855805256797020 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3828976748490806016, guid: 3abc0ed5134530841bd63767108c09a9,
+    type: 3}
+  m_PrefabInstance: {fileID: 7377044624053098588}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89f46bfb18a0d33409b93d4dd2c9831f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &9171261276244174810

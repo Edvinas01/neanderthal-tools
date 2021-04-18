@@ -102,7 +102,6 @@ namespace NeanderthalTools.Audio
         public void Play(Collision collision)
         {
             var force = collision.impulse.magnitude / Time.fixedDeltaTime;
-            Debug.Log(force); // todo remove // really really remove plz
             if (force < minForce)
             {
                 return;
