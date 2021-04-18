@@ -4,71 +4,78 @@ using UnityEngine.XR.Interaction.Toolkit;
 // Based on: https://www.youtube.com/watch?v=-a36GpPkW-Q
 namespace NeanderthalTools.Hands
 {
+    [RequireComponent(typeof(Rigidbody))]
     public class OffsetGrabInteractable : XRGrabInteractable
     {
         #region Fields
 
-        private Vector3 interactorPosition = Vector3.zero;
-        private Quaternion interactorRotation = Quaternion.identity;
+        private new Rigidbody rigidbody;
+
+        private Vector3 savedLocalAttachPosition;
+        private Quaternion savedLocalAttachRotation;
 
         #endregion
 
         #region Overrides
 
+        protected override void Awake()
+        {
+            base.Awake();
+            rigidbody = GetComponent<Rigidbody>();
+        }
+
         protected override void OnSelectEntering(SelectEnterEventArgs args)
         {
-            base.OnSelectEntering(args);
+            if (attachTransform == null)
+            {
+                var interactorAttachTransform = args.interactor.attachTransform;
+                SaveAttachPose(interactorAttachTransform);
+                ApplyOffsetAttachPose(interactorAttachTransform);
+            }
 
-            var interactor = args.interactor;
-            SetInteractorPose(interactor);
-            SetAttachmentPose(interactor);
+            base.OnSelectEntering(args);
         }
 
         protected override void OnSelectExiting(SelectExitEventArgs args)
         {
-            base.OnSelectExiting(args);
+            if (attachTransform == null)
+            {
+                var interactorAttachTransform = args.interactor.attachTransform;
+                ApplySavedAttachPose(interactorAttachTransform);
+                ClearSavedAttachPose();
+            }
 
-            var interactor = args.interactor;
-            ResetAttachmentPose(interactor);
-            ClearInteractorPose();
+            base.OnSelectExiting(args);
         }
 
         #endregion
 
         #region Methods
 
-        private void SetInteractorPose(XRBaseInteractor interactor)
+        private void SaveAttachPose(Transform interactorAttachTransform)
         {
-            var interactorTransform = interactor.attachTransform;
-            interactorPosition = interactorTransform.localPosition;
-            interactorRotation = interactorTransform.localRotation;
+            savedLocalAttachPosition = interactorAttachTransform.localPosition;
+            savedLocalAttachRotation = interactorAttachTransform.localRotation;
         }
 
-        private void SetAttachmentPose(XRBaseInteractor interactor)
+        private void ApplyOffsetAttachPose(Transform interactorAttachTransform)
         {
-            if (attachTransform != null)
-            {
-                return;
-            }
-
-            var interactorAttachTransform = interactor.attachTransform;
-            var interactableTransform = transform;
-
-            interactorAttachTransform.position = interactableTransform.position;
-            interactorAttachTransform.rotation = interactableTransform.rotation;
+            interactorAttachTransform.SetPositionAndRotation(
+                rigidbody.worldCenterOfMass,
+                transform.rotation
+            );
         }
 
-        private void ResetAttachmentPose(XRBaseInteractor interactor)
+        private void ApplySavedAttachPose(Transform interactorAttachTransform)
         {
-            var interactorAttachTransform = interactor.attachTransform;
-            interactorAttachTransform.localPosition = interactorPosition;
-            interactorAttachTransform.localRotation = interactorRotation;
+            interactorAttachTransform.localPosition = savedLocalAttachPosition;
+            interactorAttachTransform.localRotation = savedLocalAttachRotation;
         }
 
-        private void ClearInteractorPose()
+        private void ClearSavedAttachPose()
         {
-            interactorPosition = Vector3.zero;
-            interactorRotation = Quaternion.identity;
+            savedLocalAttachPosition = Vector3.zero;
+            savedLocalAttachRotation = Quaternion.identity;
         }
 
         #endregion
