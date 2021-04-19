@@ -52,7 +52,7 @@ namespace NeanderthalTools.Effects
 
         private void ShowHighlight(Flake flake)
         {
-            var flakeRenderer = flake.GetComponent<Renderer>();
+            var flakeRenderer = GetRenderer(flake);
             if (flakeRenderer == null)
             {
                 return;
@@ -63,9 +63,20 @@ namespace NeanderthalTools.Effects
             originalMaterials[flake] = originalMaterial;
         }
 
-        private void ClearHighlight(Flake flake)
+        private static Renderer GetRenderer(Flake flake)
         {
             var flakeRenderer = flake.GetComponent<Renderer>();
+            if (flakeRenderer == null)
+            {
+                return flake.GetComponentInChildren<Renderer>();
+            }
+
+            return flakeRenderer;
+        }
+
+        private void ClearHighlight(Flake flake)
+        {
+            var flakeRenderer = GetRenderer(flake);
             if (flakeRenderer == null)
             {
                 return;
