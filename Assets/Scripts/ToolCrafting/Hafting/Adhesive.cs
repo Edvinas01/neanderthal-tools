@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace NeanderthalTools.ToolCrafting.Hafting
 {
@@ -12,6 +13,12 @@ namespace NeanderthalTools.ToolCrafting.Hafting
         [Tooltip("Speed of adhesive production upon adding material")]
         private float productionSpeed = 1f;
 
+        [SerializeField]
+        private UnityEvent onStartProduction;
+
+        [SerializeField]
+        private UnityEvent onStopProduction;
+
         #endregion
 
         #region Fields
@@ -21,6 +28,8 @@ namespace NeanderthalTools.ToolCrafting.Hafting
         private float currentAmount;
         private float targetAmount;
 
+        private bool pendingProductionStop;
+
         #endregion
 
         #region Properties
@@ -28,7 +37,15 @@ namespace NeanderthalTools.ToolCrafting.Hafting
         public float Amount
         {
             get => currentAmount;
-            set => targetAmount = Mathf.Min(value, 1f);
+            set
+            {
+                targetAmount = Mathf.Min(value, 1f);
+                if (!IsTargetAmount())
+                {
+                    onStartProduction.Invoke();
+                    pendingProductionStop = true;
+                }
+            }
         }
 
         public Vector3 AttachDirection => Vector3.zero;
@@ -77,6 +94,10 @@ namespace NeanderthalTools.ToolCrafting.Hafting
             if (IsTargetAmount())
             {
                 currentAmount = targetAmount;
+                if (pendingProductionStop)
+                {
+                    HandleProductionStop();
+                }
             }
         }
 
@@ -88,6 +109,12 @@ namespace NeanderthalTools.ToolCrafting.Hafting
         private bool IsTargetAmount()
         {
             return Math.Abs(currentAmount - targetAmount) < 0.01f;
+        }
+
+        private void HandleProductionStop()
+        {
+            onStopProduction.Invoke();
+            pendingProductionStop = false;
         }
 
         #endregion
