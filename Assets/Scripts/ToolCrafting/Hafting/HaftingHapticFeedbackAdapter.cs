@@ -1,16 +1,16 @@
 ﻿using NeanderthalTools.Haptics;
 using UnityEngine;
 
-namespace NeanderthalTools.ToolCrafting.Knapping
+namespace NeanderthalTools.ToolCrafting.Hafting
 {
-    public class FlakeHapticFeedbackAdapter : MonoBehaviour
+    public class HaftingHapticFeedbackAdapter : MonoBehaviour
     {
         #region Enums
 
         private enum Target
         {
-            Knapper,
-            Objective,
+            Handle,
+            ToolPart,
             Both
         }
 
@@ -22,13 +22,13 @@ namespace NeanderthalTools.ToolCrafting.Knapping
         private HapticFeedbackSettings settings;
 
         [SerializeField]
-        private Target target = Target.Knapper;
+        private Target target = Target.Both;
 
         #endregion
 
         #region Methods
 
-        public void SendHapticImpulse(FlakeEventArgs args)
+        public void SendHapticImpulse(HaftEventArgs args)
         {
             if (!gameObject.activeInHierarchy)
             {
@@ -37,14 +37,14 @@ namespace NeanderthalTools.ToolCrafting.Knapping
 
             switch (target)
             {
-                case Target.Knapper:
-                    settings.SendHapticImpulse(args.KnapperInteractor);
+                case Target.Handle:
+                    settings.SendHapticImpulse(args.HandleInteractor);
                     break;
-                case Target.Objective:
-                    settings.SendHapticImpulse(args.ObjectiveInteractor);
+                case Target.ToolPart:
+                    settings.SendHapticImpulse(args.ToolPartInteractor);
                     break;
                 case Target.Both:
-                    settings.SendHapticImpulse(args.KnapperInteractor, args.ObjectiveInteractor);
+                    settings.SendHapticImpulse(args.HandleInteractor, args.ToolPartInteractor);
                     break;
             }
         }

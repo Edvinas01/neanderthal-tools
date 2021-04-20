@@ -56,6 +56,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2811676270706300041}
+        m_TargetAssemblyTypeName: NeanderthalTools.ToolCrafting.Hafting.HaftingHapticFeedbackAdapter,
+          Assembly-CSharp
+        m_MethodName: SendHapticImpulse
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onAttachFlake:
     m_PersistentCalls:
       m_Calls:
@@ -97,6 +110,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 441983892897252235}
+        m_TargetAssemblyTypeName: NeanderthalTools.ToolCrafting.Hafting.HaftingHapticFeedbackAdapter,
+          Assembly-CSharp
+        m_MethodName: SendHapticImpulse
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &4931093112805403290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,6 +150,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  componentBlacklistTypeNames: []
 --- !u!64 &1753231060
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -172,6 +199,51 @@ Transform:
   m_Father: {fileID: 6663478646307715903}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4365827941801071846
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2847795321437707681}
+  - component: {fileID: 2811676270706300041}
+  m_Layer: 10
+  m_Name: HaftAdhesive
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2847795321437707681
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4365827941801071846}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7057248496537760498}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2811676270706300041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4365827941801071846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0924d8e08b78462b972f55255f0f3151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settings: {fileID: 11400000, guid: 23842426b2d19c745b6e685685df2482, type: 2}
+  target: 0
 --- !u!1 &5506323967150510411
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,6 +304,51 @@ Transform:
   m_Father: {fileID: 2856305181642370298}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -1.043, y: -54.587, z: -0.741}
+--- !u!1 &6226176448403021893
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8383683652193545602}
+  - component: {fileID: 441983892897252235}
+  m_Layer: 10
+  m_Name: HaftFlake
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8383683652193545602
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6226176448403021893}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7057248496537760498}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &441983892897252235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6226176448403021893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0924d8e08b78462b972f55255f0f3151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settings: {fileID: 11400000, guid: 228abfa7f9291b141a9a2f7305090843, type: 2}
+  target: 2
 --- !u!1 &7774800801299921988
 GameObject:
   m_ObjectHideFlags: 0
@@ -297,6 +414,38 @@ MonoBehaviour:
   maxAngle: 30
   minForce: 5
   toolTypeName: NeanderthalTools.ToolCrafting.Knapping.Flake
+--- !u!1 &8071145102073612903
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7057248496537760498}
+  m_Layer: 10
+  m_Name: Hatpics
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7057248496537760498
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8071145102073612903}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2847795321437707681}
+  - {fileID: 8383683652193545602}
+  m_Father: {fileID: 6663478646307715903}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8942782982286574166
 GameObject:
   m_ObjectHideFlags: 0
@@ -437,12 +586,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3abc0ed5134530841bd63767108c09a9, type: 3}
---- !u!4 &3509467124193763434 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3216651321687142725, guid: 3abc0ed5134530841bd63767108c09a9,
-    type: 3}
-  m_PrefabInstance: {fileID: 2024357676448272687}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2969196534044721711 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3828976748490806016, guid: 3abc0ed5134530841bd63767108c09a9,
@@ -455,6 +598,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89f46bfb18a0d33409b93d4dd2c9831f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &3509467124193763434 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3216651321687142725, guid: 3abc0ed5134530841bd63767108c09a9,
+    type: 3}
+  m_PrefabInstance: {fileID: 2024357676448272687}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2748504765546276390
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -600,15 +749,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61d50381e359a5246a17433a8ea8c575, type: 3}
---- !u!4 &6663478646307715903 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8817423563159559449, guid: 61d50381e359a5246a17433a8ea8c575,
-    type: 3}
-  m_PrefabInstance: {fileID: 2748504765546276390}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6663478646307715900 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8817423563159559450, guid: 61d50381e359a5246a17433a8ea8c575,
+    type: 3}
+  m_PrefabInstance: {fileID: 2748504765546276390}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6663478646307715903 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8817423563159559449, guid: 61d50381e359a5246a17433a8ea8c575,
     type: 3}
   m_PrefabInstance: {fileID: 2748504765546276390}
   m_PrefabAsset: {fileID: 0}
@@ -761,12 +910,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 246e11a03f70fbe4babf13a42293cb02, type: 3}
---- !u!4 &5367426254227431208 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7800341570473209842, guid: 246e11a03f70fbe4babf13a42293cb02,
-    type: 3}
-  m_PrefabInstance: {fileID: 2755232004861620442}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &5367426254227431210 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7800341570473209840, guid: 246e11a03f70fbe4babf13a42293cb02,
@@ -779,6 +922,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a236d171ae494d1eaeb4824bf5074f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &5367426254227431208 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7800341570473209842, guid: 246e11a03f70fbe4babf13a42293cb02,
+    type: 3}
+  m_PrefabInstance: {fileID: 2755232004861620442}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4523364370967172562
 PrefabInstance:
   m_ObjectHideFlags: 0

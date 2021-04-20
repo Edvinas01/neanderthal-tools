@@ -1,11 +1,12 @@
 ﻿using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 namespace NeanderthalTools.Haptics
 {
     [CreateAssetMenu(
         fileName = "HapticFeedbackSettings",
-        menuName = "Game/Haptics/Haptic Feedback Settings"
+        menuName = "Game/Haptic Feedback Settings"
     )]
     public class HapticFeedbackSettings : ScriptableObject
     {
@@ -54,6 +55,29 @@ namespace NeanderthalTools.Haptics
             : durationSeconds;
 
         public bool OverridePlaying => overridePlaying;
+
+        #endregion
+
+        #region Methods
+
+        public void SendHapticImpulse(params XRBaseInteractor[] interactors)
+        {
+            foreach (var interactor in interactors)
+            {
+                if (interactor == null)
+                {
+                    continue;
+                }
+
+                var feedback = interactor.GetComponent<ManagedHapticFeedback>();
+                if (feedback == null)
+                {
+                    continue;
+                }
+
+                feedback.SendHapticImpulse(this);
+            }
+        }
 
         #endregion
     }
