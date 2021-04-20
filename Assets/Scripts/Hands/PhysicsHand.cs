@@ -106,11 +106,7 @@ namespace NeanderthalTools.Hands
                 return;
             }
 
-            var interactableTransform = interactable.transform;
-            var attachTransform = interactor.attachTransform;
-
-            interactableTransform.position = attachTransform.position;
-            interactableTransform.rotation = attachTransform.rotation;
+            interactable.MatchAttachPose(interactor);
         }
 
         private void OnPositionChanged(InputAction.CallbackContext ctx)
