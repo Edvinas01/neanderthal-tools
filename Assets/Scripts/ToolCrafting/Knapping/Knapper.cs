@@ -5,9 +5,18 @@ namespace NeanderthalTools.ToolCrafting.Knapping
 {
     public class Knapper : MonoBehaviour
     {
+        #region Editor
+
+        [Min(0f)]
+        [SerializeField]
+        private float knappingCooldown = 0.08f;
+
+        #endregion
+
         #region Fields
 
         private XRBaseInteractable interactable;
+        private float knappingAvailableTime;
 
         #endregion
 
@@ -20,6 +29,13 @@ namespace NeanderthalTools.ToolCrafting.Knapping
 
         private void OnCollisionEnter(Collision collision)
         {
+            if (IsCooldown())
+            {
+                return;
+            }
+
+            knappingAvailableTime = Time.time + knappingCooldown;
+
             if (interactable != null && !interactable.isSelected)
             {
                 return;
@@ -54,6 +70,11 @@ namespace NeanderthalTools.ToolCrafting.Knapping
                 point,
                 force
             );
+        }
+
+        private bool IsCooldown()
+        {
+            return Time.time < knappingAvailableTime;
         }
 
         #endregion
