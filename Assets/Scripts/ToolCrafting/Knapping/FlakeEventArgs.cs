@@ -1,4 +1,5 @@
-﻿using UnityEngine.XR.Interaction.Toolkit;
+﻿using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 namespace NeanderthalTools.ToolCrafting.Knapping
 {
@@ -15,6 +16,8 @@ namespace NeanderthalTools.ToolCrafting.Knapping
 
         public Flake Flake { get; }
 
+        public Vector3 ImpactPoint { get; }
+
         public float ImpactForce { get; }
 
         public float ImpactAngle { get; }
@@ -24,6 +27,7 @@ namespace NeanderthalTools.ToolCrafting.Knapping
             XRBaseInteractor knapperInteractor,
             Objective objective,
             Flake flake,
+            Vector3 impactPoint,
             float impactForce,
             float impactAngle
         )
@@ -32,6 +36,7 @@ namespace NeanderthalTools.ToolCrafting.Knapping
             KnapperInteractor = knapperInteractor;
             Objective = objective;
             Flake = flake;
+            ImpactPoint = impactPoint;
             ImpactForce = impactForce;
             ImpactAngle = impactAngle;
         }
