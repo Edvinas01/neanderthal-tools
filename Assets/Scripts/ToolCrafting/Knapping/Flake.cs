@@ -167,7 +167,11 @@ namespace NeanderthalTools.ToolCrafting.Knapping
             if (IsDependenciesRemaining())
             {
                 objective.HandleDependenciesRemaining(eventArgs);
+                return;
+            }
 
+            if (!objective.IsDetach)
+            {
                 return;
             }
 

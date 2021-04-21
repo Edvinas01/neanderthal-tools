@@ -14,6 +14,11 @@ namespace NeanderthalTools.ToolCrafting.Knapping
         [SerializeField]
         private GameObject interactablePrefab;
 
+        [Min(0f)]
+        [SerializeField]
+        [Tooltip("Cooldown when detaching the flakes (in seconds)")]
+        private float detachCooldown = 0.01f;
+
         [SerializeField]
         [Tooltip("Called when there are some dependencies remaining")]
         private FlakeUnityEvent onDependenciesRemaining;
@@ -49,12 +54,18 @@ namespace NeanderthalTools.ToolCrafting.Knapping
         /// </summary>
         public XRBaseInteractor Interactor => interactable.selectingInteractor;
 
+        /// <summary>
+        /// Is detachment available.
+        /// </summary>
+        public bool IsDetach => detachAvailableTime <= Time.time;
+
         #endregion
 
         #region Fields
 
         private XRBaseInteractable interactable;
         private List<Flake> flakes;
+        private float detachAvailableTime;
 
         #endregion
 
@@ -93,6 +104,7 @@ namespace NeanderthalTools.ToolCrafting.Knapping
             AddInteractable(flake);
 
             onDetach.Invoke(args);
+            detachAvailableTime = Time.time + detachCooldown;
         }
 
         private void RemoveInteractableColliders(Flake flake)
