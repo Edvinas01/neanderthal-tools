@@ -1,5 +1,5 @@
 {
-    "name": "XRI Default Input Actions",
+    "name": "InputActions",
     "maps": [
         {
             "name": "XRI HMD",
@@ -152,6 +152,14 @@
                     "type": "Value",
                     "id": "bfa204c7-3c92-4193-bad1-39eb71920042",
                     "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Load Main Scene",
+                    "type": "Button",
+                    "id": "768bd84e-071b-4d9b-a53d-23d54641dd1e",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 }
@@ -420,6 +428,28 @@
                     "action": "Translate Anchor",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "ddb09bc7-92bf-4a91-8abc-b32bd55be534",
+                    "path": "<XRController>{LeftHand}/menuButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "Load Main Scene",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "70d228c8-3bea-4e93-a332-6c71be94b6e7",
+                    "path": "<OculusTouchController>{LeftHand}/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "Load Main Scene",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
