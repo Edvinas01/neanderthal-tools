@@ -9,7 +9,7 @@ namespace NeanderthalTools.ToolCrafting.Knapping
 
         [Min(0f)]
         [SerializeField]
-        private float knappingCooldown = 0.08f;
+        private float knappingCooldown = 0.01f;
 
         #endregion
 
