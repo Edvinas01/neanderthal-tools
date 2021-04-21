@@ -58,6 +58,7 @@ namespace NeanderthalTools.Tools.Editor
                     rotation = parentTransform.rotation,
                     parent = parentTransform
                 },
+                layer = LayerMask.NameToLayer("Interactable"),
                 name = "Collider"
             };
 
