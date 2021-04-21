@@ -90,6 +90,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: 3424cb1ad985942459621e125fcb6061, type: 2}
   target: 2
+--- !u!1 &715374629594024991
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1837152889724753313}
+  m_Layer: 10
+  m_Name: Effects
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1837152889724753313
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 715374629594024991}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 8085110446669303707}
+  m_Father: {fileID: 5029254810064451945}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1288060031737923683
 GameObject:
   m_ObjectHideFlags: 0
@@ -348,6 +379,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 3135481672211427628}
+        m_TargetAssemblyTypeName: NeanderthalTools.ToolCrafting.Knapping.FlakeParticleAdapter,
+          Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onInvalidAngle:
     m_PersistentCalls:
       m_Calls:
@@ -394,6 +438,19 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: NeanderthalTools.Audio.AudioSourceWrangler, Assembly-CSharp
         m_MethodName: Play
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3135481672211427628}
+        m_TargetAssemblyTypeName: NeanderthalTools.ToolCrafting.Knapping.FlakeParticleAdapter,
+          Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -510,6 +567,31 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 3135481672211427628}
+        m_TargetAssemblyTypeName: NeanderthalTools.ToolCrafting.Knapping.FlakeParticleAdapter,
+          Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &3135481672211427628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3652602369101054736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efc3f80318154890b1f8ec3130123364, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1308155288267797426
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -706,6 +788,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1128133742301752099, guid: 61d50381e359a5246a17433a8ea8c575,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8817423563159559446, guid: 61d50381e359a5246a17433a8ea8c575,
         type: 3}
       propertyPath: m_Mass
@@ -885,17 +972,98 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61d50381e359a5246a17433a8ea8c575, type: 3}
+--- !u!1 &5029254810064451946 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8817423563159559450, guid: 61d50381e359a5246a17433a8ea8c575,
+    type: 3}
+  m_PrefabInstance: {fileID: 4581929493175215216}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5029254810064451945 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8817423563159559449, guid: 61d50381e359a5246a17433a8ea8c575,
     type: 3}
   m_PrefabInstance: {fileID: 4581929493175215216}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &5029254810064451946 stripped
+--- !u!1001 &7237677067887853408
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1837152889724753313}
+    m_Modifications:
+    - target: {fileID: 1460698925629714683, guid: 42272a215356d1240bbccd03a5509be9,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1460698925629714683, guid: 42272a215356d1240bbccd03a5509be9,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1460698925629714683, guid: 42272a215356d1240bbccd03a5509be9,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1460698925629714683, guid: 42272a215356d1240bbccd03a5509be9,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1460698925629714683, guid: 42272a215356d1240bbccd03a5509be9,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1460698925629714683, guid: 42272a215356d1240bbccd03a5509be9,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1460698925629714683, guid: 42272a215356d1240bbccd03a5509be9,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1460698925629714683, guid: 42272a215356d1240bbccd03a5509be9,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1460698925629714683, guid: 42272a215356d1240bbccd03a5509be9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1460698925629714683, guid: 42272a215356d1240bbccd03a5509be9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1460698925629714683, guid: 42272a215356d1240bbccd03a5509be9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6251491556314250352, guid: 42272a215356d1240bbccd03a5509be9,
+        type: 3}
+      propertyPath: m_Name
+      value: FlakeSparks
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 42272a215356d1240bbccd03a5509be9, type: 3}
+--- !u!1 &3652602369101054736 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 8817423563159559450, guid: 61d50381e359a5246a17433a8ea8c575,
+  m_CorrespondingSourceObject: {fileID: 6251491556314250352, guid: 42272a215356d1240bbccd03a5509be9,
     type: 3}
-  m_PrefabInstance: {fileID: 4581929493175215216}
+  m_PrefabInstance: {fileID: 7237677067887853408}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8085110446669303707 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1460698925629714683, guid: 42272a215356d1240bbccd03a5509be9,
+    type: 3}
+  m_PrefabInstance: {fileID: 7237677067887853408}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7785536825757062680
 PrefabInstance:

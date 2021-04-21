@@ -44,10 +44,16 @@ namespace NeanderthalTools.ToolCrafting.Knapping
 
         private void HandleFlakeCollision(Flake flake, Collision collision)
         {
-            var direction = (collision.contacts[0].point - transform.position).normalized;
+            var point = collision.contacts[0].point;
+            var direction = (point - transform.position).normalized;
             var force = collision.impulse.magnitude / Time.fixedDeltaTime;
 
-            flake.HandleImpact(interactable.selectingInteractor, direction, force);
+            flake.HandleImpact(
+                interactable.selectingInteractor,
+                direction,
+                point,
+                force
+            );
         }
 
         #endregion

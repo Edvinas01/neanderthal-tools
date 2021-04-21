@@ -143,6 +143,7 @@ namespace NeanderthalTools.ToolCrafting.Knapping
         public void HandleImpact(
             XRBaseInteractor knapperInteractor,
             Vector3 impactDirection,
+            Vector3 impactPoint,
             float impactForce
         )
         {
@@ -151,7 +152,12 @@ namespace NeanderthalTools.ToolCrafting.Knapping
                 return;
             }
 
-            var eventArgs = CreateEventArgs(knapperInteractor, impactForce);
+            var eventArgs = CreateEventArgs(
+                knapperInteractor,
+                impactPoint,
+                impactForce
+            );
+
             if (IsWeakImpact(impactForce))
             {
                 objective.HandleWeakImpact(eventArgs);
@@ -188,7 +194,7 @@ namespace NeanderthalTools.ToolCrafting.Knapping
                 impactColor = Color.green;
 
                 ClearDependencies();
-                Detach(knapperInteractor, impactForce, impactAngle);
+                Detach(knapperInteractor, impactPoint, impactForce, impactAngle);
             }
             else
             {
@@ -257,12 +263,13 @@ namespace NeanderthalTools.ToolCrafting.Knapping
 
         private void Detach(
             XRBaseInteractor knapperInteractor,
+            Vector3 impactPoint,
             float impactForce,
             float impactAngle
         )
         {
             var oldObjective = objective;
-            var args = CreateEventArgs(knapperInteractor, impactForce, impactAngle);
+            var args = CreateEventArgs(knapperInteractor, impactPoint, impactForce, impactAngle);
 
             // Objective is set to null before handling, as IsAttachable depends on it.
             objective = null;
@@ -276,6 +283,7 @@ namespace NeanderthalTools.ToolCrafting.Knapping
 
         private FlakeEventArgs CreateEventArgs(
             XRBaseInteractor knapperInteractor,
+            Vector3 impactPoint,
             float impactForce,
             float impactAngle = float.NaN
         )
@@ -285,6 +293,7 @@ namespace NeanderthalTools.ToolCrafting.Knapping
                 knapperInteractor,
                 objective,
                 this,
+                impactPoint,
                 impactForce,
                 impactAngle
             );
