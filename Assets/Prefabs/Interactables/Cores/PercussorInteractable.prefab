@@ -32,6 +32,62 @@ Transform:
   m_Father: {fileID: 7264305692922846031}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1895890999607306929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7264305692922846028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46e71de21bbb473da7c25e94eaeba5d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knappingCooldown: 0.04
+--- !u!114 &2463359985832929473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7264305692922846028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 940a538c5fe54e9e82ae991f1b160f0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onCollision:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1928486734262894398}
+        m_TargetAssemblyTypeName: NeanderthalTools.Audio.CollisionAudioSource, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  componentBlacklistTypeNames:
+  - NeanderthalTools.ToolCrafting.Knapping.Objective
+--- !u!64 &4665977804580416463
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5239899113571039492}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -1519207351443829028, guid: c112c26cd875abb469afd733a91642c6, type: 3}
 --- !u!1 &5035892457798120178
 GameObject:
   m_ObjectHideFlags: 0
@@ -63,20 +119,6 @@ Transform:
   m_Father: {fileID: 7264305692922846031}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &4665977804580416463
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5239899113571039492}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -1519207351443829028, guid: c112c26cd875abb469afd733a91642c6, type: 3}
 --- !u!1 &5887947252111130546
 GameObject:
   m_ObjectHideFlags: 0
@@ -122,47 +164,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poseIndex: 4
   interactable: {fileID: 7264305692922846017}
---- !u!114 &1895890999607306929
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7264305692922846028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46e71de21bbb473da7c25e94eaeba5d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2463359985832929473
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7264305692922846028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 940a538c5fe54e9e82ae991f1b160f0d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onCollision:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1928486734262894398}
-        m_TargetAssemblyTypeName: NeanderthalTools.Audio.CollisionAudioSource, Assembly-CSharp
-        m_MethodName: Play
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  componentBlacklistTypeNames:
-  - NeanderthalTools.ToolCrafting.Knapping.Objective
 --- !u!1 &8987673536330525215
 GameObject:
   m_ObjectHideFlags: 0
