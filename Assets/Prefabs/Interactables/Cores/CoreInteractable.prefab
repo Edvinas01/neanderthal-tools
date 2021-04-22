@@ -234,6 +234,18 @@ Transform:
   m_Father: {fileID: 5029254810064451945}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3135481672211427628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3652602369101054736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efc3f80318154890b1f8ec3130123364, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2661655624754305606
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -277,7 +289,7 @@ MonoBehaviour:
   signifierPrefab: {fileID: 8324121668401799469, guid: f53ab62899c494043b6c62e937a1b2fa,
     type: 3}
   failureThreshold: 5
-  offset: 0.2
+  offset: 0.1
   deactivateDelay: 0.5
   cleanupDelay: 30
   animationGrowTrigger: Grow
@@ -325,6 +337,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactablePrefab: {fileID: 6199939711418622772, guid: 034ab232c300912419e61d64bfb87574,
     type: 3}
+  detachCooldown: 0.01
   onDependenciesRemaining:
     m_PersistentCalls:
       m_Calls:
@@ -580,18 +593,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &3135481672211427628
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3652602369101054736}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efc3f80318154890b1f8ec3130123364, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1308155288267797426
 PrefabInstance:
   m_ObjectHideFlags: 0
