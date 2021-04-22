@@ -102,9 +102,9 @@ namespace NeanderthalTools.ToolCrafting.Knapping
             Gizmos.color = Color.green;
 
             var position = transform.position;
-            foreach (var offsetDirection in GetOffsetDirections())
+            foreach (var offsetTransform in OffsetTransforms)
             {
-                Gizmos.DrawRay(position, offsetDirection * DebugRayLength);
+                Gizmos.DrawRay(offsetTransform.position, offsetTransform.forward * DebugRayLength);
             }
 
             if (isAttachable)
