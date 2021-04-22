@@ -92,7 +92,7 @@ namespace NeanderthalTools.Hands
         private IEnumerator ClearVelocityReset()
         {
             yield return new WaitForSeconds(throwSmoothingDuration);
-            yield return null;
+            yield return new WaitForEndOfFrame();
 
             throwVelocityResetPending = false;
         }
