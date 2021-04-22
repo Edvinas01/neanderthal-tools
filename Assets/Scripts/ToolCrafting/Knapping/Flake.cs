@@ -41,6 +41,9 @@ namespace NeanderthalTools.ToolCrafting.Knapping
         [Tooltip("Other flakes that need to be detached before this one can be detached")]
         private List<Flake> dependencies;
 
+        [SerializeField]
+        private Flake adjacent;
+
         #endregion
 
         #region Fields
@@ -69,6 +72,8 @@ namespace NeanderthalTools.ToolCrafting.Knapping
         public bool IsAttachable => IsDetached() && isAttachable;
 
         public Vector3 AttachDirection => transform.rotation * attachDirection.normalized;
+
+        public Flake Adjacent => adjacent;
 
         public string Name { get; set; }
 
@@ -117,6 +122,10 @@ namespace NeanderthalTools.ToolCrafting.Knapping
         private void OnValidate()
         {
             angleOffsetTransforms = GetAngleOffsetTransforms();
+            if (adjacent != null)
+            {
+                adjacent.adjacent = this;
+            }
         }
 
         private void Awake()
@@ -263,6 +272,17 @@ namespace NeanderthalTools.ToolCrafting.Knapping
 
             dependencies.Clear();
             dependants.Clear();
+
+            ClearAdjacent();
+        }
+
+        private void ClearAdjacent()
+        {
+            if (adjacent != null)
+            {
+                adjacent.adjacent = null;
+                adjacent = null;
+            }
         }
 
         private void Detach(

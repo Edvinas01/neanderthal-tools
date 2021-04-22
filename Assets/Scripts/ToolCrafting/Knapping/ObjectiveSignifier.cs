@@ -160,6 +160,12 @@ namespace NeanderthalTools.ToolCrafting.Knapping
                 return null;
             }
 
+            var adjacent = flake.Adjacent;
+            if (adjacent != null)
+            {
+                return adjacent;
+            }
+
             return flake.IsDependencies
                 ? FindRandomFlake()
                 : flake;
