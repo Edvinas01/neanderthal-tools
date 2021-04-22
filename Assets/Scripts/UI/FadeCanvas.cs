@@ -18,6 +18,9 @@ namespace NeanderthalTools.UI
         [SerializeField]
         private float fadeOutDuration = 1.0f;
 
+        [SerializeField]
+        private Camera fadeCanvasCamera;
+
         #endregion
 
         #region Fields
@@ -45,6 +48,7 @@ namespace NeanderthalTools.UI
         public IEnumerator FadeOut()
         {
             yield return Coroutines.Progress(1f, 0f, fadeOutDuration, SetAlpha);
+            fadeCanvasCamera.enabled = false;
             canvas.enabled = false;
         }
 
@@ -53,6 +57,7 @@ namespace NeanderthalTools.UI
         /// </summary>
         public IEnumerator FadeIn()
         {
+            fadeCanvasCamera.enabled = true;
             canvas.enabled = true;
             yield return Coroutines.Progress(0f, 1f, fadeInDuration, SetAlpha);
         }
