@@ -28,6 +28,6 @@ MonoBehaviour:
   physicsRadius: 0.1
   physicsMask:
     serializedVersion: 2
-    m_Bits: 119
+    m_Bits: 2167
   incorporealColliderLayer: IncorporealHands
   regularColliderLayer: Hands
