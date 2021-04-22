@@ -94,6 +94,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: l_hand_skeletal_lowres
       objectReference: {fileID: 0}
+    - target: {fileID: 100054, guid: d5bb981b932c0694380673a76f0a3ab2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: d5bb981b932c0694380673a76f0a3ab2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.0870755
@@ -664,6 +668,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6032325459615062225, guid: 5bfd3c5bbff01d64da8492d8eddcd3be,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7972add465c545442b9bed6ba495f00e, type: 2}
     - target: {fileID: 7264305692922846028, guid: 5bfd3c5bbff01d64da8492d8eddcd3be,
         type: 3}
       propertyPath: m_Name
