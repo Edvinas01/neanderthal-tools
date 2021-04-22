@@ -31,8 +31,17 @@ namespace NeanderthalTools.Hands
         private XRBaseInteractor interactor;
         private new Rigidbody rigidbody;
 
-        private Vector3 targetPosition = Vector3.zero;
-        private Quaternion targetRotation = Quaternion.identity;
+        private Vector3 targetLocalPosition = Vector3.zero;
+        private Quaternion targetLocalRotation = Quaternion.identity;
+        private Transform parentTransform;
+
+        #endregion
+
+        #region Properties
+
+        private Vector3 TargetWorldPosition => parentTransform.TransformPoint(targetLocalPosition);
+
+        private Quaternion TargetWorldRotation => parentTransform.rotation * targetLocalRotation;
 
         #endregion
 
@@ -51,6 +60,12 @@ namespace NeanderthalTools.Hands
             locomotionHandler = GetComponentInParent<LocomotionHandler>();
             interactor = GetComponent<XRBaseInteractor>();
             rigidbody = GetComponent<Rigidbody>();
+
+            parentTransform = transform.parent;
+            if (parentTransform == null)
+            {
+                parentTransform = transform;
+            }
         }
 
         private void OnEnable()
@@ -111,12 +126,12 @@ namespace NeanderthalTools.Hands
 
         private void OnPositionChanged(InputAction.CallbackContext ctx)
         {
-            targetPosition = ctx.ReadValue<Vector3>();
+            targetLocalPosition = ctx.ReadValue<Vector3>();
         }
 
         private void OnRotationChanged(InputAction.CallbackContext ctx)
         {
-            targetRotation = ctx.ReadValue<Quaternion>();
+            targetLocalRotation = ctx.ReadValue<Quaternion>();
         }
 
         private void SetColliderLayerMasks(LayerMask layerMask)
@@ -171,13 +186,13 @@ namespace NeanderthalTools.Hands
         private void MoveImmediate()
         {
             rigidbody.velocity = Vector3.zero;
-            transform.localPosition = targetPosition;
+            transform.localPosition = targetLocalPosition;
         }
 
         private void RotateImmediate()
         {
             rigidbody.angularVelocity = Vector3.zero;
-            transform.localRotation = targetRotation;
+            transform.localRotation = targetLocalRotation;
         }
 
         private void MovePhysics()
@@ -197,7 +212,7 @@ namespace NeanderthalTools.Hands
 
         private Vector3 FindNewVelocity()
         {
-            var worldPosition = transform.parent.TransformPoint(targetPosition);
+            var worldPosition = TargetWorldPosition;
             var positionDiff = worldPosition - rigidbody.position;
             var velocity = positionDiff / Time.deltaTime;
 
@@ -221,7 +236,7 @@ namespace NeanderthalTools.Hands
 
         private Vector3 FindNewAngularVelocity()
         {
-            var worldRotation = transform.parent.rotation * targetRotation;
+            var worldRotation = TargetWorldRotation;
             var rotationDiff = worldRotation * Quaternion.Inverse(rigidbody.rotation);
 
             rotationDiff.ToAngleAxis(out var angle, out var axis);
