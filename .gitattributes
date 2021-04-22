@@ -55,3 +55,6 @@ packages-lock.json text eol=lf
 *.rns filter=lfs diff=lfs merge=lfs -text
 *.reason filter=lfs diff=lfs merge=lfs -text
 *.lxo filter=lfs diff=lfs merge=lfs -text
+
+# Binary.
+LightingData.asset filter=lfs diff=lfs merge=lfs -text
