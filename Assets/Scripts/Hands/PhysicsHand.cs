@@ -197,7 +197,7 @@ namespace NeanderthalTools.Hands
 
         private Vector3 FindNewVelocity()
         {
-            var worldPosition = transform.root.TransformPoint(targetPosition);
+            var worldPosition = transform.parent.TransformPoint(targetPosition);
             var positionDiff = worldPosition - rigidbody.position;
             var velocity = positionDiff / Time.deltaTime;
 
@@ -221,7 +221,7 @@ namespace NeanderthalTools.Hands
 
         private Vector3 FindNewAngularVelocity()
         {
-            var worldRotation = transform.root.rotation * targetRotation;
+            var worldRotation = transform.parent.rotation * targetRotation;
             var rotationDiff = worldRotation * Quaternion.Inverse(rigidbody.rotation);
 
             rotationDiff.ToAngleAxis(out var angle, out var axis);
