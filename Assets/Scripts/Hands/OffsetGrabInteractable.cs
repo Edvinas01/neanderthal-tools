@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
 // Based on: https://www.youtube.com/watch?v=-a36GpPkW-Q
@@ -11,6 +12,19 @@ namespace NeanderthalTools.Hands
 
         private Vector3 savedLocalAttachPosition;
         private Quaternion savedLocalAttachRotation;
+
+        private new Rigidbody rigidbody;
+        private bool throwVelocityResetPending;
+
+        #endregion
+
+        #region Unity Lifectcle
+
+        protected override void Awake()
+        {
+            base.Awake();
+            rigidbody = GetComponent<Rigidbody>();
+        }
 
         #endregion
 
@@ -40,9 +54,48 @@ namespace NeanderthalTools.Hands
             base.OnSelectExiting(args);
         }
 
+        protected override void Detach()
+        {
+            base.Detach();
+            if (throwVelocityResetPending)
+            {
+                ResetThrowVelocity();
+            }
+        }
+
         #endregion
 
         #region Methods
+
+        public void QueueThrowVelocityReset()
+        {
+            if (!isSelected || !throwOnDetach)
+            {
+                return;
+            }
+
+            throwVelocityResetPending = true;
+
+            // The throw velocity reset needs to happen late, as XRGrabInteractable estimates the
+            // throwing velocity within a time-frame that is defined in throwSmoothingDuration.
+            StopAllCoroutines();
+            StartCoroutine(ClearVelocityReset());
+        }
+
+        private void ResetThrowVelocity()
+        {
+            rigidbody.velocity = Vector3.zero;
+            rigidbody.angularVelocity = Vector3.zero;
+            throwVelocityResetPending = false;
+        }
+
+        private IEnumerator ClearVelocityReset()
+        {
+            yield return new WaitForSeconds(throwSmoothingDuration);
+            yield return null;
+
+            throwVelocityResetPending = false;
+        }
 
         private void SaveAttachPose(Transform interactorAttachTransform)
         {
