@@ -176,12 +176,13 @@ namespace NeanderthalTools.ToolCrafting.Knapping
 
         private void ShowSignifier(Flake flake)
         {
-            var direction = flake.OffsetDirections.GetRandom();
-            var position = flake.transform.position;
+            var offsetTransform = flake.OffsetTransforms.GetRandom();
+            var offsetDirection = offsetTransform.forward;
+            var offsetPosition = offsetTransform.position;
 
             var signifierTransform = Signifier.transform;
-            signifierTransform.up = direction;
-            signifierTransform.position = position + direction * offset;
+            signifierTransform.up = offsetDirection;
+            signifierTransform.position = offsetPosition + offsetDirection * offset;
 
             ShowSignifier();
             StartCleanupSignifier();

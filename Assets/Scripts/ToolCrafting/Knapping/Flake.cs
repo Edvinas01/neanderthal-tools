@@ -57,7 +57,7 @@ namespace NeanderthalTools.ToolCrafting.Knapping
 
         #region Properties
 
-        public IReadOnlyList<Vector3> OffsetDirections => GetOffsetDirections();
+        public IReadOnlyList<Transform> OffsetTransforms => angleOffsetTransforms;
 
         /// <summary>
         /// List of colliders attached to this flake.
