@@ -183,7 +183,7 @@ namespace NeanderthalTools.Hands
             {
                 return;
             }
-            
+
             // Configure anchor manually.
             var worldAnchor = interactor.transform.position;
             var localAnchor = transform.InverseTransformPoint(worldAnchor);
