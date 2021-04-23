@@ -1,4 +1,5 @@
-﻿using NeanderthalTools.Hands;
+﻿using System.Collections.Generic;
+using NeanderthalTools.Hands;
 using NeanderthalTools.ToolCrafting.Knapping;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -159,6 +160,7 @@ namespace NeanderthalTools.ToolCrafting.Hafting
             {
                 onAttachFlake.Invoke(CreateEventArgs(flakeInteractable.selectingInteractor, flake));
                 RemoveComponents(flake);
+                RegisterColliders(flake);
             }
         }
 
@@ -173,6 +175,19 @@ namespace NeanderthalTools.ToolCrafting.Hafting
             RemoveComponent<XRBaseInteractable>(flake);
             RemoveComponent<Rigidbody>(flake);
             Destroy(flake);
+        }
+
+        private void RegisterColliders(Flake flake)
+        {
+            var interactionManager = handleInteractable.interactionManager;
+
+            var colliderMap = new Dictionary<Collider, XRBaseInteractable>();
+            interactionManager.GetColliderToInteractableMap(ref colliderMap);
+
+            foreach (var flakeCollider in flake.Colliders)
+            {
+                colliderMap[flakeCollider] = handleInteractable;
+            }
         }
 
         private static void RemoveComponent<T>(Component from) where T : Component
