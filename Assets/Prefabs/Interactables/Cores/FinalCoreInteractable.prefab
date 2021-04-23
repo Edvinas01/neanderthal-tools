@@ -989,7 +989,7 @@ MonoBehaviour:
   angleOffsetTransforms: []
   attachDirection: {x: 0, y: 0, z: 0}
   maxAngle: 0
-  minForce: 50
+  minForce: 100
   removalRatio: 1
   isAttachable: 0
   dependencies:
@@ -1011,7 +1011,7 @@ MonoBehaviour:
   - {fileID: 8134350328683934762}
   attachDirection: {x: -0.04, y: -0.08, z: 1}
   maxAngle: 20
-  minForce: 50
+  minForce: 100
   removalRatio: 1
   isAttachable: 1
   dependencies:
@@ -1045,7 +1045,7 @@ MonoBehaviour:
   - {fileID: 8988988604771127163}
   attachDirection: {x: 0, y: 0, z: 0}
   maxAngle: 30
-  minForce: 50
+  minForce: 100
   removalRatio: 1
   isAttachable: 0
   dependencies: []
@@ -1066,7 +1066,7 @@ MonoBehaviour:
   - {fileID: 2765859420242417623}
   attachDirection: {x: 0, y: 0, z: 0}
   maxAngle: 30
-  minForce: 50
+  minForce: 100
   removalRatio: 1
   isAttachable: 0
   dependencies: []
@@ -1087,7 +1087,7 @@ MonoBehaviour:
   - {fileID: 5893260223393465775}
   attachDirection: {x: 0, y: 0, z: 0}
   maxAngle: 30
-  minForce: 50
+  minForce: 100
   removalRatio: 1
   isAttachable: 0
   dependencies: []
@@ -1108,7 +1108,7 @@ MonoBehaviour:
   - {fileID: 5829326243948773205}
   attachDirection: {x: 0, y: 0, z: 0}
   maxAngle: 30
-  minForce: 50
+  minForce: 100
   removalRatio: 1
   isAttachable: 0
   dependencies: []
@@ -1129,7 +1129,7 @@ MonoBehaviour:
   - {fileID: 8435129317679763735}
   attachDirection: {x: 0, y: 0, z: 0}
   maxAngle: 30
-  minForce: 50
+  minForce: 100
   removalRatio: 1
   isAttachable: 0
   dependencies: []
@@ -1150,7 +1150,7 @@ MonoBehaviour:
   - {fileID: 6991086715286159023}
   attachDirection: {x: 0, y: 0, z: 0}
   maxAngle: 30
-  minForce: 50
+  minForce: 100
   removalRatio: 1
   isAttachable: 0
   dependencies: []
@@ -1171,7 +1171,7 @@ MonoBehaviour:
   - {fileID: 3907272621058083536}
   attachDirection: {x: 0, y: 0, z: 0}
   maxAngle: 30
-  minForce: 50
+  minForce: 100
   removalRatio: 1
   isAttachable: 0
   dependencies: []
@@ -1192,7 +1192,7 @@ MonoBehaviour:
   - {fileID: 7061495009920778122}
   attachDirection: {x: 0, y: 0, z: 0}
   maxAngle: 30
-  minForce: 50
+  minForce: 100
   removalRatio: 1
   isAttachable: 0
   dependencies: []
@@ -1213,7 +1213,7 @@ MonoBehaviour:
   - {fileID: 3214551988157544112}
   attachDirection: {x: 0, y: 0, z: 0}
   maxAngle: 30
-  minForce: 50
+  minForce: 100
   removalRatio: 1
   isAttachable: 0
   dependencies: []
@@ -1234,7 +1234,7 @@ MonoBehaviour:
   - {fileID: 1158370816667848413}
   attachDirection: {x: 0, y: 0, z: 0}
   maxAngle: 30
-  minForce: 50
+  minForce: 100
   removalRatio: 1
   isAttachable: 0
   dependencies: []
@@ -1255,7 +1255,7 @@ MonoBehaviour:
   - {fileID: 8899285449508661746}
   attachDirection: {x: 0, y: 0, z: 0}
   maxAngle: 30
-  minForce: 50
+  minForce: 100
   removalRatio: 1
   isAttachable: 0
   dependencies: []
@@ -1276,7 +1276,7 @@ MonoBehaviour:
   - {fileID: 5188741045582436232}
   attachDirection: {x: 0, y: 0, z: 0}
   maxAngle: 30
-  minForce: 50
+  minForce: 100
   removalRatio: 1
   isAttachable: 0
   dependencies: []
@@ -1297,7 +1297,7 @@ MonoBehaviour:
   - {fileID: 6520355050450565620}
   attachDirection: {x: 0, y: 0, z: 0}
   maxAngle: 30
-  minForce: 50
+  minForce: 100
   removalRatio: 1
   isAttachable: 0
   dependencies:
