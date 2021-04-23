@@ -102,6 +102,11 @@ namespace NeanderthalTools.Hands
 
         private void SetupAttach()
         {
+            if (interactable.attachTransform != null)
+            {
+                return;
+            }
+
             interactable.attachTransform = transform;
         }
 
@@ -131,11 +136,7 @@ namespace NeanderthalTools.Hands
 
         private void SnapPosition(XRBaseInteractor interactor)
         {
-            var interactorAttachTransform = interactor.attachTransform;
-            var interactableTransform = transform;
-
-            interactableTransform.position = interactorAttachTransform.position;
-            interactableTransform.rotation = interactorAttachTransform.rotation;
+            interactable.MatchAttachPose(interactor);
         }
 
         private void CreateJoint(Rigidbody interactorRigidbody, XRBaseInteractor interactor)
@@ -176,8 +177,8 @@ namespace NeanderthalTools.Hands
             XRBaseInteractor interactor
         )
         {
-            configurableJoint.connectedBody = interactorRigidbody;
             configurableJoint.autoConfigureConnectedAnchor = autoconfigureConnectedAnchor;
+            configurableJoint.connectedBody = interactorRigidbody;
 
             if (autoconfigureConnectedAnchor)
             {
