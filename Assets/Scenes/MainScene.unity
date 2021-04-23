@@ -56705,20 +56705,10 @@ PrefabInstance:
       propertyPath: nextState
       value: 
       objectReference: {fileID: 1268189146}
-    - target: {fileID: 8999279518208012033, guid: 5a2eaf1628af38b46b8960444a30622c,
-        type: 3}
-      propertyPath: triggerOnStart
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8999279518208012035, guid: 5a2eaf1628af38b46b8960444a30622c,
         type: 3}
       propertyPath: m_Name
       value: FindFlakingToolsState
-      objectReference: {fileID: 0}
-    - target: {fileID: 8999279518208012035, guid: 5a2eaf1628af38b46b8960444a30622c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a2eaf1628af38b46b8960444a30622c, type: 3}
