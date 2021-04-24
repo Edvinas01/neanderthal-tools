@@ -144,7 +144,7 @@ namespace NeanderthalTools.ToolCrafting.Knapping
 
         private bool IsShowSignifier()
         {
-            return failures >= failureThreshold;
+            return objective.IsDetachReady && failures >= failureThreshold;
         }
 
         private bool IsShowingSignifier()

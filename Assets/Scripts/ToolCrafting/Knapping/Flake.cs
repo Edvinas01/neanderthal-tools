@@ -179,7 +179,7 @@ namespace NeanderthalTools.ToolCrafting.Knapping
                 return;
             }
 
-            if (!objective.IsDetach)
+            if (!objective.IsDetachReady)
             {
                 return;
             }

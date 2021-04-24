@@ -14,11 +14,6 @@ namespace NeanderthalTools.ToolCrafting.Knapping
         [SerializeField]
         private GameObject interactablePrefab;
 
-        [Min(0f)]
-        [SerializeField]
-        [Tooltip("Cooldown when detaching the flakes (in seconds)")]
-        private float detachCooldown = 0.01f;
-
         [SerializeField]
         [Tooltip("Called when there are some dependencies remaining")]
         private FlakeUnityEvent onDependenciesRemaining;
@@ -57,7 +52,7 @@ namespace NeanderthalTools.ToolCrafting.Knapping
         /// <summary>
         /// Is detachment available.
         /// </summary>
-        public bool IsDetach => detachAvailableTime <= Time.time;
+        public bool IsDetachReady { get; private set; }
 
         #endregion
 
@@ -65,7 +60,6 @@ namespace NeanderthalTools.ToolCrafting.Knapping
 
         private XRBaseInteractable interactable;
         private List<Flake> flakes;
-        private float detachAvailableTime;
 
         #endregion
 
@@ -77,6 +71,25 @@ namespace NeanderthalTools.ToolCrafting.Knapping
             flakes = GetComponentsInChildren<Flake>().ToList();
         }
 
+        private void OnEnable()
+        {
+            interactable.selectExited.AddListener(OnSelectExited);
+        }
+
+        private void OnDisable()
+        {
+            interactable.selectExited.RemoveListener(OnSelectExited);
+        }
+
+        private void OnTriggerExit(Collider otherCollider)
+        {
+            var knapper = otherCollider.GetComponentInParent<Knapper>();
+            if (knapper != null)
+            {
+                IsDetachReady = true;
+            }
+        }
+
         #endregion
 
         #region Methods
@@ -84,16 +97,19 @@ namespace NeanderthalTools.ToolCrafting.Knapping
         public void HandleDependenciesRemaining(FlakeEventArgs args)
         {
             onDependenciesRemaining.Invoke(args);
+            IsDetachReady = false;
         }
 
         public void HandleInvalidAngle(FlakeEventArgs args)
         {
             onInvalidAngle.Invoke(args);
+            IsDetachReady = false;
         }
 
         public void HandleWeakImpact(FlakeEventArgs args)
         {
             onWeakImpact.Invoke(args);
+            IsDetachReady = false;
         }
 
         public void HandleDetach(FlakeEventArgs args)
@@ -104,7 +120,12 @@ namespace NeanderthalTools.ToolCrafting.Knapping
             AddInteractable(flake);
 
             onDetach.Invoke(args);
-            detachAvailableTime = Time.time + detachCooldown;
+            IsDetachReady = false;
+        }
+
+        private void OnSelectExited(SelectExitEventArgs args)
+        {
+            IsDetachReady = true;
         }
 
         private void RemoveInteractableColliders(Flake flake)
