@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2147973518040562260
+--- !u!1 &5377239039784012337
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,23 +8,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2176845747485648315}
-  - component: {fileID: 2923240515740115679}
-  - component: {fileID: 3390671984407207954}
-  m_Layer: 0
-  m_Name: StoneGrabEffect
+  - component: {fileID: 2039636355751774920}
+  - component: {fileID: 691745625781960762}
+  - component: {fileID: 679950173114018035}
+  m_Layer: 10
+  m_Name: RockDropEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2176845747485648315
+--- !u!4 &2039636355751774920
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2147973518040562260}
+  m_GameObject: {fileID: 5377239039784012337}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,18 +32,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &2923240515740115679
+--- !u!82 &691745625781960762
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2147973518040562260}
+  m_GameObject: {fileID: 5377239039784012337}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 2790566053440171866, guid: 85255d2055a2c814bb15709e2aee728e,
+  OutputAudioMixerGroup: {fileID: -7165492748394770253, guid: 85255d2055a2c814bb15709e2aee728e,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 17125cba0b307ff43a793a5ab3fd9c43, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -54,7 +54,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 10
+  MaxDistance: 18
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
@@ -64,23 +64,23 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0.1
+      time: 0.06666667
       value: 1
-      inSlope: -2.0847561
-      outSlope: -2.0847561
+      inSlope: -3.4493651
+      outSlope: -3.4493651
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.110310405
+      inWeight: 0
+      outWeight: 0.04497941
     - serializedVersion: 3
       time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
+      value: 0.06666667
+      inSlope: -0.06669331
+      outSlope: -0.06669331
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -104,7 +104,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.027777778
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -129,27 +129,34 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &3390671984407207954
+--- !u!114 &679950173114018035
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2147973518040562260}
+  m_GameObject: {fileID: 5377239039784012337}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a236d171ae494d1eaeb4824bf5074f49, type: 3}
+  m_Script: {fileID: 11500000, guid: 89f46bfb18a0d33409b93d4dd2c9831f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startTime: 0
-  follow: {fileID: 0}
-  fadeInOnPlay: 0
-  fadeInDuration: 0.5
-  fadeOutOnStop: 0
-  fadeOutDuration: 0.5
-  randomizePitch: 1
-  pitchRange: {x: 0.8, y: 1}
-  randomizeClips: 0
-  randomClips: []
-  destroyOnStop: 0
-  playOnStart: 0
+  volumeRange: {x: 0.8, y: 1}
+  randomVolumeOffset: 0
+  randomVolumeOffsetRange: {x: 0.05, y: 0.1}
+  pitchRange: {x: 0.5, y: 0.8}
+  randomPitchOffset: 1
+  randomPitchOffsetRange: {x: 0.05, y: 0.1}
+  minForce: 20
+  maxForce: 150
+  clips:
+  - startTime: 0
+    clip: {fileID: 8300000, guid: 1b98554bd7354f54499a4189fd541fd0, type: 3}
+  - startTime: 0
+    clip: {fileID: 8300000, guid: b32e6e83326069346a0cc19e5cdcb4e8, type: 3}
+  - startTime: 0
+    clip: {fileID: 8300000, guid: a6656416c49bd5042aa24f4c800055bf, type: 3}
+  - startTime: 0
+    clip: {fileID: 8300000, guid: 5d1bfc10cdf0ad947a7e4267f6d40bba, type: 3}
+  - startTime: 0
+    clip: {fileID: 8300000, guid: ff593ca8c46535b49a2c3b7c88ba9c50, type: 3}
