@@ -107,6 +107,7 @@ Material:
     - _GlossyReflections: 0
     - _HighlightIntensity: 10
     - _HighlightPower: 3
+    - _HighlightSpeed: 0.5
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
