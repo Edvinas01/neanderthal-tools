@@ -45,7 +45,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 17125cba0b307ff43a793a5ab3fd9c43, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -148,8 +148,11 @@ MonoBehaviour:
   fadeOutOnStop: 0
   fadeOutDuration: 0.5
   randomizePitch: 1
-  pitchRange: {x: 0.8, y: 1}
-  randomizeClips: 0
-  randomClips: []
+  pitchRange: {x: 1, y: 1.2}
+  randomizeClips: 1
+  randomClips:
+  - {fileID: 8300000, guid: e23486d32a26b8d4db5cf8836bd7a090, type: 3}
+  - {fileID: 8300000, guid: cf8578ebf23a12a418a4283d46dac31b, type: 3}
+  - {fileID: 8300000, guid: 1bb4f4ef2ef06d847b694eb8d6d741c8, type: 3}
   destroyOnStop: 0
   playOnStart: 0
