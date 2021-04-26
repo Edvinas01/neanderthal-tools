@@ -143,15 +143,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startTime: 0
   follow: {fileID: 0}
-  fadeInOnPlay: 1
+  fadeInOnPlay: 0
   fadeInDuration: 0.2
-  fadeOutOnStop: 1
+  fadeOutOnStop: 0
   fadeOutDuration: 0.2
   randomizePitch: 1
-  pitchRange: {x: 1, y: 1.3}
+  pitchRange: {x: 0.9, y: 1.1}
   randomizeClips: 1
   randomClips:
-  - {fileID: 8300000, guid: 81f485b0ae6ea2745b1743c662e5c201, type: 3}
-  - {fileID: 8300000, guid: 00d63567491b2744ea9f371c7a26eaaa, type: 3}
+  - {fileID: 8300000, guid: ba1f3c7a1471e524dbd73c72f34115dc, type: 3}
+  - {fileID: 8300000, guid: a297c845849722048a72b50b71a317d1, type: 3}
   destroyOnStop: 0
   playOnStart: 0
