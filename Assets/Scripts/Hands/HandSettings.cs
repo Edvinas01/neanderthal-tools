@@ -38,13 +38,18 @@ namespace NeanderthalTools.Hands
 
         [Min(0f)]
         [SerializeField]
-        [Tooltip("The max velocity of the physical hand movmenet")]
-        private float maxVelocity = 12f;
+        [Tooltip("The max velocity of the physical hand movement")]
+        private float maxVelocity = 3f;
 
         [Range(0, 1)]
         [SerializeField]
         [Tooltip("Angular velocity change multiplier, drag")]
         private float angularVelocityMultiplier = 0.99f;
+
+        [Min(0f)]
+        [SerializeField]
+        [Tooltip("The max velocity of the physical, angular hand movement")]
+        private float maxAngularVelocity = 10f;
 
         [Min(0f)]
         [SerializeField]
@@ -94,6 +99,8 @@ namespace NeanderthalTools.Hands
         public float MaxVelocity => maxVelocity;
 
         public float AngularVelocityMultiplier => angularVelocityMultiplier;
+
+        public float MaxAngularVelocity => maxAngularVelocity;
 
         public float PositionChangeSpeed => positionChangeSpeed;
 

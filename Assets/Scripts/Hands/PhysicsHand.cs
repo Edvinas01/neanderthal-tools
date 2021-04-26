@@ -60,6 +60,7 @@ namespace NeanderthalTools.Hands
             locomotionHandler = GetComponentInParent<LocomotionHandler>();
             interactor = GetComponent<XRBaseInteractor>();
             rigidbody = GetComponent<Rigidbody>();
+            rigidbody.maxAngularVelocity = settings.MaxAngularVelocity;
 
             parentTransform = transform.parent;
             if (parentTransform == null)
@@ -75,6 +76,9 @@ namespace NeanderthalTools.Hands
             settings.RotationAction.performed += OnRotationChanged;
             settings.SelectAction.performed += OnSelectChanged;
             settings.SelectAction.canceled += OnSelectChanged;
+
+            interactor.selectEntered.AddListener(OnSelectEntered);
+            interactor.selectExited.AddListener(OnSelectExited);
         }
 
         private void OnDisable()
@@ -84,6 +88,9 @@ namespace NeanderthalTools.Hands
             settings.RotationAction.performed -= OnRotationChanged;
             settings.SelectAction.performed -= OnSelectChanged;
             settings.SelectAction.canceled -= OnSelectChanged;
+
+            interactor.selectEntered.RemoveListener(OnSelectEntered);
+            interactor.selectExited.RemoveListener(OnSelectExited);
 
             interactables.Clear();
         }
@@ -97,15 +104,15 @@ namespace NeanderthalTools.Hands
 
         private void FixedUpdate()
         {
-            if (IsHoldingObject() || !IsColliderInRange())
-            {
-                MoveImmediate();
-                RotateImmediate();
-            }
-            else
+            if (IsHoldingObject() || IsColliderInRange())
             {
                 MovePhysics();
                 RotatePhysics();
+            }
+            else
+            {
+                MoveImmediate();
+                RotateImmediate();
             }
         }
 
@@ -162,6 +169,29 @@ namespace NeanderthalTools.Hands
             }
         }
 
+        private void OnSelectEntered(BaseInteractionEventArgs args)
+        {
+            SetIgnoreCollision(args.interactable, true);
+            SetColliderLayerMasks(settings.RegularColliderMask);
+        }
+
+        private void OnSelectExited(BaseInteractionEventArgs args)
+        {
+            SetIgnoreCollision(args.interactable, false);
+            SetColliderLayerMasks(settings.IncorporealColliderMask);
+        }
+
+        private void SetIgnoreCollision(XRBaseInteractable interactable, bool ignore)
+        {
+            foreach (var interactableCollider in interactable.colliders)
+            {
+                foreach (var handCollider in colliders)
+                {
+                    Physics.IgnoreCollision(interactableCollider, handCollider, ignore);
+                }
+            }
+        }
+
         private bool IsInteractablesInRange()
         {
             interactor.GetHoverTargets(interactables);
@@ -185,12 +215,14 @@ namespace NeanderthalTools.Hands
 
         private void MoveImmediate()
         {
+            rigidbody.MovePosition(TargetWorldPosition);
             rigidbody.velocity = Vector3.zero;
             transform.localPosition = targetLocalPosition;
         }
 
         private void RotateImmediate()
         {
+            rigidbody.MoveRotation(TargetWorldRotation);
             rigidbody.angularVelocity = Vector3.zero;
             transform.localRotation = targetLocalRotation;
         }
