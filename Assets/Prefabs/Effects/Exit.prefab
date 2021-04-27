@@ -8,8 +8,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 20027446635033169}
   serializedVersion: 2
-  m_Mass: 20
-  m_Drag: 2
+  m_Mass: 100
+  m_Drag: 5
   m_AngularDrag: 0.1
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -66,8 +66,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 489899446579487481}
   serializedVersion: 2
-  m_Mass: 20
-  m_Drag: 2
+  m_Mass: 100
+  m_Drag: 5
   m_AngularDrag: 0.1
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -124,8 +124,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1086804935795834854}
   serializedVersion: 2
-  m_Mass: 20
-  m_Drag: 2
+  m_Mass: 100
+  m_Drag: 5
   m_AngularDrag: 0.1
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -182,8 +182,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3574301085574653656}
   serializedVersion: 2
-  m_Mass: 20
-  m_Drag: 2
+  m_Mass: 100
+  m_Drag: 5
   m_AngularDrag: 0.1
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -240,8 +240,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3727325214565730267}
   serializedVersion: 2
-  m_Mass: 20
-  m_Drag: 2
+  m_Mass: 100
+  m_Drag: 5
   m_AngularDrag: 0.1
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -346,8 +346,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4483167046151769502}
   serializedVersion: 2
-  m_Mass: 20
-  m_Drag: 2
+  m_Mass: 100
+  m_Drag: 5
   m_AngularDrag: 0.1
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -404,8 +404,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5279671851312546547}
   serializedVersion: 2
-  m_Mass: 20
-  m_Drag: 2
+  m_Mass: 100
+  m_Drag: 5
   m_AngularDrag: 0.1
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -462,8 +462,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5292393229933548996}
   serializedVersion: 2
-  m_Mass: 20
-  m_Drag: 2
+  m_Mass: 100
+  m_Drag: 5
   m_AngularDrag: 0.1
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -890,7 +890,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34992033a7ab40789a8f8d853e12b381, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scriptableEvent: {fileID: 11400000, guid: 16324a8d9b4968d43b298f690a340c56, type: 2}
+  scriptableEvent: {fileID: 11400000, guid: 18075222896bc614da842c83013b2eaa, type: 2}
   onRaised:
     m_PersistentCalls:
       m_Calls:
@@ -5987,8 +5987,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8335226096447909672}
   serializedVersion: 2
-  m_Mass: 20
-  m_Drag: 2
+  m_Mass: 100
+  m_Drag: 5
   m_AngularDrag: 0.1
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -6045,8 +6045,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9122712447571461846}
   serializedVersion: 2
-  m_Mass: 20
-  m_Drag: 2
+  m_Mass: 100
+  m_Drag: 5
   m_AngularDrag: 0.1
   m_UseGravity: 1
   m_IsKinematic: 0
