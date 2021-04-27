@@ -305,22 +305,25 @@ MonoBehaviour:
   m_HapticHoverCancelIntensity: 0
   m_HapticHoverCancelDuration: 0
   m_LineType: 1
+  m_BlendVisualLinePoints: 1
   m_MaxRaycastDistance: 30
   m_ReferenceFrame: {fileID: 0}
   m_Velocity: 6
   m_Acceleration: 9.81
-  m_AdditionalFlightTime: 1
+  m_AdditionalGroundHeight: 0.1
+  m_AdditionalFlightTime: 0.3
   m_EndPointDistance: 30
   m_EndPointHeight: -10
   m_ControlPointDistance: 10
   m_ControlPointHeight: 5
   m_SampleFrequency: 40
-  m_HitDetectionType: 0
-  m_SphereCastRadius: 0.1
+  m_HitDetectionType: 1
+  m_SphereCastRadius: 0.15
   m_RaycastMask:
     serializedVersion: 2
     m_Bits: 2081
   m_RaycastTriggerInteraction: 1
+  m_HitClosestOnly: 0
   m_KeepSelectedTargetValid: 0
   m_HoverToSelect: 0
   m_HoverTimeToSelect: 0.5
@@ -329,6 +332,7 @@ MonoBehaviour:
   m_UseForceGrab: 0
   m_RotateSpeed: 180
   m_TranslateSpeed: 1
+  m_AnchorRotateReferenceFrame: {fileID: 0}
 --- !u!120 &1307416050241042562
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -494,8 +498,8 @@ MonoBehaviour:
     ctime7: 0
     atime0: 3277
     atime1: 4587
-    atime2: 60948
-    atime3: 62258
+    atime2: 55705
+    atime3: 58982
     atime4: 62258
     atime5: 0
     atime6: 0
@@ -523,8 +527,8 @@ MonoBehaviour:
     ctime7: 0
     atime0: 3277
     atime1: 4587
-    atime2: 60948
-    atime3: 62258
+    atime2: 55705
+    atime3: 58982
     atime4: 0
     atime5: 0
     atime6: 0
@@ -536,4 +540,4 @@ MonoBehaviour:
   m_FollowTightness: 10
   m_SnapThresholdDistance: 10
   m_Reticle: {fileID: 3501273267410922407}
-  m_StopLineAtFirstRaycastHit: 1
+  m_StopLineAtFirstRaycastHit: 0
