@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ca9d72c0f5043e9b9ed7e25d63422f5, type: 3}
   m_Name: TriggerExitSimulationStateEvent
   m_EditorClassIdentifier: 
-  description: 'Fired when the player creates a tool
+  description: 'Fired when the player is about to exit the simulation (opens the
+    cave exit)
 
 '
   lockDescription: 1
