@@ -323,7 +323,6 @@ MonoBehaviour:
         m_CallState: 2
   componentBlacklistTypeNames:
   - NeanderthalTools.ToolCrafting.Knapping.Knapper
-  - NeanderthalTools.Hands.PhysicsHand
 --- !u!114 &7630137278535017349
 MonoBehaviour:
   m_ObjectHideFlags: 0
