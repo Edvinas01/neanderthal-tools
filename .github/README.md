@@ -1,5 +1,9 @@
+<p align="center">
+  <img width="100%" src="screenshot.jpg" />
+</p>
+
 # Neanderthal Tools
-VR application for dissemination of Neanderthal Intangible Cultural Heritage (ICH) on crafting tools.
+VR simulation for dissemination of Neanderthal tool crafting.
 
 ## Requirements
 - Unity 2021.1.0f1, install via [Unity Hub](https://unity3d.com/get-unity/download)
