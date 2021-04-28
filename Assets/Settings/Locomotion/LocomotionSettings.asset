@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0faaf01efb844640816d1b731f09ab9d, type: 3}
   m_Name: LocomotionSettings
   m_EditorClassIdentifier: 
-  continuousMove: 1
+  continuousMove: 0
   snapTurn: 1
   teleport: 1
