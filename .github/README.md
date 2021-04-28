@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="100%" src="screenshot.jpg" />
+  <img width="100%" src="screenshot.png" />
 </p>
 
 # Neanderthal Tools
