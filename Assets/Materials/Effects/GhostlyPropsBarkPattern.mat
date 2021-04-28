@@ -79,7 +79,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _AlphaClip: 0
-    - _AlphaClipThreshold: 0.3
+    - _AlphaClipThreshold: 0.15
     - _Blend: 0
     - _BumpScale: 1
     - _ClearCoatMask: 0
