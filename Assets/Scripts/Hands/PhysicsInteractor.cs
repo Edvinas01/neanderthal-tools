@@ -41,7 +41,7 @@ namespace NeanderthalTools.Hands
 
         private new void OnTriggerEnter(Collider other)
         {
-            var interactable = interactionManager.TryGetInteractableForCollider(other);
+            var interactable = interactionManager.GetInteractableForCollider(other);
             if (interactable == null)
             {
                 return;
