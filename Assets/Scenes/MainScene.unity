@@ -58052,7 +58052,7 @@ PrefabInstance:
     - target: {fileID: 1498253336870654730, guid: 61a1d73f891a20542bc4b68317075f99,
         type: 3}
       propertyPath: deactivateOnAwake
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2033688966634537280, guid: 61a1d73f891a20542bc4b68317075f99,
         type: 3}
