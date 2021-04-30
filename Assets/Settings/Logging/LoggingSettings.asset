@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2925093d40714d9089a685e728a4a332, type: 3}
   m_Name: LoggingSettings
   m_EditorClassIdentifier: 
-  enableLogging: 0
-  uploadLogsToDropbox: 0
+  enableLogging: 1
+  uploadLogsToDropbox: 1
   dropboxAuthorizationToken: jNkW887pPnsAAAAAAAAAAbR6pcm0vVYf2cwo1YVKYvLRCpZpTyuTRD4QL2LQT9A_
   logFileDirectory: logs
   loggingSceneIndexes: 02000000
