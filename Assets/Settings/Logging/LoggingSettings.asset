@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enableLogging: 0
   uploadLogsToDropbox: 0
-  dropboxAuthorizationToken: jNkW887pPnsAAAAAAAAAAbR6pcm0vVYf2cwo1YVKYvLRCpZpTyuTRD4QL2LQT9A_
+  dropboxAuthorizationToken: 
   logFileDirectory: logs
   loggingSceneIndexes: 02000000
