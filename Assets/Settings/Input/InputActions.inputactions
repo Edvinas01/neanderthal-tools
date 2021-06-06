@@ -431,22 +431,11 @@
                 },
                 {
                     "name": "",
-                    "id": "ddb09bc7-92bf-4a91-8abc-b32bd55be534",
-                    "path": "<XRController>{LeftHand}/menuButton",
+                    "id": "1a043d12-13cf-47d6-887c-94ab3d66418a",
+                    "path": "<XRController>{LeftHand}/primaryButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Generic XR Controller",
-                    "action": "Load Main Scene",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "70d228c8-3bea-4e93-a332-6c71be94b6e7",
-                    "path": "<OculusTouchController>{LeftHand}/start",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Generic XR Controller",
+                    "groups": "",
                     "action": "Load Main Scene",
                     "isComposite": false,
                     "isPartOfComposite": false
