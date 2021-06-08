@@ -9740,7 +9740,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 0.52156866, b: 0, a: 1}
-  m_Intensity: 15
+  m_Intensity: 10
   m_Range: 13
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -9782,7 +9782,7 @@ Light:
   m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 18
+  m_BounceIntensity: 15
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -9802,8 +9802,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad14d73b2368a4c46a838abc0e390afa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minIntensity: 11
-  maxIntensity: 16
+  minIntensity: 10
+  maxIntensity: 13
   smoothing: 15
   movement: 0.3
   movementSpeed: 1
