@@ -19,9 +19,14 @@ namespace NeanderthalTools.ToolCrafting.Hafting
         [SerializeField]
         private UnityEvent onStopProduction;
 
+        [SerializeField]
+        private UnityEvent onEmpty;
+
         #endregion
 
         #region Fields
+
+        private const float AmountThreshold = 0.01f;
 
         private Vector3 initialScale;
 
@@ -108,13 +113,23 @@ namespace NeanderthalTools.ToolCrafting.Hafting
 
         private bool IsTargetAmount()
         {
-            return Math.Abs(currentAmount - targetAmount) < 0.01f;
+            return Math.Abs(currentAmount - targetAmount) < AmountThreshold;
         }
 
         private void HandleProductionStop()
         {
             onStopProduction.Invoke();
+            if (IsEmpty())
+            {
+                onEmpty.Invoke();
+            }
+
             pendingProductionStop = false;
+        }
+
+        private bool IsEmpty()
+        {
+            return currentAmount <= AmountThreshold;
         }
 
         #endregion
