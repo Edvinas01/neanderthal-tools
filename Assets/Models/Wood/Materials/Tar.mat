@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Tar
-  m_Shader: {fileID: -6465566751694194690, guid: 1f9d0547302387a4891bb8160a3eeb86,
+  m_Shader: {fileID: -6465566751694194690, guid: 9670352ddb829cb479d11c20cb973f76,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -102,13 +102,16 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
+    - _WobbleScale: 2
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
+    - Wobble_Limit: {r: 0.9, g: 1, b: 0, a: 0}
     - _BaseColor: {r: 0, g: 0, b: 0, a: 1}
     - _Color: {r: 0.122641504, g: 0.118592024, b: 0.118592024, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
+    - _WobbleSpeed: {r: 0.05, g: 0.05, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &6651009042166513378
 MonoBehaviour:
