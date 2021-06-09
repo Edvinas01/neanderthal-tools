@@ -58264,21 +58264,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ApplyAdhesiveState
       objectReference: {fileID: 0}
-    - target: {fileID: 3197916980262437384, guid: cb89ce30f3fb14e468b0e1d7a1942f6e,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3197916980262437386, guid: cb89ce30f3fb14e468b0e1d7a1942f6e,
         type: 3}
       propertyPath: nextState
       value: 
       objectReference: {fileID: 1630721863}
-    - target: {fileID: 3197916980262437386, guid: cb89ce30f3fb14e468b0e1d7a1942f6e,
-        type: 3}
-      propertyPath: triggerOnStart
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3197916980262437387, guid: cb89ce30f3fb14e468b0e1d7a1942f6e,
         type: 3}
       propertyPath: m_RootOrder
