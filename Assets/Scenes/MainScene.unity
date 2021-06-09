@@ -13218,6 +13218,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7584047909801214450, guid: e51c2f7a3dbf1a44f8df050afacca636,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.0025999993
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584047909801214450, guid: e51c2f7a3dbf1a44f8df050afacca636,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0361
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584047909801214450, guid: e51c2f7a3dbf1a44f8df050afacca636,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.0070000133
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584047909801214450, guid: e51c2f7a3dbf1a44f8df050afacca636,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.92625093
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584047909801214450, guid: e51c2f7a3dbf1a44f8df050afacca636,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.08835132
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e51c2f7a3dbf1a44f8df050afacca636, type: 3}
 --- !u!4 &686263775 stripped
@@ -58239,11 +58264,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: ApplyAdhesiveState
       objectReference: {fileID: 0}
+    - target: {fileID: 3197916980262437384, guid: cb89ce30f3fb14e468b0e1d7a1942f6e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3197916980262437386, guid: cb89ce30f3fb14e468b0e1d7a1942f6e,
         type: 3}
       propertyPath: nextState
       value: 
       objectReference: {fileID: 1630721863}
+    - target: {fileID: 3197916980262437386, guid: cb89ce30f3fb14e468b0e1d7a1942f6e,
+        type: 3}
+      propertyPath: triggerOnStart
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3197916980262437387, guid: cb89ce30f3fb14e468b0e1d7a1942f6e,
         type: 3}
       propertyPath: m_RootOrder
