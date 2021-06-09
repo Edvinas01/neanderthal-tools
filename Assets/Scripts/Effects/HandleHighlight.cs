@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace NeanderthalTools.Effects
 {
@@ -8,14 +9,14 @@ namespace NeanderthalTools.Effects
         #region Editor
 
         [SerializeField]
-        private Material highlightMaterial;
+        private List<Material> highlightMaterials;
 
         #endregion
 
         #region Fields
 
         private new Renderer renderer;
-        private Material originalMaterial;
+        private readonly List<Material> originalMaterials = new List<Material>();
 
         #endregion
 
@@ -32,17 +33,17 @@ namespace NeanderthalTools.Effects
 
         public void ShowHighlight()
         {
-            if (originalMaterial == null)
+            if (originalMaterials.Count == 0)
             {
-                originalMaterial = renderer.material;
+                originalMaterials.AddRange(renderer.materials);
             }
 
-            renderer.material = highlightMaterial;
+            renderer.materials = highlightMaterials.ToArray();
         }
 
         public void ClearHighlight()
         {
-            renderer.material = originalMaterial;
+            renderer.materials = originalMaterials.ToArray();
         }
 
         #endregion
