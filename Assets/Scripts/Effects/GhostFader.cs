@@ -24,6 +24,19 @@ namespace NeanderthalTools.Effects
             }
         }
 
+        private class LightWrapper
+        {
+            public float InitialIntensity { get; }
+
+            public Light Light { get; }
+
+            public LightWrapper(Light light, float initialIntensity)
+            {
+                Light = light;
+                InitialIntensity = initialIntensity;
+            }
+        }
+
         #endregion
 
         #region Editor
@@ -59,7 +72,8 @@ namespace NeanderthalTools.Effects
         #region Fields
 
         private List<MaterialWrapper> materialWrappers;
-        private new Light light;
+        private List<LightWrapper> lightWrappers;
+
         private new ParticleSystem particleSystem;
 
         private float initialLightIntensity;
@@ -84,8 +98,7 @@ namespace NeanderthalTools.Effects
         {
             colorPropertyId = Shader.PropertyToID(colorPropertyName);
             materialWrappers = GetMaterialWrappers();
-            light = ghost.GetComponentInChildren<Light>();
-            initialLightIntensity = light.intensity;
+            lightWrappers = GetLightWrappers();
             particleSystem = ghost.GetComponentInChildren<ParticleSystem>();
 
             if (deactivateOnAwake)
@@ -140,6 +153,19 @@ namespace NeanderthalTools.Effects
         {
             var initialAlpha = material.GetColor(colorPropertyId).a;
             return new MaterialWrapper(initialAlpha, material);
+        }
+
+        private List<LightWrapper> GetLightWrappers()
+        {
+            return GetComponentsInChildren<Light>()
+                .Select(CreateLightWrapper)
+                .ToList();
+        }
+
+        private static LightWrapper CreateLightWrapper(Light light)
+        {
+            var initialIntensity = light.intensity;
+            return new LightWrapper(light, initialIntensity);
         }
 
         private IEnumerator FadeIn()
@@ -197,7 +223,10 @@ namespace NeanderthalTools.Effects
 
         private void SetLightIntensityMultiplier(float multiplier)
         {
-            light.intensity = initialLightIntensity * multiplier;
+            foreach (var lightWrapper in lightWrappers)
+            {
+                lightWrapper.Light.intensity = lightWrapper.InitialIntensity * multiplier;
+            }
         }
 
         private bool IsFadingIn()
