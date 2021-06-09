@@ -46,6 +46,12 @@ namespace NeanderthalTools.Effects
             renderer.materials = originalMaterials.ToArray();
         }
 
+        public void RemoveHighlight()
+        {
+            ClearHighlight();
+            Destroy(this);
+        }
+
         #endregion
     }
 }
