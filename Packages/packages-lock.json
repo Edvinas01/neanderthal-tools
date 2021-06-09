@@ -14,13 +14,6 @@
       "dependencies": {},
       "hash": "fc456992b4d08ba8460567f7f5b629df76dbe059"
     },
-    "com.shiena.openxrruntimejson": {
-      "version": "https://github.com/shiena/OpenXRRuntimeSelector.git",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "f777f3826fb75087f5996c49b339c569f93c8320"
-    },
     "com.unity.ext.nunit": {
       "version": "1.0.6",
       "depth": 1,
