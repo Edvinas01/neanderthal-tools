@@ -312,22 +312,22 @@ PrefabInstance:
     - target: {fileID: 3529635112123265074, guid: dd9536f34ff82a642a232fef25b76a84,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.337
+      value: 4.636
       objectReference: {fileID: 0}
     - target: {fileID: 3529635112123265074, guid: dd9536f34ff82a642a232fef25b76a84,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.018
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 3529635112123265074, guid: dd9536f34ff82a642a232fef25b76a84,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.557
+      value: -2.314
       objectReference: {fileID: 0}
     - target: {fileID: 3529635112123265074, guid: dd9536f34ff82a642a232fef25b76a84,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.25277835
+      value: -0.06703997
       objectReference: {fileID: 0}
     - target: {fileID: 3529635112123265074, guid: dd9536f34ff82a642a232fef25b76a84,
         type: 3}
@@ -337,7 +337,7 @@ PrefabInstance:
     - target: {fileID: 3529635112123265074, guid: dd9536f34ff82a642a232fef25b76a84,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.96752423
+      value: 0.99775034
       objectReference: {fileID: 0}
     - target: {fileID: 3529635112123265074, guid: dd9536f34ff82a642a232fef25b76a84,
         type: 3}
@@ -352,7 +352,7 @@ PrefabInstance:
     - target: {fileID: 3529635112123265074, guid: dd9536f34ff82a642a232fef25b76a84,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 150.716
+      value: 91.684
       objectReference: {fileID: 0}
     - target: {fileID: 3529635112123265074, guid: dd9536f34ff82a642a232fef25b76a84,
         type: 3}
@@ -1229,10 +1229,25 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: 7972add465c545442b9bed6ba495f00e, type: 2}
+    - target: {fileID: -4191050823783621785, guid: 17b6544b9bb1fb647a31ef56ed73ced8,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7972add465c545442b9bed6ba495f00e, type: 2}
+    - target: {fileID: -4191050823783621785, guid: 17b6544b9bb1fb647a31ef56ed73ced8,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7972add465c545442b9bed6ba495f00e, type: 2}
     - target: {fileID: 919132149155446097, guid: 17b6544b9bb1fb647a31ef56ed73ced8,
         type: 3}
       propertyPath: m_Name
       value: haft_spear
       objectReference: {fileID: 0}
+    - target: {fileID: 4239125864633131817, guid: 17b6544b9bb1fb647a31ef56ed73ced8,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7972add465c545442b9bed6ba495f00e, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 17b6544b9bb1fb647a31ef56ed73ced8, type: 3}
