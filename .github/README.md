@@ -12,4 +12,4 @@ VR simulation for dissemination of Neanderthal tool crafting. Download the lates
 
 ## Thanks
 - [Frederik Stief](https://www.linkedin.com/in/frederikstief) - co-developing the simulation
-- [Rokas Sutkus](https://sutkusaudio.com/) - for audio design
+- [Rokas Sutkus](https://sutkusaudio.com/) - audio design
